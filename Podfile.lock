@@ -1,0 +1,22 @@
+PODS:
+  - AKPickerView (0.2.7)
+  - CGLAlphabetizer (0.2.0)
+  - DAKeyboardControl (2.4.0)
+  - RCRunkeeperSwitch (0.0.1)
+  - UITextView+Placeholder (1.2.0)
+
+DEPENDENCIES:
+  - AKPickerView
+  - CGLAlphabetizer (~> 0.1)
+  - DAKeyboardControl
+  - RCRunkeeperSwitch
+  - UITextView+Placeholder (~> 1.2)
+
+SPEC CHECKSUMS:
+  AKPickerView: 125372e36fcc372216127600a541f14dcdbb7993
+  CGLAlphabetizer: 944706922004b02e5b5af39bb2b25adaaac71038
+  DAKeyboardControl: 9d9bca22a5cc3c1d3cc61e24fbd208c3e84a3d2d
+  RCRunkeeperSwitch: bf8fe3fabb9297b7f9f22cd5f8b31dc386995494
+  UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
+
+COCOAPODS: 0.39.0
