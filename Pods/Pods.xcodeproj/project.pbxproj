@@ -1,0 +1,1031 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0C1C9FA265D258DC159932B002CAFA07 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A817CAE99C81EE68006DC1E60E295C0A /* Foundation.framework */; };
+		13F299FC05706440B1AC96EEEBFDF550 /* UITextView+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D3319BA110E2EF3B21F1A13E9703175 /* UITextView+Placeholder.m */; };
+		1F603789A5B50B80614EF58F8CAE1E22 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23016F69B2480F44D0BB5526B39192FA /* QuartzCore.framework */; };
+		1F6825055170025D6351FB943B6FFAA9 /* DAKeyboardControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 4DE605BA0D8D3E51EC469FA9B8378F07 /* DAKeyboardControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1FC0FA6F1639407439AEAC208108FCF1 /* CGLAlphabetizer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E28EB8A202306D4241D7090548962800 /* CGLAlphabetizer-dummy.m */; };
+		20231BEE81D1F6A6387FE83FEB662C11 /* RCRunkeeperSwitch-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CAA44600F251A8C5D92F889E33D84D /* RCRunkeeperSwitch-dummy.m */; };
+		28AE37A6AA772CCFD576EDFB9FC4558A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A817CAE99C81EE68006DC1E60E295C0A /* Foundation.framework */; };
+		2DCDBA9DBA803D4ACA6E5BD670456091 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 091D54A73E1E8BB182C9D7D245AF1C2F /* UIKit.framework */; };
+		376A80ACE343B004B2ED3EDF2F0156EB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A817CAE99C81EE68006DC1E60E295C0A /* Foundation.framework */; };
+		507CCFF13570841D2ADAB169DB0D6FAC /* CGLAlphabetizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CD6CE7FC9316A15D733A48F8C1BF43 /* CGLAlphabetizer.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		55F3DB9475AE5EB76621B6CA8F7F0A06 /* AKPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9FA1AFA50A5B704FCCF695F02B6532 /* AKPickerView.m */; };
+		56CB71D94035B81F7031573FE3D54FC8 /* Pods-vstreaming-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EC413393E8D9195F52068478BCCFD754 /* Pods-vstreaming-dummy.m */; };
+		5E3455A9D17138FB8DE19A599D5200F5 /* AKPickerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 90C9A025E13C0C9254E8D40CF4A87DC4 /* AKPickerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6738C02296654EDE91629F676BCF5468 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A817CAE99C81EE68006DC1E60E295C0A /* Foundation.framework */; };
+		69020BA38D2C0DEEC6BAAEAB6CEE6171 /* AKPickerView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9158A7D79FC9984B91D5904EC7720B49 /* AKPickerView-dummy.m */; };
+		7CE3BF66FB46657835D275E0C6C86400 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A817CAE99C81EE68006DC1E60E295C0A /* Foundation.framework */; };
+		933F8DC0CC3D9077E3B43E77168C704B /* UITextView+Placeholder-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC12B03C778892456FFB96A3980D06A /* UITextView+Placeholder-dummy.m */; };
+		999BEDCE62092DFF1400A9745B575A46 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 091D54A73E1E8BB182C9D7D245AF1C2F /* UIKit.framework */; };
+		A788DC951C2C074474E87A919EC9D81B /* RCRunkeeperSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E490743032C11DFAEDADF97E315164C /* RCRunkeeperSwitch.m */; };
+		B91C89C173DB0CDE7FD375CE1C942777 /* DAKeyboardControl-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B0E54CC59E0E1C4605198958EFAF17 /* DAKeyboardControl-dummy.m */; };
+		C8B3C52083E4B68E1158B14CAD66AA22 /* RCRunkeeperSwitch.h in Headers */ = {isa = PBXBuildFile; fileRef = 13A2003A547588EC6519195DAA42B9F8 /* RCRunkeeperSwitch.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D08CBF7A0A5826A52E7CF29F94E39A9D /* CGLAlphabetizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1359E2FF76BACD2CF7A3193D963A3EE3 /* CGLAlphabetizer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D6893D53E5FF77CE1C547501247E67E7 /* DAKeyboardControl.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A463EE4E027CB92F6440D76CF29EF4 /* DAKeyboardControl.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		DA2A0245FFE9F398194D873E68325411 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A817CAE99C81EE68006DC1E60E295C0A /* Foundation.framework */; };
+		DE8A3E6FF0F42612D8267AA6CF178520 /* UITextView+Placeholder.h in Headers */ = {isa = PBXBuildFile; fileRef = 60ED19A96405437EBE991B81C5FAAC58 /* UITextView+Placeholder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		35BB1756264377C9ED8867BA2E895D72 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1CAD4CDFEC2A1ED042B781C06B222D54;
+			remoteInfo = RCRunkeeperSwitch;
+		};
+		9196ECE735B6D15B4E00819047DC8372 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A35273E1314605952F39D68083D1DC9E;
+			remoteInfo = AKPickerView;
+		};
+		9D86E0B3CBFBD11E82993DDF1F6D161B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6B03B89D76DF5FBF0BB098F81F09D7EE;
+			remoteInfo = DAKeyboardControl;
+		};
+		F16668FFAADDB2C5F4D97F5D68B11FEC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 59D4F95419C6FE16042F84775C0E63C0;
+			remoteInfo = "UITextView+Placeholder";
+		};
+		F5CCE9F1BD7C77DABEB6FA65044C95F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F82C0E66E8CC90BEBBBA0C9ECDF9DF36;
+			remoteInfo = CGLAlphabetizer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		04C59D7AD295BFD9BD85FC4CC2758560 /* RCRunkeeperSwitch-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RCRunkeeperSwitch-prefix.pch"; sourceTree = "<group>"; };
+		091D54A73E1E8BB182C9D7D245AF1C2F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		12059827A391185D2130911AE478ADD6 /* DAKeyboardControl.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DAKeyboardControl.xcconfig; sourceTree = "<group>"; };
+		1359E2FF76BACD2CF7A3193D963A3EE3 /* CGLAlphabetizer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CGLAlphabetizer.h; path = Classes/CGLAlphabetizer.h; sourceTree = "<group>"; };
+		13A2003A547588EC6519195DAA42B9F8 /* RCRunkeeperSwitch.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCRunkeeperSwitch.h; path = RCRunkeeperSwitch/RCRunkeeperSwitch.h; sourceTree = "<group>"; };
+		16824E5D89217F459CD76141ADD0D5B5 /* AKPickerView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AKPickerView-prefix.pch"; sourceTree = "<group>"; };
+		1E9A78A7C01A667538921375D48D4B3D /* UITextView+Placeholder-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UITextView+Placeholder-prefix.pch"; sourceTree = "<group>"; };
+		1EFF08107AC3F24150E08DD31A270009 /* Pods-vstreaming-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-vstreaming-resources.sh"; sourceTree = "<group>"; };
+		23016F69B2480F44D0BB5526B39192FA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		27CD6CE7FC9316A15D733A48F8C1BF43 /* CGLAlphabetizer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CGLAlphabetizer.m; path = Classes/CGLAlphabetizer.m; sourceTree = "<group>"; };
+		2FB29CF12890E46FA97B8CF427FBC828 /* CGLAlphabetizer-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CGLAlphabetizer-prefix.pch"; sourceTree = "<group>"; };
+		325EA3FC08D3AC0E403D60FAF4DCD4C3 /* UITextView+Placeholder.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "UITextView+Placeholder.xcconfig"; sourceTree = "<group>"; };
+		3ADE06B7462801CEBAE0A9158836F385 /* Pods-vstreaming.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-vstreaming.release.xcconfig"; sourceTree = "<group>"; };
+		4D3319BA110E2EF3B21F1A13E9703175 /* UITextView+Placeholder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITextView+Placeholder.m"; path = "Sources/UITextView+Placeholder.m"; sourceTree = "<group>"; };
+		4DE605BA0D8D3E51EC469FA9B8378F07 /* DAKeyboardControl.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DAKeyboardControl.h; path = DAKeyboardControl/DAKeyboardControl.h; sourceTree = "<group>"; };
+		5482B8C8B0A8CA75109778FEA9F15A53 /* DAKeyboardControl-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DAKeyboardControl-prefix.pch"; sourceTree = "<group>"; };
+		5E490743032C11DFAEDADF97E315164C /* RCRunkeeperSwitch.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RCRunkeeperSwitch.m; path = RCRunkeeperSwitch/RCRunkeeperSwitch.m; sourceTree = "<group>"; };
+		60ED19A96405437EBE991B81C5FAAC58 /* UITextView+Placeholder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITextView+Placeholder.h"; path = "Sources/UITextView+Placeholder.h"; sourceTree = "<group>"; };
+		6159670B61C4E38C185B9E7CF066E21B /* Pods-vstreaming-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-vstreaming-acknowledgements.markdown"; sourceTree = "<group>"; };
+		66B0E54CC59E0E1C4605198958EFAF17 /* DAKeyboardControl-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DAKeyboardControl-dummy.m"; sourceTree = "<group>"; };
+		6AB448C6FAFB8A4780B35ABDBC6E9CAF /* RCRunkeeperSwitch.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RCRunkeeperSwitch.xcconfig; sourceTree = "<group>"; };
+		90C9A025E13C0C9254E8D40CF4A87DC4 /* AKPickerView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AKPickerView.h; path = AKPickerViewSample/AKPickerView/AKPickerView.h; sourceTree = "<group>"; };
+		9158A7D79FC9984B91D5904EC7720B49 /* AKPickerView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AKPickerView-dummy.m"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A0DE52B0698E46B5E69D928D7818D66B /* libCGLAlphabetizer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCGLAlphabetizer.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A817CAE99C81EE68006DC1E60E295C0A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		A9A463EE4E027CB92F6440D76CF29EF4 /* DAKeyboardControl.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DAKeyboardControl.m; path = DAKeyboardControl/DAKeyboardControl.m; sourceTree = "<group>"; };
+		AA9FA1AFA50A5B704FCCF695F02B6532 /* AKPickerView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AKPickerView.m; path = AKPickerViewSample/AKPickerView/AKPickerView.m; sourceTree = "<group>"; };
+		AC5157F28AC0CD79599EA31199333F31 /* libPods-vstreaming.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-vstreaming.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AEE84E561D7CB0F6B82E2AE6F7C5A1F9 /* libRCRunkeeperSwitch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRCRunkeeperSwitch.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF60FEABAF07B7F480C0506DC2D4A74F /* CGLAlphabetizer.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CGLAlphabetizer.xcconfig; sourceTree = "<group>"; };
+		BDC12B03C778892456FFB96A3980D06A /* UITextView+Placeholder-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Placeholder-dummy.m"; sourceTree = "<group>"; };
+		E28EB8A202306D4241D7090548962800 /* CGLAlphabetizer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CGLAlphabetizer-dummy.m"; sourceTree = "<group>"; };
+		E4E49E8F461BCCA6C859761C7ADDC400 /* Pods-vstreaming.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-vstreaming.debug.xcconfig"; sourceTree = "<group>"; };
+		E620D87A75AE7AE56A1BB9453EA414A1 /* libUITextView+Placeholder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libUITextView+Placeholder.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8A4BFB9F31C08E23B33F7C6B2DC178D /* AKPickerView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AKPickerView.xcconfig; sourceTree = "<group>"; };
+		EBB2750C8CD60D8344F70A5B48AC44FE /* libAKPickerView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAKPickerView.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC413393E8D9195F52068478BCCFD754 /* Pods-vstreaming-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-vstreaming-dummy.m"; sourceTree = "<group>"; };
+		F0816F0B66BA5476458A1091BB9A6F6F /* libDAKeyboardControl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDAKeyboardControl.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2CAA44600F251A8C5D92F889E33D84D /* RCRunkeeperSwitch-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RCRunkeeperSwitch-dummy.m"; sourceTree = "<group>"; };
+		F683374DC6EF9CA801C67AEB3BE3323E /* Pods-vstreaming-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-vstreaming-acknowledgements.plist"; sourceTree = "<group>"; };
+		FA3B834AA2A75E4591AF2FB5D8332B85 /* Pods-vstreaming-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-vstreaming-frameworks.sh"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		02F5DB53E208C21DB140A5F118F63479 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C1C9FA265D258DC159932B002CAFA07 /* Foundation.framework in Frameworks */,
+				2DCDBA9DBA803D4ACA6E5BD670456091 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		38BD99C01242E9C2872371517314FE69 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				376A80ACE343B004B2ED3EDF2F0156EB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68CBECEB21B9E5ACFB500F72AB001C29 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA2A0245FFE9F398194D873E68325411 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		72FC57156DF6B1F6B0ED99CD496B1F41 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7CE3BF66FB46657835D275E0C6C86400 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B0E1B981E068868EFDDA8EEBEC3C6F5D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6738C02296654EDE91629F676BCF5468 /* Foundation.framework in Frameworks */,
+				999BEDCE62092DFF1400A9745B575A46 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7A66B0555602BC01DB1965AC34168CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28AE37A6AA772CCFD576EDFB9FC4558A /* Foundation.framework in Frameworks */,
+				1F603789A5B50B80614EF58F8CAE1E22 /* QuartzCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		070F2B8CF674790FD0B6D37B925662CD /* DAKeyboardControl */ = {
+			isa = PBXGroup;
+			children = (
+				4DE605BA0D8D3E51EC469FA9B8378F07 /* DAKeyboardControl.h */,
+				A9A463EE4E027CB92F6440D76CF29EF4 /* DAKeyboardControl.m */,
+				2380B88E13B101BD179F03D1D516F818 /* Support Files */,
+			);
+			path = DAKeyboardControl;
+			sourceTree = "<group>";
+		};
+		122DA2E5084A4393C29BE363C764795C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DFDE779C6E5D3445E0CB8CCB8D424449 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1B735CDE7C81F5822279ED3EE2DBF915 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EBB2750C8CD60D8344F70A5B48AC44FE /* libAKPickerView.a */,
+				A0DE52B0698E46B5E69D928D7818D66B /* libCGLAlphabetizer.a */,
+				F0816F0B66BA5476458A1091BB9A6F6F /* libDAKeyboardControl.a */,
+				AC5157F28AC0CD79599EA31199333F31 /* libPods-vstreaming.a */,
+				AEE84E561D7CB0F6B82E2AE6F7C5A1F9 /* libRCRunkeeperSwitch.a */,
+				E620D87A75AE7AE56A1BB9453EA414A1 /* libUITextView+Placeholder.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1F1E04402644E16EC227E01D0B3B2986 /* UITextView+Placeholder */ = {
+			isa = PBXGroup;
+			children = (
+				60ED19A96405437EBE991B81C5FAAC58 /* UITextView+Placeholder.h */,
+				4D3319BA110E2EF3B21F1A13E9703175 /* UITextView+Placeholder.m */,
+				6D472D7931A33B93070F941E75FAEFC7 /* Support Files */,
+			);
+			path = "UITextView+Placeholder";
+			sourceTree = "<group>";
+		};
+		2380B88E13B101BD179F03D1D516F818 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				12059827A391185D2130911AE478ADD6 /* DAKeyboardControl.xcconfig */,
+				66B0E54CC59E0E1C4605198958EFAF17 /* DAKeyboardControl-dummy.m */,
+				5482B8C8B0A8CA75109778FEA9F15A53 /* DAKeyboardControl-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/DAKeyboardControl";
+			sourceTree = "<group>";
+		};
+		26A87B6CB487C0D7D41AC5B46F9DBA92 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				666503C6BDD93DD8ACBC2E4217D6B5EE /* AKPickerView */,
+				DAD2D6B897F977A15D709A6BC3183772 /* CGLAlphabetizer */,
+				070F2B8CF674790FD0B6D37B925662CD /* DAKeyboardControl */,
+				D591369F7C55D10803B096FA585A7083 /* RCRunkeeperSwitch */,
+				1F1E04402644E16EC227E01D0B3B2986 /* UITextView+Placeholder */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		377ABD974119C81F3305B76431858899 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				E8A4BFB9F31C08E23B33F7C6B2DC178D /* AKPickerView.xcconfig */,
+				9158A7D79FC9984B91D5904EC7720B49 /* AKPickerView-dummy.m */,
+				16824E5D89217F459CD76141ADD0D5B5 /* AKPickerView-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/AKPickerView";
+			sourceTree = "<group>";
+		};
+		666503C6BDD93DD8ACBC2E4217D6B5EE /* AKPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				90C9A025E13C0C9254E8D40CF4A87DC4 /* AKPickerView.h */,
+				AA9FA1AFA50A5B704FCCF695F02B6532 /* AKPickerView.m */,
+				377ABD974119C81F3305B76431858899 /* Support Files */,
+			);
+			path = AKPickerView;
+			sourceTree = "<group>";
+		};
+		6A22A39C1A57D304972A9242A19E8DD9 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				AF60FEABAF07B7F480C0506DC2D4A74F /* CGLAlphabetizer.xcconfig */,
+				E28EB8A202306D4241D7090548962800 /* CGLAlphabetizer-dummy.m */,
+				2FB29CF12890E46FA97B8CF427FBC828 /* CGLAlphabetizer-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/CGLAlphabetizer";
+			sourceTree = "<group>";
+		};
+		6D472D7931A33B93070F941E75FAEFC7 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				325EA3FC08D3AC0E403D60FAF4DCD4C3 /* UITextView+Placeholder.xcconfig */,
+				BDC12B03C778892456FFB96A3980D06A /* UITextView+Placeholder-dummy.m */,
+				1E9A78A7C01A667538921375D48D4B3D /* UITextView+Placeholder-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/UITextView+Placeholder";
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				122DA2E5084A4393C29BE363C764795C /* Frameworks */,
+				26A87B6CB487C0D7D41AC5B46F9DBA92 /* Pods */,
+				1B735CDE7C81F5822279ED3EE2DBF915 /* Products */,
+				BC65DFAF4BB1293754649A474166E47E /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		82BF824274AC3DF75B23A35392FF6232 /* Pods-vstreaming */ = {
+			isa = PBXGroup;
+			children = (
+				6159670B61C4E38C185B9E7CF066E21B /* Pods-vstreaming-acknowledgements.markdown */,
+				F683374DC6EF9CA801C67AEB3BE3323E /* Pods-vstreaming-acknowledgements.plist */,
+				EC413393E8D9195F52068478BCCFD754 /* Pods-vstreaming-dummy.m */,
+				FA3B834AA2A75E4591AF2FB5D8332B85 /* Pods-vstreaming-frameworks.sh */,
+				1EFF08107AC3F24150E08DD31A270009 /* Pods-vstreaming-resources.sh */,
+				E4E49E8F461BCCA6C859761C7ADDC400 /* Pods-vstreaming.debug.xcconfig */,
+				3ADE06B7462801CEBAE0A9158836F385 /* Pods-vstreaming.release.xcconfig */,
+			);
+			name = "Pods-vstreaming";
+			path = "Target Support Files/Pods-vstreaming";
+			sourceTree = "<group>";
+		};
+		BC65DFAF4BB1293754649A474166E47E /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				82BF824274AC3DF75B23A35392FF6232 /* Pods-vstreaming */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		CBC63A52A2F099FAAF4D93C9BEFE03D7 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				6AB448C6FAFB8A4780B35ABDBC6E9CAF /* RCRunkeeperSwitch.xcconfig */,
+				F2CAA44600F251A8C5D92F889E33D84D /* RCRunkeeperSwitch-dummy.m */,
+				04C59D7AD295BFD9BD85FC4CC2758560 /* RCRunkeeperSwitch-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/RCRunkeeperSwitch";
+			sourceTree = "<group>";
+		};
+		D591369F7C55D10803B096FA585A7083 /* RCRunkeeperSwitch */ = {
+			isa = PBXGroup;
+			children = (
+				13A2003A547588EC6519195DAA42B9F8 /* RCRunkeeperSwitch.h */,
+				5E490743032C11DFAEDADF97E315164C /* RCRunkeeperSwitch.m */,
+				CBC63A52A2F099FAAF4D93C9BEFE03D7 /* Support Files */,
+			);
+			path = RCRunkeeperSwitch;
+			sourceTree = "<group>";
+		};
+		DAD2D6B897F977A15D709A6BC3183772 /* CGLAlphabetizer */ = {
+			isa = PBXGroup;
+			children = (
+				1359E2FF76BACD2CF7A3193D963A3EE3 /* CGLAlphabetizer.h */,
+				27CD6CE7FC9316A15D733A48F8C1BF43 /* CGLAlphabetizer.m */,
+				6A22A39C1A57D304972A9242A19E8DD9 /* Support Files */,
+			);
+			path = CGLAlphabetizer;
+			sourceTree = "<group>";
+		};
+		DFDE779C6E5D3445E0CB8CCB8D424449 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				A817CAE99C81EE68006DC1E60E295C0A /* Foundation.framework */,
+				23016F69B2480F44D0BB5526B39192FA /* QuartzCore.framework */,
+				091D54A73E1E8BB182C9D7D245AF1C2F /* UIKit.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		08A05780D2EBC6A11E7E2C639DE2DB63 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8B3C52083E4B68E1158B14CAD66AA22 /* RCRunkeeperSwitch.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		15BC3E188CE7BE02647E71899FF40616 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D08CBF7A0A5826A52E7CF29F94E39A9D /* CGLAlphabetizer.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4205AC4EE17F8028DF76298A6E80B3FD /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE8A3E6FF0F42612D8267AA6CF178520 /* UITextView+Placeholder.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49BCDFF7CA14868B27E89171368E79CE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F6825055170025D6351FB943B6FFAA9 /* DAKeyboardControl.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C39730E71CE4BC075FAE11F261040BF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E3455A9D17138FB8DE19A599D5200F5 /* AKPickerView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		01C2832462A7782B4FCFA8CE928C06DE /* Pods-vstreaming */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B02F28D5A0F11EDE2F125073AEB4C19 /* Build configuration list for PBXNativeTarget "Pods-vstreaming" */;
+			buildPhases = (
+				36D6FF54A43A5BA4569AB1AC7D3A130C /* Sources */,
+				72FC57156DF6B1F6B0ED99CD496B1F41 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				06508E11CF507EAD6B85CF5BC7A5BBF9 /* PBXTargetDependency */,
+				CEAAF40E60D5DE6E5CE5B4721B3A0FF1 /* PBXTargetDependency */,
+				C8669FFB85F812AAD0EA3436ADDD2194 /* PBXTargetDependency */,
+				FABDD0537765C0C7F24D89AEA4F23A67 /* PBXTargetDependency */,
+				DAE86F44AB4CD6E417B5232421C8297E /* PBXTargetDependency */,
+			);
+			name = "Pods-vstreaming";
+			productName = "Pods-vstreaming";
+			productReference = AC5157F28AC0CD79599EA31199333F31 /* libPods-vstreaming.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		1CAD4CDFEC2A1ED042B781C06B222D54 /* RCRunkeeperSwitch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 525882073F440B7C36265DE6B87CCF4C /* Build configuration list for PBXNativeTarget "RCRunkeeperSwitch" */;
+			buildPhases = (
+				55B0F2C7E4B8B52D4C13E08BA1924D65 /* Sources */,
+				02F5DB53E208C21DB140A5F118F63479 /* Frameworks */,
+				08A05780D2EBC6A11E7E2C639DE2DB63 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RCRunkeeperSwitch;
+			productName = RCRunkeeperSwitch;
+			productReference = AEE84E561D7CB0F6B82E2AE6F7C5A1F9 /* libRCRunkeeperSwitch.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		59D4F95419C6FE16042F84775C0E63C0 /* UITextView+Placeholder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B93E934D915EC9595C1E9ACB5BDC9779 /* Build configuration list for PBXNativeTarget "UITextView+Placeholder" */;
+			buildPhases = (
+				AB73987428AD82AD3FE32A8FDC726162 /* Sources */,
+				B0E1B981E068868EFDDA8EEBEC3C6F5D /* Frameworks */,
+				4205AC4EE17F8028DF76298A6E80B3FD /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "UITextView+Placeholder";
+			productName = "UITextView+Placeholder";
+			productReference = E620D87A75AE7AE56A1BB9453EA414A1 /* libUITextView+Placeholder.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		6B03B89D76DF5FBF0BB098F81F09D7EE /* DAKeyboardControl */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CCC8B1C291A4B709D6ABFC794DAD34D1 /* Build configuration list for PBXNativeTarget "DAKeyboardControl" */;
+			buildPhases = (
+				BE3611B3D09A06A6F4650DCABA365F1E /* Sources */,
+				38BD99C01242E9C2872371517314FE69 /* Frameworks */,
+				49BCDFF7CA14868B27E89171368E79CE /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DAKeyboardControl;
+			productName = DAKeyboardControl;
+			productReference = F0816F0B66BA5476458A1091BB9A6F6F /* libDAKeyboardControl.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		A35273E1314605952F39D68083D1DC9E /* AKPickerView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DD15DF2C54D7E6392D6AD7995D804130 /* Build configuration list for PBXNativeTarget "AKPickerView" */;
+			buildPhases = (
+				A1B2EEDD8E7D488F2741F78C323E1747 /* Sources */,
+				E7A66B0555602BC01DB1965AC34168CC /* Frameworks */,
+				4C39730E71CE4BC075FAE11F261040BF /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AKPickerView;
+			productName = AKPickerView;
+			productReference = EBB2750C8CD60D8344F70A5B48AC44FE /* libAKPickerView.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		F82C0E66E8CC90BEBBBA0C9ECDF9DF36 /* CGLAlphabetizer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB349FDC05505BC47E0A30041585D3C8 /* Build configuration list for PBXNativeTarget "CGLAlphabetizer" */;
+			buildPhases = (
+				8C849BB729BA21B488BC3097807FF6B8 /* Sources */,
+				68CBECEB21B9E5ACFB500F72AB001C29 /* Frameworks */,
+				15BC3E188CE7BE02647E71899FF40616 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CGLAlphabetizer;
+			productName = CGLAlphabetizer;
+			productReference = A0DE52B0698E46B5E69D928D7818D66B /* libCGLAlphabetizer.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 1B735CDE7C81F5822279ED3EE2DBF915 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A35273E1314605952F39D68083D1DC9E /* AKPickerView */,
+				F82C0E66E8CC90BEBBBA0C9ECDF9DF36 /* CGLAlphabetizer */,
+				6B03B89D76DF5FBF0BB098F81F09D7EE /* DAKeyboardControl */,
+				01C2832462A7782B4FCFA8CE928C06DE /* Pods-vstreaming */,
+				1CAD4CDFEC2A1ED042B781C06B222D54 /* RCRunkeeperSwitch */,
+				59D4F95419C6FE16042F84775C0E63C0 /* UITextView+Placeholder */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		36D6FF54A43A5BA4569AB1AC7D3A130C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56CB71D94035B81F7031573FE3D54FC8 /* Pods-vstreaming-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55B0F2C7E4B8B52D4C13E08BA1924D65 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20231BEE81D1F6A6387FE83FEB662C11 /* RCRunkeeperSwitch-dummy.m in Sources */,
+				A788DC951C2C074474E87A919EC9D81B /* RCRunkeeperSwitch.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C849BB729BA21B488BC3097807FF6B8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FC0FA6F1639407439AEAC208108FCF1 /* CGLAlphabetizer-dummy.m in Sources */,
+				507CCFF13570841D2ADAB169DB0D6FAC /* CGLAlphabetizer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1B2EEDD8E7D488F2741F78C323E1747 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69020BA38D2C0DEEC6BAAEAB6CEE6171 /* AKPickerView-dummy.m in Sources */,
+				55F3DB9475AE5EB76621B6CA8F7F0A06 /* AKPickerView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB73987428AD82AD3FE32A8FDC726162 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				933F8DC0CC3D9077E3B43E77168C704B /* UITextView+Placeholder-dummy.m in Sources */,
+				13F299FC05706440B1AC96EEEBFDF550 /* UITextView+Placeholder.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE3611B3D09A06A6F4650DCABA365F1E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B91C89C173DB0CDE7FD375CE1C942777 /* DAKeyboardControl-dummy.m in Sources */,
+				D6893D53E5FF77CE1C547501247E67E7 /* DAKeyboardControl.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		06508E11CF507EAD6B85CF5BC7A5BBF9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AKPickerView;
+			target = A35273E1314605952F39D68083D1DC9E /* AKPickerView */;
+			targetProxy = 9196ECE735B6D15B4E00819047DC8372 /* PBXContainerItemProxy */;
+		};
+		C8669FFB85F812AAD0EA3436ADDD2194 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = DAKeyboardControl;
+			target = 6B03B89D76DF5FBF0BB098F81F09D7EE /* DAKeyboardControl */;
+			targetProxy = 9D86E0B3CBFBD11E82993DDF1F6D161B /* PBXContainerItemProxy */;
+		};
+		CEAAF40E60D5DE6E5CE5B4721B3A0FF1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CGLAlphabetizer;
+			target = F82C0E66E8CC90BEBBBA0C9ECDF9DF36 /* CGLAlphabetizer */;
+			targetProxy = F5CCE9F1BD7C77DABEB6FA65044C95F0 /* PBXContainerItemProxy */;
+		};
+		DAE86F44AB4CD6E417B5232421C8297E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "UITextView+Placeholder";
+			target = 59D4F95419C6FE16042F84775C0E63C0 /* UITextView+Placeholder */;
+			targetProxy = F16668FFAADDB2C5F4D97F5D68B11FEC /* PBXContainerItemProxy */;
+		};
+		FABDD0537765C0C7F24D89AEA4F23A67 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RCRunkeeperSwitch;
+			target = 1CAD4CDFEC2A1ED042B781C06B222D54 /* RCRunkeeperSwitch */;
+			targetProxy = 35BB1756264377C9ED8867BA2E895D72 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		01F505B9B06B88427BBEC024D7434C5C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 12059827A391185D2130911AE478ADD6 /* DAKeyboardControl.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/DAKeyboardControl/DAKeyboardControl-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		063F3A09331DD24423BE26A9D5DDC42A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E8A4BFB9F31C08E23B33F7C6B2DC178D /* AKPickerView.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/AKPickerView/AKPickerView-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		2B7FDB7979E7537D76F4A9E9E45DD724 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 325EA3FC08D3AC0E403D60FAF4DCD4C3 /* UITextView+Placeholder.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/UITextView+Placeholder/UITextView+Placeholder-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		35AE67E064BE66ED69175E8CBF875A08 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E8A4BFB9F31C08E23B33F7C6B2DC178D /* AKPickerView.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/AKPickerView/AKPickerView-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		373472A7024BB243BB6E2A1F61F89779 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6AB448C6FAFB8A4780B35ABDBC6E9CAF /* RCRunkeeperSwitch.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/RCRunkeeperSwitch/RCRunkeeperSwitch-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		3FA451D268613890FA8A5A03801E11D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		53ECBB221AB057CFBDEEE38E71A1999C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 325EA3FC08D3AC0E403D60FAF4DCD4C3 /* UITextView+Placeholder.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/UITextView+Placeholder/UITextView+Placeholder-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		5E62115DE8C09934BF8D2FE5D15FED1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		6386C395769A4429BE0DD33DB20F4126 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6AB448C6FAFB8A4780B35ABDBC6E9CAF /* RCRunkeeperSwitch.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/RCRunkeeperSwitch/RCRunkeeperSwitch-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		7795913088C9E89954DB4348F9A1CFC1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF60FEABAF07B7F480C0506DC2D4A74F /* CGLAlphabetizer.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/CGLAlphabetizer/CGLAlphabetizer-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		8487AB1738FCD4118F57892AA34571F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3ADE06B7462801CEBAE0A9158836F385 /* Pods-vstreaming.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		85900788A0CE2C50149C9D638ED4F3CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 12059827A391185D2130911AE478ADD6 /* DAKeyboardControl.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/DAKeyboardControl/DAKeyboardControl-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		8E754886FBBF2D75C94CB3AFBDD6FB97 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF60FEABAF07B7F480C0506DC2D4A74F /* CGLAlphabetizer.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/CGLAlphabetizer/CGLAlphabetizer-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		D360165A527AB12DAA0B968D1810CA6B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E4E49E8F461BCCA6C859761C7ADDC400 /* Pods-vstreaming.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E62115DE8C09934BF8D2FE5D15FED1E /* Debug */,
+				3FA451D268613890FA8A5A03801E11D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3B02F28D5A0F11EDE2F125073AEB4C19 /* Build configuration list for PBXNativeTarget "Pods-vstreaming" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D360165A527AB12DAA0B968D1810CA6B /* Debug */,
+				8487AB1738FCD4118F57892AA34571F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		525882073F440B7C36265DE6B87CCF4C /* Build configuration list for PBXNativeTarget "RCRunkeeperSwitch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6386C395769A4429BE0DD33DB20F4126 /* Debug */,
+				373472A7024BB243BB6E2A1F61F89779 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B93E934D915EC9595C1E9ACB5BDC9779 /* Build configuration list for PBXNativeTarget "UITextView+Placeholder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B7FDB7979E7537D76F4A9E9E45DD724 /* Debug */,
+				53ECBB221AB057CFBDEEE38E71A1999C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CCC8B1C291A4B709D6ABFC794DAD34D1 /* Build configuration list for PBXNativeTarget "DAKeyboardControl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				85900788A0CE2C50149C9D638ED4F3CE /* Debug */,
+				01F505B9B06B88427BBEC024D7434C5C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DD15DF2C54D7E6392D6AD7995D804130 /* Build configuration list for PBXNativeTarget "AKPickerView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				063F3A09331DD24423BE26A9D5DDC42A /* Debug */,
+				35AE67E064BE66ED69175E8CBF875A08 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EB349FDC05505BC47E0A30041585D3C8 /* Build configuration list for PBXNativeTarget "CGLAlphabetizer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E754886FBBF2D75C94CB3AFBDD6FB97 /* Debug */,
+				7795913088C9E89954DB4348F9A1CFC1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
