@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '01C2832462A7782B4FCFA8CE928C06DE'
+               BlueprintIdentifier = '9841AE5046AA9490DEAEC409BC956317'
                BlueprintName = 'Pods-vstreaming'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libPods-vstreaming.a'>

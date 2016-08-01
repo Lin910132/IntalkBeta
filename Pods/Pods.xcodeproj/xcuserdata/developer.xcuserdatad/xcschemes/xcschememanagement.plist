@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>AKPickerView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -29,6 +34,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>UITextView+Placeholder.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,17 +47,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>01C2832462A7782B4FCFA8CE928C06DE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>1CAD4CDFEC2A1ED042B781C06B222D54</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>59D4F95419C6FE16042F84775C0E63C0</key>
+		<key>3D93B8F1DE0B8D51E59CD435E0696E72</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,7 +57,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>928353533005A4198EBDA5B700D37B64</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9841AE5046AA9490DEAEC409BC956317</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>A35273E1314605952F39D68083D1DC9E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A7BB96D76A7373218B07F1EF594EDE85</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CA169AC6167EFEBBA87788C09F63E13E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

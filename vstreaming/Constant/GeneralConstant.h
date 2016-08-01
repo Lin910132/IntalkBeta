@@ -40,4 +40,22 @@ typedef NS_ENUM(NSInteger, ExpertSearchTapType)
     Expert_Tab = 0,
     Tag_Tab
 };
+
+#define greenColorForButtons [UIColor colorWithRed:0.3 green:0.57 blue:0.43 alpha:1]
+
+#define SHOWALLERT(title, mes) UIAlertController *controller = \
+[UIAlertController alertControllerWithTitle:title \
+message:mes \
+preferredStyle:UIAlertControllerStyleAlert];\
+UIAlertAction *cancelAction = \
+[UIAlertAction actionWithTitle:@"OK" \
+style:UIAlertActionStyleCancel \
+handler:nil];\
+[controller addAction:cancelAction];\
+[self presentViewController:controller \
+animated:YES \
+completion:nil];\
+controller.view.tintColor = \
+greenColorForButtons
+
 #endif /* GeneralConstant_h */

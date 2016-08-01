@@ -9,8 +9,18 @@
 #import "LoginViewController.h"
 #import "CountrySelectViewController.h"
 #import "MainTabViewController.h"
-@interface LoginViewController ()<CountrySelectDelegate>
+#import "APIConstant.h"
+#import "InTalkAPI.h"
+#import "GeneralConstant.h"
+#import "CommonFunction.h"
+
+@interface LoginViewController ()<CountrySelectDelegate>{
+    NSString *phonePrefix;
+    NSString *codeId;
+}
 @property (weak, nonatomic) IBOutlet UILabel *countryCode;
+@property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
+@property (weak, nonatomic) IBOutlet UITextField *verifyCodeField;
 
 - (IBAction)onClickedCountryCode:(id)sender;
 @end
@@ -19,6 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
 }
 
@@ -28,6 +39,33 @@
 }
 - (IBAction)backBtnPressed:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)phoneNumRequestBtnPressed:(id)sender {
+    NSString *phoneNum = _phoneTextField.text;
+    if(phonePrefix == nil){
+        SHOWALLERT(@"Error", @"Please Select Country");
+        return;
+    }else if([CommonFunction isStringEmpty:phoneNum]){
+        SHOWALLERT(@"Error", @"Please Input Phone number");
+        return;
+    }
+    
+    [InTalkAPI getCodeIDWithPhoneNum:phoneNum completion:^(NSDictionary *JSON, NSError *result){
+        if(result == nil){
+            codeId = [JSON objectForKey:@"codeid"];
+        }else{
+            SHOWALLERT(@"Error", @"Errow while login");
+        }
+    }];
+}
+
+- (IBAction)loginWithPhoneNumber:(id)sender {
+    NSString *verifyCode = _verifyCodeField.text;
+    
+    if([CommonFunction isStringEmpty:verifyCode]){
+        SHOWALLERT(@"Error", @"Please input Verify code");
+    }
 }
 
 /*
@@ -54,8 +92,10 @@
 }
 
 #pragma arguments - Delegate of CountrySelectViewController
--(void)selectCountry:(NSString *)countryName{
-    self.countryCode.text = countryName;
-    self.countryCode.textColor = [UIColor blackColor];
+-(void)selectCountry:(NSString *)countryName phonePrefix:(NSString *)prefix{
+    NSString *countryData = [NSString stringWithFormat:@"%@ (+%@)", countryName, prefix];
+    phonePrefix = prefix;
+    self.countryCode.text = countryData;
+    self.countryCode.textColor = [UIColor grayColor];
 }
 @end

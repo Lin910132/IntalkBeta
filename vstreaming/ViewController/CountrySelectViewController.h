@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 @protocol CountrySelectDelegate
--(void)selectCountry:(NSString*)countryName;
+-(void)selectCountry:(NSString*)countryName phonePrefix:(NSString*)phonePrefix;
 @end
 
-@interface CountrySelectViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface CountrySelectViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
 -(void)initializeCountryName;
 @property(nonatomic, retain) id<CountrySelectDelegate> delegate;
