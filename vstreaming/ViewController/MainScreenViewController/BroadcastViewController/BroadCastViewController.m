@@ -25,11 +25,12 @@
 }
 
 - (IBAction)btnBeginClicked:(id)sender {
-    /*DetailViewController *detailVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DetailViewController"];
+    DetailViewController *detailVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DetailViewController"];
     [self presentViewController:detailVC animated:YES completion:nil];
-     */
-    ExpertSubmitViewController *expertSVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ExpertSubmitViewController"];
+     
+    /*ExpertSubmitViewController *expertSVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ExpertSubmitViewController"];
     [self presentViewController:expertSVC animated:YES completion:nil];
+     */
 }
 
 #pragma IndustrySelectDelegate

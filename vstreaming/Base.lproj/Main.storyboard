@@ -587,10 +587,10 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w8Y-ga-QR2">
-                                <rect key="frame" x="6" y="18" width="25" height="25"/>
+                                <rect key="frame" x="6" y="18" width="33" height="33"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="7KM-J2-gk8"/>
-                                    <constraint firstAttribute="width" constant="25" id="I4N-II-fHK"/>
+                                    <constraint firstAttribute="height" constant="33" id="7KM-J2-gk8"/>
+                                    <constraint firstAttribute="width" constant="33" id="I4N-II-fHK"/>
                                 </constraints>
                                 <state key="normal" image="back_arrow"/>
                                 <connections>
@@ -598,10 +598,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="83f-vk-cGz">
-                                <rect key="frame" x="284" y="22" width="25" height="25"/>
+                                <rect key="frame" x="284" y="22" width="25" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="MnQ-nW-3A2"/>
-                                    <constraint firstAttribute="height" constant="25" id="ZkS-PR-dNi"/>
+                                    <constraint firstAttribute="height" constant="33" id="ZkS-PR-dNi"/>
                                 </constraints>
                                 <state key="normal" image="icon_connection"/>
                             </button>
@@ -6574,10 +6574,17 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="loginWithPhoneNumber:" destination="yf3-ED-sO7" eventType="touchUpInside" id="mqs-8F-Vzc"/>
                                             <action selector="onClickedLogin:" destination="yf3-ED-sO7" eventType="touchUpInside" id="0Lc-kc-Jne"/>
                                         </connections>
                                     </button>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="RHZ-o6-uGR">
+                                        <rect key="frame" x="150" y="192" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="A1t-Ge-rhM"/>
+                                            <constraint firstAttribute="width" constant="20" id="QEq-Ea-von"/>
+                                        </constraints>
+                                        <color key="color" red="0.20784313725490194" green="0.57647058823529407" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -6588,6 +6595,7 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
                                     <constraint firstItem="ZyJ-1S-xZ6" firstAttribute="leading" secondItem="tOP-EO-UGO" secondAttribute="trailing" constant="10" id="KC3-Z4-e0Q"/>
                                     <constraint firstItem="mme-e1-so0" firstAttribute="leading" secondItem="rQp-v8-E1L" secondAttribute="leading" constant="16" id="OAL-rb-iCx"/>
                                     <constraint firstItem="tOP-EO-UGO" firstAttribute="leading" secondItem="mme-e1-so0" secondAttribute="leading" constant="21" id="QOs-fD-zGz"/>
+                                    <constraint firstItem="RHZ-o6-uGR" firstAttribute="centerY" secondItem="6fT-yj-JdW" secondAttribute="centerY" constant="-50" id="RTs-xd-Kyx"/>
                                     <constraint firstItem="tOP-EO-UGO" firstAttribute="centerY" secondItem="rQp-v8-E1L" secondAttribute="centerY" constant="-1" id="Tm4-AY-g5L"/>
                                     <constraint firstItem="etE-fE-4hy" firstAttribute="leading" secondItem="6fT-yj-JdW" secondAttribute="leading" constant="5" id="Ufq-E6-9M5"/>
                                     <constraint firstItem="rQp-v8-E1L" firstAttribute="centerX" secondItem="6fT-yj-JdW" secondAttribute="centerX" id="YAJ-JF-KFq"/>
@@ -6602,6 +6610,7 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
                                     <constraint firstItem="Pdf-Dj-bX5" firstAttribute="leading" secondItem="6fT-yj-JdW" secondAttribute="leading" constant="5" id="k5J-hR-tiC"/>
                                     <constraint firstItem="tOP-EO-UGO" firstAttribute="leading" secondItem="mme-e1-so0" secondAttribute="trailing" constant="9" id="nDL-nQ-WcP"/>
                                     <constraint firstItem="etE-fE-4hy" firstAttribute="top" secondItem="rQp-v8-E1L" secondAttribute="top" constant="47" id="qJo-Cp-Kyc"/>
+                                    <constraint firstItem="RHZ-o6-uGR" firstAttribute="centerX" secondItem="6fT-yj-JdW" secondAttribute="centerX" id="qtB-6S-3gN"/>
                                     <constraint firstItem="Qjb-jI-CSq" firstAttribute="trailing" secondItem="etE-fE-4hy" secondAttribute="trailing" constant="-17" id="rg3-cI-XRe"/>
                                     <constraint firstItem="s5z-3p-EhW" firstAttribute="centerY" secondItem="6fT-yj-JdW" secondAttribute="centerY" id="v7x-5w-bHa"/>
                                     <constraint firstItem="hgb-cD-guB" firstAttribute="leading" secondItem="Pdf-Dj-bX5" secondAttribute="leading" constant="17" id="vdY-hZ-PNj"/>
@@ -6627,7 +6636,10 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
                     <navigationItem key="navigationItem" id="cYz-Ur-T34"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="btnLogin" destination="s5z-3p-EhW" id="P1q-JW-NX7"/>
+                        <outlet property="btnSendPhoneNum" destination="ZyJ-1S-xZ6" id="bLy-Ge-4BN"/>
                         <outlet property="countryCode" destination="hgb-cD-guB" id="jdc-G7-Az1"/>
+                        <outlet property="indicatorView" destination="RHZ-o6-uGR" id="mk2-ST-Ajx"/>
                         <outlet property="phoneTextField" destination="tOP-EO-UGO" id="NyM-iL-OJH"/>
                         <outlet property="verifyCodeField" destination="Qjb-jI-CSq" id="Bhf-oV-CZS"/>
                     </connections>

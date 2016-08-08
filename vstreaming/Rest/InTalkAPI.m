@@ -16,8 +16,8 @@
 
 @implementation InTalkAPI
 
-+(void)getCodeIDWithPhoneNum:(NSString *)phoneNum completion:(void (^)(NSDictionary *, NSError *))block{
-    NSDictionary *params = @{@"phonenumber":phoneNum};
++(void)getCodeIDWithPhoneNum:(NSString *)phoneNum phoneNationCode:(NSString *)nationCode completion:(void (^)(NSDictionary *, NSError *))block{
+    NSDictionary *params = @{@"phonenumber":phoneNum, @"nationcode":nationCode};
     [WebManager POST:APIRequestUserWithPhone parameters:params completion:block];
 }
 

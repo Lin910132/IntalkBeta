@@ -10,4 +10,5 @@ pod 'DAKeyboardControl'
 pod 'UITextView+Placeholder', '~> 1.2'
 pod 'SDWebImage'
 pod 'AFNetworking', '~> 3.0'
+pod 'DGActivityIndicatorView'
 end

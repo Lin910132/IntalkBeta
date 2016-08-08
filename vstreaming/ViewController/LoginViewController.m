@@ -13,14 +13,19 @@
 #import "InTalkAPI.h"
 #import "GeneralConstant.h"
 #import "CommonFunction.h"
-
-@interface LoginViewController ()<CountrySelectDelegate>{
+#import <DGActivityIndicatorView.h>
+#import "Utility.h"
+@interface LoginViewController ()<CountrySelectDelegate> {
     NSString *phonePrefix;
     NSString *codeId;
+    
 }
 @property (weak, nonatomic) IBOutlet UILabel *countryCode;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
 @property (weak, nonatomic) IBOutlet UITextField *verifyCodeField;
+@property (weak, nonatomic) IBOutlet UIButton *btnSendPhoneNum;
+@property (weak, nonatomic) IBOutlet UIButton *btnLogin;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
 
 - (IBAction)onClickedCountryCode:(id)sender;
 @end
@@ -29,8 +34,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self initUI];
     // Do any additional setup after loading the view.
+}
+
+-(void) initUI{
+    [_indicatorView setHidden:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,6 +48,20 @@
 }
 - (IBAction)backBtnPressed:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void) setLoadingStatus:(BOOL) isShow{
+    if(isShow) {
+        [_indicatorView startAnimating];
+        _btnSendPhoneNum.userInteractionEnabled = NO;
+        _btnLogin.userInteractionEnabled = NO;
+        [_indicatorView setHidden:NO];
+    }else{
+        [_indicatorView stopAnimating];
+        _btnSendPhoneNum.userInteractionEnabled = YES;
+        _btnLogin.userInteractionEnabled = YES;
+        [_indicatorView setHidden:YES];
+    }
 }
 
 - (IBAction)phoneNumRequestBtnPressed:(id)sender {
@@ -50,24 +73,16 @@
         SHOWALLERT(@"Error", @"Please Input Phone number");
         return;
     }
-    
-    [InTalkAPI getCodeIDWithPhoneNum:phoneNum completion:^(NSDictionary *JSON, NSError *result){
+    [self setLoadingStatus:YES];
+    [InTalkAPI getCodeIDWithPhoneNum:phoneNum phoneNationCode:phonePrefix completion:^(NSDictionary *response, NSError *result){
+        [self setLoadingStatus:NO];
         if(result == nil){
-            codeId = [JSON objectForKey:@"codeid"];
+            codeId = [response objectForKey:@"codeid"];
         }else{
             SHOWALLERT(@"Error", @"Errow while login");
         }
     }];
 }
-
-- (IBAction)loginWithPhoneNumber:(id)sender {
-    NSString *verifyCode = _verifyCodeField.text;
-    
-    if([CommonFunction isStringEmpty:verifyCode]){
-        SHOWALLERT(@"Error", @"Please input Verify code");
-    }
-}
-
 /*
 #pragma mark - Navigation
 
@@ -85,9 +100,27 @@
 }
 
 - (IBAction)onClickedLogin:(id)sender {
+    /*NSString *verifyCode = _verifyCodeField.text;
+    
+    if([CommonFunction isStringEmpty:verifyCode]){
+        SHOWALLERT(@"Error", @"Please input Verify code");
+        return;
+    }
+    
+    [self setLoadingStatus:YES];
+    [InTalkAPI loginWithCodeID:codeId verifyCode:verifyCode completion:^(NSDictionary *response, NSError *result){
+        [self setLoadingStatus:NO];
+        if(result == nil){
+            NSString *token = [response objectForKey:@"token"];
+            [Utility saveDataWithKey:TOKEN Data:token];
+            //add navigation feature
+            
+        }else{
+            SHOWALLERT(@"Error", @"Your inputed verify code is wrong");
+        }
+    }];*/
+    
     MainTabViewController *mainTabViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MainTabBarController"];
-    
-    
     [self presentViewController:mainTabViewController animated:YES completion:nil];
 }
 

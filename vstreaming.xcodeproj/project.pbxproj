@@ -20,6 +20,7 @@
 		8B82D0291D4972C300FE6B34 /* ProfileExpertTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B82D0281D4972C300FE6B34 /* ProfileExpertTableCell.m */; };
 		8B82D02C1D4972E400FE6B34 /* ShowTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B82D02B1D4972E400FE6B34 /* ShowTableCell.m */; };
 		8B8B1D801D4F675C00B2A735 /* CommonFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1D7F1D4F675C00B2A735 /* CommonFunction.m */; };
+		8B8C7CF31D58B9F5002A056E /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8C7CF21D58B9F5002A056E /* Utility.m */; };
 		8BC0BBB61D586D6100CEAEFC /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC0BBAE1D586D6100CEAEFC /* Analytics.framework */; };
 		8BC0BBB71D586D6100CEAEFC /* AVFoundationEx.FrameWork in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC0BBAF1D586D6100CEAEFC /* AVFoundationEx.FrameWork */; };
 		8BC0BBB81D586D6100CEAEFC /* IMCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC0BBB01D586D6100CEAEFC /* IMCore.framework */; };
@@ -124,6 +125,8 @@
 		8B82D02B1D4972E400FE6B34 /* ShowTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowTableCell.m; sourceTree = "<group>"; };
 		8B8B1D7E1D4F674C00B2A735 /* CommonFunction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonFunction.h; sourceTree = "<group>"; };
 		8B8B1D7F1D4F675C00B2A735 /* CommonFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonFunction.m; sourceTree = "<group>"; };
+		8B8C7CF11D58B9F5002A056E /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		8B8C7CF21D58B9F5002A056E /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		8BC0BBAE1D586D6100CEAEFC /* Analytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Analytics.framework; path = vstreaming/Frameworks/Analytics.framework; sourceTree = "<group>"; };
 		8BC0BBAF1D586D6100CEAEFC /* AVFoundationEx.FrameWork */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundationEx.FrameWork; path = vstreaming/Frameworks/AVFoundationEx.FrameWork; sourceTree = "<group>"; };
 		8BC0BBB01D586D6100CEAEFC /* IMCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IMCore.framework; path = vstreaming/Frameworks/IMCore.framework; sourceTree = "<group>"; };
@@ -325,6 +328,15 @@
 			path = FollowInformation;
 			sourceTree = "<group>";
 		};
+		8B8C7CF01D58B9F5002A056E /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				8B8C7CF11D58B9F5002A056E /* Utility.h */,
+				8B8C7CF21D58B9F5002A056E /* Utility.m */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		8BC16A581D47B308007052E0 /* QuestionView */ = {
 			isa = PBXGroup;
 			children = (
@@ -359,6 +371,7 @@
 		8BCD71261D424FF500ECFD88 /* vstreaming */ = {
 			isa = PBXGroup;
 			children = (
+				8B8C7CF01D58B9F5002A056E /* Utility */,
 				8BD7A6911D4DF4AD0001B822 /* Rest */,
 				8BCD71AC1D4554A700ECFD88 /* Constant */,
 				8BCD71741D43F24F00ECFD88 /* Subclasses */,
@@ -844,6 +857,7 @@
 				8BCD71C81D45FCDB00ECFD88 /* BroadcasterTableCell.m in Sources */,
 				8B503A8B1D4A3AFA008848CE /* OtherSettingViewController.m in Sources */,
 				8BCD71B51D45CAEE00ECFD88 /* IndustrySelectViewController.m in Sources */,
+				8B8C7CF31D58B9F5002A056E /* Utility.m in Sources */,
 				8BCD71DF1D479D9200ECFD88 /* InComeViewController.m in Sources */,
 				8BCD71D31D466EE200ECFD88 /* MyShowViewController.m in Sources */,
 				8B503A921D4B4F4E008848CE /* ExpertSearchViewController.m in Sources */,

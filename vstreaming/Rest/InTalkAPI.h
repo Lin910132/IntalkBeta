@@ -10,7 +10,7 @@
 
 
 @interface InTalkAPI : NSObject
-+(void) getCodeIDWithPhoneNum:(NSString *) phoneNum
++(void) getCodeIDWithPhoneNum:(NSString *) phoneNum phoneNationCode:(NSString *) nationCode
                  completion:(void(^)(NSDictionary * json, NSError *error)) block;
 
 +(void) loginWithCodeID:(NSString *) codeID verifyCode:(NSString *) verifyCode
