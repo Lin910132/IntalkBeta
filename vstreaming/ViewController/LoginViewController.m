@@ -15,6 +15,7 @@
 #import "CommonFunction.h"
 #import <DGActivityIndicatorView.h>
 #import "Utility.h"
+#import "LiveStreaming.h"
 @interface LoginViewController ()<CountrySelectDelegate> {
     NSString *phonePrefix;
     NSString *codeId;
@@ -77,7 +78,7 @@
     [InTalkAPI getCodeIDWithPhoneNum:phoneNum phoneNationCode:phonePrefix completion:^(NSDictionary *response, NSError *result){
         [self setLoadingStatus:NO];
         if(result == nil){
-            codeId = [response objectForKey:@"codeid"];
+            codeId = [[NSString alloc]initWithFormat:@"%@",[response objectForKey:@"codeid"]];
         }else{
             SHOWALLERT(@"Error", @"Errow while login");
         }
@@ -107,6 +108,11 @@
         return;
     }
     
+    if([CommonFunction isStringEmpty:codeId]){
+        SHOWALLERT(@"Error", @"Please Verify Phone number");
+        return;
+    }
+    
     [self setLoadingStatus:YES];
     [InTalkAPI loginWithCodeID:codeId verifyCode:verifyCode completion:^(NSDictionary *response, NSError *result){
         [self setLoadingStatus:NO];
@@ -115,13 +121,19 @@
             [Utility saveDataWithKey:TOKEN Data:token];
             //add navigation feature
             
+            [LiveStreaming sharedInstance];
+            
+            MainTabViewController *mainTabViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MainTabBarController"];
+            [self presentViewController:mainTabViewController animated:YES completion:nil];
         }else{
             SHOWALLERT(@"Error", @"Your inputed verify code is wrong");
         }
-    }];*/
+    }];
+     */
     
     MainTabViewController *mainTabViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MainTabBarController"];
     [self presentViewController:mainTabViewController animated:YES completion:nil];
+    
 }
 
 #pragma arguments - Delegate of CountrySelectViewController
