@@ -14,6 +14,7 @@
 		8B503A8E1D4A518E008848CE /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B503A8D1D4A518E008848CE /* ChatViewController.m */; };
 		8B503A921D4B4F4E008848CE /* ExpertSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B503A911D4B4F4E008848CE /* ExpertSearchViewController.m */; };
 		8B503A951D4B4F6C008848CE /* ExpertSearchTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B503A941D4B4F6C008848CE /* ExpertSearchTableCell.m */; };
+		8B77CA1B1D5A135A00E9C384 /* LiveStreaming.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B77CA1A1D5A135A00E9C384 /* LiveStreaming.m */; };
 		8B82D01D1D496BFA00FE6B34 /* FollowInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B82D01C1D496BFA00FE6B34 /* FollowInformationViewController.m */; };
 		8B82D0231D496C3100FE6B34 /* FollowerProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B82D0221D496C3100FE6B34 /* FollowerProfileViewController.m */; };
 		8B82D0261D496D7600FE6B34 /* FollowTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B82D0251D496D7600FE6B34 /* FollowTableCell.m */; };
@@ -113,6 +114,8 @@
 		8B503A911D4B4F4E008848CE /* ExpertSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpertSearchViewController.m; sourceTree = "<group>"; };
 		8B503A931D4B4F6C008848CE /* ExpertSearchTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpertSearchTableCell.h; sourceTree = "<group>"; };
 		8B503A941D4B4F6C008848CE /* ExpertSearchTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpertSearchTableCell.m; sourceTree = "<group>"; };
+		8B77CA191D5A135A00E9C384 /* LiveStreaming.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveStreaming.h; sourceTree = "<group>"; };
+		8B77CA1A1D5A135A00E9C384 /* LiveStreaming.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveStreaming.m; sourceTree = "<group>"; };
 		8B82D01B1D496BFA00FE6B34 /* FollowInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowInformationViewController.h; sourceTree = "<group>"; };
 		8B82D01C1D496BFA00FE6B34 /* FollowInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowInformationViewController.m; sourceTree = "<group>"; };
 		8B82D0211D496C3100FE6B34 /* FollowerProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowerProfileViewController.h; sourceTree = "<group>"; };
@@ -311,6 +314,15 @@
 			path = ExpertSearchView;
 			sourceTree = "<group>";
 		};
+		8B77CA181D5A135A00E9C384 /* LiveTool */ = {
+			isa = PBXGroup;
+			children = (
+				8B77CA191D5A135A00E9C384 /* LiveStreaming.h */,
+				8B77CA1A1D5A135A00E9C384 /* LiveStreaming.m */,
+			);
+			path = LiveTool;
+			sourceTree = "<group>";
+		};
 		8B82D01A1D496BE500FE6B34 /* FollowInformation */ = {
 			isa = PBXGroup;
 			children = (
@@ -371,6 +383,7 @@
 		8BCD71261D424FF500ECFD88 /* vstreaming */ = {
 			isa = PBXGroup;
 			children = (
+				8B77CA181D5A135A00E9C384 /* LiveTool */,
 				8B8C7CF01D58B9F5002A056E /* Utility */,
 				8BD7A6911D4DF4AD0001B822 /* Rest */,
 				8BCD71AC1D4554A700ECFD88 /* Constant */,
@@ -849,6 +862,7 @@
 				8BCD71CF1D466E7B00ECFD88 /* MainProfileViewController.m in Sources */,
 				8BCD71351D424FF500ECFD88 /* vstreaming.xcdatamodeld in Sources */,
 				8BCD71AB1D45510E00ECFD88 /* SuggestTableCell.m in Sources */,
+				8B77CA1B1D5A135A00E9C384 /* LiveStreaming.m in Sources */,
 				8BCD71B21D45CAB600ECFD88 /* BroadCastViewController.m in Sources */,
 				8BCD718C1D44AC2500ECFD88 /* GridScreenViewController.m in Sources */,
 				8B82D01D1D496BFA00FE6B34 /* FollowInformationViewController.m in Sources */,

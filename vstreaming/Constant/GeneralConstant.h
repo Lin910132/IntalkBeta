@@ -64,6 +64,7 @@ greenColorForButtons
 //QCloud live active broadcasting identifier
 #define kSdkAppId       @"1400001692"
 #define kSdkAccountType @"884"
+#define kIdentifier @"884"
 
 
 #endif /* GeneralConstant_h */

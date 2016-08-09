@@ -11,7 +11,7 @@
 #import "DetailViewController.h"
 #import "ExpertSubmitViewController.h"
 #import "LiveStreaming.h"
-@interface BroadCastViewController () <IndustrySelectDelegate, TIMConnListener, TIMRefreshListener, TLSRefreshTicketListener, TIMUserStatusListener>
+@interface BroadCastViewController () <IndustrySelectDelegate>
 
 @end
 
@@ -30,7 +30,7 @@
     [self presentViewController:detailVC animated:YES completion:nil];
      */
     
-    LiveStreaming *stream = [LiveStreaming sharedInstance];
+    /*LiveStreaming *stream = [LiveStreaming sharedInstance];
   
     __weak typeof(self) weakSelf = self;
     
@@ -63,7 +63,7 @@
                 NSLog(@"login error code = %d",code);
             }];
         }
-    }];    
+    }];*/    
     
     /*ExpertSubmitViewController *expertSVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ExpertSubmitViewController"];
     [self presentViewController:expertSVC animated:YES completion:nil];
