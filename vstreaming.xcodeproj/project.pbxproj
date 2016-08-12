@@ -39,8 +39,6 @@
 		8BC0BBC91D586FA400CEAEFC /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC0BBC81D586FA400CEAEFC /* libiconv.tbd */; };
 		8BC0BBCB1D586FAE00CEAEFC /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC0BBCA1D586FAE00CEAEFC /* libz.tbd */; };
 		8BC0BBCD1D586FBA00CEAEFC /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC0BBCC1D586FBA00CEAEFC /* libsqlite3.tbd */; };
-		8BC0BBCF1D586FC700CEAEFC /* libstdc++.6.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC0BBCE1D586FC700CEAEFC /* libstdc++.6.tbd */; };
-		8BC0BBD11D58705700CEAEFC /* libresolv.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC0BBD01D58705700CEAEFC /* libresolv.9.tbd */; };
 		8BC16A5B1D47B319007052E0 /* QuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC16A5A1D47B319007052E0 /* QuestionViewController.m */; };
 		8BCD71291D424FF500ECFD88 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCD71281D424FF500ECFD88 /* main.m */; };
 		8BCD71321D424FF500ECFD88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BCD71301D424FF500ECFD88 /* Main.storyboard */; };
@@ -256,8 +254,6 @@
 			files = (
 				8B1B0E071D5A818200B59DD9 /* SystemConfiguration.framework in Frameworks */,
 				8B1B0E431D5BD25A00B59DD9 /* TencentOpenAPI.framework in Frameworks */,
-				8B50BF761D5CDC950059456C /* libWeiboSDK.a in Frameworks */,
-				8B1B0E3A1D5AB91500B59DD9 /* libWeChatSDK.a in Frameworks */,
 				8BC0BBBF1D586F3900CEAEFC /* AVFoundation.framework in Frameworks */,
 				8BCD71711D43933D00ECFD88 /* CoreGraphics.framework in Frameworks */,
 				8BC0BBC11D586F5C00CEAEFC /* CoreMedia.framework in Frameworks */,
@@ -265,9 +261,9 @@
 				8BC0BBC51D586F7F00CEAEFC /* CoreVideo.framework in Frameworks */,
 				8BCD71911D44B76700ECFD88 /* QuartzCore.framework in Frameworks */,
 				8BCD71731D43934300ECFD88 /* Foundation.framework in Frameworks */,
-				8BC0BBD11D58705700CEAEFC /* libresolv.9.tbd in Frameworks */,
+				8B50BF761D5CDC950059456C /* libWeiboSDK.a in Frameworks */,
+				8B1B0E3A1D5AB91500B59DD9 /* libWeChatSDK.a in Frameworks */,
 				8BC0BBC71D586F9600CEAEFC /* libc++.tbd in Frameworks */,
-				8BC0BBCF1D586FC700CEAEFC /* libstdc++.6.tbd in Frameworks */,
 				8BC0BBC91D586FA400CEAEFC /* libiconv.tbd in Frameworks */,
 				8BC0BBCB1D586FAE00CEAEFC /* libz.tbd in Frameworks */,
 				8BC0BBCD1D586FBA00CEAEFC /* libsqlite3.tbd in Frameworks */,
