@@ -32,6 +32,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L5r-AY-udD">
                                         <rect key="frame" x="52" y="0.0" width="35" height="35"/>
                                         <state key="normal" backgroundImage="login2"/>
+                                        <connections>
+                                            <action selector="callWeChatLogIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dzV-4n-toK"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MNi-sC-Bws">
                                         <rect key="frame" x="104" y="0.0" width="35" height="35"/>
@@ -43,6 +46,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aAv-3w-ceB">
                                         <rect key="frame" x="155" y="0.0" width="35" height="35"/>
                                         <state key="normal" backgroundImage="login4"/>
+                                        <connections>
+                                            <action selector="callQQLogIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ijm-js-njJ"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BNo-W7-Sou">
                                         <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
@@ -50,6 +56,9 @@
                                             <constraint firstAttribute="width" constant="35" id="Hpc-Z3-UtR"/>
                                         </constraints>
                                         <state key="normal" backgroundImage="login1"/>
+                                        <connections>
+                                            <action selector="callWeiboLogIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yHF-SE-89h"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

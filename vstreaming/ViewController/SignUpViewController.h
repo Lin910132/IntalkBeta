@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface SignUpViewController : UIViewController
+- (IBAction)callWeChatLogIn:(id)sender;
 
+- (IBAction)callQQLogIn:(id)sender;
 
+- (IBAction)callWeiboLogIn:(id)sender;
 @end
 

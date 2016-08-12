@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "F513C8CEA7FC1732DDCC8551659B9D57B4D1A55B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "F513C8CEA7FC1732DDCC8551659B9D57B4D1A55B" : 0,
+    "CE306F248740764404BB5F56ECF574F2576B012A" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "DD94A3AF-D0BA-4DE6-A3C6-0F35ADBA94AE",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "F513C8CEA7FC1732DDCC8551659B9D57B4D1A55B" : "IntalkBeta_\/",
+    "CE306F248740764404BB5F56ECF574F2576B012A" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "vstreaming",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "vstreaming.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/yuanming053\/ios_live_stream.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CE306F248740764404BB5F56ECF574F2576B012A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Lin910132\/IntalkBeta.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F513C8CEA7FC1732DDCC8551659B9D57B4D1A55B"
+    }
+  ]
+}
