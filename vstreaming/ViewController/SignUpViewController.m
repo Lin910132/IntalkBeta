@@ -10,7 +10,7 @@
 #import "WechatAccess.h"
 #import "TencentAccess.h"
 #import "WeiboAccess.h"
-
+#import "MainTabViewController.h"
 @interface SignUpViewController ()
 
 @end
@@ -20,6 +20,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    NSString *token = (NSString *)[Utility getDataWithKey:TOKEN];
+    if(token){
+        MainTabViewController *mainTabViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MainTabBarController"];
+        [self presentViewController:mainTabViewController animated:YES completion:nil];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

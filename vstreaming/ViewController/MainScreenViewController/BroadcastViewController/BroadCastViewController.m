@@ -10,6 +10,8 @@
 #import "IndustrySelectViewController.h"
 #import "DetailViewController.h"
 #import "ExpertSubmitViewController.h"
+#import "LiveStreamingViewController.h"
+
 @interface BroadCastViewController () <IndustrySelectDelegate>
 
 @end
@@ -33,6 +35,9 @@
     /*ExpertSubmitViewController *expertSVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ExpertSubmitViewController"];
     [self presentViewController:expertSVC animated:YES completion:nil];
      */
+    
+    LiveStreamingViewController *liveStreamingVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LiveStreamingViewController"];
+    [self presentViewController:liveStreamingVC animated:YES completion:nil];
 }
 
 #pragma IndustrySelectDelegate

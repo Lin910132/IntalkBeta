@@ -19,12 +19,14 @@
     
     [manager GET:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        //NSLog(@"data: %@", responseObject);
+        NSLog(@"data: %@", responseObject);
+        if(completion)
         completion(responseObject, nil);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
         NSLog(@"error: %@", error);
+        if(completion)
         completion(nil, error);
     }];
 }
@@ -35,10 +37,12 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"application/json", nil];
     
     [manager POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        completion(responseObject, nil);
+        if(completion)
+            completion(responseObject, nil);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
         NSLog(@"error: %@", error);
+        if(completion)
         completion(nil, error);
     }];
 }

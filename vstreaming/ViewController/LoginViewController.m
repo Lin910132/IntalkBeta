@@ -120,15 +120,13 @@
             [Utility saveDataWithKey:TOKEN Data:token];
             //add navigation feature
             
-            [LiveStreaming sharedInstance];
-            
             MainTabViewController *mainTabViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MainTabBarController"];
             [self presentViewController:mainTabViewController animated:YES completion:nil];
         }else{
             SHOWALLERT(@"Error", @"Your inputed verify code is wrong");
         }
-    }];
-     */
+    }];*/
+     
     
     MainTabViewController *mainTabViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MainTabBarController"];
     [self presentViewController:mainTabViewController animated:YES completion:nil];

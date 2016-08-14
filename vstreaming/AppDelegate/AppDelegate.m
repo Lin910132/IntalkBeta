@@ -11,8 +11,10 @@
 #import "TencentAccess.h"
 #import "WeiboAccess.h"
 
-@interface AppDelegate ()
-
+@interface AppDelegate (){
+    UIActivityIndicatorView *_loader;
+    UIImageView *_loaderBackgroundView;
+}
 @end
 
 @implementation AppDelegate
@@ -226,5 +228,36 @@ static NSString *const kTencentScheme = @"tencent1105461365";
 //    }
 //}
 
+#pragma mark - Live Streaming
+- (void)showLoader {
+    if (_loader == nil) {
+        _loader = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        _loaderBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"loader_background"]];
+        [self.window addSubview:_loaderBackgroundView];
+        _loader.frame = CGRectMake(_loaderBackgroundView.center.x - (_loader.frame.size.width / 2),
+                                   _loaderBackgroundView.center.y - (_loader.frame.size.height / 2),
+                                   _loader.frame.size.width,
+                                   _loader.frame.size.height);
+        [_loaderBackgroundView addSubview:_loader];
+    }
+    [self centerLoader];
+    [self.window bringSubviewToFront:_loaderBackgroundView];
+    _loaderBackgroundView.hidden = NO;
+    [_loader startAnimating];
+    [self.window setUserInteractionEnabled:NO];
+}
+
+- (void)hideLoader {
+    [self.window setUserInteractionEnabled:YES];
+    [_loader stopAnimating];
+    _loaderBackgroundView.hidden = YES;
+}
+- (void)centerLoader {
+    _loaderBackgroundView.frame = CGRectMake(self.window.center.x - (_loaderBackgroundView.frame.size.width / 2),
+                                             self.window.center.y - (_loaderBackgroundView.frame.size.height / 2),
+                                             _loaderBackgroundView.frame.size.width,
+                                             _loaderBackgroundView.frame.size.height);
+    
+}
 
 @end

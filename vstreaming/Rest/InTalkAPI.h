@@ -15,4 +15,8 @@
 
 +(void) loginWithCodeID:(NSString *) codeID verifyCode:(NSString *) verifyCode
                 completion:(void(^)(NSDictionary * json, NSError *error)) block;
++(void) startBroadcastWithTitle:(NSString *) title Url:(NSString *) urlStr Tag1:(NSString *) tag1 Tag2:(NSString *) tag2 Tag3:(NSString *) tag3 completion:(void(^)(NSDictionary * json, NSError *error)) block;
+
++(void) stopBroadCasting:(void(^)(NSDictionary * json, NSError *error)) block;
+
 @end

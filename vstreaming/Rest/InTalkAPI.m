@@ -27,4 +27,15 @@
 }
 
 
++(void)startBroadcastWithTitle:(NSString *)title Url:(NSString *)urlStr Tag1:(NSString *)tag1 Tag2:(NSString *)tag2 Tag3:(NSString *)tag3 completion:(void (^)(NSDictionary *, NSError *))block{
+    NSString *token = (NSString *)[Utility getDataWithKey:TOKEN];
+    NSDictionary *params = @{@"token":token, @"tagid1":tag1, @"tagid2":tag2, @"tag3":tag3, @"title":title, @"url":urlStr};
+    [WebManager POST:APIStartBroadCast parameters:params completion:block];
+}
+
++(void)stopBroadCasting:(void (^)(NSDictionary *, NSError *))block{
+    NSString *token = (NSString *)[Utility getDataWithKey:TOKEN];
+    NSDictionary *params = @{@"token":token};
+    [WebManager POST:APIEndBroadCast parameters:params completion:block];
+}
 @end
