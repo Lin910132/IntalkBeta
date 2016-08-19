@@ -93,13 +93,7 @@
 		8BDCE8251D5DBBBD00029F8F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDCE8241D5DBBBD00029F8F /* AudioToolbox.framework */; };
 		8BDCE8261D5DBBC600029F8F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC0BBC01D586F5C00CEAEFC /* CoreMedia.framework */; };
 		8BDCE8281D5DBBD200029F8F /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDCE8271D5DBBD100029F8F /* CoreAudio.framework */; };
-		8BDCE82B1D5DBC9300029F8F /* LiveStreamingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BDCE82A1D5DBC9300029F8F /* LiveStreamingViewController.m */; };
-		8BDCE8381D5DBEAF00029F8F /* DBConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BDCE8301D5DBEAF00029F8F /* DBConnector.m */; };
-		8BDCE83A1D5DBEAF00029F8F /* NetworkObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BDCE8341D5DBEAF00029F8F /* NetworkObject.m */; };
 		8BDCE83B1D5DBEAF00029F8F /* UIView+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BDCE8361D5DBEAF00029F8F /* UIView+Screenshot.m */; };
-		8BDCE83E1D5DBEF300029F8F /* TableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BDCE83D1D5DBEF300029F8F /* TableObject.m */; };
-		8BDCE8411D5DC1B800029F8F /* LiveStreamingAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BDCE8401D5DC1B800029F8F /* LiveStreamingAPI.m */; };
-		8BDCE8441D5DFEB900029F8F /* GetAnnotationImageTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BDCE8431D5DFEB900029F8F /* GetAnnotationImageTask.m */; };
 		8BDCE8481D5E19F700029F8F /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDCE8471D5E19F700029F8F /* AVKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -385,20 +379,8 @@
 		8BDCE8051D5DB80800029F8F /* libx264.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libx264.a; sourceTree = "<group>"; };
 		8BDCE8241D5DBBBD00029F8F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		8BDCE8271D5DBBD100029F8F /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
-		8BDCE8291D5DBC9300029F8F /* LiveStreamingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveStreamingViewController.h; sourceTree = "<group>"; };
-		8BDCE82A1D5DBC9300029F8F /* LiveStreamingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveStreamingViewController.m; sourceTree = "<group>"; };
-		8BDCE82F1D5DBEAF00029F8F /* DBConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBConnector.h; sourceTree = "<group>"; };
-		8BDCE8301D5DBEAF00029F8F /* DBConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBConnector.m; sourceTree = "<group>"; };
-		8BDCE8331D5DBEAF00029F8F /* NetworkObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkObject.h; sourceTree = "<group>"; };
-		8BDCE8341D5DBEAF00029F8F /* NetworkObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkObject.m; sourceTree = "<group>"; };
 		8BDCE8351D5DBEAF00029F8F /* UIView+Screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Screenshot.h"; sourceTree = "<group>"; };
 		8BDCE8361D5DBEAF00029F8F /* UIView+Screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Screenshot.m"; sourceTree = "<group>"; };
-		8BDCE83C1D5DBEF300029F8F /* TableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableObject.h; sourceTree = "<group>"; };
-		8BDCE83D1D5DBEF300029F8F /* TableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableObject.m; sourceTree = "<group>"; };
-		8BDCE83F1D5DC1B800029F8F /* LiveStreamingAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveStreamingAPI.h; sourceTree = "<group>"; };
-		8BDCE8401D5DC1B800029F8F /* LiveStreamingAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveStreamingAPI.m; sourceTree = "<group>"; };
-		8BDCE8421D5DFEB900029F8F /* GetAnnotationImageTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetAnnotationImageTask.h; sourceTree = "<group>"; };
-		8BDCE8431D5DFEB900029F8F /* GetAnnotationImageTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetAnnotationImageTask.m; sourceTree = "<group>"; };
 		8BDCE8451D5E18A700029F8F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		8BDCE8471D5E19F700029F8F /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		B30086A11FC450DA9CDD7C1B /* libPods-vstreaming.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-vstreaming.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -796,10 +778,6 @@
 				8BCD71B41D45CAEE00ECFD88 /* IndustrySelectViewController.m */,
 				8BCD71B61D45CDAA00ECFD88 /* IndustryTableCell.h */,
 				8BCD71B71D45CDAA00ECFD88 /* IndustryTableCell.m */,
-				8BDCE8291D5DBC9300029F8F /* LiveStreamingViewController.h */,
-				8BDCE82A1D5DBC9300029F8F /* LiveStreamingViewController.m */,
-				8BDCE8421D5DFEB900029F8F /* GetAnnotationImageTask.h */,
-				8BDCE8431D5DFEB900029F8F /* GetAnnotationImageTask.m */,
 			);
 			path = BroadcastViewController;
 			sourceTree = "<group>";
@@ -871,8 +849,6 @@
 		8BD7A6911D4DF4AD0001B822 /* Rest */ = {
 			isa = PBXGroup;
 			children = (
-				8BDCE83F1D5DC1B800029F8F /* LiveStreamingAPI.h */,
-				8BDCE8401D5DC1B800029F8F /* LiveStreamingAPI.m */,
 				8BD7A6921D4DF4D70001B822 /* InTalkAPI.h */,
 				8BD7A6931D4DF4D70001B822 /* InTalkAPI.m */,
 				8BD7A6951D4E3F7D0001B822 /* WebManager.h */,
@@ -1186,12 +1162,6 @@
 		8BDCE82C1D5DBEAF00029F8F /* SubWidget */ = {
 			isa = PBXGroup;
 			children = (
-				8BDCE83C1D5DBEF300029F8F /* TableObject.h */,
-				8BDCE83D1D5DBEF300029F8F /* TableObject.m */,
-				8BDCE82F1D5DBEAF00029F8F /* DBConnector.h */,
-				8BDCE8301D5DBEAF00029F8F /* DBConnector.m */,
-				8BDCE8331D5DBEAF00029F8F /* NetworkObject.h */,
-				8BDCE8341D5DBEAF00029F8F /* NetworkObject.m */,
 				8BDCE8351D5DBEAF00029F8F /* UIView+Screenshot.h */,
 				8BDCE8361D5DBEAF00029F8F /* UIView+Screenshot.m */,
 			);
@@ -1427,9 +1397,7 @@
 				8BCD71941D44BD1100ECFD88 /* MainTabViewController.m in Sources */,
 				8B50BF781D5CDC950059456C /* WeiboAccess.m in Sources */,
 				8BCD716D1D434FD800ECFD88 /* CountrySelectViewController.m in Sources */,
-				8BDCE82B1D5DBC9300029F8F /* LiveStreamingViewController.m in Sources */,
 				8BCD71BB1D45DF9B00ECFD88 /* CustomGridFlowLayout.m in Sources */,
-				8BDCE8381D5DBEAF00029F8F /* DBConnector.m in Sources */,
 				8BCD71811D448F3200ECFD88 /* HomeTableViewCell.m in Sources */,
 				8B8B1D801D4F675C00B2A735 /* CommonFunction.m in Sources */,
 				8BCD71A21D4534EA00ECFD88 /* DetailViewController.m in Sources */,
@@ -1442,14 +1410,12 @@
 				8BCD71AB1D45510E00ECFD88 /* SuggestTableCell.m in Sources */,
 				8BCD71B21D45CAB600ECFD88 /* BroadCastViewController.m in Sources */,
 				8BCD718C1D44AC2500ECFD88 /* GridScreenViewController.m in Sources */,
-				8BDCE8411D5DC1B800029F8F /* LiveStreamingAPI.m in Sources */,
 				8B82D01D1D496BFA00FE6B34 /* FollowInformationViewController.m in Sources */,
 				8B82D0291D4972C300FE6B34 /* ProfileExpertTableCell.m in Sources */,
 				8B503A871D4A39A5008848CE /* LanguageSettingViewController.m in Sources */,
 				8BCD71C81D45FCDB00ECFD88 /* BroadcasterTableCell.m in Sources */,
 				8B503A8B1D4A3AFA008848CE /* OtherSettingViewController.m in Sources */,
 				8BCD71B51D45CAEE00ECFD88 /* IndustrySelectViewController.m in Sources */,
-				8BDCE83A1D5DBEAF00029F8F /* NetworkObject.m in Sources */,
 				8B8C7CF31D58B9F5002A056E /* Utility.m in Sources */,
 				8BCD71DF1D479D9200ECFD88 /* InComeViewController.m in Sources */,
 				8BCD71D31D466EE200ECFD88 /* MyShowViewController.m in Sources */,
@@ -1457,7 +1423,6 @@
 				8BD7A6971D4E3F8F0001B822 /* WebManager.m in Sources */,
 				8BCD71DC1D479D8300ECFD88 /* MyBalanceViewController.m in Sources */,
 				8B82D0231D496C3100FE6B34 /* FollowerProfileViewController.m in Sources */,
-				8BDCE8441D5DFEB900029F8F /* GetAnnotationImageTask.m in Sources */,
 				8BCD71A81D45510100ECFD88 /* ExpertTableCell.m in Sources */,
 				8BCD71621D42555700ECFD88 /* AppDelegate.m in Sources */,
 				8BCD71871D448F9300ECFD88 /* HomeViewController.m in Sources */,
@@ -1472,7 +1437,6 @@
 				8BCD718F1D44AE3D00ECFD88 /* CollectionViewCell.m in Sources */,
 				8BC16A5B1D47B319007052E0 /* QuestionViewController.m in Sources */,
 				8B82D02C1D4972E400FE6B34 /* ShowTableCell.m in Sources */,
-				8BDCE83E1D5DBEF300029F8F /* TableObject.m in Sources */,
 				8B1B0E451D5BD25A00B59DD9 /* TencentAccess.m in Sources */,
 				8BCD71A51D4550EC00ECFD88 /* QuestionTableCell.m in Sources */,
 				8BCD71C21D45F97D00ECFD88 /* BroadcasterSelectController.m in Sources */,
@@ -1647,7 +1611,7 @@
 					"$(PROJECT_DIR)/vstreaming/weChatSDK/",
 				);
 				INFOPLIST_FILE = vstreaming/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1691,7 +1655,7 @@
 					"$(PROJECT_DIR)/vstreaming/weChatSDK/",
 				);
 				INFOPLIST_FILE = vstreaming/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

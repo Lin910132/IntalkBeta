@@ -10,7 +10,7 @@
 #import "IndustrySelectViewController.h"
 #import "DetailViewController.h"
 #import "ExpertSubmitViewController.h"
-#import "LiveStreamingViewController.h"
+
 
 @interface BroadCastViewController () <IndustrySelectDelegate>
 
