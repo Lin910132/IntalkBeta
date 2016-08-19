@@ -14,6 +14,7 @@
 }
 -(void) setSelectMarksHiddenQuests:(BOOL) qs Expert:(BOOL) ae SuggestQt:(BOOL) sq;
 -(void) setScreenMode:(LiveStreamingScreenMode) mode;
+-(void) switchCamera:(UITapGestureRecognizer *)recognizer;
 @end
 
 

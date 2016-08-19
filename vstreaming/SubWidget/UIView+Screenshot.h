@@ -11,5 +11,5 @@
 
 
 @interface UIView (screen)
--(UIImage *)convertViewToImage;
+-(UIImageView *)convertViewToImage;
 @end

@@ -10,7 +10,7 @@
 #import "WXApi.h"
 
 #define WECHAT_APP_ID         @"wx12ac7e69090902cd"
-#define WECHAT_APP_SECRET     @"yourappsecret"
+#define WECHAT_APP_SECRET     @"61beb2555cccda440709eb35270a9268"
 
 @interface UIImage (DY)
 
@@ -111,7 +111,7 @@
 - (void)onReq:(BaseReq *)req{
     
 }
-
+#pragma WXApi delegate
 - (void)onResp:(BaseResp *)resp{
     if ([resp isKindOfClass:[SendMessageToWXResp class]]) {
         if (0 == [resp errCode]) {

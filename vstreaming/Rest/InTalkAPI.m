@@ -38,4 +38,10 @@
     NSDictionary *params = @{@"token":token};
     [WebManager POST:APIEndBroadCast parameters:params completion:block];
 }
+
++(void)loginWithThirdPartySDK:(NSString *) sdkPrefix Token:(NSString *) token completion:(void(^)(NSDictionary * json, NSError *error)) block{
+    NSString * otherID = [NSString stringWithFormat:@"%@%@", sdkPrefix, token];
+    NSDictionary *params = @{@"otherid":otherID};
+    [WebManager POST:APILoginWithOther parameters:params completion:block];
+}
 @end

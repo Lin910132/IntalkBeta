@@ -10,5 +10,13 @@
             </PersistentString>
          </PersistentStrings>
       </ContextState>
+      <ContextState
+         contextName = "-[AppDelegate application:openURL:sourceApplication:annotation:]:AppDelegate.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "url.scheme">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>

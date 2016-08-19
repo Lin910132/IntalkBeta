@@ -13,8 +13,8 @@
 #import "VideoPlayer.h"
 #import "MPMediaDecoder.h"
 #import "BroadcastStreamClient.h"
-
-@interface DetailViewController () <MPIMediaStreamEvent> {
+#import "UIView+Screenshot.h"
+@interface DetailViewController () <MPIMediaStreamEvent, AVCaptureVideoDataOutputSampleBufferDelegate> {
     MPMediaDecoder          *decoder;       // variable for play
     
     BroadcastStreamClient   *upstream;      //variable for live streaming
@@ -22,12 +22,15 @@
     AVCaptureVideoOrientation orientation;  //variable for live streaming
     
     LiveStreamingScreenMode screenMode;
+    BOOL captureMode;
 }
+@property (weak, nonatomic) IBOutlet UIView *videoView;
 @property (weak, nonatomic) IBOutlet UIView *selectedQst;
 @property (weak, nonatomic) IBOutlet UIView *selectedAboutEpt;
 @property (weak, nonatomic) IBOutlet UIView *selectedSuggestQt;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UITableView *questionTableView;
+@property (weak, nonatomic) IBOutlet UIButton *btnCaptureMode;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingBar;
 @end
 
@@ -43,11 +46,20 @@
     
     if(screenMode == Streaming_Client){
         [self playLiveStreamingVideo];
+        [_btnCaptureMode setHidden:YES];
     }else if(screenMode == Streaming_Host){
+        captureMode = true;
         [self startLiveStreamingVideo];
+        
+        UITapGestureRecognizer *singleFingerTap =
+        [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                action:@selector(switchCamera:)];
+        [_videoView addGestureRecognizer:singleFingerTap];
     }else{
         SHOWALLERT(@"Error", @"Configure Error on Setting Screen Mode");
     }
+    [_loadingBar setHidden:NO];
+    [_loadingBar startAnimating];
 }
 
 -(void)initTableView{
@@ -65,10 +77,9 @@
     decoder.orientation = UIImageOrientationUp;
     
     [self doConnect];
-    [_loadingBar setHidden:NO];
-    [_loadingBar startAnimating];
 }
 
+//for capturing video on hosting side
 -(void) startLiveStreamingVideo{
     resolution = RESOLUTION_VGA;
     upstream = [[BroadcastStreamClient alloc] init:RTMP_SERVER_ADDRESS resolution:resolution];
@@ -77,16 +88,38 @@
     upstream.videoCodecId = MP_VIDEO_CODEC_H264;
     upstream.audioCodecId = MP_AUDIO_CODEC_AAC;
     orientation = AVCaptureVideoOrientationPortrait;
+    
+    //[upstream setVideoMode:VIDEO_CUSTOM];
+    
     [upstream setVideoOrientation:orientation];
     [upstream stream:@"myStream" publishType:PUBLISH_LIVE];
-    
-    [self doConnect];
+
+    //[self doConnect];
 }
+
+-(void) switchCamera:(UITapGestureRecognizer *)recognizer {
+    if (upstream.state != STREAM_PLAYING)
+        return;
+    
+    [upstream switchCameras];
+    
+    [self sendMetadata];
+}
+
+-(void)sendMetadata {
+    
+    NSString *camera = upstream.isUsingFrontFacingCamera ? @"FRONT" : @"BACK";
+    NSDate *date = [NSDate date];
+    NSDictionary *meta = [NSDictionary dictionaryWithObjectsAndKeys:camera, @"camera", [date description], @"date", nil];
+    [upstream sendMetadata:meta event:@"changedCamera:"];
+}
+
 -(void) doConnect{
     if(screenMode == Streaming_Client) {
         [decoder setupStream:[NSString stringWithFormat:@"%@/%@", RTMP_SERVER_ADDRESS, @"myStream"]];
     }else if(screenMode == Streaming_Host){
         [upstream disconnect];
+        [upstream stream:@"myStream" publishType:PUBLISH_LIVE];
     }else{
         SHOWALLERT(@"Error", @"Configure Error on Setting Screen Mode");
     }
@@ -98,6 +131,9 @@
         decoder = nil;
     }else if(screenMode == Streaming_Host){
         [upstream teardownPreviewLayer];
+        if(upstream != nil){
+            [upstream disconnect];
+        }
         upstream = nil;
     }
 }
@@ -109,6 +145,16 @@
 - (IBAction)backBtnPressed:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
     [self setDisconnect];
+}
+- (IBAction)btnCaptureMode:(id)sender {
+    captureMode = !captureMode;
+    if(captureMode == false) {
+        
+        [_btnCaptureMode setTitle:@"Video" forState:UIControlStateNormal];
+    }else {
+        
+        [_btnCaptureMode setTitle:@"Voice" forState:UIControlStateNormal];
+    }
 }
 - (IBAction)btnQuestionClicked:(id)sender {
     [self setSelectMarksHiddenQuests:NO Expert:YES SuggestQt:YES];
@@ -124,6 +170,11 @@
     [self setSelectMarksHiddenQuests:YES Expert:YES SuggestQt:NO];
     selectedTab = SuggestQTTabSelected;
     [self.questionTableView reloadData];
+}
+- (IBAction)btnAskClicked:(id)sender {
+    if(screenMode == Streaming_Host){
+        [upstream setVideoMode:VIDEO_CAPTURE];
+    }
 }
 
 -(void) setSelectMarksHiddenQuests:(BOOL)qs Expert:(BOOL)ae SuggestQt:(BOOL)sq{
@@ -157,6 +208,10 @@
 }
 
 #pragma marks MPIMediaStreamEvent Methods
+-(void)captureOutput:(AVCaptureOutput *)captureOutput didDropSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection{
+    NSLog(@"captured");
+}
+
 -(void)stateChanged:(id)sender state:(MPMediaStreamState)state description:(NSString *)description{
     switch (state) {
         case CONN_DISCONNECTED: {
@@ -165,24 +220,40 @@
         }break;
         case CONN_CONNECTED: {
             [upstream start];
+            [_loadingBar setHidden:YES];
             
         }break;
         case STREAM_CREATED: {
             if(screenMode == Streaming_Client){
                 [decoder resume];
+                [_loadingBar setHidden:YES];
             }
         }break;
             
         case STREAM_PLAYING: {
             if(screenMode == Streaming_Client){
+                if ([description isEqualToString:MP_RESOURCE_TEMPORARILY_UNAVAILABLE]) {
+                    SHOWALLERT(@"Warning", @"Temporarily unavailable");
+                    break;
+                }
+                
+                if ([description isEqualToString:MP_NETSTREAM_PLAY_STREAM_NOT_FOUND]) {
+                    SHOWALLERT(@"Notify", @"Streaming is finished");
+                    break;
+                }
+                
                 [MPMediaData routeAudioToSpeaker];
-                [_loadingBar setHidden:YES];
-                [_loadingBar stopAnimating];
             }else if(screenMode == Streaming_Host){
-                [upstream setPreviewLayer:imageView];
+                [upstream setPreviewLayer:_videoView];
             }
         }break;
             
+        case STREAM_PAUSED:{
+            if ([description isEqualToString:MP_RESOURCE_TEMPORARILY_UNAVAILABLE]) {
+                SHOWALLERT(@"Warning", @"Temporarily unavailable");
+                break;
+            }
+        }break;
         default:
             break;
     }
@@ -190,6 +261,16 @@
 
 -(void)connectFailed:(id)sender code:(int)code description:(NSString *)description{
     NSLog(@"DetailViewController - Live connection failed");
+    if(code == -7){
+        NSLog(@"Error %@",[NSString stringWithFormat:@"connectFailedEvent: %@", description]);
+        //     [NSString stringWithFormat:@"connectFailedEvent: %@", description]];)
+        if(screenMode == Streaming_Host){
+            [upstream teardownPreviewLayer];
+            upstream = nil;
+            [self startLiveStreamingVideo];
+            return;
+        }
+    }
     [self setDisconnect];
 }
 

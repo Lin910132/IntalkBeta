@@ -36,15 +36,15 @@ static NSString *const kTencentScheme = @"tencent1105461365";
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
     // WeChat
-    if (url.scheme == kWeChatScheme) {
+    if ([url.scheme isEqualToString:kWeChatScheme]) {
         return [WechatAccess handleOpenURL:url];
     }
     // QQ
-    else if (url.scheme == kTencentScheme) {
+    else if ([url.scheme isEqualToString:kTencentScheme]) {
         return [TencentAccess HandleOpenURL:url];
     }
     // WeiBo
-    else if (url.scheme == kWeiboScheme) {
+    else if ([url.scheme isEqualToString:kWeiboScheme]) {
         return [WeiboAccess handleOpenURL:url];
     }
     else
@@ -54,15 +54,15 @@ static NSString *const kTencentScheme = @"tencent1105461365";
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
     // WeChat
-    if (url.scheme == kWeChatScheme) {
-        return [WechatAccess handleOpenURL:url];
+    if ([url.scheme isEqualToString:kWeChatScheme]) {
+        return [self application:application handleOpenURL:url];
     }
     // QQ
-    else if (url.scheme == kTencentScheme) {
+    else if ([url.scheme isEqualToString:kTencentScheme]) {
         return [TencentAccess HandleOpenURL:url];
     }
     // WeiBo
-    else if (url.scheme == kWeiboScheme) {
+    else if ([url.scheme isEqualToString:kWeiboScheme]) {
         return [WeiboAccess handleOpenURL:url];
     }
     else

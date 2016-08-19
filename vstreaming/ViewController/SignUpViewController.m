@@ -11,6 +11,8 @@
 #import "TencentAccess.h"
 #import "WeiboAccess.h"
 #import "MainTabViewController.h"
+#import "InTalkAPI.h"
+
 @interface SignUpViewController ()
 
 @end
@@ -35,35 +37,67 @@
 - (IBAction)callWeChatLogIn:(id)sender {
     if ([WechatAccess isWechatAppInstalled]) {
         [[WechatAccess defaultAccess] login:^(BOOL succeeded, id object) {
-//            [_textField setText:[NSString stringWithFormat:@"%@",object]];
+            if(succeeded) {
+                NSString *openId = [(NSDictionary *)object valueForKey:@"openid"];
+                [InTalkAPI loginWithThirdPartySDK:@"wechat" Token:openId completion:^(NSDictionary *response, NSError *err){
+                    if(err == nil) {
+                        NSString *token = [response objectForKey:@"token"];
+                        [Utility saveDataWithKey:TOKEN Data:token];
+                        //add navigation feature
+                        
+                        MainTabViewController *mainTabViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MainTabBarController"];
+                        [self presentViewController:mainTabViewController animated:YES completion:nil];
+                    }
+                }];
+            }else{
+                SHOWALLERT(@"Error", @"Error occured while login wechat");
+            }
         }];
     } else {
-//        [_textField setText:@"Wechat not installed!"];
+        SHOWALLERT(@"Warning", @"You need to install WeChat App");
     }
 
 }
 
 - (IBAction)callQQLogIn:(id)sender {
-//    if ([TencentAccess isTencentAppInstalled]) {
-//        [[TencentAccess defaultAccess] login:^(BOOL succeeded, id object) {
-//            NSLog(@"%@",object);
-//            //        [_textView setText:[NSString stringWithFormat:@"%@",object]];
-//        }];
-//    }
     [[TencentAccess defaultAccess] login:^(BOOL succeeded, id object) {
         NSLog(@"%@",object);
-        //        [_textView setText:[NSString stringWithFormat:@"%@",object]];
+        if(succeeded) {
+            
+            NSString *openId = [(NSDictionary *)object valueForKey:@"open_id"];
+            [InTalkAPI loginWithThirdPartySDK:@"qq" Token:openId completion:^(NSDictionary *response, NSError *err){
+                if(err == nil) {
+                    NSString *token = [response objectForKey:@"token"];
+                    [Utility saveDataWithKey:TOKEN Data:token];
+                    //add navigation feature
+                    
+                    MainTabViewController *mainTabViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MainTabBarController"];
+                    [self presentViewController:mainTabViewController animated:YES completion:nil];
+                }
+            }];
+        }else{
+            SHOWALLERT(@"Error", @"Error occured while login wechat");
+        }
+        
     }];
 }
 
 - (IBAction)callWeiboLogIn:(id)sender {
     [[WeiboAccess defaultAccess] login:^(BOOL succeeded, id object) {
-        if (succeeded) {
-//            [_textView setText:[NSString stringWithFormat:@"%@",object]];
+        if(succeeded) {
+            NSString *openId = [(NSDictionary *)object valueForKey:@"userID"];
+            [InTalkAPI loginWithThirdPartySDK:@"weibo" Token:openId completion:^(NSDictionary *response, NSError *err){
+                if(err == nil) {
+                    NSString *token = [response objectForKey:@"token"];
+                    [Utility saveDataWithKey:TOKEN Data:token];
+                    //add navigation feature
+                    
+                    MainTabViewController *mainTabViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MainTabBarController"];
+                    [self presentViewController:mainTabViewController animated:YES completion:nil];
+                }
+            }];
         }else{
-            if (WeiboStatusCodeAuthDeny == [object[WEIBO_STATUS_CODE] integerValue]) {
-//                [_textView setText:@"sso package or sign error"];
-            }
+            SHOWALLERT(@"Error", @"Error occured while login wechat");
         }
     }];
 }

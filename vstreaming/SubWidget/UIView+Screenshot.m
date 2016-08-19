@@ -8,18 +8,16 @@
 
 #import "UIView+Screenshot.h"
 
-@interface UIView (screen)
+@interface UIView(screen)
 @end
 
 @implementation UIView (screen)
--(UIImage *)convertViewToImage
+-(UIImageView *)convertViewToImage
 {
-    UIGraphicsBeginImageContext(self.frame.size);
-//    [self drawViewHierarchyInRect:self.frame afterScreenUpdates:YES];
     [self.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
+    UIImageView *image = [UIImageView alloc];
+    image.contentMode = UIViewContentModeScaleAspectFit;
+    [self addSubview:image];
     return image;
 }
 @end

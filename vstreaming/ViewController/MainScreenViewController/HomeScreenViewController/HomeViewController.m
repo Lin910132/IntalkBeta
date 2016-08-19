@@ -81,6 +81,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     DetailViewController *detailVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DetailViewController"];
+    [detailVC setScreenMode:Streaming_Client];
     [self presentViewController:detailVC animated:YES completion:nil];
 }
 
