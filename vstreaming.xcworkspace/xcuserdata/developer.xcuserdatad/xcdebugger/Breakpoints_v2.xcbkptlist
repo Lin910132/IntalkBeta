@@ -36,12 +36,12 @@
                   moduleName = "vstreaming"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta_/vstreaming/ViewController/SignUpViewController.m"
-                  timestampString = "493337443.770038"
+                  timestampString = "493564779.265891"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "86"
                   endingLineNumber = "86"
-                  offsetFromSymbolStart = "62">
+                  offsetFromSymbolStart = "64">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -51,12 +51,12 @@
                   moduleName = "vstreaming"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta_/vstreaming/ViewController/SignUpViewController.m"
-                  timestampString = "493337443.770539"
+                  timestampString = "493564779.266424"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "87"
                   endingLineNumber = "87"
-                  offsetFromSymbolStart = "40">
+                  offsetFromSymbolStart = "56">
                </Location>
             </Locations>
          </BreakpointContent>

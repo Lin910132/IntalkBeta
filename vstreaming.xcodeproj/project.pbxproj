@@ -1589,6 +1589,7 @@
 			baseConfigurationReference = 05ABF2F7C957D3A4D55B0F99 /* Pods-vstreaming.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jeff Lee (A676BC532X)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1611,7 +1612,7 @@
 					"$(PROJECT_DIR)/vstreaming/weChatSDK/",
 				);
 				INFOPLIST_FILE = vstreaming/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1625,6 +1626,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.itgroup.vstreaming;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1633,6 +1635,7 @@
 			baseConfigurationReference = C2913635067F1CFD8295EFB9 /* Pods-vstreaming.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jeff Lee (A676BC532X)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1655,7 +1658,7 @@
 					"$(PROJECT_DIR)/vstreaming/weChatSDK/",
 				);
 				INFOPLIST_FILE = vstreaming/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1669,6 +1672,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.itgroup.vstreaming;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

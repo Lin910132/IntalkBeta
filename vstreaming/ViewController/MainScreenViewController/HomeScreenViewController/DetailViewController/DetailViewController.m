@@ -14,8 +14,11 @@
 #import "DEBUG.h"
 #import "MPMediaDecoder.h"
 #import "BroadcastStreamClient.h"
+#import "QuestionViewController.h"
 #import "UIView+Screenshot.h"
+#import "QuestionTableCell.h"
 #import <mach/mach_time.h>
+#import <DAKeyboardControl.h>
 @interface DetailViewController () <MPIMediaStreamEvent> {
     MPMediaDecoder          *decoder;       // variable for play
     
@@ -42,6 +45,9 @@
 @property (weak, nonatomic) IBOutlet UIView *selectedQst;
 @property (weak, nonatomic) IBOutlet UIView *selectedAboutEpt;
 @property (weak, nonatomic) IBOutlet UIView *selectedSuggestQt;
+@property (weak, nonatomic) IBOutlet UIView *selectedQstHost;
+@property (weak, nonatomic) IBOutlet UIView *selectedMeHost;
+@property (weak, nonatomic) IBOutlet UIView *selectedSummaryHost;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UITableView *questionTableView;
 @property (weak, nonatomic) IBOutlet UIButton *btnCaptureMode;
@@ -49,12 +55,23 @@
 @property (weak, nonatomic) IBOutlet UIImageView *fullVideoView;
 @property (weak, nonatomic) IBOutlet UIButton *btnCameraMode;
 @property (weak, nonatomic) IBOutlet UIView *tabBarView;
+@property (weak, nonatomic) IBOutlet UIView *hostTabBarView;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet UIButton *btnBottomRight;
 @property (weak, nonatomic) IBOutlet UITextField *bottomText;
 @property (weak, nonatomic) IBOutlet UIButton *btnFullScreenMode;
 @property (weak, nonatomic) IBOutlet UIView *bottomChatView;
 @property (weak, nonatomic) IBOutlet UIView *fullScreenView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *sharingBtnTopConstraint;
+@property (weak, nonatomic) IBOutlet UIView *fullScreenHostSideProfile;
+@property (weak, nonatomic) IBOutlet UIView *fullScreenClientSideProfile;
+@property (weak, nonatomic) IBOutlet UIButton *answer_full_1;
+@property (weak, nonatomic) IBOutlet UIButton *answer_full_2;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewBottomConstraint;
+
+@property (weak, nonatomic) IBOutlet UIButton *comment_1;
+@property (weak, nonatomic) IBOutlet UIButton *comment_2;
+
 
 @end
 
@@ -75,8 +92,36 @@
 
 @implementation DetailViewController
 
+-(void)viewWillAppear:(BOOL)animated{
+        __weak typeof(self) weakSelf = self;
+        [self.view addKeyboardPanningWithFrameBasedActionHandler:nil constraintBasedActionHandler:^(CGRect keyboardFrameInView, BOOL opening, BOOL closing){
+            static CGFloat y;
+    
+            if (opening || y == 0)
+            {
+                y = keyboardFrameInView.origin.y + keyboardFrameInView.size.height;
+            }
+            if (closing){
+    
+                weakSelf.bottomViewBottomConstraint.constant = 0;
+                [weakSelf.view layoutIfNeeded];
+            }else {
+    
+                weakSelf.bottomViewBottomConstraint.constant = y - keyboardFrameInView.origin.y; // 50 is the tab height
+            }
+        }];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    about key board
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                       initWithTarget:self
+                                       action:@selector(dismissKeyboard)];
+        [self.view addGestureRecognizer:tap];
+//    end
+    
+    
     [self initTableView];
     selectedTab = QuestionTabSelected;
     [self setSelectMarksHiddenQuests:NO Expert:YES SuggestQt:YES];
@@ -91,11 +136,23 @@
         [_btnCaptureMode setHidden:YES];
         [_btnCameraMode  setHidden:YES];
         [_bottomText setHidden:YES];
+        [_fullScreenClientSideProfile setHidden:NO];
+        
         [_btnBottomRight setImage:[UIImage imageNamed:@"icon_gift.png"] forState:UIControlStateNormal];
+        
+        [self buttonInit];
+        
+        [_hostTabBarView setHidden:YES];
+        
     }else if(screenMode == Streaming_Host){
+        [_comment_1 setTitle:@"3" forState:UIControlStateNormal];
+        [_comment_2 setTitle:@"7" forState:UIControlStateNormal];
+        
+        
         isCaptureScreen = true;
         [self startLiveStreamingVideo];
         [_bottomText setHidden:NO];
+        [_fullScreenHostSideProfile setHidden:NO];
         [_btnBottomRight setImage:[UIImage imageNamed:@"icon_send.png"] forState:UIControlStateNormal];
         [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(flushFrame) userInfo:nil repeats:YES];
     }else{
@@ -103,6 +160,15 @@
     }
     [_loadingBar setHidden:NO];
     [_loadingBar startAnimating];
+}
+
+-(void)dismissKeyboard {
+    [self.view endEditing:YES];
+}
+
+-(void) buttonInit{
+    [_answer_full_1 setHidden:YES];
+    [_answer_full_2 setHidden:YES];
 }
 
 -(void)initTableView{
@@ -114,6 +180,11 @@
 
 // for playing streaming video
 -(void) playLiveStreamingVideo{
+
+//    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord
+//                                     withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker
+//                                           error:nil];
+    
     if(isFullMode == false) {
         decoder = [[MPMediaDecoder alloc] initWithView:_imageView];
     }else {
@@ -179,6 +250,10 @@
 }
 - (IBAction)backBtnPressed:(id)sender {
     [self setDisconnect];
+    if(screenMode == Streaming_Client){
+        //on straming host mode the screen is dismissed when the upstream is disconnected
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 - (IBAction)btnCaptureMode:(id)sender {
     isCaptureScreen = !isCaptureScreen;
@@ -199,9 +274,8 @@
     [self.questionTableView reloadData];
 }
 - (IBAction)btnAskClicked:(id)sender {
-    if(screenMode == Streaming_Host){
-        [upstream setVideoMode:VIDEO_CAPTURE];
-    }
+    QuestionViewController *questionVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"QuestionViewController"];
+    [self presentViewController:questionVC animated:YES completion:nil];
 }
 - (IBAction)btnFullScreenMode:(id)sender {
     isFullMode = !isFullMode;
@@ -210,24 +284,31 @@
 -(void)switchViewMode{
     if(isFullMode == true) {
         if(screenMode == Streaming_Client){
-            [self.bottomView setHidden:YES];
             decoder.streamImageView =_fullVideoView;
+            self.sharingBtnTopConstraint.constant = 20.0f;
+            [_bottomView setHidden:YES];
+        }else{
+            
         }
         
         [self.tabBarView setHidden:YES];
         [self.questionTableView setHidden:YES];
         [_btnFullScreenMode setImage:[UIImage imageNamed:@"icon_mini_mode.png"] forState:UIControlStateNormal];
         [self.fullScreenView setHidden:NO];
+        
+        
     }else {
         if(screenMode == Streaming_Client){
-            [self.bottomView setHidden:NO];
             decoder.streamImageView = _imageView;
+            self.sharingBtnTopConstraint.constant = 2.0f;
+            [_bottomView setHidden:NO];
+        }else{
+            
         }
         
         [self.bottomView setHidden:NO];
         [self.tabBarView setHidden:NO];
         [self.questionTableView setHidden:NO];
-        
         [_btnFullScreenMode setImage:[UIImage imageNamed:@"icon_full_mode.png"] forState:UIControlStateNormal];
         [self.fullScreenView setHidden:YES];
     }
@@ -243,6 +324,10 @@
     [self.selectedQst setHidden:qs];
     [self.selectedAboutEpt setHidden:ae];
     [self.selectedSuggestQt setHidden:sq];
+    
+    [_selectedQstHost setHidden:qs];
+    [_selectedMeHost setHidden:ae];
+    [_selectedSummaryHost setHidden:sq];
 }
 
 
@@ -260,7 +345,9 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell;
     if(selectedTab == QuestionTabSelected){
-        cell = [tableView dequeueReusableCellWithIdentifier:@"QuestionTableCell"];
+        QuestionTableCell *questionCell = [tableView dequeueReusableCellWithIdentifier:@"QuestionTableCell"];
+        [questionCell setScreenMode:screenMode];
+        cell = questionCell;
     }else if(selectedTab == ExpertTabSelected){
         cell = [tableView dequeueReusableCellWithIdentifier:@"ExpertTableCell"];
     }else {
@@ -292,15 +379,15 @@
             
         case STREAM_PLAYING: {
             if(screenMode == Streaming_Client){
-//                if ([description isEqualToString:MP_RESOURCE_TEMPORARILY_UNAVAILABLE]) {
-//                    SHOWALLERT(@"Warning", @"Temporarily unavailable");
-//                    break;
-//                }
-//                
-//                if ([description isEqualToString:MP_NETSTREAM_PLAY_STREAM_NOT_FOUND]) {
-//                    
-//                    break;
-//                }
+                //                if ([description isEqualToString:MP_RESOURCE_TEMPORARILY_UNAVAILABLE]) {
+                //                    SHOWALLERT(@"Warning", @"Temporarily unavailable");
+                //                    break;
+                //                }
+                //
+                //                if ([description isEqualToString:MP_NETSTREAM_PLAY_STREAM_NOT_FOUND]) {
+                //
+                //                    break;
+                //                }
             }else if(screenMode == Streaming_Host){
                 
             }
@@ -425,7 +512,6 @@
 -(void)flushFrame {
     if (upstream && (upstream.state == STREAM_PLAYING)) {
         isPhotoPicking = YES;
-        NSLog(@"flush Frame");
     }
 }
 

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface QuestionTableCell : UITableViewCell
-
+-(void) setScreenMode:(LiveStreamingScreenMode) mode;
 @end
