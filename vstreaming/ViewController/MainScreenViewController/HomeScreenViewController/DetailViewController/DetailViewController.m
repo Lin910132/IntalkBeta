@@ -19,6 +19,8 @@
 #import "QuestionTableCell.h"
 #import <mach/mach_time.h>
 #import <DAKeyboardControl.h>
+#import <WowzaGoCoderSDK/WowzaGoCoderSDK.h>
+
 @interface DetailViewController () <MPIMediaStreamEvent> {
     MPMediaDecoder          *decoder;       // variable for play
     
@@ -40,6 +42,9 @@
     BOOL isBackCamera;
     BOOL isChangingScreen;
     BOOL                        isPhotoPicking;
+    
+    CGImageRef soundImageRef;
+    CVPixelBufferRef soundImagePixelBuffer;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *selectedQst;
@@ -51,7 +56,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UITableView *questionTableView;
 @property (weak, nonatomic) IBOutlet UIButton *btnCaptureMode;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingBar;
 @property (weak, nonatomic) IBOutlet UIImageView *fullVideoView;
 @property (weak, nonatomic) IBOutlet UIButton *btnCameraMode;
 @property (weak, nonatomic) IBOutlet UIView *tabBarView;
@@ -71,6 +75,8 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *comment_1;
 @property (weak, nonatomic) IBOutlet UIButton *comment_2;
+@property (weak, nonatomic) IBOutlet UIButton *btnClose;
+@property (weak, nonatomic) IBOutlet UILabel *lblStreamFinished;
 
 
 @end
@@ -107,9 +113,23 @@
                 [weakSelf.view layoutIfNeeded];
             }else {
     
-                weakSelf.bottomViewBottomConstraint.constant = y - keyboardFrameInView.origin.y; // 50 is the tab height
+                weakSelf.bottomViewBottomConstraint.constant = y - keyboardFrameInView.origin.y;
             }
         }];
+    
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord
+                                     withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker
+                                           error:nil];
+    
+    if(screenMode == Streaming_Host) {
+        [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+    }
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    if(screenMode == Streaming_Host) {
+        [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
+    }
 }
 
 - (void)viewDidLoad {
@@ -130,7 +150,8 @@
     
     
     [_fullScreenView setHidden:YES];
-    
+    [_btnClose setHidden:YES];
+    [_lblStreamFinished setHidden:YES];
     if(screenMode == Streaming_Client){
         [self playLiveStreamingVideo];
         [_btnCaptureMode setHidden:YES];
@@ -145,6 +166,9 @@
         [_hostTabBarView setHidden:YES];
         
     }else if(screenMode == Streaming_Host){
+        soundImageRef = [[UIImage imageNamed:@"sound_img.png"] CGImage];
+        soundImagePixelBuffer = [self pixelBufferFromCGImage:soundImageRef];
+        
         [_comment_1 setTitle:@"3" forState:UIControlStateNormal];
         [_comment_2 setTitle:@"7" forState:UIControlStateNormal];
         
@@ -158,8 +182,6 @@
     }else{
         SHOWALLERT(@"Error", @"Configure Error on Setting Screen Mode");
     }
-    [_loadingBar setHidden:NO];
-    [_loadingBar startAnimating];
 }
 
 -(void)dismissKeyboard {
@@ -179,12 +201,7 @@
 
 
 // for playing streaming video
--(void) playLiveStreamingVideo{
-
-//    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord
-//                                     withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker
-//                                           error:nil];
-    
+-(void) playLiveStreamingVideo{    
     if(isFullMode == false) {
         decoder = [[MPMediaDecoder alloc] initWithView:_imageView];
     }else {
@@ -285,7 +302,7 @@
     if(isFullMode == true) {
         if(screenMode == Streaming_Client){
             decoder.streamImageView =_fullVideoView;
-            self.sharingBtnTopConstraint.constant = 20.0f;
+            self.sharingBtnTopConstraint.constant = 35.0f;
             [_bottomView setHidden:YES];
         }else{
             
@@ -295,7 +312,7 @@
         [self.questionTableView setHidden:YES];
         [_btnFullScreenMode setImage:[UIImage imageNamed:@"icon_mini_mode.png"] forState:UIControlStateNormal];
         [self.fullScreenView setHidden:NO];
-        
+        [_btnClose setHidden:NO];
         
     }else {
         if(screenMode == Streaming_Client){
@@ -311,6 +328,7 @@
         [self.questionTableView setHidden:NO];
         [_btnFullScreenMode setImage:[UIImage imageNamed:@"icon_full_mode.png"] forState:UIControlStateNormal];
         [self.fullScreenView setHidden:YES];
+        [_btnClose setHidden:YES];
     }
     
 }
@@ -367,27 +385,25 @@
         }break;
         case CONN_CONNECTED: {
             [upstream start];
-            [_loadingBar setHidden:YES];
             
         }break;
         case STREAM_CREATED: {
             if(screenMode == Streaming_Client){
                 [decoder resume];
-                [_loadingBar setHidden:YES];
             }
         }break;
             
         case STREAM_PLAYING: {
             if(screenMode == Streaming_Client){
-                //                if ([description isEqualToString:MP_RESOURCE_TEMPORARILY_UNAVAILABLE]) {
-                //                    SHOWALLERT(@"Warning", @"Temporarily unavailable");
-                //                    break;
-                //                }
-                //
-                //                if ([description isEqualToString:MP_NETSTREAM_PLAY_STREAM_NOT_FOUND]) {
-                //
-                //                    break;
-                //                }
+//                    if ([description isEqualToString:MP_RESOURCE_TEMPORARILY_UNAVAILABLE]) {
+//                        SHOWALLERT(@"Warning", @"Temporarily unavailable");
+//                        break;
+//                    }
+
+                if ([description isEqualToString:MP_NETSTREAM_PLAY_STREAM_NOT_FOUND]) {
+                    [_lblStreamFinished setHidden:NO];
+                    break;
+                }
             }else if(screenMode == Streaming_Host){
                 
             }
@@ -537,15 +553,28 @@
         return;
     
     
-    CVPixelBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+    CVPixelBufferRef pixelBuffer;
+    if(isCaptureScreen == true) {
+        pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+    }else {
+        pixelBuffer = [self pixelBufferFromCGImage:soundImageRef];
+    }
+    
+    
     int64_t _timestamp = [self getTimestampMs];
     
     CGImageRef frame = [self imageFromPixelBuffer:pixelBuffer];
     if(isCaptureScreen == true){
+        
         [upstream sendImage:frame timestamp:_timestamp];
         [_player playImageBuffer:pixelBuffer];
         [fullplayer playImageBuffer:pixelBuffer];
         
+        
+    }else{
+        [upstream sendImage:frame timestamp:_timestamp];
+        [_player playImageBuffer:pixelBuffer];
+        [fullplayer playImageBuffer:pixelBuffer];
     }
     CGImageRelease(frame);
     isPhotoPicking = NO;

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7BB12E8FED0D7E73A79E2C3F /* libPods-vstreaming.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B30086A11FC450DA9CDD7C1B /* libPods-vstreaming.a */; };
+		8B0C68C91D7324A700C68C59 /* WowzaGoCoderSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B0C68C81D7324A700C68C59 /* WowzaGoCoderSDK.framework */; };
+		8B0C68CA1D7324A700C68C59 /* WowzaGoCoderSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B0C68C81D7324A700C68C59 /* WowzaGoCoderSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8B1B0E071D5A818200B59DD9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B1B0E061D5A818200B59DD9 /* SystemConfiguration.framework */; };
 		8B1B0E391D5AB91500B59DD9 /* WechatAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B1B0E321D5AB91500B59DD9 /* WechatAccess.m */; };
 		8B1B0E3A1D5AB91500B59DD9 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B1B0E341D5AB91500B59DD9 /* libWeChatSDK.a */; };
@@ -114,8 +116,23 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		8B0C68CB1D7324A700C68C59 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8B0C68CA1D7324A700C68C59 /* WowzaGoCoderSDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		05ABF2F7C957D3A4D55B0F99 /* Pods-vstreaming.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-vstreaming.debug.xcconfig"; path = "Pods/Target Support Files/Pods-vstreaming/Pods-vstreaming.debug.xcconfig"; sourceTree = "<group>"; };
+		8B0C68C81D7324A700C68C59 /* WowzaGoCoderSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WowzaGoCoderSDK.framework; path = vstreaming/WowzaGoCoderSDK.framework; sourceTree = "<group>"; };
 		8B1B0E061D5A818200B59DD9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8B1B0E311D5AB91500B59DD9 /* WechatAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAccess.h; sourceTree = "<group>"; };
 		8B1B0E321D5AB91500B59DD9 /* WechatAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WechatAccess.m; sourceTree = "<group>"; };
@@ -418,6 +435,7 @@
 				8BC0BBC91D586FA400CEAEFC /* libiconv.tbd in Frameworks */,
 				8BC0BBCB1D586FAE00CEAEFC /* libz.tbd in Frameworks */,
 				8BC0BBCD1D586FBA00CEAEFC /* libsqlite3.tbd in Frameworks */,
+				8B0C68C91D7324A700C68C59 /* WowzaGoCoderSDK.framework in Frameworks */,
 				7BB12E8FED0D7E73A79E2C3F /* libPods-vstreaming.a in Frameworks */,
 				8BDCE80A1D5DB80800029F8F /* libavdevice.a in Frameworks */,
 			);
@@ -585,6 +603,7 @@
 		8BCD711B1D424FF500ECFD88 = {
 			isa = PBXGroup;
 			children = (
+				8B0C68C81D7324A700C68C59 /* WowzaGoCoderSDK.framework */,
 				8BCD71261D424FF500ECFD88 /* vstreaming */,
 				8BCD71431D424FF500ECFD88 /* vstreamingTests */,
 				8BCD714E1D424FF500ECFD88 /* vstreamingUITests */,
@@ -1217,6 +1236,7 @@
 				8BCD71221D424FF500ECFD88 /* Resources */,
 				D90EBEEEB6F112E7AA3AE399 /* [CP] Embed Pods Frameworks */,
 				B4593E7A20B8B8C4C18FD398 /* [CP] Copy Pods Resources */,
+				8B0C68CB1D7324A700C68C59 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1512,8 +1532,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jeff Lee (A676BC532X)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeff Lee (A676BC532X)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Junning Chen (RTXFTC42XF)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Junning Chen (RTXFTC42XF)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = YES;
@@ -1536,7 +1556,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "4e8c653a-16c1-4e54-9505-af59ae8fde59";
+				PROVISIONING_PROFILE = "f670e9a7-4a86-4e93-96f4-6f31990d71c0";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1560,8 +1580,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jeff Lee (A676BC532X)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeff Lee (A676BC532X)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Hangzhou Junru Technology Co. ,Ltd. (72739DGUJR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Hangzhou Junru Technology Co. ,Ltd. (72739DGUJR)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = YES;
@@ -1577,7 +1597,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "4e8c653a-16c1-4e54-9505-af59ae8fde59";
+				PROVISIONING_PROFILE = "f670e9a7-4a86-4e93-96f4-6f31990d71c0";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1589,12 +1609,13 @@
 			baseConfigurationReference = 05ABF2F7C957D3A4D55B0F99 /* Pods-vstreaming.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jeff Lee (A676BC532X)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Junning Chen (RTXFTC42XF)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/vstreaming/Frameworks",
 					"$(PROJECT_DIR)/vstreaming/Tencent/QQSDK3.1.0",
+					"$(PROJECT_DIR)/vstreaming",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$PROJECT_DIR/vstreaming/vstreaming-Prefix.pch";
@@ -1626,7 +1647,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.itgroup.vstreaming;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "f670e9a7-4a86-4e93-96f4-6f31990d71c0";
 			};
 			name = Debug;
 		};
@@ -1635,12 +1656,13 @@
 			baseConfigurationReference = C2913635067F1CFD8295EFB9 /* Pods-vstreaming.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jeff Lee (A676BC532X)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Hangzhou Junru Technology Co. ,Ltd. (72739DGUJR)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/vstreaming/Frameworks",
 					"$(PROJECT_DIR)/vstreaming/Tencent/QQSDK3.1.0",
+					"$(PROJECT_DIR)/vstreaming",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$PROJECT_DIR/vstreaming/vstreaming-Prefix.pch";
@@ -1672,7 +1694,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.itgroup.vstreaming;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "f670e9a7-4a86-4e93-96f4-6f31990d71c0";
 			};
 			name = Release;
 		};
@@ -1703,11 +1725,12 @@
 		8BCD715B1D424FF500ECFD88 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Junning Chen (RTXFTC42XF)";
 				INFOPLIST_FILE = vstreamingUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.itgroup.vstreamingUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b14eb740-5575-4018-abf9-9c35eb301448";
+				PROVISIONING_PROFILE = "f670e9a7-4a86-4e93-96f4-6f31990d71c0";
 				TEST_TARGET_NAME = vstreaming;
 			};
 			name = Debug;
@@ -1719,7 +1742,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.itgroup.vstreamingUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b14eb740-5575-4018-abf9-9c35eb301448";
+				PROVISIONING_PROFILE = "f670e9a7-4a86-4e93-96f4-6f31990d71c0";
 				TEST_TARGET_NAME = vstreaming;
 			};
 			name = Release;

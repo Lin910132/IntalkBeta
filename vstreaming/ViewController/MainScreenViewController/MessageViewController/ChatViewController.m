@@ -15,7 +15,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomSpaceForBottomView;
 
-
 @end
 
 @implementation ChatViewController

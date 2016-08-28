@@ -36,12 +36,12 @@
                   moduleName = "vstreaming"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta_/vstreaming/ViewController/SignUpViewController.m"
-                  timestampString = "493564779.265891"
+                  timestampString = "494084347.539299"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "86"
                   endingLineNumber = "86"
-                  offsetFromSymbolStart = "64">
+                  offsetFromSymbolStart = "62">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -51,12 +51,12 @@
                   moduleName = "vstreaming"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta_/vstreaming/ViewController/SignUpViewController.m"
-                  timestampString = "493564779.266424"
+                  timestampString = "494084347.539777"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "87"
                   endingLineNumber = "87"
-                  offsetFromSymbolStart = "56">
+                  offsetFromSymbolStart = "40">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -83,13 +83,61 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "vstreaming/AppDelegate/AppDelegate.m"
-            timestampString = "492944641.749867"
+            filePath = "vstreaming/ViewController/SignUpViewController.m"
+            timestampString = "493804967.399526"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "43"
             endingLineNumber = "43"
-            landmarkName = "-application:handleOpenURL:"
+            landmarkName = "-callWeChatLogIn:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "vstreaming/ViewController/SignUpViewController.m"
+            timestampString = "493805190.873628"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "-callWeChatLogIn:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "vstreaming/AppDelegate/AppDelegate.m"
+            timestampString = "493805211.362822"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "-application:openURL:sourceApplication:annotation:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "vstreaming/Rest/WebManager.m"
+            timestampString = "493805376.023859"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "+POST:parameters:completion:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

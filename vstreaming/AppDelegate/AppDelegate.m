@@ -10,7 +10,7 @@
 #import "WechatAccess.h"
 #import "TencentAccess.h"
 #import "WeiboAccess.h"
-
+#import <AVFoundation/AVFoundation.h>
 @interface AppDelegate (){
     UIActivityIndicatorView *_loader;
     UIImageView *_loaderBackgroundView;
@@ -26,6 +26,10 @@ static NSString *const kTencentScheme = @"tencent1105461365";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    
+    //for streaming capture and playing.
+    
     [WechatAccess registerApp];
     [WeiboAccess registerApp];
 #ifdef DEBUG
