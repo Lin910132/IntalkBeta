@@ -68,15 +68,8 @@ greenColorForButtons
 
 #define TOKEN @"token"
 
-//QCloud live active broadcasting identifier
-#define REST_SERVER_ADDRESS      @"https://swis.online"
-#define REST_API_USERLOGIN       @"/api/rest/user_login"
-#define REST_API_USERSIGNIN       @"/api/user/register"
-#define REST_API_JOIN_ME        @"/api/rest/join_me"
-#define REST_API_CHECK_MD5        @"/api/rest/md5_drawing"
-
-//#define RTMP_SERVER_ADDRESS     @"rtmp://www.intalk.tv:1935/live"
-#define RTMP_SERVER_ADDRESS     @"rtmp://10.70.5.1:1935/live"
+#define RTMP_SERVER_ADDRESS     @"rtmp://www.intalk.tv:1935/live"
+//#define RTMP_SERVER_ADDRESS     @"rtmp://10.70.5.1:1935/live"
 
 
 #endif /* GeneralConstant_h */
