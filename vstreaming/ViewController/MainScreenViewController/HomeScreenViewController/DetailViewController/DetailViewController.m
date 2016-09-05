@@ -231,8 +231,8 @@
         [broadcastConfig loadPreset:WZFrameSizePreset640x480];
         broadcastConfig.capturedVideoRotates = false;
         broadcastConfig.broadcastScaleMode = WZBroadcastScaleModeAspectFill;
-        //broadcastConfig.hostAddress = @"10.70.5.1";
-        broadcastConfig.hostAddress = @"www.intalk.tv";
+        broadcastConfig.hostAddress = @"10.70.5.1";
+        //broadcastConfig.hostAddress = @"www.intalk.tv";
         broadcastConfig.applicationName = @"live";
         broadcastConfig.streamName = @"myStream";
         
@@ -264,6 +264,7 @@
 
     }else if(screenMode == Streaming_Host){
         [_goCoder endStreaming:self];
+        [_goCoder unregisterVideoSink:self];
         _goCoder = nil;
     }
 }

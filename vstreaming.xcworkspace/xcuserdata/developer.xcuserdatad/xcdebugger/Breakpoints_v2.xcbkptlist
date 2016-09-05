@@ -4,16 +4,6 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            scope = "0"
-            stopOnStyle = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
@@ -35,8 +25,8 @@
                   symbolName = "-[SignUpViewController callWeiboLogIn:]"
                   moduleName = "vstreaming"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta_/vstreaming/ViewController/SignUpViewController.m"
-                  timestampString = "494597989.262856"
+                  urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta/vstreaming/ViewController/SignUpViewController.m"
+                  timestampString = "494723784.681718"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "86"
@@ -50,8 +40,8 @@
                   symbolName = "__39-[SignUpViewController callWeiboLogIn:]_block_invoke"
                   moduleName = "vstreaming"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta_/vstreaming/ViewController/SignUpViewController.m"
-                  timestampString = "494597989.26373"
+                  urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta/vstreaming/ViewController/SignUpViewController.m"
+                  timestampString = "494723784.682854"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "87"
@@ -74,22 +64,6 @@
             startingLineNumber = "183"
             endingLineNumber = "183"
             landmarkName = "-shareWithWebviewInTimeLineOrNot:pageUrl:title:description:image:completion:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "vstreaming/Rest/WebManager.m"
-            timestampString = "493805376.023859"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "+POST:parameters:completion:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
