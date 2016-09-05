@@ -17,8 +17,6 @@
 #import <WowzaGoCoderSDK/WowzaGoCoderSDK.h>
 #import "VideoPlayer.h"
 #import "MPMediaDecoder.h"
-#import <MediaPlayer/MediaPlayer.h>
-
 
 @interface DetailViewController () <WZStatusCallback, MPIMediaStreamEvent, WZVideoSink>{
     
@@ -209,18 +207,33 @@
 
 // for playing streaming video
 -(void) playLiveStreamingVideo{
-    if(isFullMode == false) {
-        decoder = [[MPMediaDecoder alloc] initWithView:_imageView];
-    }else {
-        decoder = [[MPMediaDecoder alloc] initWithView:_fullVideoView];
-    }
+//    if(isFullMode == false) {
+//        decoder = [[MPMediaDecoder alloc] initWithView:_imageView];
+//    }else {
+//        decoder = [[MPMediaDecoder alloc] initWithView:_fullVideoView];
+//    }
+//    
+//    NSLog(@"%f", _imageView.frame.size.height);
+//    decoder.orientation = UIImageOrientationUp;
+//    decoder.delegate = self;
+//    decoder.clientBufferMs = 5000;
+//    decoder.isRealTime = YES;
+//    [self doConnect];
     
-    NSLog(@"%f", _imageView.frame.size.height);
-    decoder.orientation = UIImageOrientationUp;
-    decoder.delegate = self;
-    decoder.clientBufferMs = 5000;
-    decoder.isRealTime = YES;
-    [self doConnect];
+    NSURL *videoURL = [NSURL URLWithString:@"http://10.70.5.1:1935/live/myStream/playlist.m3u8"];
+    
+    // create an AVPlayer
+    AVPlayer *player = [AVPlayer playerWithURL:videoURL];
+    
+    // create a player view controller
+    AVPlayerViewController *controller = [[AVPlayerViewController alloc]init];
+    controller.player = player;
+    [player play];
+    
+    // show the view controller
+    [self addChildViewController:controller];
+    [self.view addSubview:controller.view];
+    controller.view.frame = self.view.frame;
 }
 
 //for capturing video on hosting side
@@ -235,6 +248,7 @@
         //broadcastConfig.hostAddress = @"www.intalk.tv";
         broadcastConfig.applicationName = @"live";
         broadcastConfig.streamName = @"myStream";
+        
         
         self.goCoder.config = broadcastConfig;
         [self.goCoder registerVideoSink:self];
