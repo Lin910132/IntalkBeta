@@ -18,7 +18,6 @@
 		8B1B0E441D5BD25A00B59DD9 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8B1B0E401D5BD25A00B59DD9 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		8B1B0E451D5BD25A00B59DD9 /* TencentAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B1B0E421D5BD25A00B59DD9 /* TencentAccess.m */; };
 		8B4BB31A1D739C1500ABF1C3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BCD71701D43933D00ECFD88 /* CoreGraphics.framework */; };
-		8B4BB31C1D739C2F00ABF1C3 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4BB31B1D739C2F00ABF1C3 /* OpenGLES.framework */; };
 		8B4BB31E1D739C3A00ABF1C3 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4BB31D1D739C3A00ABF1C3 /* VideoToolbox.framework */; };
 		8B4BB31F1D739CF900ABF1C3 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDCE8451D5E18A700029F8F /* MediaPlayer.framework */; };
 		8B503A831D4A2F01008848CE /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B503A821D4A2F01008848CE /* SettingViewController.m */; };
@@ -83,19 +82,6 @@
 		8BD7A6901D4DEEC90001B822 /* APIConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD7A68F1D4DEEC90001B822 /* APIConstant.m */; };
 		8BD7A6941D4DF4D70001B822 /* InTalkAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD7A6931D4DF4D70001B822 /* InTalkAPI.m */; };
 		8BD7A6971D4E3F8F0001B822 /* WebManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BD7A6961D4E3F8F0001B822 /* WebManager.m */; };
-		8BDCE8061D5DB80800029F8F /* CommLibiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDCE7541D5DB80800029F8F /* CommLibiOS.a */; };
-		8BDCE8071D5DB80800029F8F /* Communication Library for iOS User Guide.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 8BDCE7561D5DB80800029F8F /* Communication Library for iOS User Guide.pdf */; };
-		8BDCE8081D5DB80800029F8F /* WeborbClient Class Reference.odt in Resources */ = {isa = PBXBuildFile; fileRef = 8BDCE7571D5DB80800029F8F /* WeborbClient Class Reference.odt */; };
-		8BDCE8091D5DB80800029F8F /* libavcodec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDCE7BE1D5DB80800029F8F /* libavcodec.a */; };
-		8BDCE80A1D5DB80800029F8F /* libavdevice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDCE7BF1D5DB80800029F8F /* libavdevice.a */; };
-		8BDCE80B1D5DB80800029F8F /* libavfilter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDCE7C01D5DB80800029F8F /* libavfilter.a */; };
-		8BDCE80C1D5DB80800029F8F /* libavformat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDCE7C11D5DB80800029F8F /* libavformat.a */; };
-		8BDCE80D1D5DB80800029F8F /* libavutil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDCE7C21D5DB80800029F8F /* libavutil.a */; };
-		8BDCE80E1D5DB80800029F8F /* libswscale.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDCE7C31D5DB80800029F8F /* libswscale.a */; };
-		8BDCE80F1D5DB80800029F8F /* Media Library for iOS User Guide.docx in Resources */ = {isa = PBXBuildFile; fileRef = 8BDCE7C61D5DB80800029F8F /* Media Library for iOS User Guide.docx */; };
-		8BDCE8101D5DB80800029F8F /* MediaLibiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDCE7CE1D5DB80800029F8F /* MediaLibiOS.a */; };
-		8BDCE8111D5DB80800029F8F /* libspeex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDCE7D91D5DB80800029F8F /* libspeex.a */; };
-		8BDCE8231D5DB80800029F8F /* libx264.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDCE8051D5DB80800029F8F /* libx264.a */; };
 		8BDCE8251D5DBBBD00029F8F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDCE8241D5DBBBD00029F8F /* AudioToolbox.framework */; };
 		8BDCE8261D5DBBC600029F8F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC0BBC01D586F5C00CEAEFC /* CoreMedia.framework */; };
 		8BDCE8281D5DBBD200029F8F /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BDCE8271D5DBBD100029F8F /* CoreAudio.framework */; };
@@ -423,7 +409,6 @@
 			files = (
 				8B4BB31F1D739CF900ABF1C3 /* MediaPlayer.framework in Frameworks */,
 				8B4BB31E1D739C3A00ABF1C3 /* VideoToolbox.framework in Frameworks */,
-				8B4BB31C1D739C2F00ABF1C3 /* OpenGLES.framework in Frameworks */,
 				8BDCE8251D5DBBBD00029F8F /* AudioToolbox.framework in Frameworks */,
 				8B4BB31A1D739C1500ABF1C3 /* CoreGraphics.framework in Frameworks */,
 				8B0C68C91D7324A700C68C59 /* WowzaGoCoderSDK.framework in Frameworks */,
@@ -437,23 +422,13 @@
 				8BCD71911D44B76700ECFD88 /* QuartzCore.framework in Frameworks */,
 				8BCD71731D43934300ECFD88 /* Foundation.framework in Frameworks */,
 				8BCD716F1D43932A00ECFD88 /* UIKit.framework in Frameworks */,
-				8BDCE8231D5DB80800029F8F /* libx264.a in Frameworks */,
-				8BDCE8111D5DB80800029F8F /* libspeex.a in Frameworks */,
-				8BDCE80C1D5DB80800029F8F /* libavformat.a in Frameworks */,
-				8BDCE8101D5DB80800029F8F /* MediaLibiOS.a in Frameworks */,
-				8BDCE80B1D5DB80800029F8F /* libavfilter.a in Frameworks */,
-				8BDCE8091D5DB80800029F8F /* libavcodec.a in Frameworks */,
-				8BDCE80D1D5DB80800029F8F /* libavutil.a in Frameworks */,
 				8B50BF761D5CDC950059456C /* libWeiboSDK.a in Frameworks */,
 				8B1B0E3A1D5AB91500B59DD9 /* libWeChatSDK.a in Frameworks */,
-				8BDCE8061D5DB80800029F8F /* CommLibiOS.a in Frameworks */,
 				8BC0BBC71D586F9600CEAEFC /* libc++.tbd in Frameworks */,
-				8BDCE80E1D5DB80800029F8F /* libswscale.a in Frameworks */,
 				8BC0BBC91D586FA400CEAEFC /* libiconv.tbd in Frameworks */,
 				8BC0BBCB1D586FAE00CEAEFC /* libz.tbd in Frameworks */,
 				8BC0BBCD1D586FBA00CEAEFC /* libsqlite3.tbd in Frameworks */,
 				7BB12E8FED0D7E73A79E2C3F /* libPods-vstreaming.a in Frameworks */,
-				8BDCE80A1D5DB80800029F8F /* libavdevice.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1358,11 +1333,8 @@
 				8BCD71371D424FF500ECFD88 /* Assets.xcassets in Resources */,
 				8B1B0E3B1D5AB91500B59DD9 /* README.txt in Resources */,
 				8B1B0E441D5BD25A00B59DD9 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
-				8BDCE8081D5DB80800029F8F /* WeborbClient Class Reference.odt in Resources */,
 				8BCD71321D424FF500ECFD88 /* Main.storyboard in Resources */,
 				8B50BF771D5CDC950059456C /* WeiboSDK.bundle in Resources */,
-				8BDCE8071D5DB80800029F8F /* Communication Library for iOS User Guide.pdf in Resources */,
-				8BDCE80F1D5DB80800029F8F /* Media Library for iOS User Guide.docx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1604,8 +1576,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Hangzhou Junru Technology Co. ,Ltd. (72739DGUJR)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Hangzhou Junru Technology Co. ,Ltd. (72739DGUJR)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jeff Lee (A676BC532X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeff Lee (A676BC532X)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = YES;
@@ -1640,7 +1612,6 @@
 					"$(PROJECT_DIR)/vstreaming/Frameworks",
 					"$(PROJECT_DIR)/vstreaming/Tencent/QQSDK3.1.0",
 					"$(PROJECT_DIR)/vstreaming",
-					"$(PROJECT_DIR)/vstreaming/Library/libs",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$PROJECT_DIR/vstreaming/vstreaming-Prefix.pch";
@@ -1664,12 +1635,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/vstreaming/WeChat/weChatSDK1.7.2",
 					"$(PROJECT_DIR)/vstreaming/WeiBo/libWeiboSDK",
-					"$(PROJECT_DIR)/vstreaming/Library/MediaLibiOS",
-					"$(PROJECT_DIR)/vstreaming/Library/CommLibiOS",
-					"$(PROJECT_DIR)/vstreaming/Library/libav-11.4/lib",
-					"$(PROJECT_DIR)/vstreaming/Library/speex-1.2rc2/lib",
-					"$(PROJECT_DIR)/vstreaming/Library/x264/lib",
-					"$(PROJECT_DIR)/vstreaming/Library/libs",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.itgroup.vstreaming;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1682,14 +1647,13 @@
 			baseConfigurationReference = C2913635067F1CFD8295EFB9 /* Pods-vstreaming.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Hangzhou Junru Technology Co. ,Ltd. (72739DGUJR)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jeff Lee (A676BC532X)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/vstreaming/Frameworks",
 					"$(PROJECT_DIR)/vstreaming/Tencent/QQSDK3.1.0",
 					"$(PROJECT_DIR)/vstreaming",
-					"$(PROJECT_DIR)/vstreaming/Library/libs",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$PROJECT_DIR/vstreaming/vstreaming-Prefix.pch";
@@ -1713,12 +1677,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/vstreaming/WeChat/weChatSDK1.7.2",
 					"$(PROJECT_DIR)/vstreaming/WeiBo/libWeiboSDK",
-					"$(PROJECT_DIR)/vstreaming/Library/MediaLibiOS",
-					"$(PROJECT_DIR)/vstreaming/Library/CommLibiOS",
-					"$(PROJECT_DIR)/vstreaming/Library/libav-11.4/lib",
-					"$(PROJECT_DIR)/vstreaming/Library/speex-1.2rc2/lib",
-					"$(PROJECT_DIR)/vstreaming/Library/x264/lib",
-					"$(PROJECT_DIR)/vstreaming/Library/libs",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.itgroup.vstreaming;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1730,10 +1688,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jeff Lee (A676BC532X)";
 				INFOPLIST_FILE = vstreamingTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.itgroup.vstreamingTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "49dd8a66-970e-4e38-91f9-57f0e87f31f8";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vstreaming.app/vstreaming";
 			};
 			name = Debug;
@@ -1742,10 +1702,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeff Lee (A676BC532X)";
 				INFOPLIST_FILE = vstreamingTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.itgroup.vstreamingTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "49dd8a66-970e-4e38-91f9-57f0e87f31f8";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vstreaming.app/vstreaming";
 			};
 			name = Release;
@@ -1753,12 +1715,12 @@
 		8BCD715B1D424FF500ECFD88 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Junning Chen (RTXFTC42XF)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jeff Lee (A676BC532X)";
 				INFOPLIST_FILE = vstreamingUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.itgroup.vstreamingUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8fa398cd-caff-4aca-8bc7-9edd1cf645e3";
+				PROVISIONING_PROFILE = "49dd8a66-970e-4e38-91f9-57f0e87f31f8";
 				TEST_TARGET_NAME = vstreaming;
 			};
 			name = Debug;
@@ -1766,11 +1728,12 @@
 		8BCD715C1D424FF500ECFD88 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeff Lee (A676BC532X)";
 				INFOPLIST_FILE = vstreamingUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.itgroup.vstreamingUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8fa398cd-caff-4aca-8bc7-9edd1cf645e3";
+				PROVISIONING_PROFILE = "49dd8a66-970e-4e38-91f9-57f0e87f31f8";
 				TEST_TARGET_NAME = vstreaming;
 			};
 			name = Release;

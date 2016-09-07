@@ -8,20 +8,15 @@
 
 #import "DetailViewController.h"
 #import <AVKit/AVKit.h>
-#import "DEBUG.h"
 #import "QuestionViewController.h"
 #import "UIView+Screenshot.h"
 #import "QuestionTableCell.h"
 #import <mach/mach_time.h>
 #import <DAKeyboardControl.h>
 #import <WowzaGoCoderSDK/WowzaGoCoderSDK.h>
-#import "VideoPlayer.h"
-#import "MPMediaDecoder.h"
 
-@interface DetailViewController () <WZStatusCallback, MPIMediaStreamEvent, WZVideoSink>{
-    
-    MPMediaDecoder          *decoder;       // variable for play
-    
+@interface DetailViewController () <WZStatusCallback, WZVideoSink>{
+
     LiveStreamingScreenMode screenMode;
     BOOL isCaptureScreen;
     BOOL isFullMode;
@@ -29,6 +24,9 @@
     CGRect originalSize;
     UIImage *sound_image;
     CIImage *frameImage;
+    
+    AVPlayer *player;
+    AVPlayerViewController *controller;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *selectedQst;
@@ -40,7 +38,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UITableView *questionTableView;
 @property (weak, nonatomic) IBOutlet UIButton *btnCaptureMode;
-@property (weak, nonatomic) IBOutlet UIImageView *fullVideoView;
 @property (weak, nonatomic) IBOutlet UIButton *btnCameraMode;
 @property (weak, nonatomic) IBOutlet UIView *tabBarView;
 @property (weak, nonatomic) IBOutlet UIView *hostTabBarView;
@@ -111,10 +108,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    about key board
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
-                                       initWithTarget:self
-                                       action:@selector(dismissKeyboard)];
-        [self.view addGestureRecognizer:tap];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
 //    end
     
     
@@ -123,6 +120,8 @@
     [self setSelectMarksHiddenQuests:NO Expert:YES SuggestQt:YES];
     
     isFullMode = false;
+    fullSizeFrame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
+    originalSize = _imageView.frame;
     
     [_fullScreenView setHidden:YES];
     [_btnClose setHidden:YES];
@@ -140,19 +139,11 @@
         [_btnBottomRight setImage:[UIImage imageNamed:@"icon_gift.png"] forState:UIControlStateNormal];
         
         [self buttonInit];
-        
         [_hostTabBarView setHidden:YES];
         
     }else if(screenMode == Streaming_Host){
-        fullSizeFrame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
-        originalSize = _imageView.frame;
-        [_fullVideoView setHidden:YES];
         sound_image = [UIImage imageNamed:@"sound_img.png"];
-        
-        
-        //frameImage = [CIImage imageWithColor:[CIColor colorWithRed:0 green:0 blue:0]];
         frameImage = [[CIImage alloc] initWithCGImage:sound_image.CGImage options:nil];
-        
         
         [self initWowzaSDK];
         [_comment_1 setTitle:@"3" forState:UIControlStateNormal];
@@ -207,33 +198,20 @@
 
 // for playing streaming video
 -(void) playLiveStreamingVideo{
-//    if(isFullMode == false) {
-//        decoder = [[MPMediaDecoder alloc] initWithView:_imageView];
-//    }else {
-//        decoder = [[MPMediaDecoder alloc] initWithView:_fullVideoView];
-//    }
-//    
-//    NSLog(@"%f", _imageView.frame.size.height);
-//    decoder.orientation = UIImageOrientationUp;
-//    decoder.delegate = self;
-//    decoder.clientBufferMs = 5000;
-//    decoder.isRealTime = YES;
-//    [self doConnect];
+    NSURL *videoURL = [NSURL URLWithString:PLAY_LIST_URL];
     
-    NSURL *videoURL = [NSURL URLWithString:@"http://10.70.5.1:1935/live/myStream/playlist.m3u8"];
+    player = [AVPlayer playerWithURL:videoURL];
     
-    // create an AVPlayer
-    AVPlayer *player = [AVPlayer playerWithURL:videoURL];
-    
-    // create a player view controller
-    AVPlayerViewController *controller = [[AVPlayerViewController alloc]init];
+    controller = [[AVPlayerViewController alloc]init];
     controller.player = player;
-    [player play];
+    controller.videoGravity = AVLayerVideoGravityResizeAspectFill;
     
-    // show the view controller
     [self addChildViewController:controller];
-    [self.view addSubview:controller.view];
-    controller.view.frame = self.view.frame;
+    [self.imageView addSubview:controller.view];
+    
+    [controller.view setFrame:_imageView.bounds];
+    
+    [self doConnect];
 }
 
 //for capturing video on hosting side
@@ -263,7 +241,11 @@
 
 -(void) doConnect{
     if(screenMode == Streaming_Client) {
-        [decoder setupStream:[NSString stringWithFormat:@"%@/%@", RTMP_SERVER_ADDRESS, @"myStream"]];
+        
+        [player play];
+        
+        
+        
     }else if(screenMode == Streaming_Host){
         [self.goCoder startStreaming:self];
     }else{
@@ -273,12 +255,10 @@
 
 -(void)setDisconnect {
     if( screenMode == Streaming_Client){
-        [decoder cleanupStream];
-        decoder = nil;
-
+        
     }else if(screenMode == Streaming_Host){
-        [_goCoder endStreaming:self];
         [_goCoder unregisterVideoSink:self];
+        [_goCoder endStreaming:self];
         _goCoder = nil;
     }
 }
@@ -329,9 +309,10 @@
 -(void)switchViewMode{
     if(isFullMode == true) {
         if(screenMode == Streaming_Client){
-            decoder.streamImageView =_fullVideoView;
             self.sharingBtnTopConstraint.constant = 35.0f;
+            [_btnCloseMain setHidden:YES];
             [_bottomView setHidden:YES];
+            [controller.view setFrame:fullSizeFrame];
         }else{
             [_btnCloseMain setHidden:YES];
             [_goCoderCameraPreview.previewLayer setFrame:fullSizeFrame];
@@ -345,9 +326,10 @@
         
     }else {
         if(screenMode == Streaming_Client){
-            decoder.streamImageView = _imageView;
             self.sharingBtnTopConstraint.constant = 2.0f;
             [_bottomView setHidden:NO];
+            [_btnCloseMain setHidden:NO];
+            [controller.view setFrame:_imageView.bounds];
         }else{
             [_btnCloseMain setHidden:NO];
             [_goCoderCameraPreview.previewLayer setFrame:originalSize];
@@ -382,48 +364,7 @@
 -(void)setScreenMode:(LiveStreamingScreenMode)mode{
     screenMode = mode;  //this set this screen is the screen of hosting side or client side
 }
-#pragma -mark MPIMediaStreamEvent
--(void)stateChanged:(id)sender state:(MPMediaStreamState)state description:(NSString *)description{
-    switch (state) {
-        case CONN_DISCONNECTED: {
-        }
-            break;
-        case CONN_CONNECTED: {
-        
-        }
-            break;
-        case STREAM_CREATED: {
-            NSLog(@"%f", _imageView.frame.size.height);
-        }break;
-            
-        case STREAM_PLAYING: {
-            NSLog(@"%f", _imageView.frame.size.height);
-            if(screenMode == Streaming_Client){
-                if ([description isEqualToString:MP_NETSTREAM_PLAY_STREAM_NOT_FOUND]) {
-                    [_lblStreamFinished setHidden:NO];
-                    break;
-                }
-            }else if(screenMode == Streaming_Host){
-                
-            }
-        }break;
-            
-        case STREAM_PAUSED:{
-            if ([description isEqualToString:MP_RESOURCE_TEMPORARILY_UNAVAILABLE]) {
-                SHOWALLERT(@"Warning", @"Temporarily unavailable");
-                break;
-            }
-        }break;
-        default:
-            break;
-    }
-}
 
--(void)connectFailed:(id)sender code:(int)code description:(NSString *)description{
-    NSLog(@"DetailViewController - Live connection failed");
-    [self setDisconnect];
-    
-}
 -(void)pixelBufferShouldBePublished:(CVPixelBufferRef)pixelBuffer timestamp:(int)timestamp
 {
     NSLog(@"width:%zu height:%zu",CVPixelBufferGetWidth(pixelBuffer),CVPixelBufferGetHeight(pixelBuffer));
