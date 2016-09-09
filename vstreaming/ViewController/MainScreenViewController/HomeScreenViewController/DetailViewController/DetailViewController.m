@@ -11,11 +11,12 @@
 #import "QuestionViewController.h"
 #import "UIView+Screenshot.h"
 #import "QuestionTableCell.h"
+#import "LECPlayer.h"
 #import <mach/mach_time.h>
 #import <DAKeyboardControl.h>
 #import <WowzaGoCoderSDK/WowzaGoCoderSDK.h>
 
-@interface DetailViewController () <WZStatusCallback, WZVideoSink>{
+@interface DetailViewController () <WZStatusCallback, WZVideoSink, LECPlayerDelegate>{
 
     LiveStreamingScreenMode screenMode;
     BOOL isCaptureScreen;
@@ -25,8 +26,6 @@
     UIImage *sound_image;
     CIImage *frameImage;
     
-    AVPlayer *player;
-    AVPlayerViewController *controller;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *selectedQst;
@@ -64,8 +63,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *full_sound_img;
 
 @property (nonatomic, strong) WowzaGoCoder *goCoder;
-
 @property (nonatomic, strong) WZCameraPreview *goCoderCameraPreview;
+@property (nonatomic, strong) LECPlayer *lecPlayer;
 @end
 
 
@@ -160,6 +159,8 @@
 }
 
 #pragma -mark Private
+
+
 -(void)initWowzaSDK{
     NSError *goCoderLicensingError = [WowzaGoCoder registerLicenseKey:@"GOSK-AF42-0103-BAEF-6178-DA48"];
     if (goCoderLicensingError != nil) {
@@ -198,20 +199,30 @@
 
 // for playing streaming video
 -(void) playLiveStreamingVideo{
-    NSURL *videoURL = [NSURL URLWithString:PLAY_LIST_URL];
+    if (!_lecPlayer)
+    {
+        _lecPlayer = [[LECPlayer alloc] init];
+        _lecPlayer.delegate = self;
+    }
+    _lecPlayer.videoView.frame = _imageView.frame;
+    _lecPlayer.videoView.contentMode = UIViewContentModeScaleAspectFill;
+    _lecPlayer.videoView.clipsToBounds = YES;
+    _lecPlayer.videoView.autoresizingMask =
+    UIViewAutoresizingFlexibleTopMargin|
+    UIViewAutoresizingFlexibleLeftMargin|
+    UIViewAutoresizingFlexibleWidth|
+    UIViewAutoresizingFlexibleHeight;
+    [_imageView addSubview:_lecPlayer.videoView];
     
-    player = [AVPlayer playerWithURL:videoURL];
     
-    controller = [[AVPlayerViewController alloc]init];
-    controller.player = player;
-    controller.videoGravity = AVLayerVideoGravityResizeAspectFill;
     
-    [self addChildViewController:controller];
-    [self.imageView addSubview:controller.view];
-    
-    [controller.view setFrame:_imageView.bounds];
-    
-    [self doConnect];
+    [_lecPlayer registerWithURLString:PLAY_LIST_URL completion:^(BOOL result) {
+        if (result){
+            [_lecPlayer play];
+        }else{
+            
+        }
+    }];
 }
 
 //for capturing video on hosting side
@@ -221,9 +232,9 @@
         WowzaConfig *broadcastConfig = self.goCoder.config;
         [broadcastConfig loadPreset:WZFrameSizePreset640x480];
         broadcastConfig.capturedVideoRotates = false;
-        broadcastConfig.broadcastScaleMode = WZBroadcastScaleModeAspectFill;
-        broadcastConfig.hostAddress = @"10.70.5.1";
-        //broadcastConfig.hostAddress = @"www.intalk.tv";
+        broadcastConfig.broadcastScaleMode = WZBroadcastScaleModeAspectFit;
+        //broadcastConfig.hostAddress = @"10.70.5.1";
+        broadcastConfig.hostAddress = @"www.intalk.tv";
         broadcastConfig.applicationName = @"live";
         broadcastConfig.streamName = @"myStream";
         
@@ -242,10 +253,6 @@
 -(void) doConnect{
     if(screenMode == Streaming_Client) {
         
-        [player play];
-        
-        
-        
     }else if(screenMode == Streaming_Host){
         [self.goCoder startStreaming:self];
     }else{
@@ -255,7 +262,7 @@
 
 -(void)setDisconnect {
     if( screenMode == Streaming_Client){
-        
+        [_lecPlayer unregister];
     }else if(screenMode == Streaming_Host){
         [_goCoder unregisterVideoSink:self];
         [_goCoder endStreaming:self];
@@ -312,7 +319,7 @@
             self.sharingBtnTopConstraint.constant = 35.0f;
             [_btnCloseMain setHidden:YES];
             [_bottomView setHidden:YES];
-            [controller.view setFrame:fullSizeFrame];
+            [_lecPlayer.videoView setFrame:fullSizeFrame];
         }else{
             [_btnCloseMain setHidden:YES];
             [_goCoderCameraPreview.previewLayer setFrame:fullSizeFrame];
@@ -329,7 +336,7 @@
             self.sharingBtnTopConstraint.constant = 2.0f;
             [_bottomView setHidden:NO];
             [_btnCloseMain setHidden:NO];
-            [controller.view setFrame:_imageView.bounds];
+            [_lecPlayer.videoView setFrame:originalSize];
         }else{
             [_btnCloseMain setHidden:NO];
             [_goCoderCameraPreview.previewLayer setFrame:originalSize];
@@ -447,6 +454,93 @@
 - (void) videoCaptureUsingQueue:(nullable dispatch_queue_t)queue {
 //    self.video_capture_queue = queue;
 }
+
+#pragma mark - LECPlayerDelegate
+/*播放器播放状态*/
+- (void) lecPlayer:(LECPlayer *) player
+       playerEvent:(LECPlayerPlayEvent) playerEvent
+{
+    switch (playerEvent)
+    {
+        case LECPlayerPlayEventPrepareDone:
+            
+            break;
+        case LECPlayerPlayEventEOS:
+            NSLog(@"播放结束");
+//            [self showTips:@"直播播放结束"];
+//            _isPlay = NO;
+//            [_playStateButton setTitle:@"播放" forState:(UIControlStateNormal)];
+            break;
+        case LECPlayerPlayEventGetVideoSize:
+            
+            NSLog(@"width %f height %f",player.actualVideoWidth, player.actualVideoHeight);
+//            NSLog(@"playerViewFrame:%@",NSStringFromCGSize(_playerView.frame.size));
+            
+            break;
+        case LECPlayerPlayEventRenderFirstPic:
+            NSLog(@"LECPlayerPlayEventRenderFirstPic:width %f height %f",player.actualVideoWidth, player.actualVideoHeight);
+//            [_loadIndicatorView stopAnimating];
+            break;
+        case LECPlayerPlayEventBufferStart:
+//            _loadIndicatorView.hidden = NO;
+//            [_loadIndicatorView startAnimating];
+            NSLog(@"开始缓冲");
+            break;
+        case LECPlayerPlayEventBufferEnd:
+//            [_loadIndicatorView stopAnimating];
+            NSLog(@"缓冲结束");
+            break;
+            
+        case LECPlayerPlayEventSeekComplete:
+            NSLog(@"完成Seek操作");
+            break;
+            
+        case LECPlayerPlayEventNoStream:
+        {
+            NSString * error = [NSString stringWithFormat:@"%@:%@",player.errorCode,player.errorDescription];
+            NSLog(@"无媒体信息:%@",error);
+//            [self showTips:@"无媒体信息,请检查url"];
+//            [_loadIndicatorView stopAnimating];
+        }
+            break;
+        case LECPlayerPlayEventPlayError:
+        {
+            NSString * error = [NSString stringWithFormat:@"%@:%@",player.errorCode,player.errorDescription];
+            NSLog(@"播放器错误:%@",error);
+//            [self showTips:@"播放器错误"];
+//            [_loadIndicatorView stopAnimating];
+//            [self showTips:error];
+        }
+            break;
+        default:
+            break;
+    }
+}
+
+/*播放器播放时间回调*/
+- (void) lecPlayer:(LECPlayer *) player
+          position:(int64_t) position
+     cacheDuration:(int64_t) cacheDuration
+          duration:(int64_t) duration{
+        NSLog(@"播放位置:%lld,缓冲位置:%lld,总时长:%lld",position,cacheDuration,duration);
+}
+
+- (void) lecPlayer:(LECPlayer *) player contentTypeChanged:(LECPlayerContentType) contentType
+{
+    switch (contentType)
+    {
+        case LECPlayerContentTypeFeature:
+            NSLog(@"正在播放正片");
+            break;
+        case LECPlayerContentTypeAdv:
+            NSLog(@"正在播放广告");
+            break;
+            
+        default:
+            break;
+    }
+}
+
 
 @end
 

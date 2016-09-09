@@ -36,6 +36,11 @@
 		8B82D02C1D4972E400FE6B34 /* ShowTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B82D02B1D4972E400FE6B34 /* ShowTableCell.m */; };
 		8B8B1D801D4F675C00B2A735 /* CommonFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1D7F1D4F675C00B2A735 /* CommonFunction.m */; };
 		8B8C7CF31D58B9F5002A056E /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8C7CF21D58B9F5002A056E /* Utility.m */; };
+		8B8F36B31D830B4400A03018 /* LECPlayerResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8B8F36AE1D830B4400A03018 /* LECPlayerResource.bundle */; };
+		8B8F36B41D830B4400A03018 /* libLECPlayerFoundation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8F36B01D830B4400A03018 /* libLECPlayerFoundation.a */; };
+		8B8F36B51D830B4400A03018 /* libReachbility.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8F36B11D830B4400A03018 /* libReachbility.a */; };
+		8B8F36B61D830B4400A03018 /* libZipArchive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8F36B21D830B4400A03018 /* libZipArchive.a */; };
+		8B8F36B71D830B6800A03018 /* LECPlayerResource.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8F36AE1D830B4400A03018 /* LECPlayerResource.bundle */; };
 		8BC0BBBF1D586F3900CEAEFC /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC0BBBE1D586F3900CEAEFC /* AVFoundation.framework */; };
 		8BC0BBC31D586F6D00CEAEFC /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC0BBC21D586F6D00CEAEFC /* CoreTelephony.framework */; };
 		8BC0BBC71D586F9600CEAEFC /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC0BBC61D586F9600CEAEFC /* libc++.tbd */; };
@@ -185,6 +190,15 @@
 		8B8B1D7F1D4F675C00B2A735 /* CommonFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonFunction.m; sourceTree = "<group>"; };
 		8B8C7CF11D58B9F5002A056E /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		8B8C7CF21D58B9F5002A056E /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
+		8B8F36A91D830B4400A03018 /* LECGlobalDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LECGlobalDefine.h; sourceTree = "<group>"; };
+		8B8F36AA1D830B4400A03018 /* LECPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LECPlayer.h; sourceTree = "<group>"; };
+		8B8F36AB1D830B4400A03018 /* LECPlayerFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LECPlayerFoundation.h; sourceTree = "<group>"; };
+		8B8F36AC1D830B4400A03018 /* LECPlayerOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LECPlayerOption.h; sourceTree = "<group>"; };
+		8B8F36AD1D830B4400A03018 /* LECStreamRateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LECStreamRateItem.h; sourceTree = "<group>"; };
+		8B8F36AE1D830B4400A03018 /* LECPlayerResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LECPlayerResource.bundle; sourceTree = "<group>"; };
+		8B8F36B01D830B4400A03018 /* libLECPlayerFoundation.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLECPlayerFoundation.a; sourceTree = "<group>"; };
+		8B8F36B11D830B4400A03018 /* libReachbility.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libReachbility.a; sourceTree = "<group>"; };
+		8B8F36B21D830B4400A03018 /* libZipArchive.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libZipArchive.a; sourceTree = "<group>"; };
 		8BC0BBBE1D586F3900CEAEFC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		8BC0BBC01D586F5C00CEAEFC /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		8BC0BBC21D586F6D00CEAEFC /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -407,6 +421,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B8F36B41D830B4400A03018 /* libLECPlayerFoundation.a in Frameworks */,
+				8B8F36B51D830B4400A03018 /* libReachbility.a in Frameworks */,
+				8B8F36B61D830B4400A03018 /* libZipArchive.a in Frameworks */,
+				8B8F36B71D830B6800A03018 /* LECPlayerResource.bundle in Frameworks */,
 				8B4BB31F1D739CF900ABF1C3 /* MediaPlayer.framework in Frameworks */,
 				8B4BB31E1D739C3A00ABF1C3 /* VideoToolbox.framework in Frameworks */,
 				8BDCE8251D5DBBBD00029F8F /* AudioToolbox.framework in Frameworks */,
@@ -582,6 +600,46 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
+		8B8F36A61D830B4400A03018 /* RECLib */ = {
+			isa = PBXGroup;
+			children = (
+				8B8F36A71D830B4400A03018 /* inc */,
+				8B8F36AE1D830B4400A03018 /* LECPlayerResource.bundle */,
+				8B8F36AF1D830B4400A03018 /* Libs */,
+			);
+			path = RECLib;
+			sourceTree = "<group>";
+		};
+		8B8F36A71D830B4400A03018 /* inc */ = {
+			isa = PBXGroup;
+			children = (
+				8B8F36A81D830B4400A03018 /* LECPlayerFoundation */,
+			);
+			path = inc;
+			sourceTree = "<group>";
+		};
+		8B8F36A81D830B4400A03018 /* LECPlayerFoundation */ = {
+			isa = PBXGroup;
+			children = (
+				8B8F36A91D830B4400A03018 /* LECGlobalDefine.h */,
+				8B8F36AA1D830B4400A03018 /* LECPlayer.h */,
+				8B8F36AB1D830B4400A03018 /* LECPlayerFoundation.h */,
+				8B8F36AC1D830B4400A03018 /* LECPlayerOption.h */,
+				8B8F36AD1D830B4400A03018 /* LECStreamRateItem.h */,
+			);
+			path = LECPlayerFoundation;
+			sourceTree = "<group>";
+		};
+		8B8F36AF1D830B4400A03018 /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				8B8F36B01D830B4400A03018 /* libLECPlayerFoundation.a */,
+				8B8F36B11D830B4400A03018 /* libReachbility.a */,
+				8B8F36B21D830B4400A03018 /* libZipArchive.a */,
+			);
+			path = Libs;
+			sourceTree = "<group>";
+		};
 		8BC16A581D47B308007052E0 /* QuestionView */ = {
 			isa = PBXGroup;
 			children = (
@@ -617,6 +675,7 @@
 		8BCD71261D424FF500ECFD88 /* vstreaming */ = {
 			isa = PBXGroup;
 			children = (
+				8B8F36A61D830B4400A03018 /* RECLib */,
 				8BDCE82C1D5DBEAF00029F8F /* SubWidget */,
 				8BDCE7521D5DB80800029F8F /* Library */,
 				8B8C7CF01D58B9F5002A056E /* Utility */,
@@ -1334,6 +1393,7 @@
 				8B1B0E3B1D5AB91500B59DD9 /* README.txt in Resources */,
 				8B1B0E441D5BD25A00B59DD9 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				8BCD71321D424FF500ECFD88 /* Main.storyboard in Resources */,
+				8B8F36B31D830B4400A03018 /* LECPlayerResource.bundle in Resources */,
 				8B50BF771D5CDC950059456C /* WeiboSDK.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1552,7 +1612,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "49dd8a66-970e-4e38-91f9-57f0e87f31f8";
+				PROVISIONING_PROFILE = "ae7581a7-a669-473a-99ad-f1118ea1c60d";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1576,8 +1636,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jeff Lee (A676BC532X)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeff Lee (A676BC532X)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: The Modi Group, Inc. (F2V5MQ8B5U)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: The Modi Group, Inc. (F2V5MQ8B5U)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = YES;
@@ -1593,7 +1653,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "49dd8a66-970e-4e38-91f9-57f0e87f31f8";
+				PROVISIONING_PROFILE = "ae7581a7-a669-473a-99ad-f1118ea1c60d";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1635,10 +1695,11 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/vstreaming/WeChat/weChatSDK1.7.2",
 					"$(PROJECT_DIR)/vstreaming/WeiBo/libWeiboSDK",
+					"$(PROJECT_DIR)/vstreaming/RECLib/Libs",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.itgroup.vstreaming;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "49dd8a66-970e-4e38-91f9-57f0e87f31f8";
+				PROVISIONING_PROFILE = "8fa398cd-caff-4aca-8bc7-9edd1cf645e3";
 			};
 			name = Debug;
 		};
@@ -1647,7 +1708,7 @@
 			baseConfigurationReference = C2913635067F1CFD8295EFB9 /* Pods-vstreaming.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jeff Lee (A676BC532X)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Hangzhou Junru Technology Co. ,Ltd. (72739DGUJR)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1677,10 +1738,11 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/vstreaming/WeChat/weChatSDK1.7.2",
 					"$(PROJECT_DIR)/vstreaming/WeiBo/libWeiboSDK",
+					"$(PROJECT_DIR)/vstreaming/RECLib/Libs",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.itgroup.vstreaming;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "49dd8a66-970e-4e38-91f9-57f0e87f31f8";
+				PROVISIONING_PROFILE = "8fa398cd-caff-4aca-8bc7-9edd1cf645e3";
 			};
 			name = Release;
 		};
@@ -1693,7 +1755,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.itgroup.vstreamingTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "49dd8a66-970e-4e38-91f9-57f0e87f31f8";
+				PROVISIONING_PROFILE = "8fa398cd-caff-4aca-8bc7-9edd1cf645e3";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vstreaming.app/vstreaming";
 			};
 			name = Debug;
@@ -1702,12 +1764,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeff Lee (A676BC532X)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Hangzhou Junru Technology Co. ,Ltd. (72739DGUJR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Hangzhou Junru Technology Co. ,Ltd. (72739DGUJR)";
 				INFOPLIST_FILE = vstreamingTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.itgroup.vstreamingTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "49dd8a66-970e-4e38-91f9-57f0e87f31f8";
+				PROVISIONING_PROFILE = "8fa398cd-caff-4aca-8bc7-9edd1cf645e3";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/vstreaming.app/vstreaming";
 			};
 			name = Release;
@@ -1720,7 +1783,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.itgroup.vstreamingUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "49dd8a66-970e-4e38-91f9-57f0e87f31f8";
+				PROVISIONING_PROFILE = "8fa398cd-caff-4aca-8bc7-9edd1cf645e3";
 				TEST_TARGET_NAME = vstreaming;
 			};
 			name = Debug;
@@ -1728,12 +1791,13 @@
 		8BCD715C1D424FF500ECFD88 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jeff Lee (A676BC532X)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Hangzhou Junru Technology Co. ,Ltd. (72739DGUJR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Hangzhou Junru Technology Co. ,Ltd. (72739DGUJR)";
 				INFOPLIST_FILE = vstreamingUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.itgroup.vstreamingUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "49dd8a66-970e-4e38-91f9-57f0e87f31f8";
+				PROVISIONING_PROFILE = "8fa398cd-caff-4aca-8bc7-9edd1cf645e3";
 				TEST_TARGET_NAME = vstreaming;
 			};
 			name = Release;
