@@ -13,7 +13,7 @@
 #import "QuestionTableCell.h"
 #import "LECPlayer.h"
 #import <mach/mach_time.h>
-#import <DAKeyboardControl.h>
+#import "DAKeyboardControl.h"
 #import <WowzaGoCoderSDK/WowzaGoCoderSDK.h>
 
 @interface DetailViewController () <WZStatusCallback, WZVideoSink, LECPlayerDelegate>{
@@ -120,7 +120,8 @@
     
     isFullMode = false;
     fullSizeFrame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
-    originalSize = _imageView.frame;
+    originalSize = CGRectMake(self.imageView.frame.origin.x, self.imageView.frame.origin.y, self.view.frame.size.width, self.imageView.frame.size.height);
+    [_imageView setFrame:originalSize];
     
     [_fullScreenView setHidden:YES];
     [_btnClose setHidden:YES];
@@ -204,7 +205,7 @@
         _lecPlayer = [[LECPlayer alloc] init];
         _lecPlayer.delegate = self;
     }
-    _lecPlayer.videoView.frame = _imageView.frame;
+    _lecPlayer.videoView.frame = originalSize;
     _lecPlayer.videoView.contentMode = UIViewContentModeScaleAspectFill;
     _lecPlayer.videoView.clipsToBounds = YES;
     _lecPlayer.videoView.autoresizingMask =
@@ -310,8 +311,6 @@
 - (IBAction)btnFullScreenMode:(id)sender {
     isFullMode = !isFullMode;
     [self switchViewMode];
-    
-    NSLog(@"%f", _imageView.frame.size.height);
 }
 -(void)switchViewMode{
     if(isFullMode == true) {

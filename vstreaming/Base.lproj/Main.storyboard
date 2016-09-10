@@ -1179,10 +1179,10 @@
                                 <color key="backgroundColor" red="0.1764705882" green="0.4823529412" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w8Y-ga-QR2">
-                                <rect key="frame" x="6" y="18" width="33" height="33"/>
+                                <rect key="frame" x="6" y="18" width="34" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="7KM-J2-gk8"/>
-                                    <constraint firstAttribute="width" constant="33" id="I4N-II-fHK"/>
+                                    <constraint firstAttribute="width" constant="34" id="I4N-II-fHK"/>
                                 </constraints>
                                 <state key="normal" image="back_arrow"/>
                                 <connections>
