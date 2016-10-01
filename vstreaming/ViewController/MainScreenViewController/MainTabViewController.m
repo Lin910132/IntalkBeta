@@ -18,6 +18,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.delegate = self;
+    [self getMyInfo];
+    [self getTagsInfo];
     [self initBroadcastIcon];
 }
 
@@ -31,8 +33,36 @@
     tabBarBroadcast.selectedImage = [[UIImage imageNamed:@"icon_broadcast.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     tabBarBroadcast.image = [[UIImage imageNamed:@"icon_broadcast.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 }
+#pragma mark - Private
+-(void) getMyInfo{
+    [InTalkAPI getMyInfoByToken:[[User getInstance] getUserToken] competion:^(NSDictionary * res, NSError * err) {
+        if(err == nil) {
+            [[User getInstance] parseDataFromJson:res];
+        }else{
+            NSLog(@"Get MyInfo API returns Such Error - %@", err);
+        }
+    }];
+}
 
-#pragma TabBarController Delegate
+-(void) getTagsInfo{
+    [InTalkAPI getAllTags:[[User getInstance] getUserToken] competion:^(NSDictionary * response, NSError * err){
+        if(err == nil){
+            NSLog(@"%@", response);
+            DataManager *dataManager = [DataManager getInstance];
+            if(!dataManager.allTags){
+                dataManager.allTags = [NSMutableArray new];
+            }
+            for(NSDictionary * itemData in [response objectForKey:@"data"]){
+                TagModel *tagItem = [TagModel parseDataFromJson:itemData];
+                [dataManager.allTags addObject:tagItem];
+            }
+        }else{
+            NSLog(@"Get All Tags API occurs such Error %@", err);
+        }
+    }];
+}
+
+#pragma mark - TabBarController Delegate
 //-(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
 //    if(item.tag ==  0){
 //        UINavigationController * home = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomeNavigationController"];

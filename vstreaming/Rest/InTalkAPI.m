@@ -44,4 +44,24 @@
     NSDictionary *params = @{@"otherid":otherID};
     [WebManager POST:APILoginWithOther parameters:params completion:block];
 }
+
++(void)getAllTags:(NSString *)token competion:(void (^)(NSDictionary *, NSError *))block{
+    NSDictionary *params = @{@"token":token};
+    [WebManager POST:APIGetTags parameters:params completion:block];
+}
+
++(void)searchTagsWithToken:(NSString *)token limit:(int)limit offset:(int)offset key:(NSString *) key competion:(void (^)(NSDictionary *, NSError *))block{
+    NSDictionary *params = @{@"token"   :token,
+                             @"limit"   :[NSString stringWithFormat:@"%d", limit],
+                             @"offset"  :[NSString stringWithFormat:@"%d", offset],
+                             @"key"     :key
+                             };
+    [WebManager POST:APISearchTags parameters:params completion:block];
+}
+
++(void)getMyInfoByToken:(NSString *)token competion:(void (^)(NSDictionary *, NSError *))block{
+    NSDictionary *params = @{@"token"   :token};
+    [WebManager POST:APIGetMyInfo parameters:params completion:block];
+}
+
 @end

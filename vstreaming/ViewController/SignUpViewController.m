@@ -12,7 +12,7 @@
 #import "WeiboAccess.h"
 #import "MainTabViewController.h"
 #import "InTalkAPI.h"
-
+#import "User.h"
 @interface SignUpViewController ()
 
 @end
@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    NSString *token = (NSString *)[Utility getDataWithKey:TOKEN];
+    NSString * token = [[User getInstance] getUserToken];
     if(token){
         MainTabViewController *mainTabViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MainTabBarController"];
         [self presentViewController:mainTabViewController animated:YES completion:nil];
@@ -42,7 +42,8 @@
                 [InTalkAPI loginWithThirdPartySDK:@"wechat" Token:openId completion:^(NSDictionary *response, NSError *err){
                     if(err == nil) {
                         NSString *token = [response objectForKey:@"token"];
-                        [Utility saveDataWithKey:TOKEN Data:token];
+                        //[Utility saveDataWithKey:TOKEN Data:token];
+                        [[User getInstance] setUserToken:token];
                         //add navigation feature
                         
                         MainTabViewController *mainTabViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MainTabBarController"];
@@ -61,14 +62,14 @@
 
 - (IBAction)callQQLogIn:(id)sender {
     [[TencentAccess defaultAccess] login:^(BOOL succeeded, id object) {
-        NSLog(@"%@",object);
         if(succeeded) {
             
             NSString *openId = [(NSDictionary *)object valueForKey:@"open_id"];
             [InTalkAPI loginWithThirdPartySDK:@"qq" Token:openId completion:^(NSDictionary *response, NSError *err){
                 if(err == nil) {
                     NSString *token = [response objectForKey:@"token"];
-                    [Utility saveDataWithKey:TOKEN Data:token];
+                    //[Utility saveDataWithKey:TOKEN Data:token];
+                    [[User getInstance] setUserToken:token];
                     //add navigation feature
                     
                     MainTabViewController *mainTabViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MainTabBarController"];
@@ -89,7 +90,8 @@
             [InTalkAPI loginWithThirdPartySDK:@"weibo" Token:openId completion:^(NSDictionary *response, NSError *err){
                 if(err == nil) {
                     NSString *token = [response objectForKey:@"token"];
-                    [Utility saveDataWithKey:TOKEN Data:token];
+                    //[Utility saveDataWithKey:TOKEN Data:token];
+                    [[User getInstance] setUserToken:token];
                     //add navigation feature
                     
                     MainTabViewController *mainTabViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MainTabBarController"];

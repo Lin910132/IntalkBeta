@@ -71,27 +71,29 @@
 @implementation DetailViewController
 
 -(void)viewWillAppear:(BOOL)animated{
+//    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord
+//                                     withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker
+//                                           error:nil];
+
+    
         __weak typeof(self) weakSelf = self;
-        [self.view addKeyboardPanningWithFrameBasedActionHandler:nil constraintBasedActionHandler:^(CGRect keyboardFrameInView, BOOL opening, BOOL closing){
-            static CGFloat y;
+//        [self.view addKeyboardPanningWithFrameBasedActionHandler:nil constraintBasedActionHandler:^(CGRect keyboardFrameInView, BOOL opening, BOOL closing){
+//            static CGFloat y;
+//    
+//            if (opening || y == 0)
+//            {
+//                y = keyboardFrameInView.origin.y + keyboardFrameInView.size.height;
+//            }
+//            if (closing){
+//    
+//                weakSelf.bottomViewBottomConstraint.constant = 0;
+//                [weakSelf.view layoutIfNeeded];
+//            }else {
+//    
+//                weakSelf.bottomViewBottomConstraint.constant = y - keyboardFrameInView.origin.y;
+//            }
+//        }];
     
-            if (opening || y == 0)
-            {
-                y = keyboardFrameInView.origin.y + keyboardFrameInView.size.height;
-            }
-            if (closing){
-    
-                weakSelf.bottomViewBottomConstraint.constant = 0;
-                [weakSelf.view layoutIfNeeded];
-            }else {
-    
-                weakSelf.bottomViewBottomConstraint.constant = y - keyboardFrameInView.origin.y;
-            }
-        }];
-    
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord
-                                     withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker
-                                           error:nil];
     
     if(screenMode == Streaming_Host) {
         [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
@@ -234,8 +236,8 @@
         [broadcastConfig loadPreset:WZFrameSizePreset640x480];
         broadcastConfig.capturedVideoRotates = false;
         broadcastConfig.broadcastScaleMode = WZBroadcastScaleModeAspectFit;
-        //broadcastConfig.hostAddress = @"10.70.5.1";
-        broadcastConfig.hostAddress = @"www.intalk.tv";
+        broadcastConfig.hostAddress = @"10.70.5.1";
+        //broadcastConfig.hostAddress = @"www.intalk.tv";
         broadcastConfig.applicationName = @"live";
         broadcastConfig.streamName = @"myStream";
         

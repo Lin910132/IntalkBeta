@@ -18,6 +18,7 @@ PODS:
   - CGLAlphabetizer (0.2.0)
   - DAKeyboardControl (2.4.0)
   - DGActivityIndicatorView (2.0)
+  - IQKeyboardManager (4.0.6)
   - RCRunkeeperSwitch (0.0.1)
   - SDWebImage (3.8.1):
     - SDWebImage/Core (= 3.8.1)
@@ -30,9 +31,14 @@ DEPENDENCIES:
   - CGLAlphabetizer (~> 0.1)
   - DAKeyboardControl
   - DGActivityIndicatorView
+  - IQKeyboardManager (from `.`)
   - RCRunkeeperSwitch
   - SDWebImage
   - UITextView+Placeholder (~> 1.2)
+
+EXTERNAL SOURCES:
+  IQKeyboardManager:
+    :path: .
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -40,10 +46,11 @@ SPEC CHECKSUMS:
   CGLAlphabetizer: 944706922004b02e5b5af39bb2b25adaaac71038
   DAKeyboardControl: 9d9bca22a5cc3c1d3cc61e24fbd208c3e84a3d2d
   DGActivityIndicatorView: 52875b025a6ccf6a431a905285c12e2bb95eb559
+  IQKeyboardManager: c52debb1967799ae7addb98eab0cf328083a874f
   RCRunkeeperSwitch: bf8fe3fabb9297b7f9f22cd5f8b31dc386995494
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
 
-PODFILE CHECKSUM: 310d9c4791fa1dc16e07db365619b0ab5492b229
+PODFILE CHECKSUM: 5525adc5399458ae70c9fba7cfda76f3ed10e699
 
 COCOAPODS: 1.0.1

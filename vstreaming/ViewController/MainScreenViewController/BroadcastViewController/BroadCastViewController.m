@@ -17,7 +17,13 @@
 @end
 
 @implementation BroadCastViewController
+-(void)viewDidLoad{
+    [super viewDidLoad];
+    [self getTagsInfo];
+}
 
+
+#pragma mark - Outlets
 - (IBAction)btnIndustryClicked:(id)sender {
     IndustrySelectViewController *industrySVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"IndustrySelectViewController"];
     [self presentViewController:industrySVC animated:YES completion:nil];
@@ -27,21 +33,28 @@
 }
 
 - (IBAction)btnBeginClicked:(id)sender {
-    DetailViewController *detailVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DetailViewController"];
-    [detailVC setScreenMode:Streaming_Host];
-    [self presentViewController:detailVC animated:YES completion:nil];
-     
-    
-    
-    /*ExpertSubmitViewController *expertSVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ExpertSubmitViewController"];
-    [self presentViewController:expertSVC animated:YES completion:nil];
-     */
-    
-    /*LiveStreamingViewController *liveStreamingVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LiveStreamingViewController"];
-    [self presentViewController:liveStreamingVC animated:YES completion:nil];*/
+    if([[User getInstance] getExpert] == Non_Expert){
+        ExpertSubmitViewController *expertSVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ExpertSubmitViewController"];
+        [self presentViewController:expertSVC animated:YES completion:nil];
+    }else{
+        DetailViewController *detailVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DetailViewController"];
+        [detailVC setScreenMode:Streaming_Host];
+        [self presentViewController:detailVC animated:YES completion:nil];
+    }
 }
 
-#pragma IndustrySelectDelegate
+#pragma mark - Private
+-(void) getTagsInfo{
+    /*[InTalkAPI getAllTags:[[User getInstance] getUserToken]  competion:^(NSDictionary *json, NSError *error) {
+        if(error == nil){
+            
+        }else{
+            NSLog(@"%@", error);
+        }
+    }];*/
+}
+
+#pragma mark - IndustrySelectDelegate
 -(void)selectIndustry:(NSString *)industryName{
     BroadCastViewController * broadCastVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"BroadcasterSelectController"];
     [self.navigationController pushViewController:broadCastVC animated:YES];

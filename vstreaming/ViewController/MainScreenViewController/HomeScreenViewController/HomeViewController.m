@@ -27,19 +27,19 @@
     self.homeTableView.separatorColor = [UIColor clearColor];
 }
 -(void) initPickerView{
-    self.pickerView.delegate = self;
-    self.pickerView.dataSource = self;
-    pickerList = @[@"Title1", @"Title2", @"Title3", @"Title4", @"Title5", @"Title6"];
-    self.pickerView.font = [UIFont systemFontOfSize:12];
-    self.pickerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    self.pickerView.textColor = [UIColor whiteColor];
-    self.pickerView.highlightedTextColor = [UIColor whiteColor];
-    self.pickerView.highlightedFont = [UIFont systemFontOfSize:14];
-    self.pickerView.interitemSpacing = 20.0;
-    self.pickerView.fisheyeFactor = 0.001;
-    self.pickerView.pickerViewStyle = AKPickerViewStyle3D;
-    self.pickerView.maskDisabled = false;
-    [self.pickerView reloadData];
+//    self.pickerView.delegate = self;
+//    self.pickerView.dataSource = self;
+//    pickerList = @[@"Title1", @"Title2", @"Title3", @"Title4", @"Title5", @"Title6"];
+//    self.pickerView.font = [UIFont systemFontOfSize:12];
+//    self.pickerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+//    self.pickerView.textColor = [UIColor whiteColor];
+//    self.pickerView.highlightedTextColor = [UIColor whiteColor];
+//    self.pickerView.highlightedFont = [UIFont systemFontOfSize:14];
+//    self.pickerView.interitemSpacing = 20.0;
+//    self.pickerView.fisheyeFactor = 0.001;
+//    self.pickerView.pickerViewStyle = AKPickerViewStyle3D;
+//    self.pickerView.maskDisabled = false;
+//    [self.pickerView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {

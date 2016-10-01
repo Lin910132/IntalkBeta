@@ -29,6 +29,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>IQKeyboardManager.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-vstreaming.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,22 +62,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5B41D39F307E60B389325BABC27E9191</key>
+		<key>27CD4152D9E9A3FC9C0D1AB2BD24B515</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>6B03B89D76DF5FBF0BB098F81F09D7EE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6DFC845DD6E1FBBD07208117A35D91D0</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7F45540AA70C8C4CD5CA62E5D0D0D6A8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -87,7 +82,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F22F72A587BF8B80A835A5846F04101C</key>
+		<key>A3B59EB45D7C40CBB5D1BBF1A4EB87E6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BD491E985C0234AB6B8DF91A97A2AFF4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D0D0C9D20C43FA94D4C88FBFE2601B8E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F7FCFCBCD8966DE3605F133F731D9C5F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -48,6 +48,13 @@ typedef NS_ENUM(NSInteger, LiveStreamingScreenMode)
     Streaming_Client
 };
 
+
+typedef NS_ENUM(NSInteger, ExpertLevel)
+{
+    Non_Expert = 0,
+    Expert_Level_1
+};
+
 #define greenColorForButtons [UIColor colorWithRed:0.3 green:0.57 blue:0.43 alpha:1]
 
 #define SHOWALLERT(title, mes) UIAlertController *controller = \
@@ -68,11 +75,11 @@ greenColorForButtons
 
 #define TOKEN @"token"
 
-#define RTMP_SERVER_ADDRESS     @"rtmp://www.intalk.tv:1935/live"
-//#define RTMP_SERVER_ADDRESS     @"rtmp://10.70.5.1:1935/live"
+//#define RTMP_SERVER_ADDRESS     @"rtmp://www.intalk.tv:1935/live"
+#define RTMP_SERVER_ADDRESS     @"rtmp://10.70.5.1:1935/live"
 
-//#define PLAY_LIST_URL           @"rtmp://10.70.5.1:1935/live/myStream"
-#define PLAY_LIST_URL           @"rtmp://www.intalk.tv:1935/live/myStream"
+#define PLAY_LIST_URL           @"rtmp://10.70.5.1:1935/live/myStream"
+//#define PLAY_LIST_URL           @"rtmp://www.intalk.tv:1935/live/myStream"
 
 
 

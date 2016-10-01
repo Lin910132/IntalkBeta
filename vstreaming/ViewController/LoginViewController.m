@@ -100,7 +100,7 @@
 }
 
 - (IBAction)onClickedLogin:(id)sender {
-    /*NSString *verifyCode = _verifyCodeField.text;
+    NSString *verifyCode = _verifyCodeField.text;
     
     if([CommonFunction isStringEmpty:verifyCode]){
         SHOWALLERT(@"Error", @"Please input Verify code");
@@ -117,19 +117,20 @@
         [self setLoadingStatus:NO];
         if(result == nil){
             NSString *token = [response objectForKey:@"token"];
-            [Utility saveDataWithKey:TOKEN Data:token];
-            //add navigation feature
             
+            [[User getInstance] setUserToken:token];
+            
+            //add navigation feature
             MainTabViewController *mainTabViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MainTabBarController"];
             [self presentViewController:mainTabViewController animated:YES completion:nil];
         }else{
             SHOWALLERT(@"Error", @"Your inputed verify code is wrong");
         }
-    }];*/
+    }];
      
     
-    MainTabViewController *mainTabViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MainTabBarController"];
-    [self presentViewController:mainTabViewController animated:YES completion:nil];
+    /*MainTabViewController *mainTabViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MainTabBarController"];
+    [self presentViewController:mainTabViewController animated:YES completion:nil];*/
     
 }
 

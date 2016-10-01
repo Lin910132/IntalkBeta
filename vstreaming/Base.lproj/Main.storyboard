@@ -1907,6 +1907,10 @@
                                             <constraint firstItem="S8Z-zT-pxc" firstAttribute="centerX" secondItem="wnP-Fj-j8O" secondAttribute="centerX" id="mFh-Gw-pbq"/>
                                             <constraint firstItem="Az7-nH-Lse" firstAttribute="centerY" secondItem="wnP-Fj-j8O" secondAttribute="centerY" id="pHJ-We-LvX"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="tagLogo" destination="S8Z-zT-pxc" id="MQH-cI-5Tq"/>
+                                            <outlet property="tagName" destination="Az7-nH-Lse" id="R23-f4-twy"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -3650,6 +3654,17 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="icon_profile" id="akI-3o-oZU"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="userBalance" destination="JfL-Rq-dde" id="ehq-a2-uL3"/>
+                        <outlet property="userFollower" destination="sCc-pf-iOy" id="zl7-C1-fAZ"/>
+                        <outlet property="userFollowing" destination="fod-Lo-Jnf" id="uxo-hf-tGb"/>
+                        <outlet property="userID" destination="qYw-vI-JkN" id="BHI-2m-5oV"/>
+                        <outlet property="userIncome" destination="mHu-Y1-Oku" id="cIH-I8-wbk"/>
+                        <outlet property="userLevel" destination="Zyc-BP-On5" id="pNq-i6-CYK"/>
+                        <outlet property="userLogo" destination="PLu-Bq-DvJ" id="cf2-We-H6j"/>
+                        <outlet property="userName" destination="lpg-ML-oj7" id="U8N-7T-oAz"/>
+                        <outlet property="userShow" destination="d7r-fH-6nf" id="0it-jb-7U1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZsA-7q-yxu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

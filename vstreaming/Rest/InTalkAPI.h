@@ -18,5 +18,9 @@
 +(void) startBroadcastWithTitle:(NSString *) title Url:(NSString *) urlStr Tag1:(NSString *) tag1 Tag2:(NSString *) tag2 Tag3:(NSString *) tag3 completion:(void(^)(NSDictionary * json, NSError *error)) block;
 
 +(void) stopBroadCasting:(void(^)(NSDictionary * json, NSError *error)) block;
-+(void)loginWithThirdPartySDK:(NSString *) sdkPrefix Token:(NSString *) token completion:(void(^)(NSDictionary * json, NSError *error)) block;
++(void) loginWithThirdPartySDK:(NSString *) sdkPrefix Token:(NSString *) token completion:(void(^)(NSDictionary * json, NSError *error)) block;
++(void) getAllTags:(NSString *) token competion:(void(^)(NSDictionary * json, NSError *error)) block;
++(void) searchTagsWithToken:(NSString *)token limit:(int)limit offset:(int)offset key:(NSString*) key competion:(void (^)(NSDictionary *, NSError *))block;
+
++(void) getMyInfoByToken:(NSString *)token competion:(void (^)(NSDictionary *, NSError *))block;
 @end
