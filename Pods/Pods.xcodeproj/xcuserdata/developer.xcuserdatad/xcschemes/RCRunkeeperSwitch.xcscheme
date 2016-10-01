@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'BD491E985C0234AB6B8DF91A97A2AFF4'
+               BlueprintIdentifier = '849608E92D31724DB169A18BC4788C00'
                BlueprintName = 'RCRunkeeperSwitch'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libRCRunkeeperSwitch.a'>

@@ -19,11 +19,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>DAKeyboardControl.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>DGActivityIndicatorView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,12 +57,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>27CD4152D9E9A3FC9C0D1AB2BD24B515</key>
+		<key>3E717DFDAA58C1E757B2C07935EE0861</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6B03B89D76DF5FBF0BB098F81F09D7EE</key>
+		<key>849608E92D31724DB169A18BC4788C00</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,22 +77,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A3B59EB45D7C40CBB5D1BBF1A4EB87E6</key>
+		<key>C9FA516BE4907CFC91D1F51B4652EC42</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BD491E985C0234AB6B8DF91A97A2AFF4</key>
+		<key>CAAD9FF8681062DCFDC06CB884A256AB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>D0D0C9D20C43FA94D4C88FBFE2601B8E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F7FCFCBCD8966DE3605F133F731D9C5F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
