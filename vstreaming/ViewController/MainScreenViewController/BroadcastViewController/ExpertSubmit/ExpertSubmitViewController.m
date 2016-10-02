@@ -13,11 +13,26 @@
 @property (weak, nonatomic) IBOutlet UIButton *years5_10;
 @property (weak, nonatomic) IBOutlet UIButton *years3_5;
 @property (weak, nonatomic) IBOutlet UIButton *years10More;
+@property (weak, nonatomic) IBOutlet UIView *navigationBar;
 
 @end
 
 
 @implementation ExpertSubmitViewController
+#pragma mark - private
+- (void)setStatusBarBackgroundColor:(UIColor *)color {
+    
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    
+    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)]) {
+        statusBar.backgroundColor = color;
+    }
+}
+#pragma mark - parent functions
+-(void)viewWillAppear:(BOOL)animated{
+    [self setStatusBarBackgroundColor:UIColorFromRGB(0x3593DD)];
+    [self.view bringSubviewToFront:self.navigationBar];
+}
 - (IBAction)btn0_3yearClicked:(id)sender {
     [self setSelectedBtnFirst:YES Second:NO Third:NO Forth:NO];
 }

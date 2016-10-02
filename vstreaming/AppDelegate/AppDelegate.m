@@ -30,8 +30,10 @@ static NSString *const kTencentScheme = @"tencent1105461365";
     // Override point for customization after application launch.
     //for streaming capture and playing.
     [[IQKeyboardManager sharedManager] setEnable:YES];
-    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];
-    [[IQKeyboardManager sharedManager] setShouldShowTextFieldPlaceholder:NO];
+    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:YES];
+    [[IQKeyboardManager sharedManager] setShouldResignOnTouchOutside:YES];
+    [[IQKeyboardManager sharedManager] setKeyboardDistanceFromTextField:20];
+    [[IQKeyboardManager sharedManager] setShouldShowTextFieldPlaceholder:YES];
     
     
     [WechatAccess registerApp];
