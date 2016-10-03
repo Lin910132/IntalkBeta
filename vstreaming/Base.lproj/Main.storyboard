@@ -2626,27 +2626,31 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="Qnz-FJ-9Z7">
-                                        <rect key="frame" x="281" y="12" width="13" height="13"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lee-uN-pGM">
+                                        <rect key="frame" x="255" y="4" width="45" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="13" id="jr2-Jh-uzo"/>
-                                            <constraint firstAttribute="width" constant="13" id="xwI-8p-y7o"/>
+                                            <constraint firstAttribute="height" constant="30" id="QSE-wc-zCa"/>
+                                            <constraint firstAttribute="width" constant="45" id="ToZ-Xc-y4x"/>
                                         </constraints>
-                                    </imageView>
+                                        <state key="normal" image="icon_arrow"/>
+                                        <connections>
+                                            <action selector="tagBtnPressed:" destination="nAC-Ja-T25" eventType="touchUpInside" id="zqm-wV-kpg"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="kiP-Jr-ib1" firstAttribute="centerX" secondItem="xHi-4x-yz9" secondAttribute="centerX" id="3iX-rI-GVS"/>
+                                    <constraint firstItem="Lee-uN-pGM" firstAttribute="centerY" secondItem="xHi-4x-yz9" secondAttribute="centerY" id="BTM-bg-07I"/>
                                     <constraint firstItem="kiP-Jr-ib1" firstAttribute="centerY" secondItem="xHi-4x-yz9" secondAttribute="centerY" id="DtN-6P-yfh"/>
-                                    <constraint firstAttribute="trailing" secondItem="Qnz-FJ-9Z7" secondAttribute="trailing" constant="16" id="HLD-bz-nTX"/>
                                     <constraint firstItem="oEs-ub-67H" firstAttribute="centerY" secondItem="xHi-4x-yz9" secondAttribute="centerY" id="IMM-nx-KgL"/>
                                     <constraint firstItem="kiP-Jr-ib1" firstAttribute="width" secondItem="xHi-4x-yz9" secondAttribute="width" id="JlO-y7-9qQ"/>
                                     <constraint firstItem="jyx-Ij-9Fb" firstAttribute="centerY" secondItem="xHi-4x-yz9" secondAttribute="centerY" id="QVb-1T-NuA"/>
                                     <constraint firstItem="jyx-Ij-9Fb" firstAttribute="leading" secondItem="xHi-4x-yz9" secondAttribute="leading" constant="16" id="XTQ-al-fig"/>
                                     <constraint firstAttribute="height" constant="38" id="Ytr-77-D58"/>
+                                    <constraint firstItem="Lee-uN-pGM" firstAttribute="leading" secondItem="oEs-ub-67H" secondAttribute="trailing" constant="-21" id="aG4-r5-AdB"/>
+                                    <constraint firstAttribute="trailing" secondItem="Lee-uN-pGM" secondAttribute="trailing" constant="10" id="kzm-S6-YB1"/>
                                     <constraint firstItem="kiP-Jr-ib1" firstAttribute="height" secondItem="xHi-4x-yz9" secondAttribute="height" id="oAd-fI-Z4r"/>
-                                    <constraint firstItem="Qnz-FJ-9Z7" firstAttribute="centerY" secondItem="xHi-4x-yz9" secondAttribute="centerY" id="ocU-YG-Bxd"/>
-                                    <constraint firstItem="Qnz-FJ-9Z7" firstAttribute="leading" secondItem="oEs-ub-67H" secondAttribute="trailing" constant="5" id="p0D-yf-vHe"/>
                                     <constraint firstItem="oEs-ub-67H" firstAttribute="leading" secondItem="jyx-Ij-9Fb" secondAttribute="trailing" constant="12" id="zSq-3b-JId"/>
                                 </constraints>
                             </view>
@@ -2766,7 +2770,6 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="navigationBar" destination="oSg-E3-5pk" id="q46-Cn-4dc"/>
                         <outlet property="years10More" destination="5b4-z5-MjM" id="rc6-3L-xIV"/>
                         <outlet property="years3" destination="EVg-R6-qgi" id="wpG-hG-muQ"/>
                         <outlet property="years3_5" destination="YIP-EX-Slw" id="xjt-jP-Bf3"/>

@@ -39,7 +39,7 @@
         if(err == nil) {
             [[User getInstance] parseDataFromJson:res];
         }else{
-            NSLog(@"Get MyInfo API returns Such Error - %@", err);
+            NSLog(@"\n ---Get MyInfo API returns Such Error : \n --- %@", err);
         }
     }];
 }
@@ -57,7 +57,7 @@
                 [dataManager.allTags addObject:tagItem];
             }
         }else{
-            NSLog(@"Get All Tags API occurs such Error %@", err);
+            NSLog(@"\n ---Get All Tags API occurs such Error :\n  %@ ---", err);
         }
     }];
 }

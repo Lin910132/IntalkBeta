@@ -7,14 +7,18 @@
 //
 
 #import "ExpertSubmitViewController.h"
+#import "DropDownListView.h"
+#import "TagModel.h"
 
-@interface ExpertSubmitViewController ()
+@interface ExpertSubmitViewController () <kDropDownListViewDelegate>
+{
+    NSMutableArray * arryList;
+    DropDownListView * Dropobj;
+}
 @property (weak, nonatomic) IBOutlet UIButton *years3;
 @property (weak, nonatomic) IBOutlet UIButton *years5_10;
 @property (weak, nonatomic) IBOutlet UIButton *years3_5;
 @property (weak, nonatomic) IBOutlet UIButton *years10More;
-@property (weak, nonatomic) IBOutlet UIView *navigationBar;
-
 @end
 
 
@@ -28,11 +32,35 @@
         statusBar.backgroundColor = color;
     }
 }
+
+-(void)showPopUpWithTitle:(NSString*)popupTitle withOption:(NSArray*)arrOptions xy:(CGPoint)point size:(CGSize)size isMultiple:(BOOL)isMultiple{
+    
+    
+    Dropobj = [[DropDownListView alloc] initWithTitle:popupTitle options:arrOptions xy:point size:size isMultiple:isMultiple];
+    Dropobj.delegate = self;
+    [Dropobj showInView:self.view animated:YES];
+    
+    /*----------------Set DropDown backGroundColor-----------------*/
+    [Dropobj SetBackGroundDropDown_R:0.0 G:108.0 B:194.0 alpha:0.70];
+    
+}
+
 #pragma mark - parent functions
 -(void)viewWillAppear:(BOOL)animated{
     [self setStatusBarBackgroundColor:UIColorFromRGB(0x3593DD)];
-    [self.view bringSubviewToFront:self.navigationBar];
 }
+
+-(void)viewDidLoad{
+    [super viewDidLoad];
+    DataManager * data = [DataManager getInstance];
+    arryList = [NSMutableArray new];
+    for(TagModel *item in data.allTags){
+        [arryList addObject:item.tagName];
+    }
+    [self setSelectedBtnFirst:YES Second:NO Third:NO Forth:NO];
+}
+
+#pragma mark - outlets
 - (IBAction)btn0_3yearClicked:(id)sender {
     [self setSelectedBtnFirst:YES Second:NO Third:NO Forth:NO];
 }
@@ -80,11 +108,36 @@
     }
 }
 
--(void)viewDidLoad{
-    [super viewDidLoad];
-    [self setSelectedBtnFirst:YES Second:NO Third:NO Forth:NO];
-}
 - (IBAction)backBtnClicked:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (IBAction)tagBtnPressed:(id)sender {
+    [Dropobj fadeOut];
+    [self showPopUpWithTitle:@"Select Tags" withOption:arryList xy:CGPointMake(16, 58) size:CGSizeMake(287, 330) isMultiple:YES];
+
+}
+
+#pragma mark - kDropDownListViewDelegate
+- (void)DropDownListView:(DropDownListView *)dropdownListView didSelectedIndex:(NSInteger)anIndex{
+    /*----------------Get Selected Value[Single selection]-----------------*/
+    //_lblSelectedCountryNames.text=[arryList objectAtIndex:anIndex];
+}
+- (void)DropDownListView:(DropDownListView *)dropdownListView Datalist:(NSMutableArray*)ArryData{
+    
+    /*----------------Get Selected Value[Multiple selection]-----------------*/
+    /*if (ArryData.count>0) {
+        _lblSelectedCountryNames.text=[ArryData componentsJoinedByString:@"\n"];
+        CGSize size=[self GetHeightDyanamic:_lblSelectedCountryNames];
+        _lblSelectedCountryNames.frame=CGRectMake(16, 240, 287, size.height);
+    }
+    else{
+        _lblSelectedCountryNames.text=@"";
+    }*/
+    
+}
+- (void)DropDownListViewDidCancel{
+    
+}
+
 @end
