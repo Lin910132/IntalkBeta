@@ -55,6 +55,14 @@ typedef NS_ENUM(NSInteger, ExpertLevel)
     Expert_Level_1
 };
 
+typedef NS_ENUM(NSInteger, YearValue)
+{
+    Year0_3 = 0,
+    Year3_5 = 3,
+    Year5_10= 5,
+    Year10_ = 10
+};
+
 #define greenColorForButtons [UIColor colorWithRed:0.3 green:0.57 blue:0.43 alpha:1]
 
 #define SHOWALLERT(title, mes) UIAlertController *controller = \

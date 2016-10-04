@@ -71,30 +71,6 @@
 @implementation DetailViewController
 
 -(void)viewWillAppear:(BOOL)animated{
-//    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord
-//                                     withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker
-//                                           error:nil];
-
-    
-        __weak typeof(self) weakSelf = self;
-//        [self.view addKeyboardPanningWithFrameBasedActionHandler:nil constraintBasedActionHandler:^(CGRect keyboardFrameInView, BOOL opening, BOOL closing){
-//            static CGFloat y;
-//    
-//            if (opening || y == 0)
-//            {
-//                y = keyboardFrameInView.origin.y + keyboardFrameInView.size.height;
-//            }
-//            if (closing){
-//    
-//                weakSelf.bottomViewBottomConstraint.constant = 0;
-//                [weakSelf.view layoutIfNeeded];
-//            }else {
-//    
-//                weakSelf.bottomViewBottomConstraint.constant = y - keyboardFrameInView.origin.y;
-//            }
-//        }];
-    
-    
     if(screenMode == Streaming_Host) {
         [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     }
@@ -113,7 +89,6 @@
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
-//    end
     
     
     [self initTableView];
@@ -165,7 +140,7 @@
 
 
 -(void)initWowzaSDK{
-    NSError *goCoderLicensingError = [WowzaGoCoder registerLicenseKey:@"GOSK-AF42-0103-BAEF-6178-DA48"];
+    NSError *goCoderLicensingError = [WowzaGoCoder registerLicenseKey:@"GOSK-D342-0103-B43D-39C3-09FB"];
     if (goCoderLicensingError != nil) {
         // Log license key registration failure
         NSLog(@"%@", [goCoderLicensingError localizedDescription]);
@@ -227,6 +202,17 @@
         }
     }];
 }
+-(void) startBroadcasting{
+    NSString *url = [NSString stringWithFormat:@"%@/%@", RTMP_SERVER_ADDRESS, _liveStreamName];
+    NSLog(@"Broadcast URL %@", url);
+    [InTalkAPI startBroadcastWithToken:[[User getInstance] getUserToken] Url:url completion:^(NSDictionary *json, NSError *error) {
+        if(!error){
+            
+        }else {
+            NSLog(@"\n StartBroadcasting occurs Such error : %@", error);
+        }
+    }];
+}
 
 //for capturing video on hosting side
 -(void) startLiveStreamingVideo{
@@ -239,7 +225,7 @@
         broadcastConfig.hostAddress = @"10.70.5.1";
         //broadcastConfig.hostAddress = @"www.intalk.tv";
         broadcastConfig.applicationName = @"live";
-        broadcastConfig.streamName = @"myStream";
+        broadcastConfig.streamName = _liveStreamName;
         
         
         self.goCoder.config = broadcastConfig;
@@ -250,6 +236,7 @@
         self.goCoderCameraPreview.previewGravity = WZCameraPreviewGravityResizeAspectFill;
         [self.goCoderCameraPreview startPreview];
         [self doConnect];
+        [self startBroadcasting];
     }
 }
 

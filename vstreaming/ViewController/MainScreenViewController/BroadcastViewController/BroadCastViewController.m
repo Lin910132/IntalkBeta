@@ -33,11 +33,12 @@
 }
 
 - (IBAction)btnBeginClicked:(id)sender {
-    if([[User getInstance] getExpert] == Non_Expert){
+    if([[User getInstance] getExpert] != Non_Expert){
         ExpertSubmitViewController *expertSVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ExpertSubmitViewController"];
         [self presentViewController:expertSVC animated:YES completion:nil];
     }else{
         DetailViewController *detailVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DetailViewController"];
+        detailVC.liveStreamName = [Utility randomStringWithLength:10];
         [detailVC setScreenMode:Streaming_Host];
         [self presentViewController:detailVC animated:YES completion:nil];
     }

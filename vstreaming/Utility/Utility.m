@@ -12,7 +12,7 @@
 @interface Utility()
 
 @end
-
+static NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 @implementation Utility
 
 +(void)saveDataWithKey:(NSString *)key Data:(NSObject *)data{
@@ -26,4 +26,17 @@
     NSObject * data = [defaults objectForKey:key];
     return data;
 }
+
+
++(NSString *) randomStringWithLength: (int) len {
+    
+    NSMutableString *randomString = [NSMutableString stringWithCapacity: len];
+    
+    for (int i=0; i<len; i++) {
+        [randomString appendFormat: @"%C", [letters characterAtIndex: arc4random_uniform([letters length])]];
+    }
+    
+    return randomString;
+}
+
 @end

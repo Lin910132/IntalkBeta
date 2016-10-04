@@ -11,7 +11,9 @@
 
 @interface DetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>{
     SelectedTab selectedTab;
+    
 }
+@property (nonatomic, retain) NSString * liveStreamName;
 -(void) setSelectMarksHiddenQuests:(BOOL) qs Expert:(BOOL) ae SuggestQt:(BOOL) sq;
 -(void) setScreenMode:(LiveStreamingScreenMode) mode;
 @end

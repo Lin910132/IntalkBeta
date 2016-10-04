@@ -24,22 +24,8 @@
     [super viewDidLoad];
     //init homeTableView
     [self initPickerView];
+    [self loadLiveStream];
     self.homeTableView.separatorColor = [UIColor clearColor];
-}
--(void) initPickerView{
-//    self.pickerView.delegate = self;
-//    self.pickerView.dataSource = self;
-//    pickerList = @[@"Title1", @"Title2", @"Title3", @"Title4", @"Title5", @"Title6"];
-//    self.pickerView.font = [UIFont systemFontOfSize:12];
-//    self.pickerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-//    self.pickerView.textColor = [UIColor whiteColor];
-//    self.pickerView.highlightedTextColor = [UIColor whiteColor];
-//    self.pickerView.highlightedFont = [UIFont systemFontOfSize:14];
-//    self.pickerView.interitemSpacing = 20.0;
-//    self.pickerView.fisheyeFactor = 0.001;
-//    self.pickerView.pickerViewStyle = AKPickerViewStyle3D;
-//    self.pickerView.maskDisabled = false;
-//    [self.pickerView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,6 +33,33 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - private functions
+-(void) initPickerView{
+    self.pickerView.delegate = self;
+    self.pickerView.dataSource = self;
+    pickerList = @[@"Recommended", @"New", @"Preview"];
+    self.pickerView.font = [UIFont systemFontOfSize:12];
+    self.pickerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.pickerView.textColor = [UIColor whiteColor];
+    self.pickerView.highlightedTextColor = [UIColor whiteColor];
+    self.pickerView.highlightedFont = [UIFont systemFontOfSize:14];
+    self.pickerView.interitemSpacing = 20.0;
+    self.pickerView.fisheyeFactor = 0.001;
+    self.pickerView.pickerViewStyle = AKPickerViewStyle3D;
+    self.pickerView.maskDisabled = false;
+    [self.pickerView reloadData];
+    [self.pickerView selectItem:1 animated:NO]; //Select New Tab
+}
+
+-(void) loadLiveStream{
+    [InTalkAPI getLiveBroadcast:[[User getInstance]getUserToken] limit:10 offset:0 competion:^(NSDictionary *json, NSError *err) {
+        if(!err){
+            NSLog(@"%@", json);
+        }else{
+            NSLog(@"\n --- Get Live Broadcast API occurs such error %@", err);
+        }
+    }];
+}
 /*
 #pragma mark - Navigation
 
@@ -57,7 +70,7 @@
 }
 */
 
-#pragma TableView Delegates
+#pragma mark - TableView Delegates
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1; //because there is no sections
 }

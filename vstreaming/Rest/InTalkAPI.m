@@ -27,9 +27,8 @@
 }
 
 
-+(void)startBroadcastWithTitle:(NSString *)title Url:(NSString *)urlStr Tag1:(NSString *)tag1 Tag2:(NSString *)tag2 Tag3:(NSString *)tag3 completion:(void (^)(NSDictionary *, NSError *))block{
-    NSString *token = (NSString *)[Utility getDataWithKey:TOKEN];
-    NSDictionary *params = @{@"token":token, @"tagid1":tag1, @"tagid2":tag2, @"tag3":tag3, @"title":title, @"url":urlStr};
++(void)startBroadcastWithToken:(NSString *) token Url:(NSString *) urlStr completion:(void(^)(NSDictionary * json, NSError *error)) block{
+    NSDictionary *params = @{@"token":token, @"url":urlStr};
     [WebManager POST:APIStartBroadCast parameters:params completion:block];
 }
 
@@ -64,4 +63,28 @@
     [WebManager POST:APIGetMyInfo parameters:params completion:block];
 }
 
++(void)setExpert:(NSString *)token Name:(NSString *)name Company:(NSString *)company Title:(NSString *)title Years:(int)year PhoneNumber:(NSString *)phone Email:(NSString *)email TagID1:(int)id1 TagID2:(int)id2 TagID3:(int)id3 Description:(NSString *)descript competion:(void (^)(NSDictionary *, NSError *))block{
+    NSDictionary *params = @{
+                             @"token"       : token,
+                             @"name"        : name,
+                             @"company"     : company,
+                             @"title"       : title,
+                             @"years"       : [NSString stringWithFormat:@"%d", year],
+                             @"phonenumber" : phone,
+                             @"email"       : email,
+                             @"tagid1"      : [NSString stringWithFormat:@"%d", id1],
+                             @"tagid2"      : [NSString stringWithFormat:@"%d", id2],
+                             @"tagid3"      : [NSString stringWithFormat:@"%d", id3],
+                             @"description" : descript
+                            };
+    [WebManager POST:APISetExpert parameters:params completion:block];
+}
+
++(void)getLiveBroadcast:(NSString *)token limit:(int)limit offset:(int)offset competion:(void (^)(NSDictionary *, NSError *))block{
+    NSDictionary *params = @{@"token"   :token,
+                             @"limit"   :[NSString stringWithFormat:@"%d", limit],
+                             @"offset"  :[NSString stringWithFormat:@"%d", offset],
+                             };
+    [WebManager POST:APIGetLiveBroadCast parameters:params completion:block];
+}
 @end
