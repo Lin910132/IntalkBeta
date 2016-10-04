@@ -209,7 +209,8 @@
 -(void)DropDownListView:(DropDownListView *)dropdownListView Datalist:(NSMutableArray *)arryData DataIndex:(NSMutableArray *)arrayIndex{
     self.tagTextField.text = @"";
     if (arryData.count > 0) {
-        self.tagTextField.text = [arryData componentsJoinedByString:@", "];
+        NSLog(@"%@", [arryData componentsJoinedByString:@", "]);
+        self.tagTextField.text = @"aaa";
         //arrayData size and arayIndex size is same
         for(NSIndexPath *item in arrayIndex){
             TagModel *selectedTag = [dataManager.getAllTags objectAtIndex:item.row];

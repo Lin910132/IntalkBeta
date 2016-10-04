@@ -2544,6 +2544,9 @@
                                 <state key="normal" title="Submit">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="submitBtnPressed:" destination="nAC-Ja-T25" eventType="touchUpInside" id="yRh-tx-QqT"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2588,6 +2591,13 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="companyTextField" destination="8N2-MZ-bu4" id="YFk-iZ-B4L"/>
+                        <outlet property="descriptionTextField" destination="ym3-a0-viX" id="Z9k-i9-Lfu"/>
+                        <outlet property="emailTextField" destination="44I-Cw-zFt" id="LXz-EJ-waU"/>
+                        <outlet property="nameTextField" destination="SBh-Mj-UeM" id="Ow5-Ry-0Do"/>
+                        <outlet property="phoneTextField" destination="wox-hj-h1v" id="IK1-D5-8y8"/>
+                        <outlet property="tagTextField" destination="oEs-ub-67H" id="Myx-Wb-qX7"/>
+                        <outlet property="titleTextField" destination="Exx-FN-Lwb" id="Qba-KP-ap4"/>
                         <outlet property="years10More" destination="5b4-z5-MjM" id="rc6-3L-xIV"/>
                         <outlet property="years3" destination="EVg-R6-qgi" id="wpG-hG-muQ"/>
                         <outlet property="years3_5" destination="YIP-EX-Slw" id="xjt-jP-Bf3"/>
@@ -7027,6 +7037,7 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
                 <tabBarController storyboardIdentifier="MainTabBarController" automaticallyAdjustsScrollViewInsets="NO" id="KfO-Dy-bUU" customClass="MainTabViewController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="a8q-0L-9vW">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>

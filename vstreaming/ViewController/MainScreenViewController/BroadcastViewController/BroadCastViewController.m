@@ -33,7 +33,7 @@
 }
 
 - (IBAction)btnBeginClicked:(id)sender {
-    if([[User getInstance] getExpert] != Non_Expert){
+    if([[User getInstance] getExpert] == Non_Expert){
         ExpertSubmitViewController *expertSVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ExpertSubmitViewController"];
         [self presentViewController:expertSVC animated:YES completion:nil];
     }else{

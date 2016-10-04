@@ -35,6 +35,7 @@
 }
 #pragma mark - Private
 -(void) getMyInfo{
+    NSLog(@"%@", [[User getInstance] getUserToken]);
     [InTalkAPI getMyInfoByToken:[[User getInstance] getUserToken] competion:^(NSDictionary * res, NSError * err) {
         if(err == nil) {
             [[User getInstance] parseDataFromJson:res];

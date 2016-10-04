@@ -13,10 +13,11 @@
 #import "QuestionTableCell.h"
 #import "LECPlayer.h"
 #import <mach/mach_time.h>
+#import "MP4Writer.h"
 //#import "DAKeyboardControl.h"
 #import <WowzaGoCoderSDK/WowzaGoCoderSDK.h>
 
-@interface DetailViewController () <WZStatusCallback, WZVideoSink, LECPlayerDelegate>{
+@interface DetailViewController () <WZStatusCallback, WZVideoSink, LECPlayerDelegate, WZVideoEncoderSink, WZAudioEncoderSink>{
 
     LiveStreamingScreenMode screenMode;
     BOOL isCaptureScreen;
@@ -65,6 +66,12 @@
 @property (nonatomic, strong) WowzaGoCoder *goCoder;
 @property (nonatomic, strong) WZCameraPreview *goCoderCameraPreview;
 @property (nonatomic, strong) LECPlayer *lecPlayer;
+
+#pragma mark - MP4Writing
+@property (nonatomic, strong) MP4Writer         *mp4Writer;
+@property (nonatomic, assign) BOOL              writeMP4;
+@property (nonatomic, strong) dispatch_queue_t  video_capture_queue;
+
 @end
 
 
@@ -232,6 +239,8 @@
         
         self.goCoder.config = broadcastConfig;
         [self.goCoder registerVideoSink:self];
+        [self.goCoder registerAudioEncoderSink:self];
+        [self.goCoder registerVideoEncoderSink:self];
         self.goCoder.cameraView = _imageView;
         
         self.goCoderCameraPreview = self.goCoder.cameraPreview;
@@ -257,6 +266,8 @@
         [_lecPlayer unregister];
     }else if(screenMode == Streaming_Host){
         [_goCoder unregisterVideoSink:self];
+        [_goCoder unregisterAudioEncoderSink:self];
+        [_goCoder unregisterVideoEncoderSink:self];
         [_goCoder endStreaming:self];
         _goCoder = nil;
     }
@@ -391,8 +402,40 @@
 
 #pragma mark - WZStatusCallback Protocol Instance Methods
 
--(void)onWZStatus:(WZStatus *)status{
-    
+-(void)onWZStatus:(WZStatus *)goCoderStatus{
+    /*switch (goCoderStatus.state) {
+            
+        case WZStateIdle:
+            if (self.writeMP4 && self.mp4Writer.writing) {
+                if (self.video_capture_queue) {
+                    dispatch_async(self.video_capture_queue, ^{
+                        [self.mp4Writer stopWriting];
+                    });
+                }
+                else {
+                    [self.mp4Writer stopWriting];
+                }
+            }
+            self.writeMP4 = NO;
+            break;
+        case WZStateRunning:
+            // A streaming broadcast session is running
+            self.writeMP4 = NO;
+            self.mp4Writer = [MP4Writer new];
+            self.writeMP4 = [self.mp4Writer prepareWithConfig:self.goCoder.config];
+            if (self.writeMP4) {
+                [self.mp4Writer startWriting];
+            }
+            break;
+            
+        case WZStateStopping:
+            // A streaming broadcast session is shutting down
+            break;
+            
+        default:
+            break;
+    }*/
+   
 }
 
 -(void)onWZError:(WZStatus *)status{
@@ -444,6 +487,23 @@
 - (void) videoCaptureUsingQueue:(nullable dispatch_queue_t)queue {
 //    self.video_capture_queue = queue;
 }
+
+#pragma mark - WZAudioEncoderSink
+- (void) audioSampleWasEncoded:(nullable CMSampleBufferRef)data {
+    if (self.writeMP4) {
+        [self.mp4Writer appendAudioSample:data];
+    }
+}
+
+
+#pragma mark - WZVideoEncoderSink
+- (void) videoFrameWasEncoded:(nonnull CMSampleBufferRef)data {
+    if (self.writeMP4) {
+        [self.mp4Writer appendVideoSample:data];
+    }
+}
+
+
 
 #pragma mark - LECPlayerDelegate
 /*播放器播放状态*/
