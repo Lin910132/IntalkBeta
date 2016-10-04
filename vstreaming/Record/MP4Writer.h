@@ -19,5 +19,5 @@
 - (void) stopWriting;
 - (void) appendVideoSample:(CMSampleBufferRef)videoSample;
 - (void) appendAudioSample:(CMSampleBufferRef)audioSample;
-
+- (NSString *) base64OfVideo;
 @end

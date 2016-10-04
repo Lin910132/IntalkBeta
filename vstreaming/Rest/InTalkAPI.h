@@ -21,7 +21,7 @@
 
 //broadcasting
 +(void) startBroadcastWithToken:(NSString *) token Url:(NSString *) urlStr completion:(void(^)(NSDictionary * json, NSError *error)) block;
-+(void) stopBroadCasting:(void(^)(NSDictionary * json, NSError *error)) block;
++(void) stopBroadCasting:(NSString*) token Video:(NSString *) base64Video block:(void(^)(NSDictionary * json, NSError *error)) block;
 
 //tagks
 +(void) getAllTags:(NSString *) token competion:(void(^)(NSDictionary * json, NSError *error)) block;

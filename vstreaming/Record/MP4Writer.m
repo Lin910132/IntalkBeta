@@ -29,6 +29,7 @@ static BOOL isKeyFrame(CMSampleBufferRef sample) {
 }
 
 @interface MP4Writer () {
+    NSString *videoPath;
 }
 
 @property (nonatomic, assign, readwrite) BOOL writing;
@@ -253,7 +254,7 @@ static BOOL isKeyFrame(CMSampleBufferRef sample) {
             NSError *error = nil;
             [[NSFileManager defaultManager] removeItemAtURL:url error:&error];
         }
-        
+        videoPath = url.absoluteString;
         return url;
     }
     
@@ -261,4 +262,10 @@ static BOOL isKeyFrame(CMSampleBufferRef sample) {
     
 }
 
+-(NSString *) base64OfVideo{
+    NSString *path = [[NSBundle mainBundle] pathForResource:videoPath ofType:@"m4v"];
+    NSData *data = [[NSData dataWithContentsOfFile:path]base64EncodedDataWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    NSString *ret = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    return ret;
+}
 @end

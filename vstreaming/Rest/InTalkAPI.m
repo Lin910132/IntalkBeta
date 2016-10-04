@@ -32,9 +32,9 @@
     [WebManager POST:APIStartBroadCast parameters:params completion:block];
 }
 
-+(void)stopBroadCasting:(void (^)(NSDictionary *, NSError *))block{
-    NSString *token = (NSString *)[Utility getDataWithKey:TOKEN];
-    NSDictionary *params = @{@"token":token};
++(void)stopBroadCasting:(NSString *)token Video:(NSString *)base64Video block:(void (^)(NSDictionary *, NSError *))block{
+    NSDictionary *params = @{@"token":token,
+                             @"video":base64Video};
     [WebManager POST:APIEndBroadCast parameters:params completion:block];
 }
 

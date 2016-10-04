@@ -223,6 +223,12 @@
     }];
 }
 
+-(void) endBroadcast{
+    NSString *base64Video = [_mp4Writer base64OfVideo];
+    [InTalkAPI stopBroadCasting:[[User getInstance] getUserToken] Video:base64Video block:^(NSDictionary *json, NSError *error) {
+        
+    }];
+}
 //for capturing video on hosting side
 -(void) startLiveStreamingVideo{
     if(self.goCoder != nil) {
