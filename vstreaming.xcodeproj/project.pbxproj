@@ -50,6 +50,8 @@
 		8B8F36B51D830B4400A03018 /* libReachbility.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8F36B11D830B4400A03018 /* libReachbility.a */; };
 		8B8F36B61D830B4400A03018 /* libZipArchive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8F36B21D830B4400A03018 /* libZipArchive.a */; };
 		8B8F36B71D830B6800A03018 /* LECPlayerResource.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8F36AE1D830B4400A03018 /* LECPlayerResource.bundle */; };
+		8BA702161DA5899F00A828FE /* Follower.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA702151DA5899F00A828FE /* Follower.m */; };
+		8BA702191DA58ACB00A828FE /* VideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA702181DA58ACB00A828FE /* VideoModel.m */; };
 		8BC098C01D869F0B00FD46AD /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC098BF1D869F0B00FD46AD /* User.m */; };
 		8BC0BBBF1D586F3900CEAEFC /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC0BBBE1D586F3900CEAEFC /* AVFoundation.framework */; };
 		8BC0BBC31D586F6D00CEAEFC /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC0BBC21D586F6D00CEAEFC /* CoreTelephony.framework */; };
@@ -224,6 +226,10 @@
 		8B8F36B01D830B4400A03018 /* libLECPlayerFoundation.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLECPlayerFoundation.a; sourceTree = "<group>"; };
 		8B8F36B11D830B4400A03018 /* libReachbility.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libReachbility.a; sourceTree = "<group>"; };
 		8B8F36B21D830B4400A03018 /* libZipArchive.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libZipArchive.a; sourceTree = "<group>"; };
+		8BA702141DA5899F00A828FE /* Follower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Follower.h; sourceTree = "<group>"; };
+		8BA702151DA5899F00A828FE /* Follower.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Follower.m; sourceTree = "<group>"; };
+		8BA702171DA58ACB00A828FE /* VideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoModel.h; sourceTree = "<group>"; };
+		8BA702181DA58ACB00A828FE /* VideoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoModel.m; sourceTree = "<group>"; };
 		8BC098BE1D869F0B00FD46AD /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		8BC098BF1D869F0B00FD46AD /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		8BC0BBBE1D586F3900CEAEFC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -575,6 +581,10 @@
 				8B7CBF021D9F6005009495D1 /* DataManager.m */,
 				8B7CFFAB1DA47270007EB36A /* HomeTableItemModel.h */,
 				8B7CFFAC1DA47270007EB36A /* HomeTableItemModel.m */,
+				8BA702141DA5899F00A828FE /* Follower.h */,
+				8BA702151DA5899F00A828FE /* Follower.m */,
+				8BA702171DA58ACB00A828FE /* VideoModel.h */,
+				8BA702181DA58ACB00A828FE /* VideoModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1125,10 +1135,12 @@
 				8BCD718C1D44AC2500ECFD88 /* GridScreenViewController.m in Sources */,
 				8B82D01D1D496BFA00FE6B34 /* FollowInformationViewController.m in Sources */,
 				8B7CFFAD1DA47270007EB36A /* HomeTableItemModel.m in Sources */,
+				8BA702191DA58ACB00A828FE /* VideoModel.m in Sources */,
 				8B82D0291D4972C300FE6B34 /* ProfileExpertTableCell.m in Sources */,
 				8B503A871D4A39A5008848CE /* LanguageSettingViewController.m in Sources */,
 				8BCD71C81D45FCDB00ECFD88 /* BroadcasterTableCell.m in Sources */,
 				8B503A8B1D4A3AFA008848CE /* OtherSettingViewController.m in Sources */,
+				8BA702161DA5899F00A828FE /* Follower.m in Sources */,
 				8BCD71B51D45CAEE00ECFD88 /* IndustrySelectViewController.m in Sources */,
 				8B8C7CF31D58B9F5002A056E /* Utility.m in Sources */,
 				8BCD71DF1D479D9200ECFD88 /* InComeViewController.m in Sources */,

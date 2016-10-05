@@ -22,7 +22,7 @@ NSString * const APISetMyProfile                        = @"index.php?/api/set-m
 NSString * const APISearchExpert                        = @"index.php?/api/search-experts";
 NSString * const APIGetUsers                            = @"index.php?/api/get-users";
 NSString * const APIGetUser                             = @"index.php?/api/get-user";
-NSString * const APIGetFollowers                        = @"index.php?/api/get-user";
+NSString * const APIGetFollowers                        = @"index.php?/api/get-followers";
 NSString * const APIGetFollowing                        = @"index.php?/api/get-following";
 NSString * const APIWithDraw                            = @"index.php?/api/withdraw";
 NSString * const APIGetMessageUsers                     = @"index.php?/api/get-message-users";
@@ -31,5 +31,6 @@ NSString * const APISendMessage                         = @"index.php?/api/send-
 NSString * const APIGetMyInfo                           = @"index.php?/api/get-myinfo";
 NSString * const APISetExpert                           = @"index.php?/api/set-expert";
 NSString * const APISetAvatar                           = @"index.php?/api/set-avatar";
+
 
 

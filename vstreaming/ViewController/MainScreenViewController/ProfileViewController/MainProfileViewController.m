@@ -39,11 +39,13 @@
 #pragma mark - Outlets
 - (IBAction)btnFollowerClicked:(id)sender {
     FollowInformationViewController *followInfoVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"FollowInformationViewController"];
+    [followInfoVC setScreenType:Follower_Screen];
     [self presentViewController:followInfoVC animated:YES completion:nil];
 }
 
 - (IBAction)btnFollowingClicked:(id)sender {
     FollowInformationViewController *followInfoVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"FollowInformationViewController"];
+    [followInfoVC setScreenType:Following_Screen];
     [self presentViewController:followInfoVC animated:YES completion:nil];
 }
 

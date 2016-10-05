@@ -44,8 +44,8 @@ static User * userInfo;
     self.sex                = [dict objectForKey:@"sex"];
     self.show               = [[dict objectForKey:@"show"] intValue];
     self.tag1_id            = [[dict objectForKey:@"tag1_id"] intValue];
-    self.tag1_id            = [[dict objectForKey:@"tag1_id"] intValue];
-    self.tag1_id            = [[dict objectForKey:@"tag1_id"] intValue];
+    self.tag2_id            = [[dict objectForKey:@"tag2_id"] intValue];
+    self.tag3_id            = [[dict objectForKey:@"tag3_id"] intValue];
     self.title              = [dict objectForKey:@"title"];
     self.years              = [[dict objectForKey:@"years"] intValue];
 }

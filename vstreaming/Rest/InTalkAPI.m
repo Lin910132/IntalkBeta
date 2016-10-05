@@ -102,4 +102,37 @@
                              };
     [WebManager POST:APISetAvatar parameters:params completion:block];
 }
+
++(void)getFollowers:(NSString *)token limit:(int)limit offset:(int)offset competion:(void (^)(NSDictionary *, NSError *))block{
+    NSDictionary *params = @{@"token"   :token,
+                             @"limit"   :[NSString stringWithFormat:@"%d", limit],
+                             @"offset"  :[NSString stringWithFormat:@"%d", offset],
+                             };
+    [WebManager POST:APIGetFollowers parameters:params completion:block];
+}
+
++(void)getFollowing:(NSString *)token limit:(int)limit offset:(int)offset competion:(void (^)(NSDictionary *, NSError *))block{
+    NSDictionary *params = @{@"token"   :token,
+                             @"limit"   :[NSString stringWithFormat:@"%d", limit],
+                             @"offset"  :[NSString stringWithFormat:@"%d", offset],
+                             };
+    [WebManager POST:APIGetFollowing parameters:params completion:block];
+}
+
++(void) getMessages:(NSString *)token userID:(NSString *)userId limit:(int)limit offset:(int)offset competion:(void (^)(NSDictionary *, NSError *))block{
+    NSDictionary *params = @{@"token"   :token,
+                             @"userid"  : userId,
+                             @"limit"   :[NSString stringWithFormat:@"%d", limit],
+                             @"offset"  :[NSString stringWithFormat:@"%d", offset],
+                             };
+    [WebManager POST:APIGetMessages parameters:params completion:block];
+}
+
++(void)sendMessage:(NSString *)token userID:(NSString *)userId message:(NSString *)message competion:(void (^)(NSDictionary *, NSError *))block{
+    NSDictionary *params = @{@"token"   :token,
+                             @"userid"  : userId,
+                             @"message"  : message
+                             };
+    [WebManager POST:APISendMessage parameters:params completion:block];
+}
 @end

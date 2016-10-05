@@ -18,11 +18,15 @@
 @end
 
 @implementation FollowInformationViewController
+
+#pragma mark - parent function
 -(void)viewDidLoad{
     [super viewDidLoad];
     [self initTitle];
+    [self loadData];
 }
 
+#pragma mark - private function
 -(void)initTitle{
     if(screenType == Follower_Screen){
         _lblTitle.text = @"Follower";
@@ -31,10 +35,22 @@
     }
 }
 
+-(void)loadData{
+    if(screenType == Follower_Screen){
+        [InTalkAPI getFollowers:[[User getInstance] getUserToken] limit:10 offset:0 competion:^(NSDictionary *resp, NSError *err) {
+            
+        }];
+    }else{
+        [InTalkAPI getFollowing:[[User getInstance] getUserToken] limit:10 offset:0 competion:^(NSDictionary *resp, NSError *err) {
+            
+        }];
+    }
+}
 -(void)setScreenType:(FollowScreenInfoType)type{
     screenType = type;
 }
 
+#pragma mark - outlet functions
 - (IBAction)backBtnClicked:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
