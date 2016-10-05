@@ -13,9 +13,22 @@
 {
     BOOL isImageUploading;
 }
+@property (nonatomic, strong) dispatch_group_t dispatchGroup;
+
 @end
 
 @implementation MainProfileViewController
+#pragma mark - Lazy Loading
+
+- (dispatch_group_t)dispatchGroup
+{
+    if(!_dispatchGroup)
+    {
+        _dispatchGroup = dispatch_group_create();
+    }
+    
+    return _dispatchGroup;
+}
 
 -(void)viewDidLoad{
     [super viewDidLoad];
@@ -47,6 +60,29 @@
                                    initWithTarget:self
                                    action:@selector(didTapUserLogoImgView)];
     [self.userLogo addGestureRecognizer:tap];
+    [self.userLogo setUserInteractionEnabled:YES];
+    [self.userLogo layoutIfNeeded];
+    self.userLogo.layer.cornerRadius = self.userLogo.frame.size.height / 2;
+    NSLog(@"%f", self.userLogo.frame.size.height);
+    self.userLogo.layer.masksToBounds = YES;
+}
+
+-(void) uploadImage:(UIImage *) chosenImage{
+    isImageUploading = YES;
+    [self.userLogo setImage:chosenImage];
+    __weak typeof(self) weakSelf = self;
+    dispatch_group_enter(self.dispatchGroup);
+    NSString *base64Image = (NSString *)[UIImagePNGRepresentation(chosenImage) base64EncodedDataWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    [InTalkAPI setAvatarImage:[[User getInstance] getUserToken] imageData:base64Image competion:^(NSDictionary *resp, NSError *err) {
+        if(!err){
+            NSLog(@"%@", resp);
+        }else{
+            NSLog(@"\n --- Set Avatar API occures such error: %@", err);
+        }
+        isImageUploading = NO;
+        dispatch_group_leave(weakSelf.dispatchGroup);
+    }];
+    
 }
 
 -(void) didTapUserLogoImgView{
@@ -116,4 +152,30 @@
     popPresenter.sourceView = self.view;
     [self presentViewController:alertController animated:YES completion:nil];
 }
+
+#pragma mark - UIImagePickerControllerDelegate
+- (void)navigationController:(UINavigationController *)navigationController
+      willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+{
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    
+    if (chosenImage)
+    {
+        [self uploadImage:chosenImage];
+    }
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 @end

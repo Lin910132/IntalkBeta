@@ -95,4 +95,11 @@
                              };
     [WebManager POST:APIGetPreview parameters:params completion:block];
 }
+
++(void)setAvatarImage:(NSString *)token imageData:(NSString *)base64Image competion:(void (^)(NSDictionary *, NSError *))block{
+    NSDictionary *params = @{@"token"   :token,
+                             @"img"     :base64Image
+                             };
+    [WebManager POST:APISetAvatar parameters:params completion:block];
+}
 @end

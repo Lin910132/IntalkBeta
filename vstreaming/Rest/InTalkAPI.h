@@ -29,6 +29,7 @@
 
 //profile info
 +(void) getMyInfoByToken:(NSString *)token competion:(void (^)(NSDictionary *, NSError *))block;
++(void) setAvatarImage:(NSString *)token imageData:(NSString *) base64Image competion:(void (^)(NSDictionary *, NSError *))block;
 
 //expert
 +(void) setExpert:(NSString *)token Name:(NSString*) name Company:(NSString *) company Title:(NSString *) title Years:(int) year PhoneNumber:(NSString*) phone Email:(NSString*) email TagID1:(int) id1 TagID2:(int) id2 TagID3:(int) id3 Description:(NSString *) descript competion:(void (^)(NSDictionary *, NSError *))block;

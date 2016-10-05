@@ -30,3 +30,4 @@ extern NSString * const APIGetMessages;
 extern NSString * const APISendMessage;
 extern NSString * const APIGetMyInfo;
 extern NSString * const APISetExpert;
+extern NSString * const APISetAvatar;
