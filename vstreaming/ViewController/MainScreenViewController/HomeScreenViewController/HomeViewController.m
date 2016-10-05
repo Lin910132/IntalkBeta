@@ -60,6 +60,18 @@
         }
     }];
 }
+
+-(void) loadPreview{
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] showBlackLoader];
+    [InTalkAPI getPreview:[[User getInstance]getUserToken] limit:10 offset:0 competion:^(NSDictionary *json, NSError * err) {
+        [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
+        if(!err){
+            NSLog(@"%@", json);
+        }else{
+            NSLog(@"\n --- Get Preview API occurs such error %@", err);
+        }
+    }];
+}
 /*
 #pragma mark - Navigation
 
@@ -109,7 +121,17 @@
 
 #pragma AKPickerView delegate
 - (void)pickerView:(AKPickerView *)pickerView didSelectItem:(NSInteger)item{
-    
+    switch (item) {
+        case 0:
+            break;
+        case 1:
+            break;
+        case 2:
+            [self loadPreview];
+            break;
+        default:
+            break;
+    }
 }
 
 @end

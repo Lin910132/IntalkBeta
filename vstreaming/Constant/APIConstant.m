@@ -12,7 +12,7 @@ NSString * const APIStartBroadCast                      = @"index.php?/api/begin
 NSString * const APIEndBroadCast                        = @"index.php?/api/end-broadcast";
 NSString * const APIGetTags                             = @"index.php?/api/get-tags";
 NSString * const APISearchTags                          = @"index.php?/api/search-tags";
-NSString * const APIGetRecommendedBroadCast             = @"index.php?/api/get-recommended";
+NSString * const APIGetPreview                          = @"index.php?/api/get-preview";
 NSString * const APIGetLiveBroadCast                    = @"index.php?/api/get-live";
 NSString * const APIGetHotBroadCast                     = @"index.php?/api/get-hot";
 NSString * const APIGetBroadCast                        = @"index.php?/api/get-broadcast";
@@ -30,4 +30,5 @@ NSString * const APIGetMessages                         = @"index.php?/api/get-m
 NSString * const APISendMessage                         = @"index.php?/api/send-message";
 NSString * const APIGetMyInfo                           = @"index.php?/api/get-myinfo";
 NSString * const APISetExpert                           = @"index.php?/api/set-expert";
+
 

@@ -12,7 +12,7 @@ extern NSString * const APIStartBroadCast;
 extern NSString * const APIEndBroadCast;
 extern NSString * const APIGetTags;
 extern NSString * const APISearchTags;
-extern NSString * const APIGetRecommendedBroadCast;
+extern NSString * const APIGetPreview;
 extern NSString * const APIGetLiveBroadCast;
 extern NSString * const APIGetHotBroadCast;
 extern NSString * const APIGetBroadCast;

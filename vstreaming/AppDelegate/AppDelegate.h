@@ -21,6 +21,7 @@
 - (NSURL *)applicationDocumentsDirectory;
 
 - (void)showLoader;
+- (void)showBlackLoader;
 - (void)hideLoader;
 
 @end

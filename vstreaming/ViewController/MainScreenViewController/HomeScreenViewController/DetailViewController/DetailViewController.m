@@ -225,8 +225,14 @@
 
 -(void) endBroadcast{
     NSString *base64Video = [_mp4Writer base64OfVideo];
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoader];
     [InTalkAPI stopBroadCasting:[[User getInstance] getUserToken] Video:base64Video block:^(NSDictionary *json, NSError *error) {
-        
+        [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
+        if(!error){
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }else{
+            NSLog(@"\n ---EndBroadcast occurs such error %@", error);
+        }
     }];
 }
 //for capturing video on hosting side
@@ -270,12 +276,14 @@
 -(void)setDisconnect {
     if( screenMode == Streaming_Client){
         [_lecPlayer unregister];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }else if(screenMode == Streaming_Host){
         [_goCoder unregisterVideoSink:self];
         [_goCoder unregisterAudioEncoderSink:self];
         [_goCoder unregisterVideoEncoderSink:self];
         [_goCoder endStreaming:self];
         _goCoder = nil;
+        [self endBroadcast];
     }
 }
 
@@ -285,7 +293,7 @@
 }
 - (IBAction)backBtnPressed:(id)sender {
     [self setDisconnect];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 - (IBAction)btnCaptureMode:(id)sender {
     isCaptureScreen = !isCaptureScreen;
@@ -409,7 +417,7 @@
 #pragma mark - WZStatusCallback Protocol Instance Methods
 
 -(void)onWZStatus:(WZStatus *)goCoderStatus{
-    /*switch (goCoderStatus.state) {
+    switch (goCoderStatus.state) {
             
         case WZStateIdle:
             if (self.writeMP4 && self.mp4Writer.writing) {
@@ -440,7 +448,7 @@
             
         default:
             break;
-    }*/
+    }
    
 }
 

@@ -87,4 +87,12 @@
                              };
     [WebManager POST:APIGetLiveBroadCast parameters:params completion:block];
 }
+
++(void)getPreview:(NSString *)token limit:(int)limit offset:(int)offset competion:(void (^)(NSDictionary *, NSError *))block{
+    NSDictionary *params = @{@"token"   :token,
+                             @"limit"   :[NSString stringWithFormat:@"%d", limit],
+                             @"offset"  :[NSString stringWithFormat:@"%d", offset],
+                             };
+    [WebManager POST:APIGetPreview parameters:params completion:block];
+}
 @end

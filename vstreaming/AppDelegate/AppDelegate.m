@@ -251,7 +251,30 @@ static NSString *const kTencentScheme = @"tencent1105461365";
                                    _loader.frame.size.width,
                                    _loader.frame.size.height);
         [_loaderBackgroundView addSubview:_loader];
+    } else {
+        [_loader setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];
     }
+    [self centerLoader];
+    [self.window bringSubviewToFront:_loaderBackgroundView];
+    _loaderBackgroundView.hidden = NO;
+    [_loader startAnimating];
+    [self.window setUserInteractionEnabled:NO];
+}
+
+- (void)showBlackLoader {
+    if (_loader == nil) {
+        _loader = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        _loaderBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"loader_background"]];
+        [self.window addSubview:_loaderBackgroundView];
+        _loader.frame = CGRectMake(_loaderBackgroundView.center.x - (_loader.frame.size.width / 2),
+                                   _loaderBackgroundView.center.y - (_loader.frame.size.height / 2),
+                                   _loader.frame.size.width,
+                                   _loader.frame.size.height);
+        [_loaderBackgroundView addSubview:_loader];
+    }else{
+        [_loader setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+    }
+    
     [self centerLoader];
     [self.window bringSubviewToFront:_loaderBackgroundView];
     _loaderBackgroundView.hidden = NO;
