@@ -14,6 +14,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *itemTitle;
 @property (weak, nonatomic) IBOutlet UILabel *itemContent;
 @property (weak, nonatomic) IBOutlet UILabel *likesCount;
+@property (weak, nonatomic) IBOutlet UIButton *tag1;
+@property (weak, nonatomic) IBOutlet UIButton *tag2;
+@property (weak, nonatomic) IBOutlet UIButton *tag3;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tag1WidthConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tag2WidthConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tag3WidthConstraint;
 
--(void)setDataToCell:(NSMutableDictionary *) cellData;
+-(void)setDataToCell:(NSMutableDictionary *) cellData cellType:(int) type;
 @end

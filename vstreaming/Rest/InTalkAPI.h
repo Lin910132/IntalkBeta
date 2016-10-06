@@ -21,7 +21,7 @@
 
 //broadcasting
 +(void) startBroadcastWithToken:(NSString *) token Url:(NSString *) urlStr completion:(void(^)(NSDictionary * json, NSError *error)) block;
-+(void) stopBroadCasting:(NSString*) token Video:(NSString *) base64Video block:(void(^)(NSDictionary * json, NSError *error)) block;
++(void) stopBroadCasting:(NSString*) token broadcastID:(int) broadcastID Video:(NSString *) base64Video block:(void(^)(NSDictionary * json, NSError *error)) block;
 
 //tagks
 +(void) getAllTags:(NSString *) token competion:(void(^)(NSDictionary * json, NSError *error)) block;
@@ -38,7 +38,7 @@
 //show streaming
 +(void) getLiveBroadcast:(NSString *)token limit:(int)limit offset:(int)offset competion:(void (^)(NSDictionary *, NSError *))block;
 +(void) getPreview:(NSString *)token limit:(int)limit offset:(int)offset competion:(void (^)(NSDictionary *, NSError *))block;
-
++(void) getRecord:(NSString *)token limit:(int)limit offset:(int)offset competion:(void (^)(NSDictionary *, NSError *))block;
 //message
 +(void) getMessages:(NSString *)token userID:(NSString*) userId limit:(int)limit offset:(int)offset competion:(void (^)(NSDictionary *, NSError *))block;
 

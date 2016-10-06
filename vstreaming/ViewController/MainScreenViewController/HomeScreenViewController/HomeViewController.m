@@ -10,10 +10,12 @@
 #import "HomeTableViewCell.h"
 #import "DetailViewController.h"
 #import "AKPickerView.h"
+#import "HomeTableItemModel.h"
 @interface HomeViewController () <AKPickerViewDataSource, AKPickerViewDelegate>
 {
     NSMutableArray * tableData;
     NSArray *pickerList;
+    UIRefreshControl *refreshControl;
 }
 @property (weak, nonatomic) IBOutlet AKPickerView *pickerView;
 @end
@@ -23,8 +25,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //init homeTableView
+    tableData = [[NSMutableArray alloc] init];
     [self initPickerView];
     [self loadLiveStream];
+    [self makeTableViewRefreshable];
     self.homeTableView.separatorColor = [UIColor clearColor];
 }
 
@@ -54,7 +58,13 @@
 -(void) loadLiveStream{
     [InTalkAPI getLiveBroadcast:[[User getInstance]getUserToken] limit:10 offset:0 competion:^(NSDictionary *json, NSError *err) {
         if(!err){
-            NSLog(@"%@", json);
+            [tableData removeAllObjects];
+            for(NSDictionary * item in [json objectForKey:@"data"]){
+                HomeTableItemModel *cell = [HomeTableItemModel parseDataFromJson:item];
+                [tableData addObject:cell];
+            }
+            
+            [_homeTableView reloadData];
         }else{
             NSLog(@"\n --- Get Live Broadcast API occurs such error %@", err);
         }
@@ -62,15 +72,68 @@
 }
 
 -(void) loadPreview{
-    [(AppDelegate *)[[UIApplication sharedApplication] delegate] showBlackLoader];
     [InTalkAPI getPreview:[[User getInstance]getUserToken] limit:10 offset:0 competion:^(NSDictionary *json, NSError * err) {
         [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
+        [refreshControl endRefreshing];
+        
         if(!err){
-            NSLog(@"%@", json);
+            [tableData removeAllObjects];
+            for(NSDictionary * item in [json objectForKey:@"data"]){
+                HomeTableItemModel *cell = [HomeTableItemModel parseDataFromJson:item];
+                [tableData addObject:cell];
+            }
+            
+            [_homeTableView reloadData];
         }else{
             NSLog(@"\n --- Get Preview API occurs such error %@", err);
         }
     }];
+}
+
+-(void) loadLiveInfo{
+    [InTalkAPI getLiveBroadcast:[[User getInstance]getUserToken] limit:10 offset:0 competion:^(NSDictionary *json, NSError * err) {
+        [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
+        [refreshControl endRefreshing];
+        if(!err){
+            [tableData removeAllObjects];
+            for(NSDictionary * item in [json objectForKey:@"data"]){
+                HomeTableItemModel *cell = [HomeTableItemModel parseDataFromJson:item];
+                [tableData addObject:cell];
+            }
+            
+            [_homeTableView reloadData];
+        }else{
+            NSLog(@"\n --- Get Preview API occurs such error %@", err);
+        }
+    }];
+}
+
+-(void) loadRecordInfo{
+    [InTalkAPI getRecord:[[User getInstance]getUserToken] limit:10 offset:0 competion:^(NSDictionary *json, NSError * err) {
+        [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
+        [refreshControl endRefreshing];
+        if(!err){
+            [tableData removeAllObjects];
+            for(NSDictionary * item in [json objectForKey:@"data"]){
+                HomeTableItemModel *cell = [HomeTableItemModel parseDataFromJson:item];
+                [tableData addObject:cell];
+            }
+            
+            [_homeTableView reloadData];
+        }else{
+            NSLog(@"\n --- Get Preview API occurs such error %@", err);
+        }
+    }];
+}
+
+-(void) makeTableViewRefreshable{
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refreshTableView) forControlEvents:UIControlEventValueChanged];
+    [self.homeTableView addSubview:refreshControl];
+}
+
+-(void) refreshTableView{
+    [self pickerView:nil didSelectItem:self.pickerView.selectedItem];
 }
 /*
 #pragma mark - Navigation
@@ -88,7 +151,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return [tableData count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -98,15 +161,17 @@
         cell = [[HomeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:homeTableItemIdentifier];
         
     }
-    NSMutableDictionary *itemData; //TODO set real data to item Data
-    [cell setDataToCell:itemData];
 
+    [cell setDataToCell:[tableData objectAtIndex:indexPath.row] cellType:self.pickerView.selectedItem];
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     DetailViewController *detailVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DetailViewController"];
+    
+    HomeTableItemModel *itemData = [tableData objectAtIndex:indexPath.row];
     [detailVC setScreenMode:Streaming_Client];
+    detailVC.liveStreamName = itemData.rtmp_url;
     [self presentViewController:detailVC animated:YES completion:nil];
 }
 
@@ -121,10 +186,17 @@
 
 #pragma AKPickerView delegate
 - (void)pickerView:(AKPickerView *)pickerView didSelectItem:(NSInteger)item{
+    
+    if(pickerView){ //whenn refresh by swipe, this function is also called, but pickerView variable is nil
+        [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Loading..."];
+    }
+    
     switch (item) {
         case 0:
+            [self loadRecordInfo];
             break;
         case 1:
+            [self loadLiveInfo];
             break;
         case 2:
             [self loadPreview];

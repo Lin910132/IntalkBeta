@@ -32,6 +32,7 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+    [self getMyInfo];
     [self showMyInfo];
     [self initUI];
 }
@@ -50,6 +51,20 @@
 }
 
 #pragma mark - Private
+-(void) getMyInfo{
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Loading..."];
+    
+    [InTalkAPI getMyInfoByToken:[[User getInstance] getUserToken] competion:^(NSDictionary * res, NSError * err) {
+        [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
+        if(err == nil) {
+            [[User getInstance] parseDataFromJson:res];
+            [self showMyInfo];
+        }else{
+            NSLog(@"\n ---Get MyInfo API returns Such Error : \n --- %@", err);
+        }
+    }];
+}
+
 -(void) showMyInfo{
     User* currentUser = [User getInstance];
     self.userID.text = [NSString stringWithFormat:@"ID: %d", currentUser.user_id];
@@ -67,15 +82,20 @@
     self.userLogo.layer.cornerRadius = self.userLogo.frame.size.height / 2;
     NSLog(@"%f", self.userLogo.frame.size.height);
     self.userLogo.layer.masksToBounds = YES;
+    
+    
 }
 
 -(void) uploadImage:(UIImage *) chosenImage{
     isImageUploading = YES;
     [self.userLogo setImage:chosenImage];
     __weak typeof(self) weakSelf = self;
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Uploading Image..."];
     dispatch_group_enter(self.dispatchGroup);
     NSString *base64Image = (NSString *)[UIImagePNGRepresentation(chosenImage) base64EncodedDataWithOptions:NSDataBase64Encoding64CharacterLineLength];
-    [InTalkAPI setAvatarImage:[[User getInstance] getUserToken] imageData:base64Image competion:^(NSDictionary *resp, NSError *err) {
+    NSString *base64StrParam = [NSString stringWithFormat:@"data:image/png;base64,%@", base64Image];
+    [InTalkAPI setAvatarImage:[[User getInstance] getUserToken] imageData:base64StrParam competion:^(NSDictionary *resp, NSError *err) {
+        [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
         if(!err){
             NSLog(@"%@", resp);
         }else{

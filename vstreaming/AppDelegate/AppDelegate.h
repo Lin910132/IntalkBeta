@@ -23,6 +23,6 @@
 - (void)showLoader;
 - (void)showBlackLoader;
 - (void)hideLoader;
-
+- (void) showLoaderWithString:(NSString *) loadingString;
 @end
 

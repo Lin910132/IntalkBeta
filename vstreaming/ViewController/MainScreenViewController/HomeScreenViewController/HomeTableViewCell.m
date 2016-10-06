@@ -7,13 +7,15 @@
 //
 
 #import "HomeTableViewCell.h"
-
+#import "HomeTableItemModel.h"
+#import <UIImageView+AFNetworking.h>
 @implementation HomeTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -22,9 +24,51 @@
     // Configure the view for the selected state
 }
 
-- (void)setDataToCell:(NSMutableDictionary *)cellData{
-    //TODO
-    //put set data logic
+- (CGFloat)widthOfString:(NSString *)string withFont:(UIFont *)font {
+    
+    NSDictionary *userAttributes = @{NSFontAttributeName: font,
+                                     NSForegroundColorAttributeName: [UIColor blackColor]};
+    const CGSize textSize = [string sizeWithAttributes: userAttributes];
+    return textSize.width;
+}
+
+- (void)setDataToCell:(HomeTableItemModel *)cellData cellType:(int)type{
+    [self.imgLogo setImageWithURLRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:cellData.img_url]]
+                        placeholderImage:nil
+                                 success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image){
+                                     [self.imgLogo setImage:image];
+                                 }
+                                 failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error){
+                                 }];
+    
+    if(type == PreviewCell){
+        self.itemTitle.text = cellData.name;
+    }else if(type == LiveStramCell){
+        self.itemTitle.text = cellData.title;
+        if(cellData.tag1_id != 0){ //if not empty
+            [self.tag1 setTitle:[[DataManager getInstance] findTagByID:cellData.tag1_id] forState:UIControlStateNormal];
+            self.tag1WidthConstraint.constant = [self widthOfString:[[DataManager getInstance] findTagByID:cellData.tag1_id] withFont:[UIFont systemFontOfSize:12.0]];
+            //[self.tag1.titleLabel layoutIfNeeded];
+        }else{
+            [self.tag1 setHidden:YES];
+        }
+        
+        if(cellData.tag2_id != 0){ //if not empty
+            self.tag2.titleLabel.text = [[DataManager getInstance] findTagByID:cellData.tag2_id];
+            
+        }else{
+            [self.tag2 setHidden:YES];
+        }
+        
+        if(cellData.tag3_id != 0){ //if not empty
+            self.tag3.titleLabel.text = [[DataManager getInstance] findTagByID:cellData.tag3_id];
+            
+        }else{
+            [self.tag3 setHidden:YES];
+        }
+        
+        [self.viewCountInfo setText:[NSString stringWithFormat:@"%dk Views", cellData.viewCount]];
+    }
 }
 
 @end

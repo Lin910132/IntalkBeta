@@ -70,6 +70,7 @@
     selectedTagIDs = [NSMutableArray new];
     selectedYear = Year0_3;
     
+    self.tagTextField.userInteractionEnabled = NO;
     for(TagModel *item in dataManager.allTags){
         [arryList addObject:item.tagName];
     }
@@ -185,7 +186,7 @@
         tag_id1 = [[selectedTagIDs objectAtIndex:0] intValue];
     }
     
-    [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoader];
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Sending..."];
     
     [InTalkAPI setExpert:[[User getInstance]getUserToken]  Name:_nameTextField.text Company:_companyTextField.text Title:_titleTextField.text Years:selectedYear PhoneNumber:_phoneTextField.text Email:_emailTextField.text TagID1:tag_id1 TagID2:tag_id2 TagID3:tag_id3 Description:_descriptionTextField.text
                competion:^(NSDictionary *json, NSError * err) {

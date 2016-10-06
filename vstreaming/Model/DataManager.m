@@ -7,7 +7,7 @@
 //
 
 #import "DataManager.h"
-
+#import "TagModel.h"
 static DataManager * dataManager;
 @implementation DataManager
 
@@ -25,4 +25,14 @@ static DataManager * dataManager;
     return self.allTags;
 }
 
+-(NSString*) findTagByID:(int)tagID{
+    NSString *tagName = @"Unknown";
+    for(TagModel *tag in self.allTags){
+        if(tag.tag_id == tagID){
+            tagName = tag.tagName;
+        }
+    }
+    
+    return tagName;
+}
 @end

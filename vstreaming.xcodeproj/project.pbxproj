@@ -1341,7 +1341,7 @@
 					"$(PROJECT_DIR)/vstreaming/weChatSDK/",
 				);
 				INFOPLIST_FILE = vstreaming/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1351,7 +1351,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.itgroup.vstreaming;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4d5a7144-5caa-4e89-bc22-b6e4e1cd6725";
+				PROVISIONING_PROFILE = "6b012165-1481-4cbe-b9cd-c571f8e38e57";
 			};
 			name = Debug;
 		};
@@ -1384,7 +1384,7 @@
 					"$(PROJECT_DIR)/vstreaming/weChatSDK/",
 				);
 				INFOPLIST_FILE = vstreaming/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1394,7 +1394,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.itgroup.vstreaming;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4d5a7144-5caa-4e89-bc22-b6e4e1cd6725";
+				PROVISIONING_PROFILE = "6b012165-1481-4cbe-b9cd-c571f8e38e57";
 			};
 			name = Release;
 		};

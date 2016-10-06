@@ -26,7 +26,7 @@
                   moduleName = "vstreaming"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta/vstreaming/ViewController/SignUpViewController.m"
-                  timestampString = "497389596.830148"
+                  timestampString = "497463202.094547"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "87"
@@ -41,7 +41,7 @@
                   moduleName = "vstreaming"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta/vstreaming/ViewController/SignUpViewController.m"
-                  timestampString = "497389596.834514"
+                  timestampString = "497463202.107016"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "88"
@@ -57,62 +57,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "vstreaming/Record/MP4Writer.m"
-            timestampString = "497315365.888858"
+            filePath = "vstreaming/ViewController/MainScreenViewController/ProfileViewController/MainProfileViewController.m"
+            timestampString = "497463200.843775"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "268"
-            endingLineNumber = "268"
-            landmarkName = "-base64OfVideo"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "-uploadImage:"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "vstreaming/ViewController/MainScreenViewController/HomeScreenViewController/HomeViewController.m"
-            timestampString = "497315819.827627"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "-loadPreview"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[HomeViewController loadPreview]"
-                  moduleName = "vstreaming"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta/vstreaming/ViewController/MainScreenViewController/HomeScreenViewController/HomeViewController.m"
-                  timestampString = "497389596.847088"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "66"
-                  endingLineNumber = "66"
-                  offsetFromSymbolStart = "192">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__33-[HomeViewController loadPreview]_block_invoke"
-                  moduleName = "vstreaming"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta/vstreaming/ViewController/MainScreenViewController/HomeScreenViewController/HomeViewController.m"
-                  timestampString = "497389596.850798"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67"
-                  offsetFromSymbolStart = "76">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

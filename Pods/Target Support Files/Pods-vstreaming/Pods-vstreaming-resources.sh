@@ -81,9 +81,17 @@ EOM
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle"
+  install_resource "SAMHUDView/Resources/SAMHUDView-Check.png"
+  install_resource "SAMHUDView/Resources/SAMHUDView-Check@2x.png"
+  install_resource "SAMHUDView/Resources/SAMHUDView-X.png"
+  install_resource "SAMHUDView/Resources/SAMHUDView-X@2x.png"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle"
+  install_resource "SAMHUDView/Resources/SAMHUDView-Check.png"
+  install_resource "SAMHUDView/Resources/SAMHUDView-Check@2x.png"
+  install_resource "SAMHUDView/Resources/SAMHUDView-X.png"
+  install_resource "SAMHUDView/Resources/SAMHUDView-X@2x.png"
 fi
 
 mkdir -p "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

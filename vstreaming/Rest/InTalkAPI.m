@@ -32,9 +32,10 @@
     [WebManager POST:APIStartBroadCast parameters:params completion:block];
 }
 
-+(void)stopBroadCasting:(NSString *)token Video:(NSString *)base64Video block:(void (^)(NSDictionary *, NSError *))block{
-    NSDictionary *params = @{@"token":token,
-                             @"video":base64Video};
++(void)stopBroadCasting:(NSString*) token broadcastID:(int) broadcastID Video:(NSString *) base64Video block:(void(^)(NSDictionary * json, NSError *error)) block{
+    NSDictionary *params = @{@"token"       :token,
+                             @"broadcastid" :[NSString stringWithFormat:@"%d",broadcastID],
+                             @"video"       :base64Video};
     [WebManager POST:APIEndBroadCast parameters:params completion:block];
 }
 
@@ -134,5 +135,13 @@
                              @"message"  : message
                              };
     [WebManager POST:APISendMessage parameters:params completion:block];
+}
+
++(void)getRecord:(NSString *)token limit:(int)limit offset:(int)offset competion:(void (^)(NSDictionary *, NSError *))block{
+    NSDictionary *params = @{@"token"   :token,
+                             @"limit"   :[NSString stringWithFormat:@"%d", limit],
+                             @"offset"  :[NSString stringWithFormat:@"%d", offset],
+                             };
+    [WebManager POST:APIGetRecord parameters:params completion:block];
 }
 @end

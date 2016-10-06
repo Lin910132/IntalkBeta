@@ -9,6 +9,7 @@ pod 'AKPickerView'
 #pod 'DAKeyboardControl'
 pod 'UITextView+Placeholder', '~> 1.2'
 pod 'SDWebImage'
+pod 'SAMHUDView'
 pod 'AFNetworking', '~> 3.0'
 pod 'DGActivityIndicatorView'
 pod "IQKeyboardManager"#, :path => "."

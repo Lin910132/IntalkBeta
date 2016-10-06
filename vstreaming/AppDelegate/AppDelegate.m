@@ -12,10 +12,11 @@
 #import "WeiboAccess.h"
 #import <AVFoundation/AVFoundation.h>
 #import "IQKeyboardManager.h"
-
+#import "SAMHUDView.h"
 @interface AppDelegate (){
     UIActivityIndicatorView *_loader;
     UIImageView *_loaderBackgroundView;
+    SAMHUDView *samhudView;
 }
 @end
 
@@ -283,16 +284,30 @@ static NSString *const kTencentScheme = @"tencent1105461365";
 }
 
 - (void)hideLoader {
-    [self.window setUserInteractionEnabled:YES];
-    [_loader stopAnimating];
-    _loaderBackgroundView.hidden = YES;
+    if(_loader != nil) {
+        [self.window setUserInteractionEnabled:YES];
+        [_loader stopAnimating];
+        _loaderBackgroundView.hidden = YES;
+    }
+    
+    if(samhudView != nil){
+        [samhudView dismiss];
+    }
 }
 - (void)centerLoader {
     _loaderBackgroundView.frame = CGRectMake(self.window.center.x - (_loaderBackgroundView.frame.size.width / 2),
                                              self.window.center.y - (_loaderBackgroundView.frame.size.height / 2),
                                              _loaderBackgroundView.frame.size.width,
                                              _loaderBackgroundView.frame.size.height);
-    
+}
+
+-(void)showLoaderWithString:(NSString *)loadingString{
+    if(samhudView == nil){
+        samhudView = [[SAMHUDView alloc] initWithTitle:NSLocalizedString(loadingString, nil)];
+    }else{
+        samhudView.textLabel.text = loadingString;
+    }
+    [samhudView show];
 }
 
 @end

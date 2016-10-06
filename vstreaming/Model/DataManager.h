@@ -14,4 +14,5 @@
 
 +(id) getInstance;
 -(NSMutableArray *) getAllTags;
+-(NSString *) findTagByID:(int) tagID;
 @end

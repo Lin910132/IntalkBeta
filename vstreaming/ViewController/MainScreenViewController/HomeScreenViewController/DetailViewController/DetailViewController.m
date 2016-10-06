@@ -26,6 +26,7 @@
     CGRect originalSize;
     UIImage *sound_image;
     CIImage *frameImage;
+    int  broadcastID;
     
 }
 
@@ -203,7 +204,7 @@
     
     
     
-    [_lecPlayer registerWithURLString:PLAY_LIST_URL completion:^(BOOL result) {
+    [_lecPlayer registerWithURLString:_liveStreamName completion:^(BOOL result) {
         if (result){
             [_lecPlayer play];
         }else{
@@ -216,7 +217,7 @@
     NSLog(@"Broadcast URL %@", url);
     [InTalkAPI startBroadcastWithToken:[[User getInstance] getUserToken] Url:url completion:^(NSDictionary *json, NSError *error) {
         if(!error){
-            
+            broadcastID = [[json objectForKey:@"broadcastid"]intValue];
         }else {
             NSLog(@"\n StartBroadcasting occurs Such error : %@", error);
         }
@@ -224,16 +225,19 @@
 }
 
 -(void) endBroadcast{
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Uploading Video..."];
     NSString *base64Video = [_mp4Writer base64OfVideo];
-    [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoader];
-    [InTalkAPI stopBroadCasting:[[User getInstance] getUserToken] Video:base64Video block:^(NSDictionary *json, NSError *error) {
+    [InTalkAPI stopBroadCasting:[[User getInstance] getUserToken] broadcastID:broadcastID Video:base64Video block:^(NSDictionary *json, NSError *error) {
         [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
         if(!error){
             [self dismissViewControllerAnimated:YES completion:nil];
         }else{
             NSLog(@"\n ---EndBroadcast occurs such error %@", error);
+            
+            SHOWALLERT(@"Error", @"Error on uploading video");
         }
     }];
+    //[self dismissViewControllerAnimated:YES completion:nil];
 }
 //for capturing video on hosting side
 -(void) startLiveStreamingVideo{
@@ -243,8 +247,8 @@
         [broadcastConfig loadPreset:WZFrameSizePreset640x480];
         broadcastConfig.capturedVideoRotates = false;
         broadcastConfig.broadcastScaleMode = WZBroadcastScaleModeAspectFit;
-        broadcastConfig.hostAddress = @"10.70.5.1";
-        //broadcastConfig.hostAddress = @"www.intalk.tv";
+        //broadcastConfig.hostAddress = @"10.70.5.1";
+        broadcastConfig.hostAddress = @"www.intalk.tv";
         broadcastConfig.applicationName = @"live";
         broadcastConfig.streamName = _liveStreamName;
         

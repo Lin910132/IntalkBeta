@@ -51,7 +51,7 @@
 -(void) getTagsInfo{
     [tagArray removeAllObjects];
     
-    [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoader];
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Loading..."];
     [InTalkAPI getAllTags:[[User getInstance] getUserToken] competion:^(NSDictionary * response, NSError * err){
         [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
         if(err == nil){
