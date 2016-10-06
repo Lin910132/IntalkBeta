@@ -105,7 +105,7 @@
     
     isFullMode = false;
     fullSizeFrame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
-    originalSize = CGRectMake(self.imageView.frame.origin.x, self.imageView.frame.origin.y, self.view.frame.size.width, 215);
+    originalSize = CGRectMake(self.imageView.frame.origin.x, self.imageView.frame.origin.y, self.view.frame.size.width, self.imageView.frame.size.height);
     //originalSize = CGRectMake(0, 0, 200, 100);
     
     [_imageView setFrame:originalSize];
