@@ -16,6 +16,7 @@
 +(void) saveDataWithKey:(NSString *) key Data:(NSObject *) data;
 +(NSObject *) getDataWithKey:(NSString *) key;
 +(NSString *) randomStringWithLength: (int) len;
++(NSString *) encodeBase64WithData: (NSData *) data;
 @end
 
 #endif /* Utility_h */

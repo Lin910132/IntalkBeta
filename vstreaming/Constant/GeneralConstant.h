@@ -65,9 +65,10 @@ typedef NS_ENUM(NSInteger, YearValue)
 
 typedef NS_ENUM(NSInteger, HomeTableViewCellType)
 {
-    RecordCell = 0,
+    PreviewCell = 0,
     LiveStramCell,
-    PreviewCell
+    RecordCell
+    
 };
 
 #define greenColorForButtons [UIColor colorWithRed:0.3 green:0.57 blue:0.43 alpha:1]

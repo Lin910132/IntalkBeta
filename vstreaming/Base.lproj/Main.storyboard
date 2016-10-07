@@ -2684,24 +2684,23 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_back" translatesAutoresizingMaskIntoConstraints="NO" id="vaU-Oh-DrL">
                                         <rect key="frame" x="0.0" y="0.0" width="310" height="85"/>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ym3-a0-viX">
-                                        <rect key="frame" x="15" y="3" width="280" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="tsR-37-9zI"/>
-                                        </constraints>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dej-td-NVI">
+                                        <rect key="frame" x="10" y="10" width="290" height="65"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="ym3-a0-viX" firstAttribute="centerX" secondItem="dq1-s6-h7Y" secondAttribute="centerX" id="8VY-GG-AmT"/>
-                                    <constraint firstItem="ym3-a0-viX" firstAttribute="leading" secondItem="dq1-s6-h7Y" secondAttribute="leading" constant="15" id="H9k-sl-CwG"/>
                                     <constraint firstItem="vaU-Oh-DrL" firstAttribute="centerX" secondItem="dq1-s6-h7Y" secondAttribute="centerX" id="HNX-3T-eEU"/>
                                     <constraint firstItem="vaU-Oh-DrL" firstAttribute="width" secondItem="dq1-s6-h7Y" secondAttribute="width" id="Mil-69-etZ"/>
                                     <constraint firstItem="vaU-Oh-DrL" firstAttribute="height" secondItem="dq1-s6-h7Y" secondAttribute="height" id="Q7l-2j-C44"/>
+                                    <constraint firstItem="dej-td-NVI" firstAttribute="centerX" secondItem="dq1-s6-h7Y" secondAttribute="centerX" id="X7K-KW-Qa9"/>
+                                    <constraint firstItem="dej-td-NVI" firstAttribute="width" secondItem="dq1-s6-h7Y" secondAttribute="width" constant="-20" id="h11-Hc-9WL"/>
+                                    <constraint firstItem="dej-td-NVI" firstAttribute="centerY" secondItem="dq1-s6-h7Y" secondAttribute="centerY" id="hsE-tc-kqd"/>
+                                    <constraint firstItem="dej-td-NVI" firstAttribute="height" secondItem="dq1-s6-h7Y" secondAttribute="height" constant="-20" id="puc-KD-JvQ"/>
                                     <constraint firstItem="vaU-Oh-DrL" firstAttribute="centerY" secondItem="dq1-s6-h7Y" secondAttribute="centerY" id="r5N-xh-mf3"/>
-                                    <constraint firstItem="ym3-a0-viX" firstAttribute="top" secondItem="dq1-s6-h7Y" secondAttribute="top" constant="3" id="x95-al-Bds"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FAF-4t-8Yv">
@@ -2798,7 +2797,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="companyTextField" destination="8N2-MZ-bu4" id="KlY-OU-cPa"/>
-                        <outlet property="descriptionTextField" destination="ym3-a0-viX" id="raL-Bn-8cO"/>
+                        <outlet property="editDescription" destination="dej-td-NVI" id="mnK-ZD-uG9"/>
                         <outlet property="emailTextField" destination="44I-Cw-zFt" id="FCg-iU-biW"/>
                         <outlet property="nameTextField" destination="SBh-Mj-UeM" id="6yM-lG-Hc4"/>
                         <outlet property="phoneTextField" destination="wox-hj-h1v" id="RGd-xS-GYt"/>
@@ -3373,7 +3372,7 @@
                                             <action selector="btnFollowingClicked:" destination="1w0-SD-m2f" eventType="touchUpInside" id="3M0-bh-mqw"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_sample_data" translatesAutoresizingMaskIntoConstraints="NO" id="PLu-Bq-DvJ">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="male_placeholde" translatesAutoresizingMaskIntoConstraints="NO" id="PLu-Bq-DvJ">
                                         <rect key="frame" x="126" y="8" width="68" height="68"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="PLu-Bq-DvJ" secondAttribute="height" multiplier="1:1" id="BTm-3y-b1e"/>
@@ -7626,6 +7625,7 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
         <image name="login4" width="35" height="35"/>
         <image name="login_btn" width="275" height="50"/>
         <image name="loveus" width="225" height="22"/>
+        <image name="male_placeholde" width="150" height="168"/>
         <image name="privacy" width="375" height="598"/>
         <image name="profile_sample_data" width="156" height="157"/>
         <image name="renren" width="60" height="60"/>

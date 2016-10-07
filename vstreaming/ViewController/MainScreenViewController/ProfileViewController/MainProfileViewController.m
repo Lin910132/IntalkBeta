@@ -9,6 +9,7 @@
 #import "MainProfileViewController.h"
 #import "FollowInformationViewController.h"
 #import <AVFoundation/AVFoundation.h>
+#import <UIImageView+AFNetworking.h>
 @interface MainProfileViewController() <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 {
     BOOL isImageUploading;
@@ -33,7 +34,7 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     [self getMyInfo];
-    [self showMyInfo];
+    //[self showMyInfo];
     [self initUI];
 }
 
@@ -60,7 +61,7 @@
             [[User getInstance] parseDataFromJson:res];
             [self showMyInfo];
         }else{
-            NSLog(@"\n ---Get MyInfo API returns Such Error : \n --- %@", err);
+            SHOWALLERT(@"Request error", err.localizedDescription);
         }
     }];
 }
@@ -69,6 +70,13 @@
     User* currentUser = [User getInstance];
     self.userID.text = [NSString stringWithFormat:@"ID: %d", currentUser.user_id];
     self.userName.text = currentUser.name;
+    [self.userLogo setImageWithURLRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:currentUser.avatar_url]]
+                        placeholderImage:nil
+                                 success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image){
+                                     [self.userLogo setImage:image];
+                                 }
+                                 failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error){
+                                 }];
     
 }
 
@@ -92,12 +100,14 @@
     __weak typeof(self) weakSelf = self;
     [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Uploading Image..."];
     dispatch_group_enter(self.dispatchGroup);
-    NSString *base64Image = (NSString *)[UIImagePNGRepresentation(chosenImage) base64EncodedDataWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    NSData *data = UIImagePNGRepresentation(chosenImage);
+    NSString *base64Image = [Utility encodeBase64WithData:data];
     NSString *base64StrParam = [NSString stringWithFormat:@"data:image/png;base64,%@", base64Image];
     [InTalkAPI setAvatarImage:[[User getInstance] getUserToken] imageData:base64StrParam competion:^(NSDictionary *resp, NSError *err) {
         [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
         if(!err){
-            NSLog(@"%@", resp);
+            NSString *avatar_url = [resp objectForKey:@"avatar_url"];
+            [[User getInstance] setAvatar_url:avatar_url];
         }else{
             NSLog(@"\n --- Set Avatar API occures such error: %@", err);
         }

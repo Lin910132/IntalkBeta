@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "-[ExpertSubmitViewController submitBtnPressed:]:ExpertSubmitViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.editDescription.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[LiveStreaming initTIMManager]:LiveStreaming.m">
          <PersistentStrings>
             <PersistentString

@@ -41,7 +41,7 @@
 -(void) initPickerView{
     self.pickerView.delegate = self;
     self.pickerView.dataSource = self;
-    pickerList = @[@"Recommended", @"New", @"Preview"];
+    pickerList = @[@"Preview", @"Live", @"Record"];
     self.pickerView.font = [UIFont systemFontOfSize:12];
     self.pickerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.pickerView.textColor = [UIColor whiteColor];
@@ -66,6 +66,7 @@
             
             [_homeTableView reloadData];
         }else{
+            SHOWALLERT(@"Request error", err.localizedDescription);
             NSLog(@"\n --- Get Live Broadcast API occurs such error %@", err);
         }
     }];
@@ -85,7 +86,7 @@
             
             [_homeTableView reloadData];
         }else{
-            NSLog(@"\n --- Get Preview API occurs such error %@", err);
+            SHOWALLERT(@"Request error", err.localizedDescription);
         }
     }];
 }
@@ -103,7 +104,7 @@
             
             [_homeTableView reloadData];
         }else{
-            NSLog(@"\n --- Get Preview API occurs such error %@", err);
+            SHOWALLERT(@"Request error", err.localizedDescription);
         }
     }];
 }
@@ -121,7 +122,7 @@
             
             [_homeTableView reloadData];
         }else{
-            NSLog(@"\n --- Get Preview API occurs such error %@", err);
+            SHOWALLERT(@"Request error", err.localizedDescription);
         }
     }];
 }
@@ -161,7 +162,7 @@
         cell = [[HomeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:homeTableItemIdentifier];
         
     }
-
+    [cell initUI];
     [cell setDataToCell:[tableData objectAtIndex:indexPath.row] cellType:self.pickerView.selectedItem];
     return cell;
 }
@@ -193,13 +194,13 @@
     
     switch (item) {
         case 0:
-            [self loadRecordInfo];
+            [self loadPreview];
             break;
         case 1:
             [self loadLiveInfo];
             break;
         case 2:
-            [self loadPreview];
+            [self loadRecordInfo];
             break;
         default:
             break;

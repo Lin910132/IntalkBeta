@@ -29,7 +29,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
-@property (weak, nonatomic) IBOutlet UITextField *descriptionTextField;
+@property (weak, nonatomic) IBOutlet UITextView *editDescription;
+
 
 
 @end
@@ -169,7 +170,7 @@
         return;
     }
     
-    if(!self.tagTextField.text){
+    if(!self.editDescription.text || [self.editDescription.text isEqualToString:@""]){
         SHOWALLERT(@"Error", @"Please Input Description");
         return;
     }
@@ -179,22 +180,22 @@
     }
     
     if([selectedTagIDs count] > 1){
-        tag_id1 = [[selectedTagIDs objectAtIndex:0] intValue];
+        tag_id2 = [[selectedTagIDs objectAtIndex:1] intValue];
     }
     
     if([selectedTagIDs count] > 2){
-        tag_id1 = [[selectedTagIDs objectAtIndex:0] intValue];
+        tag_id3 = [[selectedTagIDs objectAtIndex:2] intValue];
     }
     
     [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Sending..."];
     
-    [InTalkAPI setExpert:[[User getInstance]getUserToken]  Name:_nameTextField.text Company:_companyTextField.text Title:_titleTextField.text Years:selectedYear PhoneNumber:_phoneTextField.text Email:_emailTextField.text TagID1:tag_id1 TagID2:tag_id2 TagID3:tag_id3 Description:_descriptionTextField.text
+    [InTalkAPI setExpert:[[User getInstance]getUserToken]  Name:_nameTextField.text Company:_companyTextField.text Title:_titleTextField.text Years:selectedYear PhoneNumber:_phoneTextField.text Email:_emailTextField.text TagID1:tag_id1 TagID2:tag_id2 TagID3:tag_id3 Description:_editDescription.text
                competion:^(NSDictionary *json, NSError * err) {
                    [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
                    if(!err){
                        [self backBtnClicked:nil];
                    }else{
-                       NSLog(@"\nSet Expert API occured such err : %@", err);
+                       SHOWALLERT(@"Expert Request API Error", err.localizedDescription);
                    }
     }];
 }

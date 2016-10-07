@@ -219,7 +219,7 @@
         if(!error){
             broadcastID = [[json objectForKey:@"broadcastid"]intValue];
         }else {
-            NSLog(@"\n StartBroadcasting occurs Such error : %@", error);
+            SHOWALLERT(@"Broadcasting Request Error", error.localizedDescription);
         }
     }];
 }

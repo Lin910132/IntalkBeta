@@ -24,6 +24,9 @@
     // Configure the view for the selected state
 }
 
+-(void) initUI{
+    [self.viewCountInfo setHidden:YES];
+}
 - (CGFloat)widthOfString:(NSString *)string withFont:(UIFont *)font {
     
     NSDictionary *userAttributes = @{NSFontAttributeName: font,
@@ -48,20 +51,21 @@
         if(cellData.tag1_id != 0){ //if not empty
             [self.tag1 setTitle:[[DataManager getInstance] findTagByID:cellData.tag1_id] forState:UIControlStateNormal];
             self.tag1WidthConstraint.constant = [self widthOfString:[[DataManager getInstance] findTagByID:cellData.tag1_id] withFont:[UIFont systemFontOfSize:12.0]];
-            //[self.tag1.titleLabel layoutIfNeeded];
         }else{
             [self.tag1 setHidden:YES];
         }
         
         if(cellData.tag2_id != 0){ //if not empty
-            self.tag2.titleLabel.text = [[DataManager getInstance] findTagByID:cellData.tag2_id];
+            [self.tag2 setTitle:[[DataManager getInstance] findTagByID:cellData.tag2_id] forState:UIControlStateNormal];
+            self.tag2WidthConstraint.constant = [self widthOfString:[[DataManager getInstance] findTagByID:cellData.tag2_id] withFont:[UIFont systemFontOfSize:12.0]];
             
         }else{
             [self.tag2 setHidden:YES];
         }
         
         if(cellData.tag3_id != 0){ //if not empty
-            self.tag3.titleLabel.text = [[DataManager getInstance] findTagByID:cellData.tag3_id];
+            [self.tag3 setTitle:[[DataManager getInstance] findTagByID:cellData.tag3_id] forState:UIControlStateNormal];
+            self.tag3WidthConstraint.constant = [self widthOfString:[[DataManager getInstance] findTagByID:cellData.tag3_id] withFont:[UIFont systemFontOfSize:12.0]];
             
         }else{
             [self.tag3 setHidden:YES];

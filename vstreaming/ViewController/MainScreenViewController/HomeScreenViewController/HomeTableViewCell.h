@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol HomeTableViewCellDelegate
+-(void)didSelectTagButton:(NSString*)tagID;
+@end
+
 @interface HomeTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imgLogo;
 @property (weak, nonatomic) IBOutlet UILabel *viewCountInfo;
@@ -22,4 +26,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tag3WidthConstraint;
 
 -(void)setDataToCell:(NSMutableDictionary *) cellData cellType:(int) type;
+-(void)initUI;
+@property(nonatomic, retain) id<HomeTableViewCellDelegate> delegate;
 @end

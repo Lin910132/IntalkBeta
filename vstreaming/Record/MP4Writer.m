@@ -267,9 +267,7 @@ static BOOL isKeyFrame(CMSampleBufferRef sample) {
     NSLog(@"Video Path - %@", videoPath);*/
     NSData *data = [[NSData dataWithContentsOfURL:videoPath] base64EncodedDataWithOptions:NSDataBase64Encoding64CharacterLineLength];
     
-    NSString *ret = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    
+    NSString *ret = [Utility encodeBase64WithData:data];
     return [NSString stringWithFormat:@"data:video/mp4;base64,%@", ret];
-    //return ret;
 }
 @end

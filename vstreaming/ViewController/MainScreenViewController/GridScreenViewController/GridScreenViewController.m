@@ -62,7 +62,7 @@
             }
             [self.collectionView reloadData];
         }else{
-            NSLog(@"Get All Tags API occurs such Error %@", err);
+            SHOWALLERT(@"Request error", err.localizedDescription);
         }
     }];
 }
