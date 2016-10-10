@@ -26,6 +26,7 @@
 
 -(void) initUI{
     [self.viewCountInfo setHidden:YES];
+    [self.viewCountView setHidden:YES];
 }
 - (CGFloat)widthOfString:(NSString *)string withFont:(UIFont *)font {
     
@@ -47,7 +48,6 @@
     if(type == PreviewCell){
         self.itemTitle.text = cellData.name;
     }else if(type == LiveStramCell){
-        self.itemTitle.text = cellData.title;
         if(cellData.tag1_id != 0){ //if not empty
             [self.tag1 setTitle:[[DataManager getInstance] findTagByID:cellData.tag1_id] forState:UIControlStateNormal];
             self.tag1WidthConstraint.constant = [self widthOfString:[[DataManager getInstance] findTagByID:cellData.tag1_id] withFont:[UIFont systemFontOfSize:12.0]];
@@ -72,6 +72,57 @@
         }
         
         [self.viewCountInfo setText:[NSString stringWithFormat:@"%dk Views", cellData.viewCount]];
+        [self.imgLogo setImageWithURLRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:cellData.avatar_url]]
+                             placeholderImage:nil
+                                      success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image){
+                                          [self.imgLogo setImage:image];
+                                      }
+                                      failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error){
+                                      }];
+        [self.itemContent setText:cellData.descriptText];
+        [self.itemTitle setText:cellData.title];
+    }else{
+        if(cellData.tag1_id != 0){ //if not empty
+            [self.tag1 setTitle:[[DataManager getInstance] findTagByID:cellData.tag1_id] forState:UIControlStateNormal];
+            self.tag1WidthConstraint.constant = [self widthOfString:[[DataManager getInstance] findTagByID:cellData.tag1_id] withFont:[UIFont systemFontOfSize:12.0]];
+        }else{
+            [self.tag1 setHidden:YES];
+        }
+        
+        if(cellData.tag2_id != 0){ //if not empty
+            [self.tag2 setTitle:[[DataManager getInstance] findTagByID:cellData.tag2_id] forState:UIControlStateNormal];
+            self.tag2WidthConstraint.constant = [self widthOfString:[[DataManager getInstance] findTagByID:cellData.tag2_id] withFont:[UIFont systemFontOfSize:12.0]];
+            
+        }else{
+            [self.tag2 setHidden:YES];
+        }
+        
+        if(cellData.tag3_id != 0){ //if not empty
+            [self.tag3 setTitle:[[DataManager getInstance] findTagByID:cellData.tag3_id] forState:UIControlStateNormal];
+            self.tag3WidthConstraint.constant = [self widthOfString:[[DataManager getInstance] findTagByID:cellData.tag3_id] withFont:[UIFont systemFontOfSize:12.0]];
+            
+        }else{
+            [self.tag3 setHidden:YES];
+        }
+        
+        [self.viewCountInfo setText:[NSString stringWithFormat:@"%dk Views", cellData.viewCount]];
+        [self.imgLogo setImageWithURLRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:cellData.avatar_url]]
+                            placeholderImage:nil
+                                     success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image){
+                                         [self.imgLogo setImage:image];
+                                     }
+                                     failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error){
+                                     }];
+        [self.itemContent setText:cellData.descriptText];
+        [self.itemTitle setText:cellData.title];
+    }
+}
+
+#pragma mark - outlets
+- (IBAction)tagPressed:(id)sender {
+    UIButton* pressedBtn = (UIButton *) sender;
+    if(self.delegate){
+        [self.delegate didSelectTagButton:pressedBtn.tag];
     }
 }
 

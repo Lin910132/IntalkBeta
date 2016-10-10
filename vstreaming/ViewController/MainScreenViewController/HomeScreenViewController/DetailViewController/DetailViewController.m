@@ -27,6 +27,7 @@
     UIImage *sound_image;
     CIImage *frameImage;
     int  broadcastID;
+    BOOL isClosing;
     
 }
 
@@ -103,7 +104,7 @@
     selectedTab = QuestionTabSelected;
     [self setSelectMarksHiddenQuests:NO Expert:YES SuggestQt:YES];
     
-    isFullMode = false;
+    isFullMode = false; isClosing = false;
     fullSizeFrame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
     originalSize = CGRectMake(self.imageView.frame.origin.x, self.imageView.frame.origin.y, self.view.frame.size.width, self.imageView.frame.size.height);
     //originalSize = CGRectMake(0, 0, 200, 100);
@@ -225,19 +226,22 @@
 }
 
 -(void) endBroadcast{
-    [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Uploading Video..."];
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Ending..."];
     NSString *base64Video = [_mp4Writer base64OfVideo];
-    [InTalkAPI stopBroadCasting:[[User getInstance] getUserToken] broadcastID:broadcastID Video:base64Video block:^(NSDictionary *json, NSError *error) {
+    [InTalkAPI stopBroadCasting:[[User getInstance] getUserToken] broadcastID:broadcastID Video:nil block:^(NSDictionary *json, NSError *error) {
         [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
         if(!error){
             [self dismissViewControllerAnimated:YES completion:nil];
         }else{
             NSLog(@"\n ---EndBroadcast occurs such error %@", error);
             
-            SHOWALLERT(@"Error", @"Error on uploading video");
+            SHOWALLERT(@"Error", error.localizedDescription);
         }
     }];
-    //[self dismissViewControllerAnimated:YES completion:nil];
+    
+    //uploading video in background
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] uploadingViewinBackground:[[User getInstance] getUserToken] video:base64Video broadcastID:broadcastID];
+    
 }
 //for capturing video on hosting side
 -(void) startLiveStreamingVideo{
@@ -296,6 +300,8 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)backBtnPressed:(id)sender {
+    if(isClosing){ return;}
+    isClosing = YES;
     [self setDisconnect];
     
 }

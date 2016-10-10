@@ -10,4 +10,5 @@
 
 @interface ExpertSearchViewController : UIViewController
 
+@property (nonatomic) NSInteger tagID;
 @end

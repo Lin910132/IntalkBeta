@@ -310,4 +310,13 @@ static NSString *const kTencentScheme = @"tencent1105461365";
     [samhudView show];
 }
 
+-(void)uploadingViewinBackground:(NSString *)token video:(NSString *)video broadcastID:(int)broadcastID{
+    [InTalkAPI stopBroadCasting:[[User getInstance] getUserToken] broadcastID:broadcastID Video:nil block:^(NSDictionary *json, NSError *error) {
+        if(!error){
+            
+        }else{
+            NSLog(@"%@", error);
+        }
+    }];
+}
 @end

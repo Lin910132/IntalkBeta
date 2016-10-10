@@ -11,7 +11,8 @@
 #import "DetailViewController.h"
 #import "AKPickerView.h"
 #import "HomeTableItemModel.h"
-@interface HomeViewController () <AKPickerViewDataSource, AKPickerViewDelegate>
+#import "ExpertSearchViewController.h"
+@interface HomeViewController () <AKPickerViewDataSource, AKPickerViewDelegate, HomeTableViewCellDelegate>
 {
     NSMutableArray * tableData;
     NSArray *pickerList;
@@ -27,7 +28,6 @@
     //init homeTableView
     tableData = [[NSMutableArray alloc] init];
     [self initPickerView];
-    [self loadLiveStream];
     [self makeTableViewRefreshable];
     self.homeTableView.separatorColor = [UIColor clearColor];
 }
@@ -53,23 +53,6 @@
     self.pickerView.maskDisabled = false;
     [self.pickerView reloadData];
     [self.pickerView selectItem:1 animated:NO]; //Select New Tab
-}
-
--(void) loadLiveStream{
-    [InTalkAPI getLiveBroadcast:[[User getInstance]getUserToken] limit:10 offset:0 competion:^(NSDictionary *json, NSError *err) {
-        if(!err){
-            [tableData removeAllObjects];
-            for(NSDictionary * item in [json objectForKey:@"data"]){
-                HomeTableItemModel *cell = [HomeTableItemModel parseDataFromJson:item];
-                [tableData addObject:cell];
-            }
-            
-            [_homeTableView reloadData];
-        }else{
-            SHOWALLERT(@"Request error", err.localizedDescription);
-            NSLog(@"\n --- Get Live Broadcast API occurs such error %@", err);
-        }
-    }];
 }
 
 -(void) loadPreview{
@@ -163,6 +146,7 @@
         
     }
     [cell initUI];
+    cell.delegate = self;
     [cell setDataToCell:[tableData objectAtIndex:indexPath.row] cellType:self.pickerView.selectedItem];
     return cell;
 }
@@ -207,4 +191,11 @@
     }
 }
 
+#pragma mark - HomeTableViewCellDelegate
+-(void)didSelectTagButton:(NSInteger)tagID{
+    ExpertSearchViewController *expertSearchVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ExpertSearchViewController"];
+    
+    expertSearchVC.tagID = tagID;
+    [self presentViewController:expertSearchVC animated:YES completion:nil];
+}
 @end

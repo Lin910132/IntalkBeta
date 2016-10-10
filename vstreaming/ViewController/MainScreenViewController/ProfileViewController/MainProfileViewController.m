@@ -77,6 +77,8 @@
                                  }
                                  failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error){
                                  }];
+    [self.following setTitle:[NSString stringWithFormat:@"Following %d", currentUser.following] forState:UIControlStateNormal];
+    [self.follower setTitle:[NSString stringWithFormat:@"Follower %d", currentUser.followers] forState:UIControlStateNormal];
     
 }
 
@@ -109,7 +111,7 @@
             NSString *avatar_url = [resp objectForKey:@"avatar_url"];
             [[User getInstance] setAvatar_url:avatar_url];
         }else{
-            NSLog(@"\n --- Set Avatar API occures such error: %@", err);
+            SHOWALLERT(@"Uploading error", err.localizedDescription);
         }
         isImageUploading = NO;
         dispatch_group_leave(weakSelf.dispatchGroup);

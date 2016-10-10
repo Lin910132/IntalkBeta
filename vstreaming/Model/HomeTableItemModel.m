@@ -17,6 +17,7 @@
     model.name              = [dict objectForKey:@"name"];
     model.title             = [dict objectForKey:@"title"];
     model.img_url           = [dict objectForKey:@"img_url"];
+    model.avatar_url        = [dict objectForKey:@"avatar_url"];
     model.rtmp_url          = [dict objectForKey:@"url"];
     model.tag1_id           = [[dict objectForKey:@"tag1_id"] intValue];
     model.tag2_id           = [[dict objectForKey:@"tag2_id"] intValue];

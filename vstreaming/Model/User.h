@@ -35,6 +35,7 @@
 +(id) getInstance;
 
 -(NSString *) getUserToken;
+-(NSString *) getName;
 -(void) setUserToken:(NSString *) token;
 -(void) parseDataFromJson:(NSDictionary *) dict;
 -(int) getExpert;

@@ -17,6 +17,9 @@
 
 @property (weak, nonatomic) IBOutlet UIView *expertSelected;
 @property (weak, nonatomic) IBOutlet UIView *tagSelected;
+@property (weak, nonatomic) IBOutlet UIButton *expertBtn;
+@property (weak, nonatomic) IBOutlet UIButton *tagBtn;
+
 @end
 
 
@@ -26,7 +29,21 @@
     [super viewDidLoad];
     [_tagSelected setHidden:YES];
     [self.searchBar setImage:[UIImage imageNamed: @"icon_search.png"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+    
+    [self.expertBtn setTitle:[[User getInstance] getName] forState:UIControlStateNormal];
+    [self loadExpertData];
 }
+#pragma mark - Private
+-(void) loadExpertData{
+    [InTalkAPI searchExpert:[[User getInstance]getUserToken] tagID:self.tagID limit:10 offset:0 competion:^(NSDictionary *resp, NSError *err) {
+        if(!err){
+            NSLog(@"%@", resp);
+        }else{
+            NSLog(@"Error----");
+        }
+    }];
+}
+
 - (IBAction)backBtnClicked:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

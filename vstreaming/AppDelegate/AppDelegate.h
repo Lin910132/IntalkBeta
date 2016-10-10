@@ -24,5 +24,6 @@
 - (void)showBlackLoader;
 - (void)hideLoader;
 - (void) showLoaderWithString:(NSString *) loadingString;
+- (void) uploadingViewinBackground:(NSString*) token video:(NSString *) video broadcastID:(int) broadcastID;
 @end
 

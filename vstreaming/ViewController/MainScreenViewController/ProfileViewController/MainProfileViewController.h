@@ -18,5 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *userLevel;
 @property (weak, nonatomic) IBOutlet UILabel *userIncome;
 @property (weak, nonatomic) IBOutlet UILabel *userBalance;
+@property (weak, nonatomic) IBOutlet UIButton *follower;
+@property (weak, nonatomic) IBOutlet UIButton *following;
 
 @end

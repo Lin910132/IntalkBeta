@@ -33,9 +33,16 @@
 }
 
 +(void)stopBroadCasting:(NSString*) token broadcastID:(int) broadcastID Video:(NSString *) base64Video block:(void(^)(NSDictionary * json, NSError *error)) block{
-    NSDictionary *params = @{@"token"       :token,
-                             @"broadcastid" :[NSString stringWithFormat:@"%d",broadcastID],
-                             @"video"       :base64Video};
+    NSDictionary *params;
+    if(base64Video){
+        params = @{@"token"       :token,
+                   @"broadcastid" :[NSString stringWithFormat:@"%d",broadcastID],
+                   @"video"       :base64Video};
+    }else{
+        params = @{@"token"       :token,
+                   @"broadcastid" :[NSString stringWithFormat:@"%d",broadcastID]};
+    }
+    
     [WebManager POST:APIEndBroadCast parameters:params completion:block];
 }
 
@@ -143,5 +150,25 @@
                              @"offset"  :[NSString stringWithFormat:@"%d", offset],
                              };
     [WebManager POST:APIGetRecord parameters:params completion:block];
+}
+
++(void)searchExpert:(NSString *)token tagID:(int)tagID limit:(int)limit offset:(int)offset competion:(void (^)(NSDictionary *, NSError *))block{
+    NSDictionary *params = @{@"token"   :token,
+                             @"tagid"   :[NSString stringWithFormat:@"%d", tagID],
+                             @"limit"   :[NSString stringWithFormat:@"%d", limit],
+                             @"offset"  :[NSString stringWithFormat:@"%d", offset],
+                             };
+    
+    [WebManager POST:APISearchExpert parameters:params completion:block];
+}
+
++(void)addQuestion:(NSString *)token broadcastId:(int)broadcastID message:(NSString *)message diamond:(int)diamond competion:(void (^)(NSDictionary *, NSError *))block{
+    NSDictionary *params = @{@"token"       :token,
+                             @"broadcastid" :[NSString stringWithFormat:@"%d", broadcastID],
+                             @"question"    : message,
+                             @"diamond"     :[NSString stringWithFormat:@"%d", diamond],
+                             };
+    
+    [WebManager POST:APIAddQuestion parameters:params completion:block];
 }
 @end

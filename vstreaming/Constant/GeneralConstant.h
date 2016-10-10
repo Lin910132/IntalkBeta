@@ -45,7 +45,8 @@ typedef NS_ENUM(NSInteger, ExpertSearchTapType)
 typedef NS_ENUM(NSInteger, LiveStreamingScreenMode)
 {
     Streaming_Host = 0,
-    Streaming_Client
+    Streaming_Client, 
+    Streaming_Record
 };
 
 

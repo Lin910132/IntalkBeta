@@ -26,6 +26,10 @@ static User * userInfo;
     [Utility saveDataWithKey:TOKEN Data:token];
 }
 
+-(NSString *)getName{
+    return self.name;
+}
+
 -(void)parseDataFromJson:(NSDictionary *)dict{
     self.avatar_url         = [dict objectForKey:@"avatar_url"];
     self.balance            = [[dict objectForKey:@"balance"] intValue];

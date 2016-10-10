@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @protocol HomeTableViewCellDelegate
--(void)didSelectTagButton:(NSString*)tagID;
+-(void)didSelectTagButton:(NSInteger)tagID;
 @end
 
 @interface HomeTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imgLogo;
+@property (weak, nonatomic) IBOutlet UIView *viewCountView;
 @property (weak, nonatomic) IBOutlet UILabel *viewCountInfo;
 @property (weak, nonatomic) IBOutlet UILabel *itemTitle;
 @property (weak, nonatomic) IBOutlet UILabel *itemContent;
