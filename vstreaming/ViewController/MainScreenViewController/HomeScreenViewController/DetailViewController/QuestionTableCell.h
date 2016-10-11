@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Question.h"
 @interface QuestionTableCell : UITableViewCell
 -(void) setScreenMode:(LiveStreamingScreenMode) mode;
+-(void) initCell:(Question *) cellData;
 @end

@@ -30,6 +30,10 @@ static User * userInfo;
     return self.name;
 }
 
+-(int) getUserID{
+    return self.user_id;
+}
+
 -(void)parseDataFromJson:(NSDictionary *)dict{
     self.avatar_url         = [dict objectForKey:@"avatar_url"];
     self.balance            = [[dict objectForKey:@"balance"] intValue];

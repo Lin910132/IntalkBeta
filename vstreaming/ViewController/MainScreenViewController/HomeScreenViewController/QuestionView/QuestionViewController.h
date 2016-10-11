@@ -10,4 +10,7 @@
 
 @interface QuestionViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UITextView *questionTxt;
+@property (weak, nonatomic) IBOutlet UITextField *diamondAmount;
+@property (atomic) int broadcastId;
 @end

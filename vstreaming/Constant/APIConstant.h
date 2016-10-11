@@ -31,3 +31,7 @@ extern NSString * const APIGetMyInfo;
 extern NSString * const APISetExpert;
 extern NSString * const APISetAvatar;
 extern NSString * const APIAddQuestion;
+extern NSString * const APIGetQuestions;
+extern NSString * const APIGetAllQuestions;
+extern NSString * const APIAddAnswer;
+extern NSString * const APIGetExpert;

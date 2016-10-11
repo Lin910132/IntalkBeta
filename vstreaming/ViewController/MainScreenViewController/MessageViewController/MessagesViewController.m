@@ -9,7 +9,9 @@
 #import "MessagesViewController.h"
 #import "MessageTableViewCell.h"
 #import "ChatViewController.h"
-@interface MessagesViewController ()
+@interface MessagesViewController (){
+    NSMutableArray *messageData;
+}
 @property (weak, nonatomic) IBOutlet UITableView *messageTable;
 
 @end
@@ -19,6 +21,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    messageData = [NSMutableArray new];
+    [self loadMessageData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,13 +40,26 @@
 }
 */
 
-#pragma table view delegates
+#pragma mark - private
+-(void)loadMessageData{
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Loading"];
+    NSString *userID = [NSString stringWithFormat:@"%d", [[User getInstance]getUserID]];
+    [InTalkAPI getMessageUsers:[[User getInstance]getUserToken] limit:10 offset:0 competion:^(NSDictionary *resp, NSError *err) {
+        [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
+        if(!err){
+            
+        }else{
+            SHOWALLERT(@"Sending error", err.localizedDescription);
+        }
+    }];
+}
+#pragma mark - table view delegates
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return [messageData count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

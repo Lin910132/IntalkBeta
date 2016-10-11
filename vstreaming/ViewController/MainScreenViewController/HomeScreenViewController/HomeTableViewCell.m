@@ -120,10 +120,11 @@
 
 #pragma mark - outlets
 - (IBAction)tagPressed:(id)sender {
-    UIButton* pressedBtn = (UIButton *) sender;
+    //UIButton* pressedBtn = (UIButton *) sender;
+    /*
     if(self.delegate){
         [self.delegate didSelectTagButton:pressedBtn.tag];
-    }
+    }*/
 }
 
 @end

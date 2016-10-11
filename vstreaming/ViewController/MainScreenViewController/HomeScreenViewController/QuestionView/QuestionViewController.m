@@ -7,7 +7,10 @@
 //
 
 #import "QuestionViewController.h"
-@interface QuestionViewController()
+#import "PayDialogViewController.h"
+#import "UIViewController+MJPopupViewController.h"
+
+@interface QuestionViewController() <PayDialogPopupDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *priceEdit;
 
 @end
@@ -20,14 +23,43 @@
                                    action:@selector(dismissKeyboard)];
     
     [self.view addGestureRecognizer:tap];
+    
 }
 
 -(void)dismissKeyboard {
     [self.priceEdit resignFirstResponder];
 }
 
+#pragma mark - outlets
 - (IBAction)backBtnClicked:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)btnSendPressed:(id)sender {
+    //[self showAnimate];
+    PayDialogViewController *payDlg = [[PayDialogViewController alloc] initWithNibName:@"PayDialog" bundle:nil];
+    payDlg.amount = self.priceEdit.text;
+    payDlg.delegate = self;
+    [payDlg initUI];
+    [self presentPopupViewController:payDlg animationType:MJPopupViewAnimationFade];
+}
+
+#pragma mark - PayDialogPopupDelegate
+-(void)cancelButtonClicked:(PayDialogViewController *)secondDetailViewController{
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+}
+-(void)payButtonClicked:(PayDialogViewController *)secondDetailViewController{
+    [self dismissPopupViewControllerWithanimationType:MJPopupViewAnimationFade];
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Sending"];
+
+    [InTalkAPI addQuestion:[[User getInstance] getUserToken] broadcastId:self.broadcastId message:self.questionTxt.text diamond:self.diamondAmount.text competion:^(NSDictionary *resp, NSError *err) {
+        [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
+        if(!err){
+            
+        }else{
+            SHOWALLERT(@"Sending error", err.localizedDescription);
+        }
+    }];
 }
 
 @end

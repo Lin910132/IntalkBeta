@@ -162,13 +162,52 @@
     [WebManager POST:APISearchExpert parameters:params completion:block];
 }
 
-+(void)addQuestion:(NSString *)token broadcastId:(int)broadcastID message:(NSString *)message diamond:(int)diamond competion:(void (^)(NSDictionary *, NSError *))block{
++(void)addQuestion:(NSString *)token broadcastId:(int)broadcastID message:(NSString *)message diamond:(NSString *)diamond competion:(void (^)(NSDictionary *, NSError *))block{
     NSDictionary *params = @{@"token"       :token,
                              @"broadcastid" :[NSString stringWithFormat:@"%d", broadcastID],
                              @"question"    : message,
-                             @"diamond"     :[NSString stringWithFormat:@"%d", diamond],
+                             @"diamond"     :diamond
                              };
     
     [WebManager POST:APIAddQuestion parameters:params completion:block];
+}
+
++(void)getQuestions:(NSString *)token broadcastId:(int)broadcastID competion:(void (^)(NSDictionary *, NSError *))block{
+    NSDictionary *params = @{@"token"       :token,
+                             @"broadcastid" :[NSString stringWithFormat:@"%d", broadcastID]
+                             };
+    
+    [WebManager POST:APIGetQuestions parameters:params completion:block];
+}
+
++(void)getAllQuestions:(NSString *)token broadcastId:(int)broadcastID competion:(void (^)(NSDictionary *, NSError *))block{
+    NSDictionary *params = @{@"token"       :token,
+                             @"broadcastid" :[NSString stringWithFormat:@"%d", broadcastID]
+                             };
+    
+    [WebManager POST:APIGetAllQuestions parameters:params completion:block];
+}
+
++(void)addAnswer:(NSString *)token questionId:(int)questionId answer:(NSString *)answer competion:(void (^)(NSDictionary *resp, NSError * err))block{
+    NSDictionary *params = @{@"token"       :token,
+                             @"questionId"  :[NSString stringWithFormat:@"%d", questionId],
+                             @"answer"      :answer
+                             };
+    [WebManager POST:APIAddAnswer parameters:params completion:block];
+}
+
++(void)getMessageUsers:(NSString *)token limit:(int)limit offset:(int)offset competion:(void (^)(NSDictionary *, NSError *))block{
+    NSDictionary *params = @{@"token"   :token,
+                             @"limit"   :[NSString stringWithFormat:@"%d", limit],
+                             @"offset"  :[NSString stringWithFormat:@"%d", offset]
+                             };
+    [WebManager POST:APIGetMessageUsers parameters:params completion:block];
+}
+
++(void)getExpert:(NSString *)token userID:(int)userID competion:(void (^)(NSDictionary *resp, NSError *err))block{
+    NSDictionary *params = @{@"token"   :token,
+                             @"userid"   :[NSString stringWithFormat:@"%d", userID]
+                             };
+    [WebManager POST:APIGetExpert parameters:params completion:block];
 }
 @end

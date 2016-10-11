@@ -26,7 +26,7 @@
                   moduleName = "vstreaming"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta/vstreaming/ViewController/SignUpViewController.m"
-                  timestampString = "497823244.211331"
+                  timestampString = "497880378.044221"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "87"
@@ -41,7 +41,7 @@
                   moduleName = "vstreaming"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta/vstreaming/ViewController/SignUpViewController.m"
-                  timestampString = "497823244.212559"
+                  timestampString = "497880378.044895"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "88"
@@ -52,49 +52,75 @@
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "vstreaming/ViewController/MainScreenViewController/HomeScreenViewController/DetailViewController/DetailViewController.m"
-            timestampString = "497804836.781578"
+            timestampString = "497880376.828237"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "208"
-            endingLineNumber = "208"
-            landmarkName = "-playLiveStreamingVideo"
+            startingLineNumber = "378"
+            endingLineNumber = "378"
+            landmarkName = "-btnBottomRight:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "vstreaming/ViewController/MainScreenViewController/MessageViewController/MessagesViewController.m"
+            timestampString = "497880329.774923"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "-loadMessageData"
             landmarkType = "5">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "-[DetailViewController playLiveStreamingVideo]"
+                  symbolName = "-[MessagesViewController loadMessageData]"
                   moduleName = "vstreaming"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta/vstreaming/ViewController/MainScreenViewController/HomeScreenViewController/DetailViewController/DetailViewController.m"
-                  timestampString = "497823244.216164"
+                  urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta/vstreaming/ViewController/MainScreenViewController/MessageViewController/MessagesViewController.m"
+                  timestampString = "497880378.050211"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "208"
-                  endingLineNumber = "208"
-                  offsetFromSymbolStart = "838">
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "386">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__46-[DetailViewController playLiveStreamingVideo]_block_invoke"
+                  symbolName = "__41-[MessagesViewController loadMessageData]_block_invoke"
                   moduleName = "vstreaming"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta/vstreaming/ViewController/MainScreenViewController/HomeScreenViewController/DetailViewController/DetailViewController.m"
-                  timestampString = "497823244.216697"
+                  urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta/vstreaming/ViewController/MainScreenViewController/MessageViewController/MessagesViewController.m"
+                  timestampString = "497880378.050598"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "209"
-                  endingLineNumber = "209"
-                  offsetFromSymbolStart = "18">
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "76">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -105,13 +131,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "vstreaming/ViewController/MainScreenViewController/HomeScreenViewController/DetailViewController/DetailViewController.m"
-            timestampString = "497804961.57221"
+            filePath = "vstreaming/ViewController/MainScreenViewController/MessageViewController/MessagesViewController.m"
+            timestampString = "497880330.52882"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
-            landmarkName = "-playLiveStreamingVideo"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "-loadMessageData"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

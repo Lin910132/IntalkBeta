@@ -36,6 +36,8 @@
 +(void) setExpert:(NSString *)token Name:(NSString*) name Company:(NSString *) company Title:(NSString *) title Years:(int) year PhoneNumber:(NSString*) phone Email:(NSString*) email TagID1:(int) id1 TagID2:(int) id2 TagID3:(int) id3 Description:(NSString *) descript competion:(void (^)(NSDictionary *, NSError *))block;
 
 +(void) searchExpert:(NSString *)token tagID:(int)tagID limit:(int)limit offset:(int)offset competion:(void (^)(NSDictionary *, NSError *))block;
+
++(void) getExpert:(NSString *)token userID:(int) userID competion:(void (^)(NSDictionary *, NSError *))block;
 //show streaming
 +(void) getLiveBroadcast:(NSString *)token limit:(int)limit offset:(int)offset competion:(void (^)(NSDictionary *, NSError *))block;
 +(void) getPreview:(NSString *)token limit:(int)limit offset:(int)offset competion:(void (^)(NSDictionary *, NSError *))block;
@@ -45,6 +47,15 @@
 
 +(void) sendMessage:(NSString *)token userID:(NSString*) userId message:(NSString*) message competion:(void (^)(NSDictionary *, NSError *))block;
 
-//question
-+(void) addQuestion:(NSString *)token broadcastId:(int) broadcastID message:(NSString*) message diamond:(int)diamond competion:(void (^)(NSDictionary *, NSError *))block;
++(void) getMessageUsers:(NSString *)token limit:(int)limit offset:(int)offset competion:(void (^)(NSDictionary *resp, NSError *err))block;
+
+//question and answer
++(void) addQuestion:(NSString *)token broadcastId:(int) broadcastID message:(NSString*) message diamond:(NSString*)diamond competion:(void (^)(NSDictionary *, NSError *))block;
+
++(void) getQuestions:(NSString *)token broadcastId:(int) broadcastID competion:(void (^)(NSDictionary *, NSError *))block;
+
++(void) getAllQuestions:(NSString *)token broadcastId:(int) broadcastID competion:(void (^)(NSDictionary *, NSError *))block;
+
++(void) addAnswer:(NSString *)token questionId:(int) questionId answer:(NSString*) answer competion:(void (^)(NSDictionary *, NSError *))block;
+
 @end

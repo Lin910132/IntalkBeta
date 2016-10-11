@@ -12,7 +12,10 @@
 @interface DetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>{
     SelectedTab selectedTab;
 }
+
 @property (nonatomic, retain) NSString * liveStreamName;
+@property (atomic) int broadcastID;
+
 -(void) setSelectMarksHiddenQuests:(BOOL) qs Expert:(BOOL) ae SuggestQt:(BOOL) sq;
 -(void) setScreenMode:(LiveStreamingScreenMode) mode;
 @end

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface MessageTableViewCell : UITableViewCell
-
+#import "Message.h"
+@interface MessageReceiveCell : UITableViewCell
+-(void)initCell:(Message*)cellData;
 @end

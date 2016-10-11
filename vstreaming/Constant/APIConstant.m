@@ -31,6 +31,10 @@ NSString * const APIGetMyInfo                           = @"index.php?/api/get-m
 NSString * const APISetExpert                           = @"index.php?/api/set-expert";
 NSString * const APISetAvatar                           = @"index.php?/api/set-avatar";
 NSString * const APIAddQuestion                         = @"index.php?/api/add-question";
+NSString * const APIGetQuestions                        = @"index.php?/api/get-questions";
+NSString * const APIGetAllQuestions                     = @"index.php?/api/get-allquestions";
+NSString * const APIAddAnswer                           = @"index.php?/api/add-answer";
+NSString * const APIGetExpert                           = @"index.php?/api/get-expert";
 
 
 

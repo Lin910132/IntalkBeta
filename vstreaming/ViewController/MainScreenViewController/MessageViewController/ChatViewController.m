@@ -37,6 +37,18 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)sendMessage:(id)sender {
+    if([_messageField.text isEqualToString:@""]){
+        
+    }else{
+        [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Sending"];
+        NSString *userID = [NSString stringWithFormat:@"%d", [[User getInstance]getUserID]];
+        [InTalkAPI sendMessage:[[User getInstance]getUserToken] userID:userID message:_messageField.text competion:^(NSDictionary *resp, NSError *err) {
+            [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
+        }];
+    }
+}
+
 -(void)viewWillAppear:(BOOL)animated{
     
 }

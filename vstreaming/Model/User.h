@@ -36,6 +36,7 @@
 
 -(NSString *) getUserToken;
 -(NSString *) getName;
+-(int) getUserID;
 -(void) setUserToken:(NSString *) token;
 -(void) parseDataFromJson:(NSDictionary *) dict;
 -(int) getExpert;

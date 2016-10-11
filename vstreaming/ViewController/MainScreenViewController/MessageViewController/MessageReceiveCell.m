@@ -8,7 +8,7 @@
 
 #import "MessageTableViewCell.h"
 
-@implementation MessageTableViewCell
+@implementation MessageReceiveCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -21,4 +21,7 @@
     // Configure the view for the selected state
 }
 
+-(void) initCell:(Message *)cellData{
+    
+}
 @end

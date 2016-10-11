@@ -14,6 +14,7 @@
 #import "LECPlayer.h"
 #import <mach/mach_time.h>
 #import "MP4Writer.h"
+#import "Question.h"
 //#import "DAKeyboardControl.h"
 #import <WowzaGoCoderSDK/WowzaGoCoderSDK.h>
 
@@ -26,9 +27,8 @@
     CGRect originalSize;
     UIImage *sound_image;
     CIImage *frameImage;
-    int  broadcastID;
     BOOL isClosing;
-    
+    NSMutableArray * tableData;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *selectedQst;
@@ -123,12 +123,9 @@
         [_btnCameraMode  setHidden:YES];
         [_bottomText setHidden:YES];
         [_fullScreenClientSideProfile setHidden:NO];
-        
         [_btnBottomRight setImage:[UIImage imageNamed:@"icon_gift.png"] forState:UIControlStateNormal];
-        
         [self buttonInit];
         [_hostTabBarView setHidden:YES];
-        
     }else if(screenMode == Streaming_Host){
         sound_image = [UIImage imageNamed:@"sound_img.png"];
         frameImage = [[CIImage alloc] initWithCGImage:sound_image.CGImage options:nil];
@@ -145,6 +142,9 @@
     }else{
         SHOWALLERT(@"Error", @"Configure Error on Setting Screen Mode");
     }
+    
+    tableData = [NSMutableArray new];
+    [self.questionTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 }
 
 #pragma -mark Private
@@ -180,8 +180,8 @@
 }
 
 -(void)initTableView{
-    self.questionTableView.scrollEnabled = NO;
-    self.questionTableView.separatorColor = [UIColor clearColor];
+    //self.questionTableView.scrollEnabled = NO;
+    //self.questionTableView.separatorColor = [UIColor clearColor];
     self.questionTableView.allowsSelection = NO;
 }
 
@@ -218,7 +218,7 @@
     NSLog(@"Broadcast URL %@", url);
     [InTalkAPI startBroadcastWithToken:[[User getInstance] getUserToken] Url:url completion:^(NSDictionary *json, NSError *error) {
         if(!error){
-            broadcastID = [[json objectForKey:@"broadcastid"]intValue];
+            self.broadcastID = [[json objectForKey:@"broadcastid"]intValue];
         }else {
             SHOWALLERT(@"Broadcasting Request Error", error.localizedDescription);
         }
@@ -228,7 +228,7 @@
 -(void) endBroadcast{
     [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Ending..."];
     NSString *base64Video = [_mp4Writer base64OfVideo];
-    [InTalkAPI stopBroadCasting:[[User getInstance] getUserToken] broadcastID:broadcastID Video:nil block:^(NSDictionary *json, NSError *error) {
+    [InTalkAPI stopBroadCasting:[[User getInstance] getUserToken] broadcastID:self.broadcastID Video:nil block:^(NSDictionary *json, NSError *error) {
         [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
         if(!error){
             [self dismissViewControllerAnimated:YES completion:nil];
@@ -240,7 +240,7 @@
     }];
     
     //uploading video in background
-    [(AppDelegate *)[[UIApplication sharedApplication] delegate] uploadingViewinBackground:[[User getInstance] getUserToken] video:base64Video broadcastID:broadcastID];
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] uploadingViewinBackground:[[User getInstance] getUserToken] video:base64Video broadcastID:self.broadcastID];
     
 }
 //for capturing video on hosting side
@@ -319,6 +319,40 @@
     [self setSelectMarksHiddenQuests:NO Expert:YES SuggestQt:YES];
     selectedTab = QuestionTabSelected;
     [self.questionTableView reloadData];
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Loading Questions..."];
+    if(screenMode == Streaming_Client){
+        [InTalkAPI getQuestions:[[User getInstance]getUserToken] broadcastId:self.broadcastID competion:^(NSDictionary *resp, NSError *err) {
+            [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
+            if(!err){
+                [tableData removeAllObjects];
+                for(NSDictionary * item in [resp objectForKey:@"data"]){
+                    Question *cell = [Question parseDataFromJson:item];
+                    [tableData addObject:cell];
+                }
+                
+                [self.questionTableView reloadData];
+            }else{
+                SHOWALLERT(@"Sending error", err.localizedDescription);
+            }
+        }];
+    }else if(screenMode == Streaming_Host){
+        [InTalkAPI getAllQuestions:[[User getInstance]getUserToken] broadcastId:self.broadcastID competion:^(NSDictionary *resp, NSError *err) {
+            [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
+            if(!err){
+                [tableData removeAllObjects];
+                for(NSDictionary * item in [resp objectForKey:@"data"]){
+                    Question *cell = [Question parseDataFromJson:item];
+                    [tableData addObject:cell];
+                }
+                
+                [self.questionTableView reloadData];
+            }else{
+                SHOWALLERT(@"Sending error", err.localizedDescription);
+            }
+        }];
+    }
+    
+    [self.questionTableView reloadData];
 }
 - (IBAction)btnAboutEptClicked:(id)sender {
     [self setSelectMarksHiddenQuests:YES Expert:NO SuggestQt:YES];
@@ -332,12 +366,27 @@
 }
 - (IBAction)btnAskClicked:(id)sender {
     QuestionViewController *questionVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"QuestionViewController"];
+    questionVC.broadcastId = self.broadcastID;
     [self presentViewController:questionVC animated:YES completion:nil];
 }
 - (IBAction)btnFullScreenMode:(id)sender {
     isFullMode = !isFullMode;
     [self switchViewMode];
 }
+
+- (IBAction)btnBottomRight:(id)sender {
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Sending"];
+    
+    [InTalkAPI addQuestion:[[User getInstance] getUserToken] broadcastId:self.broadcastID message:self.bottomText.text diamond:@"0" competion:^(NSDictionary *resp, NSError *err) {
+        [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
+        if(!err){
+            
+        }else{
+            SHOWALLERT(@"Sending error", err.localizedDescription);
+        }
+    }];
+}
+
 -(void)switchViewMode{
     if(isFullMode == true) {
         if(screenMode == Streaming_Client){
@@ -408,13 +457,14 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+    return [tableData count];
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell;
     if(selectedTab == QuestionTabSelected){
         QuestionTableCell *questionCell = [tableView dequeueReusableCellWithIdentifier:@"QuestionTableCell"];
         [questionCell setScreenMode:screenMode];
+        [questionCell initCell:[tableData objectAtIndex:indexPath.row]];
         cell = questionCell;
     }else if(selectedTab == ExpertTabSelected){
         cell = [tableView dequeueReusableCellWithIdentifier:@"ExpertTableCell"];
