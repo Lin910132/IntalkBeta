@@ -30,6 +30,10 @@ static User * userInfo;
     return self.name;
 }
 
+-(NSString *)getAvatar{
+    return self.avatar_url;
+}
+
 -(int) getUserID{
     return self.user_id;
 }

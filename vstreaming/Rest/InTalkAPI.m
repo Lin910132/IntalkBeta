@@ -210,4 +210,19 @@
                              };
     [WebManager POST:APIGetExpert parameters:params completion:block];
 }
+
+
++(void)follow:(NSString *)token userID:(int)userid competion:(void (^)(NSDictionary *, NSError *))block{
+    NSDictionary *params = @{@"token"   :token,
+                             @"userid"   :[NSString stringWithFormat:@"%d", userid]
+                             };
+    [WebManager POST:APIFollow parameters:params completion:block];
+}
+
++(void)getVideos:(NSString *)token userID:(int)userid competion:(void (^)(NSDictionary *, NSError *))block{
+    NSDictionary *params = @{@"token"   :token,
+                             @"userid"   :[NSString stringWithFormat:@"%d", userid]
+                             };
+    [WebManager POST:APIGetVideos parameters:params completion:block];
+}
 @end

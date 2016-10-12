@@ -15,7 +15,7 @@
 #import <mach/mach_time.h>
 #import "MP4Writer.h"
 #import "Question.h"
-//#import "DAKeyboardControl.h"
+#import <UIImageView+AFNetworking.h>
 #import <WowzaGoCoderSDK/WowzaGoCoderSDK.h>
 
 @interface DetailViewController () <WZStatusCallback, WZVideoSink, LECPlayerDelegate, WZVideoEncoderSink, WZAudioEncoderSink>{
@@ -64,6 +64,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *small_sound_img;
 @property (weak, nonatomic) IBOutlet UIImageView *full_sound_img;
+@property (weak, nonatomic) IBOutlet UIImageView *hostProfileAvatar;
 
 @property (nonatomic, strong) WowzaGoCoder *goCoder;
 @property (nonatomic, strong) WZCameraPreview *goCoderCameraPreview;
@@ -139,6 +140,7 @@
         [_bottomText setHidden:NO];
         [_fullScreenHostSideProfile setHidden:NO];
         [_btnBottomRight setImage:[UIImage imageNamed:@"icon_send.png"] forState:UIControlStateNormal];
+        [self initUIForHost];
     }else{
         SHOWALLERT(@"Error", @"Configure Error on Setting Screen Mode");
     }
@@ -149,7 +151,20 @@
 
 #pragma -mark Private
 
-
+-(void) initUIForHost{
+    User* currentUser = [User getInstance];
+    [self.hostProfileAvatar layoutIfNeeded];
+    self.hostProfileAvatar.layer.cornerRadius = self.hostProfileAvatar.frame.size.height / 2;
+    self.hostProfileAvatar.layer.masksToBounds = YES;
+    
+    [self.hostProfileAvatar setImageWithURLRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:currentUser.avatar_url]]
+                         placeholderImage:nil
+                                  success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image){
+                                      [self.hostProfileAvatar setImage:image];
+                                  }
+                                  failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error){
+                                  }];
+}
 -(void)initWowzaSDK{
     NSError *goCoderLicensingError = [WowzaGoCoder registerLicenseKey:@"GOSK-D342-0103-B43D-39C3-09FB"];
     if (goCoderLicensingError != nil) {
@@ -218,7 +233,7 @@
     NSLog(@"Broadcast URL %@", url);
     [InTalkAPI startBroadcastWithToken:[[User getInstance] getUserToken] Url:url completion:^(NSDictionary *json, NSError *error) {
         if(!error){
-            self.broadcastID = [[json objectForKey:@"broadcastid"]intValue];
+            self.info.item_id = [[json objectForKey:@"broadcastid"]intValue];
         }else {
             SHOWALLERT(@"Broadcasting Request Error", error.localizedDescription);
         }
@@ -228,7 +243,7 @@
 -(void) endBroadcast{
     [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Ending..."];
     NSString *base64Video = [_mp4Writer base64OfVideo];
-    [InTalkAPI stopBroadCasting:[[User getInstance] getUserToken] broadcastID:self.broadcastID Video:nil block:^(NSDictionary *json, NSError *error) {
+    [InTalkAPI stopBroadCasting:[[User getInstance] getUserToken] broadcastID:self.info.item_id Video:nil block:^(NSDictionary *json, NSError *error) {
         [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
         if(!error){
             [self dismissViewControllerAnimated:YES completion:nil];
@@ -240,7 +255,7 @@
     }];
     
     //uploading video in background
-    [(AppDelegate *)[[UIApplication sharedApplication] delegate] uploadingViewinBackground:[[User getInstance] getUserToken] video:base64Video broadcastID:self.broadcastID];
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] uploadingViewinBackground:[[User getInstance] getUserToken] video:base64Video broadcastID:self.info.item_id];
     
 }
 //for capturing video on hosting side
@@ -321,7 +336,7 @@
     [self.questionTableView reloadData];
     [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Loading Questions..."];
     if(screenMode == Streaming_Client){
-        [InTalkAPI getQuestions:[[User getInstance]getUserToken] broadcastId:self.broadcastID competion:^(NSDictionary *resp, NSError *err) {
+        [InTalkAPI getQuestions:[[User getInstance]getUserToken] broadcastId:self.info.item_id competion:^(NSDictionary *resp, NSError *err) {
             [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
             if(!err){
                 [tableData removeAllObjects];
@@ -336,7 +351,7 @@
             }
         }];
     }else if(screenMode == Streaming_Host){
-        [InTalkAPI getAllQuestions:[[User getInstance]getUserToken] broadcastId:self.broadcastID competion:^(NSDictionary *resp, NSError *err) {
+        [InTalkAPI getAllQuestions:[[User getInstance]getUserToken] broadcastId:self.info.item_id competion:^(NSDictionary *resp, NSError *err) {
             [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
             if(!err){
                 [tableData removeAllObjects];
@@ -357,7 +372,10 @@
 - (IBAction)btnAboutEptClicked:(id)sender {
     [self setSelectMarksHiddenQuests:YES Expert:NO SuggestQt:YES];
     selectedTab = ExpertTabSelected;
-    [self.questionTableView reloadData];
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Loading Expert..."];
+    [InTalkAPI getExpert:[[User getInstance] getUserToken] userID:self.info.user_id competion:^(NSDictionary *resp, NSError *err) {
+        [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
+    }];
 }
 - (IBAction)btnSuggestQtClicked:(id)sender {
     [self setSelectMarksHiddenQuests:YES Expert:YES SuggestQt:NO];
@@ -366,18 +384,24 @@
 }
 - (IBAction)btnAskClicked:(id)sender {
     QuestionViewController *questionVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"QuestionViewController"];
-    questionVC.broadcastId = self.broadcastID;
+    questionVC.broadcastId = self.info.item_id;
     [self presentViewController:questionVC animated:YES completion:nil];
 }
 - (IBAction)btnFullScreenMode:(id)sender {
     isFullMode = !isFullMode;
     [self switchViewMode];
 }
+- (IBAction)btnFollow:(id)sender {
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Following"];
+    [InTalkAPI follow:[[User getInstance]getUserToken] userID:self.info.user_id competion:^(NSDictionary *resp, NSError *err) {
+        [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
+    }];
+}
 
 - (IBAction)btnBottomRight:(id)sender {
     [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Sending"];
     
-    [InTalkAPI addQuestion:[[User getInstance] getUserToken] broadcastId:self.broadcastID message:self.bottomText.text diamond:@"0" competion:^(NSDictionary *resp, NSError *err) {
+    [InTalkAPI addQuestion:[[User getInstance] getUserToken] broadcastId:self.info.item_id message:self.bottomText.text diamond:@"0" competion:^(NSDictionary *resp, NSError *err) {
         [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
         if(!err){
             

@@ -6,7 +6,7 @@
 //  Copyright © 2016 ITGroup. All rights reserved.
 //
 
-#import "MessageTableViewCell.h"
+#import "MessageReceiveCell.h"
 
 @implementation MessageReceiveCell
 

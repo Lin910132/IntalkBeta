@@ -35,3 +35,5 @@ extern NSString * const APIGetQuestions;
 extern NSString * const APIGetAllQuestions;
 extern NSString * const APIAddAnswer;
 extern NSString * const APIGetExpert;
+extern NSString * const APIFollow;
+extern NSString * const APIGetVideos;

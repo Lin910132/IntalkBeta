@@ -6,7 +6,7 @@
 //  Copyright © 2016 ITGroup. All rights reserved.
 //
 
-#import "MessageSenderCellTableViewCell.h"
+#import "MessageSenderCell.h"
 
 @implementation MessageSenderCell
 

@@ -26,7 +26,7 @@
                   moduleName = "vstreaming"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta/vstreaming/ViewController/SignUpViewController.m"
-                  timestampString = "497880378.044221"
+                  timestampString = "497951784.170855"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "87"
@@ -41,7 +41,7 @@
                   moduleName = "vstreaming"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta/vstreaming/ViewController/SignUpViewController.m"
-                  timestampString = "497880378.044895"
+                  timestampString = "497951784.171959"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "88"
@@ -68,11 +68,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "vstreaming/ViewController/MainScreenViewController/HomeScreenViewController/DetailViewController/DetailViewController.m"
-            timestampString = "497880376.828237"
+            timestampString = "497951456.166715"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "378"
-            endingLineNumber = "378"
+            startingLineNumber = "398"
+            endingLineNumber = "398"
             landmarkName = "-btnBottomRight:"
             landmarkType = "5">
          </BreakpointContent>
@@ -100,7 +100,7 @@
                   moduleName = "vstreaming"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta/vstreaming/ViewController/MainScreenViewController/MessageViewController/MessagesViewController.m"
-                  timestampString = "497880378.050211"
+                  timestampString = "497951784.178689"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "47"
@@ -115,7 +115,7 @@
                   moduleName = "vstreaming"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta/vstreaming/ViewController/MainScreenViewController/MessageViewController/MessagesViewController.m"
-                  timestampString = "497880378.050598"
+                  timestampString = "497951784.179187"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "48"
@@ -138,6 +138,38 @@
             startingLineNumber = "49"
             endingLineNumber = "49"
             landmarkName = "-loadMessageData"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "vstreaming/ViewController/SignUpViewController.m"
+            timestampString = "497893706.144658"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "-callWeiboLogIn:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "vstreaming/ViewController/SignUpViewController.m"
+            timestampString = "497893717.802992"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "-callWeiboLogIn:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

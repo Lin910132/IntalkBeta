@@ -7,7 +7,7 @@
 //
 
 #import "MessagesViewController.h"
-#import "MessageTableViewCell.h"
+#import "MessageSenderCell.h"
 #import "ChatViewController.h"
 @interface MessagesViewController (){
     NSMutableArray *messageData;
@@ -64,9 +64,9 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString * messageTableItemIdentifier = @"MessageTableViewCell";
-    MessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:messageTableItemIdentifier];
+    MessageSenderCell *cell = [tableView dequeueReusableCellWithIdentifier:messageTableItemIdentifier];
     if(cell == nil){
-        cell = [[MessageTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:messageTableItemIdentifier];
+        cell = [[MessageSenderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:messageTableItemIdentifier];
         
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

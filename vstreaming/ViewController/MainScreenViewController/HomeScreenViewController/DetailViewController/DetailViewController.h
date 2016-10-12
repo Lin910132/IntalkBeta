@@ -8,13 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "GeneralConstant.h"
+#import "HomeTableItemModel.h"
 
 @interface DetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>{
     SelectedTab selectedTab;
 }
 
 @property (nonatomic, retain) NSString * liveStreamName;
-@property (atomic) int broadcastID;
+//@property (atomic) int broadcastID;
+//@property (atomic) int userID;
+@property (nonatomic, retain) HomeTableItemModel * info;
 
 -(void) setSelectMarksHiddenQuests:(BOOL) qs Expert:(BOOL) ae SuggestQt:(BOOL) sq;
 -(void) setScreenMode:(LiveStreamingScreenMode) mode;

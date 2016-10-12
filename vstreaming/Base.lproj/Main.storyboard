@@ -693,6 +693,9 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bsp-eT-sl7">
                                                 <rect key="frame" x="0.0" y="0.0" width="70" height="29"/>
+                                                <connections>
+                                                    <action selector="btnFollow:" destination="UWc-zb-jDw" eventType="touchUpInside" id="vjE-X4-rwT"/>
+                                                </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_white_heart" translatesAutoresizingMaskIntoConstraints="NO" id="0CO-pf-HtI">
                                                 <rect key="frame" x="4" y="9" width="14" height="12"/>
@@ -1317,13 +1320,13 @@
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hIC-kb-nNJ">
                                         <rect key="frame" x="0.0" y="15" width="241" height="53"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_profile1" translatesAutoresizingMaskIntoConstraints="NO" id="zBT-Ib-IwL">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="male_placeholde" translatesAutoresizingMaskIntoConstraints="NO" id="zBT-Ib-IwL">
                                                 <rect key="frame" x="13" y="9" width="36" height="36"/>
                                             </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_eye" translatesAutoresizingMaskIntoConstraints="NO" id="7NA-5A-adn">
+                                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_eye" translatesAutoresizingMaskIntoConstraints="NO" id="7NA-5A-adn">
                                                 <rect key="frame" x="57" y="22" width="19" height="10"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="79" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9q8-jN-3hO">
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="79" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9q8-jN-3hO">
                                                 <rect key="frame" x="84" y="16" width="42" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1362,7 +1365,7 @@
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </button>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_profile1" translatesAutoresizingMaskIntoConstraints="NO" id="Jam-OF-KBk">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="male_placeholde" translatesAutoresizingMaskIntoConstraints="NO" id="Jam-OF-KBk">
                                                         <rect key="frame" x="6" y="6" width="36" height="36"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="36" id="MEV-gw-68U"/>
@@ -1618,6 +1621,7 @@
                         <outlet property="fullScreenHostSideProfile" destination="hIC-kb-nNJ" id="DW6-ja-0Eo"/>
                         <outlet property="fullScreenView" destination="LAG-gQ-88Y" id="EXo-oa-mfT"/>
                         <outlet property="full_sound_img" destination="YSI-wU-4ky" id="GlC-Gw-JHU"/>
+                        <outlet property="hostProfileAvatar" destination="zBT-Ib-IwL" id="jDL-bG-dna"/>
                         <outlet property="hostTabBarView" destination="A3E-gm-mRi" id="Rpp-Nn-OG2"/>
                         <outlet property="imageView" destination="a4f-uN-9LW" id="yyj-hD-owi"/>
                         <outlet property="lblStreamFinished" destination="sAv-If-OhL" id="U9r-mK-AEx"/>
@@ -2592,7 +2596,7 @@
                                             <constraint firstAttribute="height" constant="30" id="GaD-h7-bkY"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -2628,7 +2632,7 @@
                                             <constraint firstAttribute="height" constant="30" id="MnB-5c-wo1"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -7629,7 +7633,6 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
         <image name="icon_phone" width="13" height="23"/>
         <image name="icon_plus" width="19" height="19"/>
         <image name="icon_profile" width="19" height="25"/>
-        <image name="icon_profile1" width="40" height="40"/>
         <image name="icon_search" width="16" height="16"/>
         <image name="icon_send" width="20" height="17"/>
         <image name="icon_tag" width="20" height="16"/>
@@ -7657,6 +7660,6 @@ If you have any questions about these Terms or otherwise need to contact Unipub 
         <image name="weixin" width="76" height="76"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hCh-vq-vtZ"/>
+        <segue reference="EHI-wr-YOF"/>
     </inferredMetricsTieBreakers>
 </document>

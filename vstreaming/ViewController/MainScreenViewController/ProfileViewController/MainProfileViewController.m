@@ -90,7 +90,6 @@
     [self.userLogo setUserInteractionEnabled:YES];
     [self.userLogo layoutIfNeeded];
     self.userLogo.layer.cornerRadius = self.userLogo.frame.size.height / 2;
-    NSLog(@"%f", self.userLogo.frame.size.height);
     self.userLogo.layer.masksToBounds = YES;
     
     

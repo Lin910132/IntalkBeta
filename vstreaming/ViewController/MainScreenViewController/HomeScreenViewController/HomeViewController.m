@@ -157,7 +157,9 @@
     HomeTableItemModel *itemData = [tableData objectAtIndex:indexPath.row];
     [detailVC setScreenMode:Streaming_Client];
     detailVC.liveStreamName = itemData.rtmp_url;
-    detailVC.broadcastID = itemData.item_id;
+    //detailVC.broadcastID    = itemData.item_id;
+    //detailVC.userID         = itemData.user_id;
+    detailVC.info = itemData;
     [self presentViewController:detailVC animated:YES completion:nil];
 }
 

@@ -42,6 +42,7 @@
 +(void) getLiveBroadcast:(NSString *)token limit:(int)limit offset:(int)offset competion:(void (^)(NSDictionary *, NSError *))block;
 +(void) getPreview:(NSString *)token limit:(int)limit offset:(int)offset competion:(void (^)(NSDictionary *, NSError *))block;
 +(void) getRecord:(NSString *)token limit:(int)limit offset:(int)offset competion:(void (^)(NSDictionary *, NSError *))block;
++(void) getVideos:(NSString *)token userID:(int)userid competion:(void (^)(NSDictionary *, NSError *))block;
 //message
 +(void) getMessages:(NSString *)token userID:(NSString*) userId limit:(int)limit offset:(int)offset competion:(void (^)(NSDictionary *, NSError *))block;
 
@@ -58,4 +59,6 @@
 
 +(void) addAnswer:(NSString *)token questionId:(int) questionId answer:(NSString*) answer competion:(void (^)(NSDictionary *, NSError *))block;
 
+//follow
++(void) follow:(NSString*) token userID:(int)userid competion:(void (^)(NSDictionary *, NSError *))block;
 @end
