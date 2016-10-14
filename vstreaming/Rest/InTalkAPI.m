@@ -27,8 +27,10 @@
 }
 
 
-+(void)startBroadcastWithToken:(NSString *) token Url:(NSString *) urlStr completion:(void(^)(NSDictionary * json, NSError *error)) block{
-    NSDictionary *params = @{@"token":token, @"url":urlStr};
++(void)startBroadcastWithToken:(NSString *) token Url:(NSString *) urlStr title:(NSString *)title completion:(void(^)(NSDictionary * json, NSError *error)) block{
+    NSDictionary *params = @{@"token":token,
+                             @"url":urlStr,
+                             @"title":title};
     [WebManager POST:APIStartBroadCast parameters:params completion:block];
 }
 
@@ -152,7 +154,7 @@
     [WebManager POST:APIGetRecord parameters:params completion:block];
 }
 
-+(void)searchExpert:(NSString *)token tagID:(int)tagID limit:(int)limit offset:(int)offset competion:(void (^)(NSDictionary *, NSError *))block{
++(void)searchExpertByTagID:(NSString *)token tagID:(int)tagID limit:(int)limit offset:(int)offset competion:(void (^)(NSDictionary *, NSError *))block{
     NSDictionary *params = @{@"token"   :token,
                              @"tagid"   :[NSString stringWithFormat:@"%d", tagID],
                              @"limit"   :[NSString stringWithFormat:@"%d", limit],
@@ -162,6 +164,15 @@
     [WebManager POST:APISearchExpert parameters:params completion:block];
 }
 
++(void)searchExpertByKey:(NSString *)token key:(NSString *)key limit:(int)limit offset:(int)offset competion:(void (^)(NSDictionary *, NSError *))block{
+    NSDictionary *params = @{@"token"   :token,
+                             @"key"   :key,
+                             @"limit"   :[NSString stringWithFormat:@"%d", limit],
+                             @"offset"  :[NSString stringWithFormat:@"%d", offset],
+                             };
+    
+    [WebManager POST:APISearchExpert parameters:params completion:block];
+}
 +(void)addQuestion:(NSString *)token broadcastId:(int)broadcastID message:(NSString *)message diamond:(NSString *)diamond competion:(void (^)(NSDictionary *, NSError *))block{
     NSDictionary *params = @{@"token"       :token,
                              @"broadcastid" :[NSString stringWithFormat:@"%d", broadcastID],
@@ -224,5 +235,13 @@
                              @"userid"   :[NSString stringWithFormat:@"%d", userid]
                              };
     [WebManager POST:APIGetVideos parameters:params completion:block];
+}
++(void)searchBroadcastByKey:(NSString *)token key:(NSString *)key limit:(int)limit offset:(int)offset competion:(void (^)(NSDictionary *, NSError *))block{
+    NSDictionary *params = @{@"token"   :token,
+                             @"key"     :key,
+                             @"limit"   :[NSString stringWithFormat:@"%d", limit],
+                             @"offset"  :[NSString stringWithFormat:@"%d", offset],
+                             };
+    [WebManager POST:APISearchBroadcast parameters:params completion:block];
 }
 @end

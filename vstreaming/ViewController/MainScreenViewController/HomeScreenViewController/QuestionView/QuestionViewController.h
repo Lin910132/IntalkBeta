@@ -13,4 +13,5 @@
 @property (weak, nonatomic) IBOutlet UITextView *questionTxt;
 @property (weak, nonatomic) IBOutlet UITextField *diamondAmount;
 @property (atomic) int broadcastId;
+@property (weak, nonatomic) IBOutlet UILabel *diamondLbl;
 @end

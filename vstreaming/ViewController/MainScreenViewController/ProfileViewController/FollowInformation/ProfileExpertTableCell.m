@@ -16,4 +16,9 @@
     [_btnFellow.titleLabel setFont:[UIFont boldSystemFontOfSize:14.f]];
 }
 
+-(void)initCell:(User *)user{
+    [self.companyName setText:user.company];
+    [self.title setText:user.title];
+    [self.descriptField setText:user.descriptSentence];
+}
 @end

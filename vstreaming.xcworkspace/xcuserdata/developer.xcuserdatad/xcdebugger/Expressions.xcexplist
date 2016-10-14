@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "__43-[DetailViewController btnAboutEptClicked:]_block_invoke:DetailViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.info.user_id">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[AppDelegate application:openURL:sourceApplication:annotation:]:AppDelegate.m">
          <PersistentStrings>
             <PersistentString

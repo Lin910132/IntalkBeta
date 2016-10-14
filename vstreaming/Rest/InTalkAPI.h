@@ -20,9 +20,9 @@
 +(void) loginWithThirdPartySDK:(NSString *) sdkPrefix Token:(NSString *) token completion:(void(^)(NSDictionary * json, NSError *error)) block;
 
 //broadcasting
-+(void) startBroadcastWithToken:(NSString *) token Url:(NSString *) urlStr completion:(void(^)(NSDictionary * json, NSError *error)) block;
++(void) startBroadcastWithToken:(NSString *) token Url:(NSString *) urlStr title:(NSString *)title completion:(void(^)(NSDictionary * json, NSError *error)) block;
 +(void) stopBroadCasting:(NSString*) token broadcastID:(int) broadcastID Video:(NSString *) base64Video block:(void(^)(NSDictionary * json, NSError *error)) block;
-
++(void) searchBroadcastByKey:(NSString *)token key:(NSString *)key limit:(int)limit offset:(int)offset competion:(void (^)(NSDictionary *, NSError *))block;
 //tagks
 +(void) getAllTags:(NSString *) token competion:(void(^)(NSDictionary * json, NSError *error)) block;
 +(void) searchTagsWithToken:(NSString *)token limit:(int)limit offset:(int)offset key:(NSString*) key competion:(void (^)(NSDictionary *, NSError *))block;
@@ -35,8 +35,9 @@
 //expert
 +(void) setExpert:(NSString *)token Name:(NSString*) name Company:(NSString *) company Title:(NSString *) title Years:(int) year PhoneNumber:(NSString*) phone Email:(NSString*) email TagID1:(int) id1 TagID2:(int) id2 TagID3:(int) id3 Description:(NSString *) descript competion:(void (^)(NSDictionary *, NSError *))block;
 
-+(void) searchExpert:(NSString *)token tagID:(int)tagID limit:(int)limit offset:(int)offset competion:(void (^)(NSDictionary *, NSError *))block;
++(void) searchExpertByTagID:(NSString *)token tagID:(int)tagID limit:(int)limit offset:(int)offset competion:(void (^)(NSDictionary *, NSError *))block;
 
++(void) searchExpertByKey:(NSString *)token key:(NSString *)key limit:(int)limit offset:(int)offset competion:(void (^)(NSDictionary *, NSError *))block;
 +(void) getExpert:(NSString *)token userID:(int) userID competion:(void (^)(NSDictionary *, NSError *))block;
 //show streaming
 +(void) getLiveBroadcast:(NSString *)token limit:(int)limit offset:(int)offset competion:(void (^)(NSDictionary *, NSError *))block;

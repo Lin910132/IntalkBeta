@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tag1WidthConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tag2WidthConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tag3WidthConstraint;
+@property (weak, nonatomic) IBOutlet UITextView *txtDescription;
 
 -(void)setDataToCell:(NSMutableDictionary *) cellData cellType:(int) type;
 -(void)initUI;

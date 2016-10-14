@@ -17,7 +17,8 @@
 #import "Question.h"
 #import <UIImageView+AFNetworking.h>
 #import <WowzaGoCoderSDK/WowzaGoCoderSDK.h>
-
+#import "Expert.h"
+#import "AboutMeTableViewCell.h"
 @interface DetailViewController () <WZStatusCallback, WZVideoSink, LECPlayerDelegate, WZVideoEncoderSink, WZAudioEncoderSink>{
 
     LiveStreamingScreenMode screenMode;
@@ -29,6 +30,8 @@
     CIImage *frameImage;
     BOOL isClosing;
     NSMutableArray * tableData;
+    BOOL isGetQuestionRunning;
+    BOOL isPageClosed;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *selectedQst;
@@ -39,6 +42,7 @@
 @property (weak, nonatomic) IBOutlet UIView *selectedSummaryHost;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UITableView *questionTableView;
+@property (weak, nonatomic) IBOutlet UITableView *fullScreenQuestionView;
 @property (weak, nonatomic) IBOutlet UIButton *btnCaptureMode;
 @property (weak, nonatomic) IBOutlet UIButton *btnCameraMode;
 @property (weak, nonatomic) IBOutlet UIView *tabBarView;
@@ -52,12 +56,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *sharingBtnTopConstraint;
 @property (weak, nonatomic) IBOutlet UIView *fullScreenHostSideProfile;
 @property (weak, nonatomic) IBOutlet UIView *fullScreenClientSideProfile;
-@property (weak, nonatomic) IBOutlet UIButton *answer_full_1;
-@property (weak, nonatomic) IBOutlet UIButton *answer_full_2;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewBottomConstraint;
-
-@property (weak, nonatomic) IBOutlet UIButton *comment_1;
-@property (weak, nonatomic) IBOutlet UIButton *comment_2;
 @property (weak, nonatomic) IBOutlet UIButton *btnClose;
 @property (weak, nonatomic) IBOutlet UIButton *btnCloseMain;
 @property (weak, nonatomic) IBOutlet UILabel *lblStreamFinished;
@@ -65,6 +64,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *small_sound_img;
 @property (weak, nonatomic) IBOutlet UIImageView *full_sound_img;
 @property (weak, nonatomic) IBOutlet UIImageView *hostProfileAvatar;
+@property (weak, nonatomic) IBOutlet UIImageView *clientProfileAvatar;
+@property (weak, nonatomic) IBOutlet UILabel *clientSideProfileNameOnFullScreen;
 
 @property (nonatomic, strong) WowzaGoCoder *goCoder;
 @property (nonatomic, strong) WZCameraPreview *goCoderCameraPreview;
@@ -84,12 +85,15 @@
     if(screenMode == Streaming_Host) {
         [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     }
+    isPageClosed = NO;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
     if(screenMode == Streaming_Host) {
         [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
     }
+    
+    isPageClosed = YES;
 }
 
 - (void)viewDidLoad {
@@ -125,16 +129,13 @@
         [_bottomText setHidden:YES];
         [_fullScreenClientSideProfile setHidden:NO];
         [_btnBottomRight setImage:[UIImage imageNamed:@"icon_gift.png"] forState:UIControlStateNormal];
-        [self buttonInit];
         [_hostTabBarView setHidden:YES];
+        [self initUIForClient];
     }else if(screenMode == Streaming_Host){
         sound_image = [UIImage imageNamed:@"sound_img.png"];
         frameImage = [[CIImage alloc] initWithCGImage:sound_image.CGImage options:nil];
         
         [self initWowzaSDK];
-        [_comment_1 setTitle:@"3" forState:UIControlStateNormal];
-        [_comment_2 setTitle:@"7" forState:UIControlStateNormal];
-    
         isCaptureScreen = true;
         [self startLiveStreamingVideo];
         [_bottomText setHidden:NO];
@@ -147,9 +148,57 @@
     
     tableData = [NSMutableArray new];
     [self.questionTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self.fullScreenQuestionView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [self getQuestions];
 }
 
 #pragma -mark Private
+-(void) getQuestions{
+    isGetQuestionRunning = YES;
+    if(screenMode == Streaming_Client){
+        [InTalkAPI getAllQuestions:[[User getInstance]getUserToken] broadcastId:self.info.item_id competion:^(NSDictionary *resp, NSError *err) {
+            [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
+            if(!err){
+                [tableData removeAllObjects];
+                for(NSDictionary * item in [resp objectForKey:@"data"]){
+                    Question *cell = [Question parseDataFromJson:item];
+                    [tableData addObject:cell];
+                }
+                
+                [self.questionTableView reloadData];
+                [self.fullScreenQuestionView reloadData];
+                if(selectedTab == QuestionTabSelected  && isPageClosed == NO){
+                    [self getQuestions];
+                }else{
+                    isGetQuestionRunning = NO;
+                }
+            }else{
+                SHOWALLERT(@"Sending error", err.localizedDescription);
+            }
+        }];
+    }else if(screenMode == Streaming_Host){
+        [InTalkAPI getAllQuestions:[[User getInstance]getUserToken] broadcastId:self.info.item_id competion:^(NSDictionary *resp, NSError *err) {
+            [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
+            if(!err){
+                [tableData removeAllObjects];
+                for(NSDictionary * item in [resp objectForKey:@"data"]){
+                    Question *cell = [Question parseDataFromJson:item];
+                    [tableData addObject:cell];
+                }
+                
+                [self.questionTableView reloadData];
+                [self.fullScreenQuestionView reloadData];
+                if(selectedTab == QuestionTabSelected && isPageClosed == NO){
+                    [self getQuestions];
+                }else{
+                    isGetQuestionRunning = NO;
+                }
+            }else{
+                SHOWALLERT(@"Sending error", err.localizedDescription);
+            }
+        }];
+    }
+}
 
 -(void) initUIForHost{
     User* currentUser = [User getInstance];
@@ -164,6 +213,20 @@
                                   }
                                   failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error){
                                   }];
+}
+
+-(void) initUIForClient{
+    [self.clientProfileAvatar layoutIfNeeded];
+    self.clientProfileAvatar.layer.cornerRadius = self.clientProfileAvatar.frame.size.height / 2;
+    self.clientProfileAvatar.layer.masksToBounds = YES;
+    [self.clientProfileAvatar setImageWithURLRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:self.info.avatar_url]]
+                                  placeholderImage:nil
+                                           success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image){
+                                               [self.clientProfileAvatar setImage:image];
+                                           }
+                                           failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error){
+                                           }];
+    [self.clientSideProfileNameOnFullScreen setText:self.info.name];
 }
 -(void)initWowzaSDK{
     NSError *goCoderLicensingError = [WowzaGoCoder registerLicenseKey:@"GOSK-D342-0103-B43D-39C3-09FB"];
@@ -189,10 +252,7 @@
     [self.view endEditing:YES];
 }
 
--(void) buttonInit{
-    [_answer_full_1 setHidden:YES];
-    [_answer_full_2 setHidden:YES];
-}
+
 
 -(void)initTableView{
     //self.questionTableView.scrollEnabled = NO;
@@ -231,9 +291,11 @@
 -(void) startBroadcasting{
     NSString *url = [NSString stringWithFormat:@"%@/%@", RTMP_SERVER_ADDRESS, _liveStreamName];
     NSLog(@"Broadcast URL %@", url);
-    [InTalkAPI startBroadcastWithToken:[[User getInstance] getUserToken] Url:url completion:^(NSDictionary *json, NSError *error) {
+    [InTalkAPI startBroadcastWithToken:[[User getInstance] getUserToken] Url:url title:_liveStreamTitle completion:^(NSDictionary *json, NSError *error) {
         if(!error){
+            self.info = [HomeTableItemModel new];
             self.info.item_id = [[json objectForKey:@"broadcastid"]intValue];
+            self.info.user_id = [[User getInstance] getUserID];
         }else {
             SHOWALLERT(@"Broadcasting Request Error", error.localizedDescription);
         }
@@ -333,48 +395,28 @@
 - (IBAction)btnQuestionClicked:(id)sender {
     [self setSelectMarksHiddenQuests:NO Expert:YES SuggestQt:YES];
     selectedTab = QuestionTabSelected;
-    [self.questionTableView reloadData];
+    self.questionTableView.scrollEnabled = YES;
     [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Loading Questions..."];
-    if(screenMode == Streaming_Client){
-        [InTalkAPI getQuestions:[[User getInstance]getUserToken] broadcastId:self.info.item_id competion:^(NSDictionary *resp, NSError *err) {
-            [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
-            if(!err){
-                [tableData removeAllObjects];
-                for(NSDictionary * item in [resp objectForKey:@"data"]){
-                    Question *cell = [Question parseDataFromJson:item];
-                    [tableData addObject:cell];
-                }
-                
-                [self.questionTableView reloadData];
-            }else{
-                SHOWALLERT(@"Sending error", err.localizedDescription);
-            }
-        }];
-    }else if(screenMode == Streaming_Host){
-        [InTalkAPI getAllQuestions:[[User getInstance]getUserToken] broadcastId:self.info.item_id competion:^(NSDictionary *resp, NSError *err) {
-            [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
-            if(!err){
-                [tableData removeAllObjects];
-                for(NSDictionary * item in [resp objectForKey:@"data"]){
-                    Question *cell = [Question parseDataFromJson:item];
-                    [tableData addObject:cell];
-                }
-                
-                [self.questionTableView reloadData];
-            }else{
-                SHOWALLERT(@"Sending error", err.localizedDescription);
-            }
-        }];
+    if(isGetQuestionRunning == NO){
+        [self getQuestions];
     }
-    
-    [self.questionTableView reloadData];
 }
 - (IBAction)btnAboutEptClicked:(id)sender {
     [self setSelectMarksHiddenQuests:YES Expert:NO SuggestQt:YES];
     selectedTab = ExpertTabSelected;
+    self.questionTableView.scrollEnabled = NO;
     [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Loading Expert..."];
     [InTalkAPI getExpert:[[User getInstance] getUserToken] userID:self.info.user_id competion:^(NSDictionary *resp, NSError *err) {
         [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
+        if(!err){
+            selectedTab = ExpertTabSelected; // Means about me is selelcted
+            [tableData removeAllObjects];
+            Expert * expert = [Expert parseDataFromJson:resp];
+            [tableData addObject:expert];
+            [self.questionTableView reloadData];
+        }else{
+            SHOWALLERT(@"About Me request Err", err.localizedDescription);
+        }
     }];
 }
 - (IBAction)btnSuggestQtClicked:(id)sender {
@@ -394,6 +436,7 @@
 - (IBAction)btnFollow:(id)sender {
     [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Following"];
     [InTalkAPI follow:[[User getInstance]getUserToken] userID:self.info.user_id competion:^(NSDictionary *resp, NSError *err) {
+        
         [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
     }];
 }
@@ -418,6 +461,7 @@
             [_btnCloseMain setHidden:YES];
             [_bottomView setHidden:YES];
             [_lecPlayer.videoView setFrame:fullSizeFrame];
+            [_lecPlayer.videoView setBackgroundColor:[UIColor colorWithRed:44/255.0 green:124/255.0 blue:187/255.0 alpha:1]];
         }else{
             [_btnCloseMain setHidden:YES];
             [_goCoderCameraPreview.previewLayer setFrame:fullSizeFrame];
@@ -485,17 +529,36 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell;
-    if(selectedTab == QuestionTabSelected){
-        QuestionTableCell *questionCell = [tableView dequeueReusableCellWithIdentifier:@"QuestionTableCell"];
+    if(tableView == _questionTableView) {
+        if(selectedTab == QuestionTabSelected){
+            QuestionTableCell *questionCell = [tableView dequeueReusableCellWithIdentifier:@"QuestionTableCell"];
+            [questionCell setScreenMode:screenMode];
+            [questionCell initCell:[tableData objectAtIndex:indexPath.row]];
+            cell = questionCell;
+        }else if(selectedTab == ExpertTabSelected){
+            AboutMeTableViewCell* expertCell = [tableView dequeueReusableCellWithIdentifier:@"AboutMeTableViewCell"];
+            [expertCell initCell:[tableData objectAtIndex:indexPath.row]];
+            cell = expertCell;
+            
+        }else {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"SuggestTableCell"];
+        }
+    }else{
+        QuestionTableCellForFullScreen *questionCell = [tableView dequeueReusableCellWithIdentifier:@"QuestionTableCellForFullScreen"];
         [questionCell setScreenMode:screenMode];
         [questionCell initCell:[tableData objectAtIndex:indexPath.row]];
         cell = questionCell;
-    }else if(selectedTab == ExpertTabSelected){
-        cell = [tableView dequeueReusableCellWithIdentifier:@"ExpertTableCell"];
-    }else {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"SuggestTableCell"];
     }
     return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(tableView == self.questionTableView){
+        if(selectedTab == ExpertTabSelected ){
+            return 100;
+        }
+    }
+    return 40;
 }
 
 #pragma mark - WZStatusCallback Protocol Instance Methods

@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Expert.h"
 @interface ExpertTableCell : UITableViewCell
+
+-(void) initCell:(Expert *) cellData;
 
 @end

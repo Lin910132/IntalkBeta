@@ -10,6 +10,7 @@
 
 @interface Question : NSObject
 @property (nonatomic, retain) NSString * answer;
+@property (nonatomic, retain) NSString * name;
 @property (atomic) int broadcastID;
 @property (atomic) int questionID;
 @property (atomic) int diamond;

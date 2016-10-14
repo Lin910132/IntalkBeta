@@ -11,5 +11,5 @@
 @interface FollowerProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
     SelectedTabOnProfile selectedTab;
 }
-
+@property (nonatomic, retain) User *profile;
 @end

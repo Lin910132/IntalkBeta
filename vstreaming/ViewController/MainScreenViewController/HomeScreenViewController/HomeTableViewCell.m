@@ -79,8 +79,9 @@
                                       }
                                       failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error){
                                       }];
-        [self.itemContent setText:cellData.descriptText];
+        [self.itemContent setText:cellData.name];
         [self.itemTitle setText:cellData.title];
+        [self.txtDescription setText:cellData.descriptText];
     }else{
         if(cellData.tag1_id != 0){ //if not empty
             [self.tag1 setTitle:[[DataManager getInstance] findTagByID:cellData.tag1_id] forState:UIControlStateNormal];

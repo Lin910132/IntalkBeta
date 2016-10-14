@@ -26,7 +26,7 @@
                   moduleName = "vstreaming"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta/vstreaming/ViewController/SignUpViewController.m"
-                  timestampString = "497951784.170855"
+                  timestampString = "498151872.705257"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "87"
@@ -41,7 +41,7 @@
                   moduleName = "vstreaming"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta/vstreaming/ViewController/SignUpViewController.m"
-                  timestampString = "497951784.171959"
+                  timestampString = "498151872.706913"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "88"
@@ -49,32 +49,6 @@
                   offsetFromSymbolStart = "40">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            scope = "0"
-            stopOnStyle = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "vstreaming/ViewController/MainScreenViewController/HomeScreenViewController/DetailViewController/DetailViewController.m"
-            timestampString = "497951456.166715"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "398"
-            endingLineNumber = "398"
-            landmarkName = "-btnBottomRight:"
-            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -100,7 +74,7 @@
                   moduleName = "vstreaming"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta/vstreaming/ViewController/MainScreenViewController/MessageViewController/MessagesViewController.m"
-                  timestampString = "497951784.178689"
+                  timestampString = "498151872.711585"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "47"
@@ -115,7 +89,7 @@
                   moduleName = "vstreaming"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta/vstreaming/ViewController/MainScreenViewController/MessageViewController/MessagesViewController.m"
-                  timestampString = "497951784.179187"
+                  timestampString = "498151872.712151"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "48"
@@ -171,6 +145,80 @@
             endingLineNumber = "91"
             landmarkName = "-callWeiboLogIn:"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "vstreaming/ViewController/MainScreenViewController/HomeScreenViewController/ExpertSearchView/ExpertSearchViewController.m"
+            timestampString = "498149089.84093"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "-loadData"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ExpertSearchViewController loadData]"
+                  moduleName = "vstreaming"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta/vstreaming/ViewController/MainScreenViewController/HomeScreenViewController/ExpertSearchView/ExpertSearchViewController.m"
+                  timestampString = "498151872.7321"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "396">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__38-[ExpertSearchViewController loadData]_block_invoke.63"
+                  moduleName = "vstreaming"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta/vstreaming/ViewController/MainScreenViewController/HomeScreenViewController/ExpertSearchView/ExpertSearchViewController.m"
+                  timestampString = "498151872.732521"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "14">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "vstreaming/ViewController/MainScreenViewController/HomeScreenViewController/ExpertSearchView/ExpertSearchViewController.m"
+            timestampString = "498149089.84093"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "-loadData"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

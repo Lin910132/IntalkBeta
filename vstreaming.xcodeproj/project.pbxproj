@@ -50,6 +50,8 @@
 		8B82D02C1D4972E400FE6B34 /* ShowTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B82D02B1D4972E400FE6B34 /* ShowTableCell.m */; };
 		8B83334F1D9E4A1500EB3243 /* TagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B83334E1D9E4A1500EB3243 /* TagModel.m */; };
 		8B8B1D801D4F675C00B2A735 /* CommonFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B1D7F1D4F675C00B2A735 /* CommonFunction.m */; };
+		8B8B38B11DB073900046E70C /* Expert.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B38B01DB073900046E70C /* Expert.m */; };
+		8B8B38B41DB0841E0046E70C /* AboutMeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B38B31DB0841E0046E70C /* AboutMeTableViewCell.m */; };
 		8B8C7CF31D58B9F5002A056E /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8C7CF21D58B9F5002A056E /* Utility.m */; };
 		8B8F36B31D830B4400A03018 /* LECPlayerResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8B8F36AE1D830B4400A03018 /* LECPlayerResource.bundle */; };
 		8B8F36B41D830B4400A03018 /* libLECPlayerFoundation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8F36B01D830B4400A03018 /* libLECPlayerFoundation.a */; };
@@ -58,6 +60,7 @@
 		8B8F36B71D830B6800A03018 /* LECPlayerResource.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8F36AE1D830B4400A03018 /* LECPlayerResource.bundle */; };
 		8BA702161DA5899F00A828FE /* Follower.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA702151DA5899F00A828FE /* Follower.m */; };
 		8BA702191DA58ACB00A828FE /* VideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA702181DA58ACB00A828FE /* VideoModel.m */; };
+		8BBE01B91DAE2DDD00F0D27D /* QuestionTableCellForFullScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BBE01B81DAE2DDD00F0D27D /* QuestionTableCellForFullScreen.m */; };
 		8BC098C01D869F0B00FD46AD /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC098BF1D869F0B00FD46AD /* User.m */; };
 		8BC0BBBF1D586F3900CEAEFC /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC0BBBE1D586F3900CEAEFC /* AVFoundation.framework */; };
 		8BC0BBC31D586F6D00CEAEFC /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC0BBC21D586F6D00CEAEFC /* CoreTelephony.framework */; };
@@ -233,6 +236,10 @@
 		8B83334E1D9E4A1500EB3243 /* TagModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagModel.m; sourceTree = "<group>"; };
 		8B8B1D7E1D4F674C00B2A735 /* CommonFunction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonFunction.h; sourceTree = "<group>"; };
 		8B8B1D7F1D4F675C00B2A735 /* CommonFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonFunction.m; sourceTree = "<group>"; };
+		8B8B38AF1DB073900046E70C /* Expert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Expert.h; sourceTree = "<group>"; };
+		8B8B38B01DB073900046E70C /* Expert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Expert.m; sourceTree = "<group>"; };
+		8B8B38B21DB0841E0046E70C /* AboutMeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutMeTableViewCell.h; sourceTree = "<group>"; };
+		8B8B38B31DB0841E0046E70C /* AboutMeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutMeTableViewCell.m; sourceTree = "<group>"; };
 		8B8C7CF11D58B9F5002A056E /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		8B8C7CF21D58B9F5002A056E /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		8B8F36A91D830B4400A03018 /* LECGlobalDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LECGlobalDefine.h; sourceTree = "<group>"; };
@@ -248,6 +255,8 @@
 		8BA702151DA5899F00A828FE /* Follower.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Follower.m; sourceTree = "<group>"; };
 		8BA702171DA58ACB00A828FE /* VideoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoModel.h; sourceTree = "<group>"; };
 		8BA702181DA58ACB00A828FE /* VideoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoModel.m; sourceTree = "<group>"; };
+		8BBE01B71DAE2DDD00F0D27D /* QuestionTableCellForFullScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionTableCellForFullScreen.h; sourceTree = "<group>"; };
+		8BBE01B81DAE2DDD00F0D27D /* QuestionTableCellForFullScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionTableCellForFullScreen.m; sourceTree = "<group>"; };
 		8BC098BE1D869F0B00FD46AD /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		8BC098BF1D869F0B00FD46AD /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		8BC0BBBE1D586F3900CEAEFC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -609,6 +618,8 @@
 				8B4C440C1DACDC1600A583D5 /* Question.m */,
 				8B4C440E1DAD0BE200A583D5 /* Message.h */,
 				8B4C440F1DAD0BE200A583D5 /* Message.m */,
+				8B8B38AF1DB073900046E70C /* Expert.h */,
+				8B8B38B01DB073900046E70C /* Expert.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -747,6 +758,8 @@
 				8BCD71801D448F3200ECFD88 /* HomeTableViewCell.m */,
 				8BCD71851D448F9300ECFD88 /* HomeViewController.h */,
 				8BCD71861D448F9300ECFD88 /* HomeViewController.m */,
+				8B8B38B21DB0841E0046E70C /* AboutMeTableViewCell.h */,
+				8B8B38B31DB0841E0046E70C /* AboutMeTableViewCell.m */,
 			);
 			path = HomeScreenViewController;
 			sourceTree = "<group>";
@@ -791,6 +804,8 @@
 				8BCD71A71D45510100ECFD88 /* ExpertTableCell.m */,
 				8BCD71A91D45510E00ECFD88 /* SuggestTableCell.h */,
 				8BCD71AA1D45510E00ECFD88 /* SuggestTableCell.m */,
+				8BBE01B71DAE2DDD00F0D27D /* QuestionTableCellForFullScreen.h */,
+				8BBE01B81DAE2DDD00F0D27D /* QuestionTableCellForFullScreen.m */,
 			);
 			path = DetailViewController;
 			sourceTree = "<group>";
@@ -1144,6 +1159,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B8B38B41DB0841E0046E70C /* AboutMeTableViewCell.m in Sources */,
 				8B7F74ED1DA38DF70057CB67 /* MP4Writer.m in Sources */,
 				8BC098C01D869F0B00FD46AD /* User.m in Sources */,
 				8BE6AF001DAC2EE8009DDC30 /* PayDialogViewController.m in Sources */,
@@ -1151,6 +1167,7 @@
 				8B1B0E391D5AB91500B59DD9 /* WechatAccess.m in Sources */,
 				8BCD719B1D44F36800ECFD88 /* MessagesViewController.m in Sources */,
 				8B5C01A71DAC4EA4006B4733 /* UIViewController+MJPopupViewController.m in Sources */,
+				8BBE01B91DAE2DDD00F0D27D /* QuestionTableCellForFullScreen.m in Sources */,
 				8BCD71941D44BD1100ECFD88 /* MainTabViewController.m in Sources */,
 				8B4C44131DAD28B400A583D5 /* MessageSenderCell.m in Sources */,
 				8B50BF781D5CDC950059456C /* WeiboAccess.m in Sources */,
@@ -1158,6 +1175,7 @@
 				8BCD716D1D434FD800ECFD88 /* CountrySelectViewController.m in Sources */,
 				8BCD71BB1D45DF9B00ECFD88 /* CustomGridFlowLayout.m in Sources */,
 				8BCD71811D448F3200ECFD88 /* HomeTableViewCell.m in Sources */,
+				8B8B38B11DB073900046E70C /* Expert.m in Sources */,
 				8B73E9C91DA0FFE00009968D /* DropDownListView.m in Sources */,
 				8B8B1D801D4F675C00B2A735 /* CommonFunction.m in Sources */,
 				8BCD71A21D4534EA00ECFD88 /* DetailViewController.m in Sources */,

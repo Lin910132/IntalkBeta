@@ -19,7 +19,7 @@
     model.diamond           = [[dict objectForKey:@"diamond"] intValue];
     model.questionID        = [[dict objectForKey:@"id"] intValue];
     model.user_id           = [[dict objectForKey:@"user_id"] intValue];
-    
+    model.name              = [dict objectForKey:@"name"];
     return model;
 }
 @end

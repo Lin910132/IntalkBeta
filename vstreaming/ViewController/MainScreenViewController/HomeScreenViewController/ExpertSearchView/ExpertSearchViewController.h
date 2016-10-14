@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ExpertSearchViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITableView *expertSearchTable;
 
 @property (nonatomic) NSInteger tagID;
 @end

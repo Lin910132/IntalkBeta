@@ -1,25 +1,20 @@
 //
-//  QuestionTableCell.m
+//  QuestionTableCellForFullScreen.m
 //  vstreaming
 //
-//  Created by developer on 7/24/16.
+//  Created by developer on 10/12/16.
 //  Copyright © 2016 ITGroup. All rights reserved.
 //
 
-#import "QuestionTableCell.h"
-
-@interface QuestionTableCell(){
-    Question *question;
-}
+#import "QuestionTableCellForFullScreen.h"
+@interface QuestionTableCellForFullScreen()
 @property (weak, nonatomic) IBOutlet UIButton *diamondBtn;
 @property (weak, nonatomic) IBOutlet UIButton *answerBtn;
 @property (weak, nonatomic) IBOutlet UILabel *questionContent;
 @property (weak, nonatomic) IBOutlet UILabel *senderName;
 
-
 @end
-
-@implementation QuestionTableCell
+@implementation QuestionTableCellForFullScreen
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -39,7 +34,6 @@
 }
 
 -(void)initCell:(Question *)cellData{
-    question = cellData;
     if(cellData.diamond == 0) {
         [self.diamondBtn setHidden:YES];
         [self.answerBtn setHidden:YES];
@@ -50,9 +44,4 @@
     [self.questionContent setText:cellData.question];
     [self.senderName setText:cellData.name];
 }
-
-- (IBAction)btnAnswerPressed:(id)sender {
-//    [InTalkAPI addAnswer:[ questionId:<#(int)#> answer:<#(NSString *)#> competion:<#^(NSDictionary *, NSError *)block#>]
-}
-
 @end

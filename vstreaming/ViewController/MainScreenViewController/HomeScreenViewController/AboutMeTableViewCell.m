@@ -1,19 +1,14 @@
 //
-//  ExpertTableCell.m
+//  AboutMeTableViewCell.m
 //  vstreaming
 //
-//  Created by developer on 7/24/16.
+//  Created by developer on 10/14/16.
 //  Copyright © 2016 ITGroup. All rights reserved.
 //
 
-#import "ExpertTableCell.h"
-@interface ExpertTableCell()
-@property (weak, nonatomic) IBOutlet UITextField *companyName;
-@property (weak, nonatomic) IBOutlet UITextField *title;
-@property (weak, nonatomic) IBOutlet UITextField *descriptField;
+#import "AboutMeTableViewCell.h"
 
-@end
-@implementation ExpertTableCell
+@implementation AboutMeTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -29,7 +24,7 @@
 -(void)initCell:(Expert *)cellData{
     [_companyName setText:cellData.company];
     [_title setText:cellData.title];
-    [_descriptField setText:cellData.descriptionTxt];
+    [_descriptTxt setText:cellData.descriptionTxt];
     self.companyName.userInteractionEnabled = NO;
 }
 @end

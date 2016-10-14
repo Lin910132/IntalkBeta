@@ -9,8 +9,8 @@
 #import "QuestionViewController.h"
 #import "PayDialogViewController.h"
 #import "UIViewController+MJPopupViewController.h"
-
-@interface QuestionViewController() <PayDialogPopupDelegate>
+#import <UITextView+Placeholder.h>
+@interface QuestionViewController() <PayDialogPopupDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *priceEdit;
 
 @end
@@ -18,11 +18,13 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
-                                   initWithTarget:self
-                                   action:@selector(dismissKeyboard)];
-    
-    [self.view addGestureRecognizer:tap];
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+//                                   initWithTarget:self
+//                                   action:@selector(dismissKeyboard)];
+//    
+//    [self.view addGestureRecognizer:tap];
+    self.questionTxt.placeholder = @"Type here Question...";
+    self.diamondAmount.delegate = self;
     
 }
 
@@ -55,11 +57,15 @@
     [InTalkAPI addQuestion:[[User getInstance] getUserToken] broadcastId:self.broadcastId message:self.questionTxt.text diamond:self.diamondAmount.text competion:^(NSDictionary *resp, NSError *err) {
         [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
         if(!err){
-            
+            [self dismissViewControllerAnimated:YES completion:nil];
         }else{
             SHOWALLERT(@"Sending error", err.localizedDescription);
         }
     }];
 }
 
+#pragma mark UITextFieldDelegate
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    [self.diamondLbl setText:textField.text];
+}
 @end

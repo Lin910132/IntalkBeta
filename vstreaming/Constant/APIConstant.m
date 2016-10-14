@@ -37,6 +37,7 @@ NSString * const APIAddAnswer                           = @"index.php?/api/add-a
 NSString * const APIGetExpert                           = @"index.php?/api/get-expert";
 NSString * const APIFollow                              = @"index.php?/api/follow";
 NSString * const APIGetVideos                           = @"index.php?/api/get-videos";
+NSString * const APISearchBroadcast                     = @"index.php?/api/search-broadcast";
 
 
 

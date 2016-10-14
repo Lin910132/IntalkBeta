@@ -10,8 +10,13 @@
 #import "ExpertSearchTableCell.h"
 #import "DetailViewController.h"
 #import "GeneralConstant.h"
-@interface ExpertSearchViewController() <UITableViewDelegate, UITableViewDataSource>{
+#import "FollowerProfileViewController.h"
+@interface ExpertSearchViewController() <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>{
     ExpertSearchTapType selectedTab;
+    NSMutableArray *tableDataforExpert;
+    NSMutableArray *tableDataforShow;
+    NSString *keyString;
+    UIRefreshControl *refreshControl;
 }
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
@@ -28,20 +33,53 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     [_tagSelected setHidden:YES];
+    selectedTab = Expert_Tab;
     [self.searchBar setImage:[UIImage imageNamed: @"icon_search.png"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
-    
-    [self.expertBtn setTitle:[[User getInstance] getName] forState:UIControlStateNormal];
-    [self loadExpertData];
+    self.searchBar.delegate = self;
+    tableDataforExpert = [NSMutableArray new];
+    tableDataforShow   = [NSMutableArray new];
+    [self makeTableViewRefreshable];
+    //[self.expertBtn setTitle:[[User getInstance] getName] forState:UIControlStateNormal];
+    //[self loadExpertData];
+}
+
+-(void) makeTableViewRefreshable{
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(loadData) forControlEvents:UIControlEventValueChanged];
+    [self.expertSearchTable addSubview:refreshControl];
 }
 #pragma mark - Private
--(void) loadExpertData{
-    [InTalkAPI searchExpert:[[User getInstance]getUserToken] tagID:self.tagID limit:10 offset:0 competion:^(NSDictionary *resp, NSError *err) {
-        if(!err){
-            NSLog(@"%@", resp);
-        }else{
-            NSLog(@"Error----");
-        }
-    }];
+-(void) loadData{
+    if(selectedTab == Expert_Tab){
+        [InTalkAPI searchExpertByKey:[[User getInstance]getUserToken] key:keyString limit:10 offset:0 competion:^(NSDictionary *resp, NSError *err) {
+            [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
+            [refreshControl endRefreshing];
+            if(!err){
+                [tableDataforExpert removeAllObjects];
+                for(NSDictionary *item in [resp objectForKey:@"data"]){
+                    User *expertUser = [User new];
+                    [expertUser parseDataFromJson:item];
+                    [tableDataforExpert addObject:expertUser];
+                }
+                
+                [_expertSearchTable reloadData];
+                
+            }else{
+                NSLog(@"Error----");
+            }
+        }];
+    }else{
+        [InTalkAPI searchBroadcastByKey:[[User getInstance]getUserToken] key:keyString limit:10 offset:0 competion:^(NSDictionary *resp, NSError *err) {
+            [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
+            [refreshControl endRefreshing];
+            if(!err){
+                [tableDataforShow removeAllObjects];
+                [_expertSearchTable reloadData];
+            }else{
+                NSLog(@"Error----");
+            }
+        }];
+    }
 }
 
 - (IBAction)backBtnClicked:(id)sender {
@@ -51,11 +89,13 @@
     selectedTab = Expert_Tab;
     [_expertSelected setHidden:NO];
     [_tagSelected setHidden:YES];
+    [self.expertSearchTable reloadData];
 }
 - (IBAction)tagBtnClicked:(id)sender {
     selectedTab = Tag_Tab;
     [_expertSelected setHidden:YES];
     [_tagSelected setHidden:NO];
+    [self.expertSearchTable reloadData];
 }
 
 #pragma TableView Delegate
@@ -65,17 +105,32 @@
 }
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    if(selectedTab == Expert_Tab)
+        return [tableDataforExpert count];
+    else
+        return [tableDataforShow count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ExpertSearchTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ExpertSearchTableCell"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    [cell initCell:[tableDataforExpert objectAtIndex:indexPath.row]];
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    DetailViewController *detailVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DetailViewController"];
-    [self presentViewController:detailVC animated:YES completion:nil];
+    if(selectedTab == Expert_Tab){
+        FollowerProfileViewController *followerProfileVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"FollowerProfileViewController"];
+        followerProfileVC.profile = [tableDataforExpert objectAtIndex:indexPath.row];
+        [self presentViewController:followerProfileVC animated:YES completion:nil];
+    }
+}
+
+#pragma mark - UISearchBar
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Loading..."];
+    keyString = searchBar.text;
+    [self loadData];
+    [[self view] endEditing:YES];
 }
 @end

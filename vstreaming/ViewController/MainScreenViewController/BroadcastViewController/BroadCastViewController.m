@@ -10,15 +10,17 @@
 #import "IndustrySelectViewController.h"
 #import "DetailViewController.h"
 #import "ExpertSubmitViewController.h"
-
+#import <UITextView+Placeholder.h>
 
 @interface BroadCastViewController () <IndustrySelectDelegate>
+@property (weak, nonatomic) IBOutlet UITextView *titleBroadCast;
 
 @end
 
 @implementation BroadCastViewController
 -(void)viewDidLoad{
     [super viewDidLoad];
+    //self.titleBroadCast.placeholder = @"Title of Broadcasting";
     [self getTagsInfo];
 }
 
@@ -37,8 +39,14 @@
         ExpertSubmitViewController *expertSVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ExpertSubmitViewController"];
         [self presentViewController:expertSVC animated:YES completion:nil];
     }else{
+        if([self.titleBroadCast.text isEqualToString:@""]){
+            SHOWALLERT(@"Error", @"Please input the title of broadcast");
+            return;
+        }
+        
         DetailViewController *detailVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DetailViewController"];
         detailVC.liveStreamName = [Utility randomStringWithLength:10];
+        detailVC.liveStreamTitle = self.titleBroadCast.text;
         [detailVC setScreenMode:Streaming_Host];
         [self presentViewController:detailVC animated:YES completion:nil];
     }

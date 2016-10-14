@@ -10,12 +10,18 @@
 #import "ProfileExpertTableCell.h"
 #import "ShowTableCell.h"
 #import "DetailViewController.h"
+#import <UIImageView+AFNetworking.h>
 @interface FollowerProfileViewController()
 @property (weak, nonatomic) IBOutlet UIButton *expertBtn;
 @property (weak, nonatomic) IBOutlet UIButton *showBtn;
 @property (weak, nonatomic) IBOutlet UIView *expertSelectedTab;
 @property (weak, nonatomic) IBOutlet UIView *showSelectedTab;
 @property (weak, nonatomic) IBOutlet UITableView *infoTableView;
+@property (weak, nonatomic) IBOutlet UILabel *userID;
+@property (weak, nonatomic) IBOutlet UILabel *userName;
+@property (weak, nonatomic) IBOutlet UILabel *followerBtn;
+@property (weak, nonatomic) IBOutlet UILabel *FollowingBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *userAvatar;
 
 @end
 
@@ -23,21 +29,41 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     [self setSelectMarksHiddenQuests:NO Expert:YES];
+    [self initUI];
+}
+
+-(void) initUI{
+    [self.userAvatar layoutIfNeeded];
+    self.userAvatar.layer.cornerRadius = self.userAvatar.frame.size.height / 2;
+    self.userAvatar.layer.masksToBounds = YES;
+    
+    self.userID.text = [NSString stringWithFormat:@"ID: %d", self.profile.user_id];
+    self.userName.text = self.profile.name;
+    [self.userAvatar setImageWithURLRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:self.profile.avatar_url]]
+                         placeholderImage:nil
+                                  success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image){
+                                      [self.userAvatar setImage:image];
+                                  }
+                                  failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error){
+                                  }];
+    
+    [self.FollowingBtn setText:[NSString stringWithFormat:@"Follower %d", self.profile.following]];
+    
+    [self.followerBtn setText:[NSString stringWithFormat:@"Follower %d", self.profile.followers]];
+    
 }
 
 - (IBAction)expertBtnClicked:(id)sender {
     selectedTab = ProfileExpertTabSelected;
     [self setSelectMarksHiddenQuests:NO Expert:YES];
-    self.infoTableView.scrollEnabled = NO;
+    //self.infoTableView.scrollEnabled = NO;
     [self.infoTableView reloadData];
-    self.infoTableView.scrollEnabled = NO;
 }
 - (IBAction)showBtnClicked:(id)sender {
     selectedTab = ShowTabSelected;
     [self setSelectMarksHiddenQuests:YES Expert:NO];
-    self.infoTableView.scrollEnabled = YES;
+    //self.infoTableView.scrollEnabled = YES;
     [self.infoTableView reloadData];
-    self.infoTableView.scrollEnabled = YES;
 }
 
 - (IBAction)backBtnClicked:(id)sender {
@@ -50,7 +76,7 @@
     
 }
 
-#pragma TableView Delegate
+#pragma mark - TableView Delegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 1;
 }
@@ -68,6 +94,8 @@
     UITableViewCell *cell;
     if(selectedTab == ProfileExpertTabSelected){
         cell = [tableView dequeueReusableCellWithIdentifier:@"ProfileExpertTableCell"];
+        ProfileExpertTableCell* procell = (ProfileExpertTableCell *) cell;
+        [procell initCell:self.profile];
     }else if(selectedTab == ShowTabSelected){
         cell = [tableView dequeueReusableCellWithIdentifier:@"ShowTableCell"];
     }

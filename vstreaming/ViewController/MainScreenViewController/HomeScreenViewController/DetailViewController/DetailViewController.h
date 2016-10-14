@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "GeneralConstant.h"
 #import "HomeTableItemModel.h"
-
+#import "QuestionTableCellForFullScreen.h"
 @interface DetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>{
     SelectedTab selectedTab;
 }
 
 @property (nonatomic, retain) NSString * liveStreamName;
+@property (nonatomic, retain) NSString * liveStreamTitle;
 //@property (atomic) int broadcastID;
 //@property (atomic) int userID;
 @property (nonatomic, retain) HomeTableItemModel * info;
