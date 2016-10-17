@@ -16,6 +16,7 @@
 @property (atomic) int diamond;
 @property (nonatomic, retain) NSString * question;
 @property (atomic) int user_id;
+@property (atomic) BOOL isAnswered;
 
 +(id) parseDataFromJson:(NSDictionary *) dict;
 @end

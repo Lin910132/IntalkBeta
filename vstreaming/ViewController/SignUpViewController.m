@@ -13,6 +13,7 @@
 #import "MainTabViewController.h"
 #import "InTalkAPI.h"
 #import "User.h"
+#import "WebManager.h"
 @interface SignUpViewController ()
 
 @end
@@ -39,7 +40,10 @@
         [[WechatAccess defaultAccess] login:^(BOOL succeeded, id object) {
             if(succeeded) {
                 NSString *openId = [(NSDictionary *)object valueForKey:@"openid"];
-                [InTalkAPI loginWithThirdPartySDK:@"wechat" Token:openId completion:^(NSDictionary *response, NSError *err){
+                NSString *headimgurl = [(NSDictionary *)object valueForKey:@"headimgurl"];
+                [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Log in..."];
+                [InTalkAPI loginWithThirdPartySDK:@"wechat" Token:openId profileUrl:headimgurl completion:^(NSDictionary *response, NSError *err){
+                    [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
                     if(err == nil) {
                         NSString *token = [response objectForKey:@"token"];
                         //[Utility saveDataWithKey:TOKEN Data:token];
@@ -63,9 +67,12 @@
 - (IBAction)callQQLogIn:(id)sender {
     [[TencentAccess defaultAccess] login:^(BOOL succeeded, id object) {
         if(succeeded) {
-            
             NSString *openId = [(NSDictionary *)object valueForKey:@"open_id"];
-            [InTalkAPI loginWithThirdPartySDK:@"qq" Token:openId completion:^(NSDictionary *response, NSError *err){
+            NSString *profile = [(NSDictionary *)object valueForKey:@"figureurl_qq_2"];
+            NSLog(@"%@", object);
+            [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Log in..."];
+            [InTalkAPI loginWithThirdPartySDK:@"qq" Token:openId profileUrl:profile completion:^(NSDictionary *response, NSError *err){
+                [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
                 if(err == nil) {
                     NSString *token = [response objectForKey:@"token"];
                     //[Utility saveDataWithKey:TOKEN Data:token];
@@ -87,15 +94,31 @@
     [[WeiboAccess defaultAccess] login:^(BOOL succeeded, id object) {
         if(succeeded) {
             NSString *openId = [(NSDictionary *)object valueForKey:@"userID"];
-            [InTalkAPI loginWithThirdPartySDK:@"weibo" Token:openId completion:^(NSDictionary *response, NSError *err){
-                if(err == nil) {
-                    NSString *token = [response objectForKey:@"token"];
-                    //[Utility saveDataWithKey:TOKEN Data:token];
-                    [[User getInstance] setUserToken:token];
-                    //add navigation feature
-                    
-                    MainTabViewController *mainTabViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MainTabBarController"];
-                    [self presentViewController:mainTabViewController animated:YES completion:nil];
+            NSDictionary *userInfo = [object objectForKey:@"userInfo"];
+            NSString* accessToken = [userInfo objectForKey:@"access_token"];
+            
+            NSDictionary*param = @{@"access_token"   :accessToken,
+                                   @"uid"   : openId};
+            [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Log in..."];
+            [WebManager GET:@"https://api.weibo.com/2/users/show.json" parameters:param completion:^(NSDictionary *JSON, NSError *error) {
+                if(!error){
+                    //NSDictionary *data = [JSON objectForKey:@"data"];
+                    NSString *profile = [JSON objectForKey:@"avatar_large"];
+                    [InTalkAPI loginWithThirdPartySDK:@"weibo" Token:openId profileUrl:profile completion:^(NSDictionary *response, NSError *err){
+                        [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
+                        if(err == nil) {
+                            NSString *token = [response objectForKey:@"token"];
+                            //[Utility saveDataWithKey:TOKEN Data:token];
+                            [[User getInstance] setUserToken:token];
+                            //add navigation feature
+                            
+                            MainTabViewController *mainTabViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MainTabBarController"];
+                            [self presentViewController:mainTabViewController animated:YES completion:nil];
+                        }
+                    }];
+                }else{
+                    [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
+                    SHOWALLERT(@"Error", @"Error occured while login wechat");
                 }
             }];
         }else{

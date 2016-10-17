@@ -48,9 +48,9 @@
     [WebManager POST:APIEndBroadCast parameters:params completion:block];
 }
 
-+(void)loginWithThirdPartySDK:(NSString *) sdkPrefix Token:(NSString *) token completion:(void(^)(NSDictionary * json, NSError *error)) block{
++(void)loginWithThirdPartySDK:(NSString *) sdkPrefix Token:(NSString *) token profileUrl:(NSString*) url completion:(void(^)(NSDictionary * json, NSError *error)) block{
     NSString * otherID = [NSString stringWithFormat:@"%@%@", sdkPrefix, token];
-    NSDictionary *params = @{@"otherid":otherID};
+    NSDictionary *params = @{@"otherid":otherID, @"avatar_url":url};
     [WebManager POST:APILoginWithOther parameters:params completion:block];
 }
 
@@ -201,7 +201,7 @@
 
 +(void)addAnswer:(NSString *)token questionId:(int)questionId answer:(NSString *)answer competion:(void (^)(NSDictionary *resp, NSError * err))block{
     NSDictionary *params = @{@"token"       :token,
-                             @"questionId"  :[NSString stringWithFormat:@"%d", questionId],
+                             @"questionid"  :[NSString stringWithFormat:@"%d", questionId],
                              @"answer"      :answer
                              };
     [WebManager POST:APIAddAnswer parameters:params completion:block];

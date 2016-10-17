@@ -457,9 +457,13 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z7a-JN-pm6">
                                                     <rect key="frame" x="286" y="343" width="34" height="28"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_download" translatesAutoresizingMaskIntoConstraints="NO" id="qLi-bE-qRd">
-                                                            <rect key="frame" x="8" y="9" width="17" height="11"/>
-                                                        </imageView>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="na3-1Z-MJB">
+                                                            <rect key="frame" x="0.0" y="0.0" width="34" height="28"/>
+                                                            <state key="normal" image="icon_download"/>
+                                                            <connections>
+                                                                <action selector="btnShare:" destination="WMQ-zt-tGM" eventType="touchUpInside" id="WoL-Io-oTP"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -1121,13 +1125,13 @@
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_back" translatesAutoresizingMaskIntoConstraints="NO" id="8km-v8-E5Z">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_back" translatesAutoresizingMaskIntoConstraints="NO" id="8km-v8-E5Z">
                                                     <rect key="frame" x="5" y="154" width="310" height="45"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="45" id="2NW-Am-Iqb"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Income Diamond Sign" placeholder="Verification Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tmc-HD-O8P">
+                                                <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Income Diamond Sign" placeholder="Verification Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tmc-HD-O8P">
                                                     <rect key="frame" x="22" y="168" width="276" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="MHk-6Q-LE0"/>
@@ -1135,7 +1139,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5E-51-X5R">
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5E-51-X5R">
                                                     <rect key="frame" x="242" y="161" width="65" height="28"/>
                                                     <color key="backgroundColor" red="0.20784313730000001" green="0.57647058819999997" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
@@ -1184,6 +1188,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="answeredQuestion" destination="cfd-3X-Cfu" id="9zk-pm-dWU"/>
+                                            <outlet property="duration" destination="oC5-3R-wX2" id="eIa-2I-jor"/>
+                                            <outlet property="startTime" destination="pmC-Bm-4tP" id="UZq-s0-22X"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
@@ -1256,6 +1265,9 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                                                                     </userDefinedRuntimeAttributes>
+                                                                    <connections>
+                                                                        <action selector="didAnswerBtnPressed:" destination="mJ2-yD-TbH" eventType="touchUpInside" id="dOj-Pj-Lwg"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XyW-xH-YBq">
                                                                     <rect key="frame" x="3" y="9" width="30" height="18"/>

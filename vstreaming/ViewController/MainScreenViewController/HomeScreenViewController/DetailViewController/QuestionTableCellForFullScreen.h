@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Question.h"
+#import "QuestionTableCell.h"
 @interface QuestionTableCellForFullScreen : UITableViewCell
 -(void) setScreenMode:(LiveStreamingScreenMode) mode;
--(void) initCell:(Question *) cellData;
+-(void) initCell:(Question *) cellData questionIndex:(int) index;
+@property (assign, nonatomic) id <QuestionCellDelegate>delegate;
 @end

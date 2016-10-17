@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface SuggestTableCell : UITableViewCell
-
+-(void) initUI:(int) answeredQuestion startTime:(NSString *) startTime startDate:(NSDate*) startDate;
 @end

@@ -20,6 +20,7 @@
     model.questionID        = [[dict objectForKey:@"id"] intValue];
     model.user_id           = [[dict objectForKey:@"user_id"] intValue];
     model.name              = [dict objectForKey:@"name"];
+    model.isAnswered        = NO;
     return model;
 }
 @end

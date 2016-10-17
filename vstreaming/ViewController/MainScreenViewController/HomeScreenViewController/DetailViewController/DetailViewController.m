@@ -19,7 +19,8 @@
 #import <WowzaGoCoderSDK/WowzaGoCoderSDK.h>
 #import "Expert.h"
 #import "AboutMeTableViewCell.h"
-@interface DetailViewController () <WZStatusCallback, WZVideoSink, LECPlayerDelegate, WZVideoEncoderSink, WZAudioEncoderSink>{
+#import "SuggestTableCell.h"
+@interface DetailViewController () <WZStatusCallback, WZVideoSink, LECPlayerDelegate, WZVideoEncoderSink, WZAudioEncoderSink, QuestionCellDelegate>{
 
     LiveStreamingScreenMode screenMode;
     BOOL isCaptureScreen;
@@ -32,6 +33,7 @@
     NSMutableArray * tableData;
     BOOL isGetQuestionRunning;
     BOOL isPageClosed;
+    NSDate *now;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *selectedQst;
@@ -86,6 +88,9 @@
         [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     }
     isPageClosed = NO;
+    if(isGetQuestionRunning == NO){
+        [self getQuestions];
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -147,9 +152,14 @@
     }
     
     tableData = [NSMutableArray new];
+    [tableData removeAllObjects];
     [self.questionTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.fullScreenQuestionView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    [self getQuestions];
+    if(isGetQuestionRunning == NO){
+        [self getQuestions];
+    }
+    
+    now = [NSDate date];
 }
 
 #pragma -mark Private
@@ -164,14 +174,14 @@
                     Question *cell = [Question parseDataFromJson:item];
                     [tableData addObject:cell];
                 }
-                
-                [self.questionTableView reloadData];
-                [self.fullScreenQuestionView reloadData];
                 if(selectedTab == QuestionTabSelected  && isPageClosed == NO){
+                    [self.questionTableView reloadData];
+                    [self.fullScreenQuestionView reloadData];
                     [self getQuestions];
                 }else{
-                    isGetQuestionRunning = NO;
+                    
                 }
+                isGetQuestionRunning = NO;
             }else{
                 SHOWALLERT(@"Sending error", err.localizedDescription);
             }
@@ -180,16 +190,21 @@
         [InTalkAPI getAllQuestions:[[User getInstance]getUserToken] broadcastId:self.info.item_id competion:^(NSDictionary *resp, NSError *err) {
             [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
             if(!err){
-                [tableData removeAllObjects];
+                NSMutableArray * tempData = [NSMutableArray new];
                 for(NSDictionary * item in [resp objectForKey:@"data"]){
                     Question *cell = [Question parseDataFromJson:item];
-                    [tableData addObject:cell];
+                    [tempData addObject:cell];
                 }
-                
-                [self.questionTableView reloadData];
-                [self.fullScreenQuestionView reloadData];
+                if([tempData count] > [tableData count]){
+                    int lastIndex = [tableData count];
+                    for(int i = lastIndex; i < [tempData count]; i++){
+                        [tableData addObject:[tempData objectAtIndex:i]];
+                    }
+                }
                 if(selectedTab == QuestionTabSelected && isPageClosed == NO){
                     [self getQuestions];
+                    [self.questionTableView reloadData];
+                    [self.fullScreenQuestionView reloadData];
                 }else{
                     isGetQuestionRunning = NO;
                 }
@@ -395,7 +410,7 @@
 - (IBAction)btnQuestionClicked:(id)sender {
     [self setSelectMarksHiddenQuests:NO Expert:YES SuggestQt:YES];
     selectedTab = QuestionTabSelected;
-    self.questionTableView.scrollEnabled = YES;
+    //self.questionTableView.scrollEnabled = YES;
     [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Loading Questions..."];
     if(isGetQuestionRunning == NO){
         [self getQuestions];
@@ -404,7 +419,7 @@
 - (IBAction)btnAboutEptClicked:(id)sender {
     [self setSelectMarksHiddenQuests:YES Expert:NO SuggestQt:YES];
     selectedTab = ExpertTabSelected;
-    self.questionTableView.scrollEnabled = NO;
+    //self.questionTableView.scrollEnabled = NO;
     [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Loading Expert..."];
     [InTalkAPI getExpert:[[User getInstance] getUserToken] userID:self.info.user_id competion:^(NSDictionary *resp, NSError *err) {
         [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
@@ -525,6 +540,8 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if(selectedTab == SuggestQTTabSelected && tableView == _questionTableView)
+        return 1;
     return [tableData count];
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -533,20 +550,28 @@
         if(selectedTab == QuestionTabSelected){
             QuestionTableCell *questionCell = [tableView dequeueReusableCellWithIdentifier:@"QuestionTableCell"];
             [questionCell setScreenMode:screenMode];
-            [questionCell initCell:[tableData objectAtIndex:indexPath.row]];
+            int lastIndex = [tableData count] - 1;
+            [questionCell initCell:[tableData objectAtIndex:lastIndex - indexPath.row] questionIndex:lastIndex - indexPath.row];
+            questionCell.delegate = self;
             cell = questionCell;
         }else if(selectedTab == ExpertTabSelected){
             AboutMeTableViewCell* expertCell = [tableView dequeueReusableCellWithIdentifier:@"AboutMeTableViewCell"];
             [expertCell initCell:[tableData objectAtIndex:indexPath.row]];
             cell = expertCell;
-            
         }else {
             cell = [tableView dequeueReusableCellWithIdentifier:@"SuggestTableCell"];
+            SuggestTableCell * suggestCell = (SuggestTableCell*) cell;
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            dateFormatter.dateFormat = @"hh:mma";
+            [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+            [suggestCell initUI:4 startTime:[dateFormatter stringFromDate:now] startDate:now];
         }
     }else{
         QuestionTableCellForFullScreen *questionCell = [tableView dequeueReusableCellWithIdentifier:@"QuestionTableCellForFullScreen"];
+        questionCell.delegate = self;
         [questionCell setScreenMode:screenMode];
-        [questionCell initCell:[tableData objectAtIndex:indexPath.row]];
+        int lastIndex = [tableData count] - 1;
+        [questionCell initCell:[tableData objectAtIndex:lastIndex - indexPath.row] questionIndex:lastIndex - indexPath.row];
         cell = questionCell;
     }
     return cell;
@@ -555,7 +580,9 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(tableView == self.questionTableView){
         if(selectedTab == ExpertTabSelected ){
-            return 100;
+            return 248;
+        }else if(selectedTab == SuggestQTTabSelected){
+            return 240;
         }
     }
     return 40;
@@ -750,6 +777,19 @@
         default:
             break;
     }
+}
+
+#pragma mark - QuestionCellDelegate
+-(void)didAnswerBtnPressed:(int)questionID questionIndex:(int)index{
+    HomeTableItemModel *item = [tableData objectAtIndex:index];
+    [tableData removeObjectAtIndex:index];
+    [tableData addObject:item];
+    [self.questionTableView reloadData];
+    [self.fullScreenQuestionView reloadData];
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Sending..."];
+    [InTalkAPI addAnswer:[[User getInstance] getUserToken]  questionId:questionID answer:@"" competion:^(NSDictionary *resp, NSError *err) {
+            [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
+    }];
 }
 
 

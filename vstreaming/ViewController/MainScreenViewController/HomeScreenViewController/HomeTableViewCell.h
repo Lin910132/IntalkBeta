@@ -10,6 +10,7 @@
 
 @protocol HomeTableViewCellDelegate
 -(void)didSelectTagButton:(NSInteger)tagID;
+-(void)didShareButtonPressed:(NSString *)rtmp_url;
 @end
 
 @interface HomeTableViewCell : UITableViewCell

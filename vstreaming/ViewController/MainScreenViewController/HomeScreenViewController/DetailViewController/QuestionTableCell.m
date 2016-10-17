@@ -10,6 +10,8 @@
 
 @interface QuestionTableCell(){
     Question *question;
+    int qIndex;
+    LiveStreamingScreenMode screenMode;
 }
 @property (weak, nonatomic) IBOutlet UIButton *diamondBtn;
 @property (weak, nonatomic) IBOutlet UIButton *answerBtn;
@@ -33,18 +35,27 @@
 }
 
 -(void) setScreenMode:(LiveStreamingScreenMode)mode{
-    if(mode == Streaming_Client){
-        [self.answerBtn setHidden:YES];
-    }
+//    if(mode == Streaming_Client){
+//        [self.answerBtn setHidden:YES];
+//    }
+    screenMode = mode;
 }
 
--(void)initCell:(Question *)cellData{
+-(void)initCell:(Question *)cellData questionIndex:(int)index{
     question = cellData;
-    if(cellData.diamond == 0) {
+    qIndex = index;
+    if(cellData.diamond == 0 ) {
         [self.diamondBtn setHidden:YES];
         [self.answerBtn setHidden:YES];
     }else{
         [self.diamondBtn setTitle:[NSString stringWithFormat:@"%d",cellData.diamond] forState:UIControlStateNormal];
+    }
+    if(screenMode != Streaming_Client){
+        if(cellData.isAnswered){
+            [self.answerBtn setHidden:YES];
+        }else{
+            [self.answerBtn setHidden:NO];
+        }
     }
     
     [self.questionContent setText:cellData.question];
@@ -52,7 +63,11 @@
 }
 
 - (IBAction)btnAnswerPressed:(id)sender {
-//    [InTalkAPI addAnswer:[ questionId:<#(int)#> answer:<#(NSString *)#> competion:<#^(NSDictionary *, NSError *)block#>]
+    question.isAnswered = YES;
+    if(self.delegate){
+        [self.delegate didAnswerBtnPressed:question.questionID questionIndex:qIndex];
+    }
+    [(UIButton *) sender setHidden:YES];
 }
 
 @end

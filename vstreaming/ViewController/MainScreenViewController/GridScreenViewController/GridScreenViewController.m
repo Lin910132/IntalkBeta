@@ -9,7 +9,7 @@
 #import "GridScreenViewController.h"
 #import "CollectionViewCell.h"
 #import "CustomGridFlowLayout.h"
-#import "BroadCastViewController.h"
+#import "BroadcasterSelectController.h"
 #import "AppDelegate.h"
 #import <UIImageView+AFNetworking.h>
 @interface GridScreenViewController (){
@@ -90,7 +90,9 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    BroadCastViewController * broadCastVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"BroadcasterSelectController"];
+    BroadcasterSelectController * broadCastVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"BroadcasterSelectController"];
+    TagModel *tagItem = [tagArray objectAtIndex:indexPath.row];
+    broadCastVC.tag_id = tagItem.tag_id;
     //[self.navigationController pushViewController:broadCastVC animated:YES];
     [self presentViewController:broadCastVC animated:YES completion:nil];
 }

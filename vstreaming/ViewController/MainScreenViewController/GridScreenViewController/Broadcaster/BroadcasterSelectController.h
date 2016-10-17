@@ -10,5 +10,5 @@
 
 @interface BroadcasterSelectController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-
+@property (nonatomic) int tag_id;
 @end

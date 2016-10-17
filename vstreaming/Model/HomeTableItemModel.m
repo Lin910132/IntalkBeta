@@ -25,6 +25,7 @@
     model.viewCount         = [[dict objectForKey:@"views"] intValue];
     model.descriptText      = [dict objectForKey:@"description"];
     model.created_at        = [dict objectForKey:@"created_at"];
+    model.likes             = [[dict objectForKey:@"like"]intValue];
     return model;
 }
 

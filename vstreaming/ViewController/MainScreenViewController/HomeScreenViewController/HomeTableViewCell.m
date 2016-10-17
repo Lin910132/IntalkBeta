@@ -9,6 +9,10 @@
 #import "HomeTableViewCell.h"
 #import "HomeTableItemModel.h"
 #import <UIImageView+AFNetworking.h>
+@interface HomeTableViewCell(){
+    HomeTableItemModel *itemData;
+}
+@end
 @implementation HomeTableViewCell
 
 - (void)awakeFromNib {
@@ -37,6 +41,7 @@
 }
 
 - (void)setDataToCell:(HomeTableItemModel *)cellData cellType:(int)type{
+    itemData = cellData;
     [self.imgLogo setImageWithURLRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:cellData.img_url]]
                         placeholderImage:nil
                                  success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image){
@@ -82,6 +87,11 @@
         [self.itemContent setText:cellData.name];
         [self.itemTitle setText:cellData.title];
         [self.txtDescription setText:cellData.descriptText];
+        if(cellData.likes == 0 || cellData.likes == 1){
+            [self.likesCount setText:[NSString stringWithFormat:@" %d Like", cellData.likes]];
+        }else{
+            [self.likesCount setText:[NSString stringWithFormat:@" %d Likes", cellData.likes]];
+        }
     }else{
         if(cellData.tag1_id != 0){ //if not empty
             [self.tag1 setTitle:[[DataManager getInstance] findTagByID:cellData.tag1_id] forState:UIControlStateNormal];
@@ -126,6 +136,11 @@
     if(self.delegate){
         [self.delegate didSelectTagButton:pressedBtn.tag];
     }*/
+}
+- (IBAction)btnShare:(id)sender {
+    if(self.delegate){
+        [self.delegate didShareButtonPressed:itemData.rtmp_url];
+    }
 }
 
 @end

@@ -201,4 +201,12 @@
     expertSearchVC.tagID = tagID;
     [self presentViewController:expertSearchVC animated:YES completion:nil];
 }
+
+-(void)didShareButtonPressed:(NSString *)rtmp_url{
+    NSString *shareText = @"This is my Vide URL";
+    NSURL *shareURL = [NSURL URLWithString:rtmp_url];
+    NSArray *itemsToShare = @[shareText, shareURL];
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
+    [self presentViewController:activityVC animated:YES completion:nil];
+}
 @end

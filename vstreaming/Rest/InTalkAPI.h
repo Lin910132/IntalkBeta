@@ -17,7 +17,7 @@
 
 +(void) loginWithCodeID:(NSString *) codeID verifyCode:(NSString *) verifyCode
                 completion:(void(^)(NSDictionary * json, NSError *error)) block;
-+(void) loginWithThirdPartySDK:(NSString *) sdkPrefix Token:(NSString *) token completion:(void(^)(NSDictionary * json, NSError *error)) block;
++(void) loginWithThirdPartySDK:(NSString *) sdkPrefix Token:(NSString *) token profileUrl:(NSString*) url completion:(void(^)(NSDictionary * json, NSError *error)) block;
 
 //broadcasting
 +(void) startBroadcastWithToken:(NSString *) token Url:(NSString *) urlStr title:(NSString *)title completion:(void(^)(NSDictionary * json, NSError *error)) block;
