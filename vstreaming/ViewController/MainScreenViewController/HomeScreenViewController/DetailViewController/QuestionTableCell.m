@@ -49,15 +49,17 @@
         [self.answerBtn setHidden:YES];
     }else{
         [self.diamondBtn setTitle:[NSString stringWithFormat:@"%d",cellData.diamond] forState:UIControlStateNormal];
-    }
-    if(screenMode != Streaming_Client){
-        if(cellData.isAnswered){
-            [self.answerBtn setHidden:YES];
+        
+        if(screenMode != Streaming_Client){
+            if(cellData.isAnswered){
+                [self.answerBtn setHidden:YES];
+            }else{
+                [self.answerBtn setHidden:NO];
+            }
         }else{
-            [self.answerBtn setHidden:NO];
+            [self.answerBtn setHidden:YES];
         }
     }
-    
     [self.questionContent setText:cellData.question];
     [self.senderName setText:cellData.name];
 }
