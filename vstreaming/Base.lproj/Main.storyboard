@@ -1638,6 +1638,7 @@
                         <outlet property="bottomText" destination="0Eb-15-n6q" id="Xzx-8j-ayy"/>
                         <outlet property="bottomView" destination="IDM-D3-LBu" id="Mhu-Qe-KKV"/>
                         <outlet property="bottomViewBottomConstraint" destination="M5m-ri-Mo8" id="3aA-BH-cXk"/>
+                        <outlet property="bottomViewConstraint" destination="M5m-ri-Mo8" id="Dr0-5h-GGe"/>
                         <outlet property="btnBottomRight" destination="cg1-3u-iVt" id="FIi-lA-TvV"/>
                         <outlet property="btnCameraMode" destination="ERP-94-YeE" id="KFI-Qb-WTz"/>
                         <outlet property="btnCaptureMode" destination="04z-v7-hNj" id="AUg-sq-Dl1"/>

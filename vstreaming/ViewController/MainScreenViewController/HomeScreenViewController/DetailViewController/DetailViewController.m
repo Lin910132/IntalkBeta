@@ -20,6 +20,7 @@
 #import "Expert.h"
 #import "AboutMeTableViewCell.h"
 #import "SuggestTableCell.h"
+#import "IQKeyboardManager.h"
 @interface DetailViewController () <WZStatusCallback, WZVideoSink, LECPlayerDelegate, WZVideoEncoderSink, WZAudioEncoderSink, QuestionCellDelegate>{
 
     LiveStreamingScreenMode screenMode;
@@ -29,11 +30,12 @@
     CGRect originalSize;
     UIImage *sound_image;
     CIImage *frameImage;
-    BOOL isClosing;
     NSMutableArray * tableData;
     BOOL isGetQuestionRunning;
     BOOL isPageClosed;
+    BOOL isClosing;
     NSDate *now;
+    int answeredCount;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *selectedQst;
@@ -77,6 +79,7 @@
 @property (nonatomic, strong) MP4Writer         *mp4Writer;
 @property (nonatomic, assign) BOOL              writeMP4;
 @property (nonatomic, strong) dispatch_queue_t  video_capture_queue;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewConstraint;
 
 @end
 
@@ -91,6 +94,12 @@
     if(isGetQuestionRunning == NO){
         [self getQuestions];
     }
+    
+    [[IQKeyboardManager sharedManager] setEnable:NO];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -99,6 +108,20 @@
     }
     
     isPageClosed = YES;
+    [[IQKeyboardManager sharedManager] setEnable:YES];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
+
+- (void)keyboardWillChange:(NSNotification *)notification {
+    CGRect keyboardRect = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    keyboardRect = [self.view convertRect:keyboardRect fromView:nil]; //this is it!
+    self.bottomViewConstraint.constant = keyboardRect.size.height;
+}
+
+- (void)keyboardDidHide:(NSNotification *)notification {
+    self.bottomViewConstraint.constant = 0;
 }
 
 - (void)viewDidLoad {
@@ -115,6 +138,7 @@
     [self setSelectMarksHiddenQuests:NO Expert:YES SuggestQt:YES];
     
     isFullMode = false; isClosing = false;
+    answeredCount = 0;
     fullSizeFrame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
     originalSize = CGRectMake(self.imageView.frame.origin.x, self.imageView.frame.origin.y, self.view.frame.size.width, self.imageView.frame.size.height);
     //originalSize = CGRectMake(0, 0, 200, 100);
@@ -540,8 +564,12 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if(selectedTab == SuggestQTTabSelected && tableView == _questionTableView)
-        return 1;
+    if(selectedTab == SuggestQTTabSelected && tableView == _questionTableView){
+        if(screenMode == Streaming_Host)
+            return 1;
+        else if(screenMode == Streaming_Client)
+            return 0;
+    }
     return [tableData count];
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -564,7 +592,7 @@
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             dateFormatter.dateFormat = @"hh:mma";
             [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
-            [suggestCell initUI:4 startTime:[dateFormatter stringFromDate:now] startDate:now];
+            [suggestCell initUI:answeredCount startTime:[dateFormatter stringFromDate:now] startDate:now];
         }
     }else{
         QuestionTableCellForFullScreen *questionCell = [tableView dequeueReusableCellWithIdentifier:@"QuestionTableCellForFullScreen"];
@@ -786,8 +814,9 @@
     [tableData addObject:item];
     [self.questionTableView reloadData];
     [self.fullScreenQuestionView reloadData];
+    answeredCount ++;
     [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Sending..."];
-    [InTalkAPI addAnswer:[[User getInstance] getUserToken]  questionId:questionID answer:@"" competion:^(NSDictionary *resp, NSError *err) {
+    [InTalkAPI addAnswer:[[User getInstance] getUserToken]  questionId:questionID answer:@"answer" competion:^(NSDictionary *resp, NSError *err) {
             [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
     }];
 }
