@@ -16,7 +16,10 @@ PODS:
     - AFNetworking/NSURLSession
   - AKPickerView (0.2.7)
   - CGLAlphabetizer (0.2.0)
+  - Crashlytics (3.8.1):
+    - Fabric (~> 1.6.3)
   - DGActivityIndicatorView (2.0)
+  - Fabric (1.6.8)
   - IQKeyboardManager (4.0.5)
   - RCRunkeeperSwitch (0.0.1)
   - SAMHUDView (0.1.3)
@@ -29,7 +32,9 @@ DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - AKPickerView
   - CGLAlphabetizer (~> 0.1)
+  - Crashlytics
   - DGActivityIndicatorView
+  - Fabric
   - IQKeyboardManager
   - RCRunkeeperSwitch
   - SAMHUDView
@@ -40,13 +45,15 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   AKPickerView: 125372e36fcc372216127600a541f14dcdbb7993
   CGLAlphabetizer: 944706922004b02e5b5af39bb2b25adaaac71038
+  Crashlytics: 4391d8df0b125345e9f209c5db6e7f40a6a8435d
   DGActivityIndicatorView: 52875b025a6ccf6a431a905285c12e2bb95eb559
+  Fabric: 5755268d0171435ab167e3d0878a28a777deaf10
   IQKeyboardManager: 50b62c0603308968256f8208886e206c1dcce607
   RCRunkeeperSwitch: bf8fe3fabb9297b7f9f22cd5f8b31dc386995494
   SAMHUDView: 374d9b53c2d52bf2e7b49e943ae66ee7ed5538b2
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   UITextView+Placeholder: 77680995fcdd07c3f52ec92fe1150874a2ac89ff
 
-PODFILE CHECKSUM: 7f6eec13638de6610b393f0316972915cb5f4cbb
+PODFILE CHECKSUM: 70d8da9284f3bd0c983b4aab1e22dcae2cdb937e
 
 COCOAPODS: 1.0.1

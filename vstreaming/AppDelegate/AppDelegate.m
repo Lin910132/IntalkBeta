@@ -13,6 +13,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import "IQKeyboardManager.h"
 #import "SAMHUDView.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 @interface AppDelegate (){
     UIActivityIndicatorView *_loader;
     UIImageView *_loaderBackgroundView;
@@ -30,6 +32,7 @@ static NSString *const kTencentScheme = @"tencent1105461365";
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     //for streaming capture and playing.
+    [Fabric with:@[[Crashlytics class]]];
     [[IQKeyboardManager sharedManager] setEnable:YES];
     [[IQKeyboardManager sharedManager] setEnableAutoToolbar:YES];
     [[IQKeyboardManager sharedManager] setShouldResignOnTouchOutside:YES];

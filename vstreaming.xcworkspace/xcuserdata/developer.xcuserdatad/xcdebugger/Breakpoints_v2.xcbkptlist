@@ -26,7 +26,7 @@
                   moduleName = "vstreaming"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta/vstreaming/ViewController/MainScreenViewController/MessageViewController/MessagesViewController.m"
-                  timestampString = "498428112.992638"
+                  timestampString = "498479124.551461"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "47"
@@ -41,7 +41,7 @@
                   moduleName = "vstreaming"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta/vstreaming/ViewController/MainScreenViewController/MessageViewController/MessagesViewController.m"
-                  timestampString = "498428112.994026"
+                  timestampString = "498479124.551942"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "48"
@@ -90,7 +90,7 @@
                   moduleName = "vstreaming"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta/vstreaming/ViewController/MainScreenViewController/HomeScreenViewController/ExpertSearchView/ExpertSearchViewController.m"
-                  timestampString = "498428113.001917"
+                  timestampString = "498479124.564575"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "72"
@@ -105,7 +105,7 @@
                   moduleName = "vstreaming"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/developer/Desktop/Bitbucket/Jason/IntalkBeta/vstreaming/ViewController/MainScreenViewController/HomeScreenViewController/ExpertSearchView/ExpertSearchViewController.m"
-                  timestampString = "498428113.002778"
+                  timestampString = "498479124.564694"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "72"
@@ -134,43 +134,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             scope = "0"
             stopOnStyle = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "vstreaming/ViewController/SignUpViewController.m"
-            timestampString = "498186669.585723"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "-callWeiboLogIn:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "vstreaming/ViewController/SignUpViewController.m"
-            timestampString = "498186669.585723"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
-            landmarkName = "-callWeiboLogIn:"
-            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

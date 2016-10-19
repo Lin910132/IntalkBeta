@@ -49,7 +49,7 @@
         [self.answerBtn setHidden:YES];
     }else{
         [self.diamondBtn setTitle:[NSString stringWithFormat:@"%d",cellData.diamond] forState:UIControlStateNormal];
-        
+        [self.diamondBtn setHidden:NO];
         if(screenMode != Streaming_Client){
             if(cellData.isAnswered){
                 [self.answerBtn setHidden:YES];

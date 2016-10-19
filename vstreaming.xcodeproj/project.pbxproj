@@ -983,6 +983,7 @@
 				D90EBEEEB6F112E7AA3AE399 /* [CP] Embed Pods Frameworks */,
 				B4593E7A20B8B8C4C18FD398 /* [CP] Copy Pods Resources */,
 				8B0C68CB1D7324A700C68C59 /* Embed Frameworks */,
+				8BC3C1FD1DB5F13500FE23DD /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1121,6 +1122,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		8BC3C1FD1DB5F13500FE23DD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/Fabric/run 82e3f4e8300b0adb6e9131e06388522a53b08f01 a66903eb5eb557c5fa2910a970a7b86c5683017fc69242022812c9b852f77b5e";
 		};
 		B4593E7A20B8B8C4C18FD398 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1409,7 +1423,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.itgroup.vstreaming;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b697312c-7a6b-4d5b-ac50-27cdeaa5e66d";
+				PROVISIONING_PROFILE = "4d5a7144-5caa-4e89-bc22-b6e4e1cd6725";
 			};
 			name = Debug;
 		};
@@ -1452,7 +1466,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.itgroup.vstreaming;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b697312c-7a6b-4d5b-ac50-27cdeaa5e66d";
+				PROVISIONING_PROFILE = "4d5a7144-5caa-4e89-bc22-b6e4e1cd6725";
 			};
 			name = Release;
 		};

@@ -21,7 +21,7 @@
 #import "AboutMeTableViewCell.h"
 #import "SuggestTableCell.h"
 #import "IQKeyboardManager.h"
-@interface DetailViewController () <WZStatusCallback, WZVideoSink, LECPlayerDelegate, WZVideoEncoderSink, WZAudioEncoderSink, QuestionCellDelegate>{
+@interface DetailViewController () <WZStatusCallback, WZVideoSink, LECPlayerDelegate, /*WZVideoEncoderSink, WZAudioEncoderSink,*/ QuestionCellDelegate>{
 
     LiveStreamingScreenMode screenMode;
     BOOL isCaptureScreen;
@@ -31,6 +31,7 @@
     UIImage *sound_image;
     CIImage *frameImage;
     NSMutableArray * tableData;
+    NSMutableArray * aboutMeData;
     BOOL isGetQuestionRunning;
     BOOL isPageClosed;
     BOOL isClosing;
@@ -76,8 +77,8 @@
 @property (nonatomic, strong) LECPlayer *lecPlayer;
 
 #pragma mark - MP4Writing
-@property (nonatomic, strong) MP4Writer         *mp4Writer;
-@property (nonatomic, assign) BOOL              writeMP4;
+//@property (nonatomic, strong) MP4Writer         *mp4Writer;
+//@property (nonatomic, assign) BOOL              writeMP4;
 @property (nonatomic, strong) dispatch_queue_t  video_capture_queue;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewConstraint;
 
@@ -137,7 +138,7 @@
     selectedTab = QuestionTabSelected;
     [self setSelectMarksHiddenQuests:NO Expert:YES SuggestQt:YES];
     
-    isFullMode = false; isClosing = false;
+    isFullMode = false; isClosing = NO;
     answeredCount = 0;
     fullSizeFrame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
     originalSize = CGRectMake(self.imageView.frame.origin.x, self.imageView.frame.origin.y, self.view.frame.size.width, self.imageView.frame.size.height);
@@ -176,6 +177,7 @@
     }
     
     tableData = [NSMutableArray new];
+    aboutMeData = [NSMutableArray new];
     [tableData removeAllObjects];
     [self.questionTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.fullScreenQuestionView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -191,7 +193,8 @@
     isGetQuestionRunning = YES;
     if(screenMode == Streaming_Client){
         [InTalkAPI getAllQuestions:[[User getInstance]getUserToken] broadcastId:self.info.item_id competion:^(NSDictionary *resp, NSError *err) {
-            [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
+            if(selectedTab == QuestionTabSelected)
+                [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
             if(!err){
                 [tableData removeAllObjects];
                 for(NSDictionary * item in [resp objectForKey:@"data"]){
@@ -203,16 +206,18 @@
                     [self.fullScreenQuestionView reloadData];
                     [self getQuestions];
                 }else{
-                    
+                    isGetQuestionRunning = NO;
                 }
-                isGetQuestionRunning = NO;
+                
             }else{
                 SHOWALLERT(@"Sending error", err.localizedDescription);
             }
         }];
     }else if(screenMode == Streaming_Host){
         [InTalkAPI getAllQuestions:[[User getInstance]getUserToken] broadcastId:self.info.item_id competion:^(NSDictionary *resp, NSError *err) {
-            [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
+            if(selectedTab == QuestionTabSelected && !isClosing){
+                [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
+            }
             if(!err){
                 NSMutableArray * tempData = [NSMutableArray new];
                 for(NSDictionary * item in [resp objectForKey:@"data"]){
@@ -327,36 +332,23 @@
         }
     }];
 }
--(void) startBroadcasting{
-    NSString *url = [NSString stringWithFormat:@"%@/%@", RTMP_SERVER_ADDRESS, _liveStreamName];
-    NSLog(@"Broadcast URL %@", url);
-    [InTalkAPI startBroadcastWithToken:[[User getInstance] getUserToken] Url:url title:_liveStreamTitle completion:^(NSDictionary *json, NSError *error) {
-        if(!error){
-            self.info = [HomeTableItemModel new];
-            self.info.item_id = [[json objectForKey:@"broadcastid"]intValue];
-            self.info.user_id = [[User getInstance] getUserID];
-        }else {
-            SHOWALLERT(@"Broadcasting Request Error", error.localizedDescription);
-        }
-    }];
-}
 
 -(void) endBroadcast{
     [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Ending..."];
-    NSString *base64Video = [_mp4Writer base64OfVideo];
+    //NSString *base64Video = [_mp4Writer base64OfVideo];
     [InTalkAPI stopBroadCasting:[[User getInstance] getUserToken] broadcastID:self.info.item_id Video:nil block:^(NSDictionary *json, NSError *error) {
         [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
         if(!error){
             [self dismissViewControllerAnimated:YES completion:nil];
         }else{
             NSLog(@"\n ---EndBroadcast occurs such error %@", error);
-            
+            isClosing = NO;
             SHOWALLERT(@"Error", error.localizedDescription);
         }
     }];
     
     //uploading video in background
-    [(AppDelegate *)[[UIApplication sharedApplication] delegate] uploadingViewinBackground:[[User getInstance] getUserToken] video:base64Video broadcastID:self.info.item_id];
+  /*  [(AppDelegate *)[[UIApplication sharedApplication] delegate] uploadingViewinBackground:[[User getInstance] getUserToken] video:base64Video broadcastID:self.info.item_id];*/
     
 }
 //for capturing video on hosting side
@@ -375,15 +367,15 @@
         
         self.goCoder.config = broadcastConfig;
         [self.goCoder registerVideoSink:self];
-        [self.goCoder registerAudioEncoderSink:self];
-        [self.goCoder registerVideoEncoderSink:self];
+//        [self.goCoder registerAudioEncoderSink:self];
+//        [self.goCoder registerVideoEncoderSink:self];
         self.goCoder.cameraView = _imageView;
         
         self.goCoderCameraPreview = self.goCoder.cameraPreview;
         self.goCoderCameraPreview.previewGravity = WZCameraPreviewGravityResizeAspectFill;
         [self.goCoderCameraPreview startPreview];
         [self doConnect];
-        [self startBroadcasting];
+        
     }
 }
 
@@ -403,8 +395,8 @@
         [self dismissViewControllerAnimated:YES completion:nil];
     }else if(screenMode == Streaming_Host){
         [_goCoder unregisterVideoSink:self];
-        [_goCoder unregisterAudioEncoderSink:self];
-        [_goCoder unregisterVideoEncoderSink:self];
+//        [_goCoder unregisterAudioEncoderSink:self];
+//        [_goCoder unregisterVideoEncoderSink:self];
         [_goCoder endStreaming:self];
         _goCoder = nil;
         [self endBroadcast];
@@ -449,9 +441,9 @@
         [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
         if(!err){
             selectedTab = ExpertTabSelected; // Means about me is selelcted
-            [tableData removeAllObjects];
+            [aboutMeData removeAllObjects];
             Expert * expert = [Expert parseDataFromJson:resp];
-            [tableData addObject:expert];
+            [aboutMeData addObject:expert];
             [self.questionTableView reloadData];
         }else{
             SHOWALLERT(@"About Me request Err", err.localizedDescription);
@@ -485,6 +477,7 @@
     
     [InTalkAPI addQuestion:[[User getInstance] getUserToken] broadcastId:self.info.item_id message:self.bottomText.text diamond:@"0" competion:^(NSDictionary *resp, NSError *err) {
         [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
+        [self.bottomText setText:@""];
         if(!err){
             
         }else{
@@ -569,6 +562,8 @@
             return 1;
         else if(screenMode == Streaming_Client)
             return 0;
+    }else if(selectedTab == ExpertTabSelected && tableView == _questionTableView){
+        return [aboutMeData count];
     }
     return [tableData count];
 }
@@ -584,7 +579,7 @@
             cell = questionCell;
         }else if(selectedTab == ExpertTabSelected){
             AboutMeTableViewCell* expertCell = [tableView dequeueReusableCellWithIdentifier:@"AboutMeTableViewCell"];
-            [expertCell initCell:[tableData objectAtIndex:indexPath.row]];
+            [expertCell initCell:[aboutMeData objectAtIndex:indexPath.row]];
             cell = expertCell;
         }else {
             cell = [tableView dequeueReusableCellWithIdentifier:@"SuggestTableCell"];
@@ -616,55 +611,53 @@
     return 40;
 }
 
-#pragma mark - WZStatusCallback Protocol Instance Methods
-
--(void)onWZStatus:(WZStatus *)goCoderStatus{
-    switch (goCoderStatus.state) {
-            
-        case WZStateIdle:
-            if (self.writeMP4 && self.mp4Writer.writing) {
-                if (self.video_capture_queue) {
-                    dispatch_async(self.video_capture_queue, ^{
-                        [self.mp4Writer stopWriting];
-                    });
-                }
-                else {
-                    [self.mp4Writer stopWriting];
-                }
-            }
-            self.writeMP4 = NO;
-            break;
-        case WZStateRunning:
-            // A streaming broadcast session is running
-            self.writeMP4 = NO;
-            self.mp4Writer = [MP4Writer new];
-            self.writeMP4 = [self.mp4Writer prepareWithConfig:self.goCoder.config];
-            if (self.writeMP4) {
-                [self.mp4Writer startWriting];
-            }
-            break;
-            
-        case WZStateStopping:
-            // A streaming broadcast session is shutting down
-            break;
-            
-        default:
-            break;
-    }
-   
-}
-
--(void)onWZError:(WZStatus *)status{
-    
-}
-
--(void)onWZEvent:(WZStatus *)status{
-    
-}
+//#pragma mark - WZStatusCallback Protocol Instance Methods
+//
+//-(void)onWZStatus:(WZStatus *)goCoderStatus{
+//    switch (goCoderStatus.state) {
+//            
+//        case WZStateIdle:
+//            if (self.writeMP4 && self.mp4Writer.writing) {
+//                if (self.video_capture_queue) {
+//                    dispatch_async(self.video_capture_queue, ^{
+//                        [self.mp4Writer stopWriting];
+//                    });
+//                }
+//                else {
+//                    [self.mp4Writer stopWriting];
+//                }
+//            }
+//            self.writeMP4 = NO;
+//            break;
+//        case WZStateRunning:
+//            // A streaming broadcast session is running
+//            self.writeMP4 = NO;
+//            self.mp4Writer = [MP4Writer new];
+//            self.writeMP4 = [self.mp4Writer prepareWithConfig:self.goCoder.config];
+//            if (self.writeMP4) {
+//                [self.mp4Writer startWriting];
+//            }
+//            break;
+//            
+//        case WZStateStopping:
+//            // A streaming broadcast session is shutting down
+//            break;
+//            
+//        default:
+//            break;
+//    }
+//   
+//}
+//
+//-(void)onWZError:(WZStatus *)status{
+//    
+//}
+//
+//-(void)onWZEvent:(WZStatus *)status{
+//    
+//}
 
 #pragma mark - WZVideoSink
-
-#warning Don't implement this protocol unless your application makes use of it
 - (void) videoFrameWasCaptured:(nonnull CVImageBufferRef)imageBuffer framePresentationTime:(CMTime)framePresentationTime frameDuration:(CMTime)frameDuration {
     if (self.goCoder.isStreaming) {
         
@@ -704,21 +697,21 @@
 //    self.video_capture_queue = queue;
 }
 
-#pragma mark - WZAudioEncoderSink
-- (void) audioSampleWasEncoded:(nullable CMSampleBufferRef)data {
-    if (self.writeMP4) {
-        [self.mp4Writer appendAudioSample:data];
-    }
-}
-
-
-#pragma mark - WZVideoEncoderSink
-- (void) videoFrameWasEncoded:(nonnull CMSampleBufferRef)data {
-    if (self.writeMP4) {
-        [self.mp4Writer appendVideoSample:data];
-    }
-}
-
+//#pragma mark - WZAudioEncoderSink
+//- (void) audioSampleWasEncoded:(nullable CMSampleBufferRef)data {
+//    if (self.writeMP4) {
+//        [self.mp4Writer appendAudioSample:data];
+//    }
+//}
+//
+//
+//#pragma mark - WZVideoEncoderSink
+//- (void) videoFrameWasEncoded:(nonnull CMSampleBufferRef)data {
+//    if (self.writeMP4) {
+//        [self.mp4Writer appendVideoSample:data];
+//    }
+//}
+//
 
 
 #pragma mark - LECPlayerDelegate

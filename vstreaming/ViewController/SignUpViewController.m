@@ -14,6 +14,8 @@
 #import "InTalkAPI.h"
 #import "User.h"
 #import "WebManager.h"
+#import <Crashlytics/Crashlytics.h>
+
 @interface SignUpViewController ()
 
 @end
@@ -28,7 +30,17 @@
         MainTabViewController *mainTabViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"MainTabBarController"];
         [self presentViewController:mainTabViewController animated:YES completion:nil];
     }
+//    UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    button.frame = CGRectMake(20, 50, 100, 30);
+//    [button setTitle:@"Crash" forState:UIControlStateNormal];
+//    [button addTarget:self action:@selector(crashButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:button];
+
 }
+
+//- (IBAction)crashButtonTapped:(id)sender {
+//    [[Crashlytics sharedInstance] crash];
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

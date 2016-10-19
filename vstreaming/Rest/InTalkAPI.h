@@ -20,7 +20,7 @@
 +(void) loginWithThirdPartySDK:(NSString *) sdkPrefix Token:(NSString *) token profileUrl:(NSString*) url completion:(void(^)(NSDictionary * json, NSError *error)) block;
 
 //broadcasting
-+(void) startBroadcastWithToken:(NSString *) token Url:(NSString *) urlStr title:(NSString *)title completion:(void(^)(NSDictionary * json, NSError *error)) block;
++(void) startBroadcastWithToken:(NSString *) token Url:(NSString *) urlStr  recordedVidoUrl:(NSString*) videoUrl title:(NSString *)title completion:(void(^)(NSDictionary * json, NSError *error)) block;
 +(void) stopBroadCasting:(NSString*) token broadcastID:(int) broadcastID Video:(NSString *) base64Video block:(void(^)(NSDictionary * json, NSError *error)) block;
 +(void) searchBroadcastByKey:(NSString *)token key:(NSString *)key limit:(int)limit offset:(int)offset competion:(void (^)(NSDictionary *, NSError *))block;
 //tagks

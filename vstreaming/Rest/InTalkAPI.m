@@ -27,7 +27,7 @@
 }
 
 
-+(void)startBroadcastWithToken:(NSString *) token Url:(NSString *) urlStr title:(NSString *)title completion:(void(^)(NSDictionary * json, NSError *error)) block{
++(void)startBroadcastWithToken:(NSString *) token Url:(NSString *) urlStr recordedVidoUrl:(NSString*) videoUrl title:(NSString *)title completion:(void(^)(NSDictionary * json, NSError *error)) block{
     NSDictionary *params = @{@"token":token,
                              @"url":urlStr,
                              @"title":title};

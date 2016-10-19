@@ -12,5 +12,7 @@ pod 'SDWebImage'
 pod 'SAMHUDView'
 pod 'AFNetworking', '~> 3.0'
 pod 'DGActivityIndicatorView'
+pod 'Fabric'
+pod 'Crashlytics'
 pod "IQKeyboardManager"#, :path => "."
 end
