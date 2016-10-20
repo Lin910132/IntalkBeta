@@ -15,7 +15,10 @@
 #import "SAMHUDView.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
-@interface AppDelegate (){
+#import <AliyunPlayerSDK/AliVcMediaPlayer.h>
+
+@interface AppDelegate ()<AliVcAccessKeyProtocol>
+{
     UIActivityIndicatorView *_loader;
     UIImageView *_loaderBackgroundView;
     SAMHUDView *samhudView;
@@ -39,7 +42,7 @@ static NSString *const kTencentScheme = @"tencent1105461365";
     [[IQKeyboardManager sharedManager] setKeyboardDistanceFromTextField:20];
     [[IQKeyboardManager sharedManager] setShouldShowTextFieldPlaceholder:YES];
     
-    
+    [AliVcMediaPlayer setAccessKeyDelegate:self];
     [WechatAccess registerApp];
     [WeiboAccess registerApp];
 #ifdef DEBUG
@@ -107,6 +110,17 @@ static NSString *const kTencentScheme = @"tencent1105461365";
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
+}
+
+NSString* accessKeyID = @"QxJIheGFRL926hFX";
+NSString* accessKeySecret = @"hipHJKpt0TdznQG2J4D0EVSavRH7mR";
+
+#pragma mark - AliVcAccessKeyProtocol
+-(AliVcAccesskey *)getAccessKeyIDSecret{
+    AliVcAccesskey* accessKey = [[AliVcAccesskey alloc] init];
+    accessKey.accessKeyId = accessKeyID;
+    accessKey.accessKeySecret = accessKeySecret;
+    return accessKey;
 }
 
 #pragma mark - Core Data stack

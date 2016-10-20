@@ -46,7 +46,7 @@
         
         NSString *liveStreamName = [Utility randomStringWithLength:10];
         NSString *url = [NSString stringWithFormat:@"%@/%@", RTMP_SERVER_ADDRESS, liveStreamName];
-        NSString *recordedVideoUrl = [NSString stringWithFormat:@"%@/%@.mp4", RTMP_SERVER_ADDRESS, liveStreamName];
+        NSString *recordedVideoUrl = [NSString stringWithFormat:@"%@/mp4:%@.mp4", RTMP_VOD_SERVER_ADDRESS, liveStreamName];
         [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Start Broadcasting..."];
         [InTalkAPI startBroadcastWithToken:[[User getInstance] getUserToken] Url:url recordedVidoUrl:recordedVideoUrl title:self.titleBroadCast.text completion:^(NSDictionary *json, NSError *error) {
             [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
@@ -58,6 +58,7 @@
                 DetailViewController *detailVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DetailViewController"];
                 detailVC.liveStreamName = liveStreamName;
                 detailVC.liveStreamTitle = self.titleBroadCast.text;
+                detailVC.recoredVideoUrl = recordedVideoUrl;
                 detailVC.info = info;
                 [detailVC setScreenMode:Streaming_Host];
                 [self presentViewController:detailVC animated:YES completion:nil];
@@ -68,6 +69,9 @@
         
         
     }
+    
+//    DetailViewController *detailVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DetailViewController"];
+//    [self presentViewController:detailVC animated:YES completion:nil];
 }
 
 #pragma mark - Private

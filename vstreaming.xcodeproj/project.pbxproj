@@ -53,6 +53,8 @@
 		8B8B38B11DB073900046E70C /* Expert.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B38B01DB073900046E70C /* Expert.m */; };
 		8B8B38B41DB0841E0046E70C /* AboutMeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8B38B31DB0841E0046E70C /* AboutMeTableViewCell.m */; };
 		8B8C7CF31D58B9F5002A056E /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B8C7CF21D58B9F5002A056E /* Utility.m */; };
+		8B8DAE301DB923990084ABCA /* AliyunPlayerSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8DAE2F1DB923990084ABCA /* AliyunPlayerSDK.framework */; };
+		8B8DAE311DB923990084ABCA /* AliyunPlayerSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8DAE2F1DB923990084ABCA /* AliyunPlayerSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8B8F36B31D830B4400A03018 /* LECPlayerResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8B8F36AE1D830B4400A03018 /* LECPlayerResource.bundle */; };
 		8B8F36B41D830B4400A03018 /* libLECPlayerFoundation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8F36B01D830B4400A03018 /* libLECPlayerFoundation.a */; };
 		8B8F36B51D830B4400A03018 /* libReachbility.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8F36B11D830B4400A03018 /* libReachbility.a */; };
@@ -140,6 +142,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				8B8DAE311DB923990084ABCA /* AliyunPlayerSDK.framework in Embed Frameworks */,
 				8B0C68CA1D7324A700C68C59 /* WowzaGoCoderSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -242,6 +245,7 @@
 		8B8B38B31DB0841E0046E70C /* AboutMeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutMeTableViewCell.m; sourceTree = "<group>"; };
 		8B8C7CF11D58B9F5002A056E /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		8B8C7CF21D58B9F5002A056E /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
+		8B8DAE2F1DB923990084ABCA /* AliyunPlayerSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AliyunPlayerSDK.framework; path = vstreaming/AliyunPlayerSDK.framework; sourceTree = "<group>"; };
 		8B8F36A91D830B4400A03018 /* LECGlobalDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LECGlobalDefine.h; sourceTree = "<group>"; };
 		8B8F36AA1D830B4400A03018 /* LECPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LECPlayer.h; sourceTree = "<group>"; };
 		8B8F36AB1D830B4400A03018 /* LECPlayerFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LECPlayerFoundation.h; sourceTree = "<group>"; };
@@ -381,6 +385,7 @@
 				8BC0BBBF1D586F3900CEAEFC /* AVFoundation.framework in Frameworks */,
 				8BC0BBC31D586F6D00CEAEFC /* CoreTelephony.framework in Frameworks */,
 				8BCD71911D44B76700ECFD88 /* QuartzCore.framework in Frameworks */,
+				8B8DAE301DB923990084ABCA /* AliyunPlayerSDK.framework in Frameworks */,
 				8BCD71731D43934300ECFD88 /* Foundation.framework in Frameworks */,
 				8BCD716F1D43932A00ECFD88 /* UIKit.framework in Frameworks */,
 				8B50BF761D5CDC950059456C /* libWeiboSDK.a in Frameworks */,
@@ -639,6 +644,7 @@
 		8BCD711B1D424FF500ECFD88 = {
 			isa = PBXGroup;
 			children = (
+				8B8DAE2F1DB923990084ABCA /* AliyunPlayerSDK.framework */,
 				8B0C68C81D7324A700C68C59 /* WowzaGoCoderSDK.framework */,
 				8BCD71261D424FF500ECFD88 /* vstreaming */,
 				8BCD71431D424FF500ECFD88 /* vstreamingTests */,

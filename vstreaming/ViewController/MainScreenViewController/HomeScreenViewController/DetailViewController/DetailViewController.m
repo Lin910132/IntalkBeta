@@ -21,6 +21,7 @@
 #import "AboutMeTableViewCell.h"
 #import "SuggestTableCell.h"
 #import "IQKeyboardManager.h"
+#import <AliyunPlayerSDK/AliVcMediaPlayer.h>
 @interface DetailViewController () <WZStatusCallback, WZVideoSink, LECPlayerDelegate, /*WZVideoEncoderSink, WZAudioEncoderSink,*/ QuestionCellDelegate>{
 
     LiveStreamingScreenMode screenMode;
@@ -35,6 +36,7 @@
     BOOL isGetQuestionRunning;
     BOOL isPageClosed;
     BOOL isClosing;
+    BOOL isSeeking;
     NSDate *now;
     int answeredCount;
 }
@@ -46,6 +48,7 @@
 @property (weak, nonatomic) IBOutlet UIView *selectedMeHost;
 @property (weak, nonatomic) IBOutlet UIView *selectedSummaryHost;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIImageView *playViewForRecord;
 @property (weak, nonatomic) IBOutlet UITableView *questionTableView;
 @property (weak, nonatomic) IBOutlet UITableView *fullScreenQuestionView;
 @property (weak, nonatomic) IBOutlet UIButton *btnCaptureMode;
@@ -75,12 +78,16 @@
 @property (nonatomic, strong) WowzaGoCoder *goCoder;
 @property (nonatomic, strong) WZCameraPreview *goCoderCameraPreview;
 @property (nonatomic, strong) LECPlayer *lecPlayer;
+@property (nonatomic, strong) AliVcMediaPlayer* mPlayer;
 
 #pragma mark - MP4Writing
 //@property (nonatomic, strong) MP4Writer         *mp4Writer;
 //@property (nonatomic, assign) BOOL              writeMP4;
 @property (nonatomic, strong) dispatch_queue_t  video_capture_queue;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomViewConstraint;
+@property (weak, nonatomic) IBOutlet UIButton *fullScreenBottomAsk;
+@property (weak, nonatomic) IBOutlet UIButton *fullScreenBottomSend;
+@property (weak, nonatomic) IBOutlet UISlider *fullScreenBottomSlider;
 
 @end
 
@@ -138,7 +145,7 @@
     selectedTab = QuestionTabSelected;
     [self setSelectMarksHiddenQuests:NO Expert:YES SuggestQt:YES];
     
-    isFullMode = false; isClosing = NO;
+    isFullMode = false; isClosing = NO; isSeeking = NO;
     answeredCount = 0;
     fullSizeFrame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height);
     originalSize = CGRectMake(self.imageView.frame.origin.x, self.imageView.frame.origin.y, self.view.frame.size.width, self.imageView.frame.size.height);
@@ -154,6 +161,7 @@
     
     if(screenMode == Streaming_Client){
         [self playLiveStreamingVideo];
+        
         [_btnCaptureMode setHidden:YES];
         [_btnCameraMode  setHidden:YES];
         [_bottomText setHidden:YES];
@@ -172,6 +180,43 @@
         [_fullScreenHostSideProfile setHidden:NO];
         [_btnBottomRight setImage:[UIImage imageNamed:@"icon_send.png"] forState:UIControlStateNormal];
         [self initUIForHost];
+    }else if(screenMode == Streaming_Record){
+        
+        //[self playRecordVideo];
+        [self playLiveStreamingVideo];
+        [_btnCaptureMode setHidden:YES];
+        [_btnCameraMode  setHidden:YES];
+        [_btnFullScreenMode setHidden:YES];
+        [_bottomText setHidden:YES];
+        [_fullScreenBottomAsk setHidden:YES];
+        [_fullScreenBottomSend setHidden:YES];
+        [_fullScreenBottomSlider setHidden:NO];
+        [_fullScreenClientSideProfile setHidden:NO];
+        [_btnBottomRight setImage:[UIImage imageNamed:@"icon_gift.png"] forState:UIControlStateNormal];
+        [_hostTabBarView setHidden:YES];
+        [self initUIForClient];
+        
+        
+        self.sharingBtnTopConstraint.constant = 35.0f;
+        [_btnCloseMain setHidden:YES];
+        [_bottomView setHidden:YES];
+        [self.tabBarView setHidden:YES];
+        [self.questionTableView setHidden:YES];
+        [_btnFullScreenMode setImage:[UIImage imageNamed:@"icon_mini_mode.png"] forState:UIControlStateNormal];
+        [self.fullScreenView setHidden:NO];
+        [_btnClose setHidden:NO];
+        
+        [_fullScreenBottomSlider setValue:0.0f];
+        [_fullScreenBottomSlider setMinimumValue:0];
+        
+        [_lecPlayer.videoView setFrame:fullSizeFrame];
+        [_lecPlayer.videoView setBackgroundColor:[UIColor colorWithRed:44/255.0 green:124/255.0 blue:187/255.0 alpha:1]];
+        
+        
+        /*[_fullScreenBottomSlider addTarget:self action:@selector(durationSliderTouchBegan:) forControlEvents:UIControlEventTouchDown];
+        [_fullScreenBottomSlider addTarget:self action:@selector(durationSliderTouchEnded:) forControlEvents:UIControlEventTouchUpInside];
+        [_fullScreenBottomSlider addTarget:self action:@selector(durationSliderTouchEnded:) forControlEvents:UIControlEventTouchUpOutside];*/
+        
     }else{
         SHOWALLERT(@"Error", @"Configure Error on Setting Screen Mode");
     }
@@ -189,9 +234,34 @@
 }
 
 #pragma -mark Private
+//-(void) sendBroadCastRequest{
+//    [InTalkAPI startBroadcastWithToken:[[User getInstance] getUserToken] Url:self.liveStreamName recordedVidoUrl:self.recoredVideoUrl title:self.liveStreamTitle completion:^(NSDictionary *json, NSError *error) {
+//                    if(!error){
+//                        if(isPageClosed == NO){
+//                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 8 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+//                                if(isPageClosed == NO){
+//                                    [self sendBroadCastRequest];
+//                                }
+//                            });
+//                        }
+//                    }
+//                }];
+//
+//}
+-(void) durationSliderTouchEnded:(UISlider *) slider{
+    [_lecPlayer seekToPosition:slider.value completion:^{
+        isSeeking = NO;
+    }];
+    
+}
+
+
+-(void) durationSliderTouchBegan:(UISlider *) slider{
+    isSeeking = YES;
+}
 -(void) getQuestions{
     isGetQuestionRunning = YES;
-    if(screenMode == Streaming_Client){
+    if(screenMode == Streaming_Client || screenMode == Streaming_Record){
         [InTalkAPI getAllQuestions:[[User getInstance]getUserToken] broadcastId:self.info.item_id competion:^(NSDictionary *resp, NSError *err) {
             if(selectedTab == QuestionTabSelected)
                 [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
@@ -201,14 +271,19 @@
                     Question *cell = [Question parseDataFromJson:item];
                     [tableData addObject:cell];
                 }
+                if(isPageClosed == NO){
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 8 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                        if(isPageClosed == NO){
+                            [self getQuestions];
+                        }
+                    });
+                }
+                
                 if(selectedTab == QuestionTabSelected  && isPageClosed == NO){
                     [self.questionTableView reloadData];
                     [self.fullScreenQuestionView reloadData];
-                    [self getQuestions];
-                }else{
-                    isGetQuestionRunning = NO;
                 }
-                
+                isGetQuestionRunning = NO;
             }else{
                 SHOWALLERT(@"Sending error", err.localizedDescription);
             }
@@ -230,8 +305,16 @@
                         [tableData addObject:[tempData objectAtIndex:i]];
                     }
                 }
+                
+                if(isPageClosed == NO){
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 8 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                        if(isPageClosed == NO){
+                            [self getQuestions];
+                        }
+                    });
+                }
+                
                 if(selectedTab == QuestionTabSelected && isPageClosed == NO){
-                    [self getQuestions];
                     [self.questionTableView reloadData];
                     [self.fullScreenQuestionView reloadData];
                 }else{
@@ -326,12 +409,34 @@
     
     [_lecPlayer registerWithURLString:_liveStreamName completion:^(BOOL result) {
         if (result){
-            [_lecPlayer play];
+           [_lecPlayer play];
         }else{
             
         }
     }];
 }
+
+//-(void) playRecordVideo{
+//    [_playViewForRecord setBackgroundColor:[UIColor colorWithRed:44/255.0 green:124/255.0 blue:187/255.0 alpha:1]];
+//    self.mPlayer = [[AliVcMediaPlayer alloc] init];
+//    [self.mPlayer create:_playViewForRecord];
+//    
+//    self.mPlayer.mediaType = MediaType_AUTO;
+//    self.mPlayer.timeout = 25000;
+//    self.mPlayer.dropBufferDuration = 8000;
+//    AliVcMovieErrorCode err = [self.mPlayer prepareToPlay:[NSURL URLWithString:self.liveStreamName]];
+//    if(err != ALIVC_SUCCESS) {
+//        NSLog(@"preprare failed,error code is %d",(int)err);
+//        return;
+//    }
+//    
+//    err = [self.mPlayer play];
+//    if(err != ALIVC_SUCCESS) {
+//        NSLog(@"play failed,error code is %d",(int)err);
+//        return;
+//    }
+//    [self.mPlayer.view setFrame:fullSizeFrame];
+//}
 
 -(void) endBroadcast{
     [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Ending..."];
@@ -363,6 +468,7 @@
         broadcastConfig.hostAddress = @"www.intalk.tv";
         broadcastConfig.applicationName = @"live";
         broadcastConfig.streamName = _liveStreamName;
+        //broadcastConfig.streamName = @"myStream";
         
         
         self.goCoder.config = broadcastConfig;
@@ -380,7 +486,7 @@
 }
 
 -(void) doConnect{
-    if(screenMode == Streaming_Client) {
+    if(screenMode == Streaming_Client || screenMode == Streaming_Record) {
         
     }else if(screenMode == Streaming_Host){
         [self.goCoder startStreaming:self];
@@ -393,7 +499,12 @@
     if( screenMode == Streaming_Client){
         [_lecPlayer unregister];
         [self dismissViewControllerAnimated:YES completion:nil];
-    }else if(screenMode == Streaming_Host){
+    }else if(screenMode == Streaming_Record){
+        //[self.mPlayer destroy];
+        [_lecPlayer unregister];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    else if(screenMode == Streaming_Host){
         [_goCoder unregisterVideoSink:self];
 //        [_goCoder unregisterAudioEncoderSink:self];
 //        [_goCoder unregisterVideoEncoderSink:self];
@@ -723,7 +834,6 @@
     switch (playerEvent)
     {
         case LECPlayerPlayEventPrepareDone:
-            
             break;
         case LECPlayerPlayEventEOS:
             NSLog(@"播放结束");
@@ -783,6 +893,10 @@
      cacheDuration:(int64_t) cacheDuration
           duration:(int64_t) duration{
         NSLog(@"播放位置:%lld,缓冲位置:%lld,总时长:%lld",position,cacheDuration,duration);
+    if(isSeeking == NO){
+        [_fullScreenBottomSlider setMaximumValue:duration - 1];
+        _fullScreenBottomSlider.value = position;
+    }
 }
 
 - (void) lecPlayer:(LECPlayer *) player contentTypeChanged:(LECPlayerContentType) contentType

@@ -51,7 +51,14 @@
                                  }];
     
     if(type == PreviewCell){
-        self.itemTitle.text = cellData.name;
+        [self.itemContent setText:cellData.name];
+        [self.itemTitle setText:cellData.title];
+        [self.txtDescription setText:cellData.descriptText];
+        if(cellData.likes == 0 || cellData.likes == 1){
+            [self.likesCount setText:[NSString stringWithFormat:@" %d Like", cellData.likes]];
+        }else{
+            [self.likesCount setText:[NSString stringWithFormat:@" %d Likes", cellData.likes]];
+        }
     }else if(type == LiveStramCell){
         if(cellData.tag1_id != 0){ //if not empty
             [self.tag1 setTitle:[[DataManager getInstance] findTagByID:cellData.tag1_id] forState:UIControlStateNormal];

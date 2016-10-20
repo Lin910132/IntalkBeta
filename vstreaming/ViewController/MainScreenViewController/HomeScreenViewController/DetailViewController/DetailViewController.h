@@ -15,6 +15,7 @@
 }
 
 @property (nonatomic, retain) NSString * liveStreamName;
+@property (nonatomic, retain) NSString * recoredVideoUrl;
 @property (nonatomic, retain) NSString * liveStreamTitle;
 //@property (atomic) int broadcastID;
 //@property (atomic) int userID;

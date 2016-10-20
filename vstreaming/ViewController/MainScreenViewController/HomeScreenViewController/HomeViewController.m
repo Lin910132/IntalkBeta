@@ -155,10 +155,12 @@
     DetailViewController *detailVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DetailViewController"];
     
     HomeTableItemModel *itemData = [tableData objectAtIndex:indexPath.row];
-    [detailVC setScreenMode:Streaming_Client];
+    
     if(self.pickerView.selectedItem == RecordCell){
         detailVC.liveStreamName = itemData.video_url;
+        [detailVC setScreenMode:Streaming_Record];
     }else {
+        [detailVC setScreenMode:Streaming_Client];
         detailVC.liveStreamName = itemData.rtmp_url;
     }
     //detailVC.broadcastID    = itemData.item_id;
