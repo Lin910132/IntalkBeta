@@ -48,7 +48,7 @@
         NSString *url = [NSString stringWithFormat:@"%@/%@", RTMP_SERVER_ADDRESS, liveStreamName];
         NSString *recordedVideoUrl = [NSString stringWithFormat:@"%@/%@.mp4", RTMP_SERVER_ADDRESS, liveStreamName];
         [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Start Broadcasting..."];
-        [InTalkAPI startBroadcastWithToken:[[User getInstance] getUserToken] Url:url title:self.titleBroadCast.text completion:^(NSDictionary *json, NSError *error) {
+        [InTalkAPI startBroadcastWithToken:[[User getInstance] getUserToken] Url:url recordedVidoUrl:recordedVideoUrl title:self.titleBroadCast.text completion:^(NSDictionary *json, NSError *error) {
             [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
             if(!error){
                 HomeTableItemModel *info = [HomeTableItemModel new];

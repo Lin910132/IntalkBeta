@@ -399,7 +399,8 @@
 //        [_goCoder unregisterVideoEncoderSink:self];
         [_goCoder endStreaming:self];
         _goCoder = nil;
-        [self endBroadcast];
+        [self dismissViewControllerAnimated:YES completion:nil];
+        //[self endBroadcast];
     }
 }
 
@@ -611,9 +612,9 @@
     return 40;
 }
 
-//#pragma mark - WZStatusCallback Protocol Instance Methods
-//
-//-(void)onWZStatus:(WZStatus *)goCoderStatus{
+#pragma mark - WZStatusCallback Protocol Instance Methods
+
+-(void)onWZStatus:(WZStatus *)goCoderStatus{
 //    switch (goCoderStatus.state) {
 //            
 //        case WZStateIdle:
@@ -646,16 +647,16 @@
 //        default:
 //            break;
 //    }
-//   
-//}
-//
-//-(void)onWZError:(WZStatus *)status{
-//    
-//}
-//
-//-(void)onWZEvent:(WZStatus *)status{
-//    
-//}
+   
+}
+
+-(void)onWZError:(WZStatus *)status{
+    
+}
+
+-(void)onWZEvent:(WZStatus *)status{
+    
+}
 
 #pragma mark - WZVideoSink
 - (void) videoFrameWasCaptured:(nonnull CVImageBufferRef)imageBuffer framePresentationTime:(CMTime)framePresentationTime frameDuration:(CMTime)frameDuration {

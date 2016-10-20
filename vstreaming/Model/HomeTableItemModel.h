@@ -13,6 +13,7 @@
 @property (atomic) int user_id;
 @property (nonatomic, retain) NSString* img_url;
 @property (nonatomic, retain) NSString* rtmp_url;
+@property (nonatomic, retain) NSString* video_url;
 @property (nonatomic, retain) NSString* avatar_url;
 @property (nonatomic, retain) NSString* title;
 @property (nonatomic, retain) NSString* created_at;

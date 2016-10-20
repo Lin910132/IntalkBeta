@@ -30,6 +30,7 @@
 +(void)startBroadcastWithToken:(NSString *) token Url:(NSString *) urlStr recordedVidoUrl:(NSString*) videoUrl title:(NSString *)title completion:(void(^)(NSDictionary * json, NSError *error)) block{
     NSDictionary *params = @{@"token":token,
                              @"url":urlStr,
+                             @"video_url":videoUrl,
                              @"title":title};
     [WebManager POST:APIStartBroadCast parameters:params completion:block];
 }
