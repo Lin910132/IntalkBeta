@@ -39,6 +39,7 @@
     BOOL isSeeking;
     NSDate *now;
     int answeredCount;
+    NSTimer *mTimer;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *selectedQst;
@@ -182,8 +183,8 @@
         [self initUIForHost];
     }else if(screenMode == Streaming_Record){
         
-        //[self playRecordVideo];
-        [self playLiveStreamingVideo];
+        [self playRecordVideo];
+        //[self playLiveStreamingVideo];
         [_btnCaptureMode setHidden:YES];
         [_btnCameraMode  setHidden:YES];
         [_btnFullScreenMode setHidden:YES];
@@ -213,9 +214,9 @@
         [_lecPlayer.videoView setBackgroundColor:[UIColor colorWithRed:44/255.0 green:124/255.0 blue:187/255.0 alpha:1]];
         
         
-        /*[_fullScreenBottomSlider addTarget:self action:@selector(durationSliderTouchBegan:) forControlEvents:UIControlEventTouchDown];
+        [_fullScreenBottomSlider addTarget:self action:@selector(durationSliderTouchBegan:) forControlEvents:UIControlEventTouchDown];
         [_fullScreenBottomSlider addTarget:self action:@selector(durationSliderTouchEnded:) forControlEvents:UIControlEventTouchUpInside];
-        [_fullScreenBottomSlider addTarget:self action:@selector(durationSliderTouchEnded:) forControlEvents:UIControlEventTouchUpOutside];*/
+        [_fullScreenBottomSlider addTarget:self action:@selector(durationSliderTouchEnded:) forControlEvents:UIControlEventTouchUpOutside];
         
     }else{
         SHOWALLERT(@"Error", @"Configure Error on Setting Screen Mode");
@@ -249,10 +250,7 @@
 //
 //}
 -(void) durationSliderTouchEnded:(UISlider *) slider{
-    [_lecPlayer seekToPosition:slider.value completion:^{
-        isSeeking = NO;
-    }];
-    
+    [self.mPlayer seekTo:slider.value];
 }
 
 
@@ -416,31 +414,159 @@
     }];
 }
 
-//-(void) playRecordVideo{
-//    [_playViewForRecord setBackgroundColor:[UIColor colorWithRed:44/255.0 green:124/255.0 blue:187/255.0 alpha:1]];
-//    self.mPlayer = [[AliVcMediaPlayer alloc] init];
-//    [self.mPlayer create:_playViewForRecord];
+-(void)addPlayerObserver
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(OnVideoPrepared:)
+                                                 name:AliVcMediaPlayerLoadDidPreparedNotification object:self.mPlayer];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(OnVideoError:)
+                                                 name:AliVcMediaPlayerPlaybackErrorNotification object:self.mPlayer];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(OnVideoFinish:)
+                                                 name:AliVcMediaPlayerPlaybackDidFinishNotification object:self.mPlayer];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(OnSeekDone:)
+                                                 name:AliVcMediaPlayerSeekingDidFinishNotification object:self.mPlayer];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(OnStartCache:)
+                                                 name:AliVcMediaPlayerStartCachingNotification object:self.mPlayer];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(OnEndCache:)
+                                                 name:AliVcMediaPlayerEndCachingNotification object:self.mPlayer];
+}
+
+- (void)OnStartCache:(NSNotification *)notification {
+    //[self showLoadingIndicators];
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoader];
+}
+
+//recieve end cache notification
+- (void)OnEndCache:(NSNotification *)notification {
+    //[self hideLoadingIndicators];
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
+}
+
+- (void)OnVideoFinish:(NSNotification *)notification {
+//    replay = YES;
+//    [playBtn setSelected:YES];
+//    [self showControls:nil];
 //    
-//    self.mPlayer.mediaType = MediaType_AUTO;
-//    self.mPlayer.timeout = 25000;
-//    self.mPlayer.dropBufferDuration = 8000;
-//    AliVcMovieErrorCode err = [self.mPlayer prepareToPlay:[NSURL URLWithString:self.liveStreamName]];
-//    if(err != ALIVC_SUCCESS) {
-//        NSLog(@"preprare failed,error code is %d",(int)err);
-//        return;
-//    }
+//    UIAlertView *alter = [[UIAlertView alloc] initWithTitle:@"播放完成" message:@"播放完成" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
 //    
-//    err = [self.mPlayer play];
-//    if(err != ALIVC_SUCCESS) {
-//        NSLog(@"play failed,error code is %d",(int)err);
-//        return;
-//    }
-//    [self.mPlayer.view setFrame:fullSizeFrame];
-//}
+//    [alter show];
+    
+    //    [seekBackwardButton setSelected:NO];
+    //    [seekForwardButton setSelected:NO];
+}
+
+
+- (void)OnVideoError:(NSNotification *)notification {
+    NSString* error_msg = @"未知错误";
+    AliVcMovieErrorCode error_code = self.mPlayer.errorCode;
+    
+    if(error_code > 500 || error_code == ALIVC_ERR_FUNCTION_DENIED) {
+        
+        [self.mPlayer reset];
+        UIAlertView *alter = [[UIAlertView alloc] initWithTitle:@"播放器错误" message:error_msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        
+        [alter show];
+        return;
+    }
+    
+    if(error_code == ALIVC_ERR_NO_NETWORK) {
+        
+        [self.mPlayer pause];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误提示"
+                                                        message:error_msg
+                                                       delegate:self
+                                              cancelButtonTitle:@"等待"
+                                              otherButtonTitles:@"重新连接",nil];
+        
+        [alert show];
+    }
+    
+}
+
+
+
+- (void)OnSeekDone:(NSNotification *)notification {
+    isSeeking = NO;
+}
+
+- (void)OnVideoPrepared:(NSNotification *)notification {
+    
+    NSTimeInterval duration = self.mPlayer.duration;
+    self.fullScreenBottomSlider.maximumValue = duration;
+    self.fullScreenBottomSlider.value = self.mPlayer.currentPosition;
+}
+
+-(void)UpdatePrg:(NSTimer *)timer{
+    if(isSeeking)
+        return;
+    
+    self.fullScreenBottomSlider.value = self.mPlayer.currentPosition;
+    
+//    double currentTime = floor(self.fullScreenBottomSlider.value);
+//    double totalTime = floor(self.mPlayer.duration);
+}
+
+-(void)removePlayerObserver
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:AliVcMediaPlayerLoadDidPreparedNotification object:self.mPlayer];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:AliVcMediaPlayerPlaybackErrorNotification object:self.mPlayer];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:AliVcMediaPlayerPlaybackDidFinishNotification object:self.mPlayer];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:AliVcMediaPlayerSeekingDidFinishNotification object:self.mPlayer];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:AliVcMediaPlayerStartCachingNotification object:self.mPlayer];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:AliVcMediaPlayerEndCachingNotification object:self.mPlayer];
+}
+
+-(void) playRecordVideo{
+    [_playViewForRecord setHidden:NO];
+    [_playViewForRecord setBackgroundColor:[UIColor colorWithRed:44/255.0 green:124/255.0 blue:187/255.0 alpha:1]];
+    self.mPlayer = [[AliVcMediaPlayer alloc] init];
+    [self.mPlayer create:_playViewForRecord];
+    [self addPlayerObserver];
+    self.mPlayer.mediaType = MediaType_AUTO;
+    self.mPlayer.timeout = 25000;
+    self.mPlayer.dropBufferDuration = 8000;
+    
+    mTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(UpdatePrg:) userInfo:nil repeats:YES];
+    [mTimer fire];
+    AliVcMovieErrorCode err = [self.mPlayer prepareToPlay:[NSURL URLWithString:self.liveStreamName]];
+    if(err != ALIVC_SUCCESS) {
+        NSLog(@"preprare failed,error code is %d",(int)err);
+        return;
+    }
+    
+    err = [self.mPlayer play];
+    if(err != ALIVC_SUCCESS) {
+        NSLog(@"play failed,error code is %d",(int)err);
+        return;
+    }
+    [self.mPlayer.view setFrame:fullSizeFrame];
+}
 
 -(void) endBroadcast{
     [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Ending..."];
-    //NSString *base64Video = [_mp4Writer base64OfVideo];
+    
     [InTalkAPI stopBroadCasting:[[User getInstance] getUserToken] broadcastID:self.info.item_id Video:nil block:^(NSDictionary *json, NSError *error) {
         [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
         if(!error){
@@ -451,10 +577,6 @@
             SHOWALLERT(@"Error", error.localizedDescription);
         }
     }];
-    
-    //uploading video in background
-  /*  [(AppDelegate *)[[UIApplication sharedApplication] delegate] uploadingViewinBackground:[[User getInstance] getUserToken] video:base64Video broadcastID:self.info.item_id];*/
-    
 }
 //for capturing video on hosting side
 -(void) startLiveStreamingVideo{
@@ -500,8 +622,8 @@
         [_lecPlayer unregister];
         [self dismissViewControllerAnimated:YES completion:nil];
     }else if(screenMode == Streaming_Record){
-        //[self.mPlayer destroy];
-        [_lecPlayer unregister];
+        [self.mPlayer destroy];
+        //[_lecPlayer unregister];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
     else if(screenMode == Streaming_Host){
@@ -510,8 +632,8 @@
 //        [_goCoder unregisterVideoEncoderSink:self];
         [_goCoder endStreaming:self];
         _goCoder = nil;
-        [self dismissViewControllerAnimated:YES completion:nil];
-        //[self endBroadcast];
+        //[self dismissViewControllerAnimated:YES completion:nil];
+        [self endBroadcast];
     }
 }
 
@@ -893,10 +1015,10 @@
      cacheDuration:(int64_t) cacheDuration
           duration:(int64_t) duration{
         NSLog(@"播放位置:%lld,缓冲位置:%lld,总时长:%lld",position,cacheDuration,duration);
-    if(isSeeking == NO){
-        [_fullScreenBottomSlider setMaximumValue:duration - 1];
-        _fullScreenBottomSlider.value = position;
-    }
+//    if(isSeeking == NO){
+//        [_fullScreenBottomSlider setMaximumValue:duration - 1];
+//        _fullScreenBottomSlider.value = position;
+//    }
 }
 
 - (void) lecPlayer:(LECPlayer *) player contentTypeChanged:(LECPlayerContentType) contentType

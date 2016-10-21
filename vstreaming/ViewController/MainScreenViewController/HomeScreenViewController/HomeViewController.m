@@ -158,6 +158,7 @@
     
     if(self.pickerView.selectedItem == RecordCell){
         detailVC.liveStreamName = itemData.video_url;
+        detailVC.liveStreamName = @"rtmp://10.70.5.1:1935/vod/mp4:myStream.mp4";
         [detailVC setScreenMode:Streaming_Record];
     }else {
         [detailVC setScreenMode:Streaming_Client];

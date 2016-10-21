@@ -117,10 +117,10 @@
 }
 
 - (IBAction)btnBeginClicked:(id)sender {
-//    if([[User getInstance] getExpert] == Non_Expert){
-//        ExpertSubmitViewController *expertSVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ExpertSubmitViewController"];
-//        [self presentViewController:expertSVC animated:YES completion:nil];
-//    }else{
+    if([[User getInstance] getExpert] == Non_Expert){
+        ExpertSubmitViewController *expertSVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"ExpertSubmitViewController"];
+        [self presentViewController:expertSVC animated:YES completion:nil];
+    }else{
         if([self.titleBroadCast.text isEqualToString:@""]){
             SHOWALLERT(@"Error", @"Please input the title of broadcast");
             return;
@@ -129,26 +129,26 @@
         NSString *liveStreamName = [Utility randomStringWithLength:10];
         NSString *url = [NSString stringWithFormat:@"%@/%@", RTMP_SERVER_ADDRESS, liveStreamName];
         NSString *recordedVideoUrl = [NSString stringWithFormat:@"%@/mp4:%@.mp4", RTMP_VOD_SERVER_ADDRESS, liveStreamName];
-//        [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Start Broadcasting..."];
-//        [InTalkAPI startBroadcastWithToken:[[User getInstance] getUserToken] Url:url recordedVidoUrl:recordedVideoUrl title:self.titleBroadCast.text completion:^(NSDictionary *json, NSError *error) {
-//            [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
-//            if(!error){
-//                HomeTableItemModel *info = [HomeTableItemModel new];
-//                info.item_id = [[json objectForKey:@"broadcastid"]intValue];
-//                info.user_id = [[User getInstance] getUserID];
-//                
-//                DetailViewController *detailVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DetailViewController"];
-//                detailVC.liveStreamName = liveStreamName;
-//                detailVC.liveStreamTitle = self.titleBroadCast.text;
-//                detailVC.recoredVideoUrl = recordedVideoUrl;
-//                detailVC.info = info;
-//                [detailVC setScreenMode:Streaming_Host];
-//                [self presentViewController:detailVC animated:YES completion:nil];
-//            }else {
-//                SHOWALLERT(@"Broadcasting Request Error", error.localizedDescription);
-//            }
-//        }];
-        
+        [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Start Broadcasting..."];
+        [InTalkAPI startBroadcastWithToken:[[User getInstance] getUserToken] Url:url recordedVidoUrl:recordedVideoUrl title:self.titleBroadCast.text completion:^(NSDictionary *json, NSError *error) {
+            [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
+            if(!error){
+                HomeTableItemModel *info = [HomeTableItemModel new];
+                info.item_id = [[json objectForKey:@"broadcastid"]intValue];
+                info.user_id = [[User getInstance] getUserID];
+                
+                DetailViewController *detailVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DetailViewController"];
+                detailVC.liveStreamName = liveStreamName;
+                detailVC.liveStreamTitle = self.titleBroadCast.text;
+                detailVC.recoredVideoUrl = recordedVideoUrl;
+                detailVC.info = info;
+                [detailVC setScreenMode:Streaming_Host];
+                [self presentViewController:detailVC animated:YES completion:nil];
+            }else {
+                SHOWALLERT(@"Broadcasting Request Error", error.localizedDescription);
+            }
+        }];
+    
         if(sharingType == Weibo){
             [self shareWeibo:self.titleBroadCast.text description:@"Video" streamUrl:url objID:liveStreamName];
         }else if(sharingType == WechatFriend){
@@ -160,7 +160,7 @@
         }else if(sharingType == QZone){
             [self shareQzone:self.titleBroadCast.text description:@"Video" streamUrl:url];
         }
-//    }
+    }
 }
 
 #pragma mark - Private
