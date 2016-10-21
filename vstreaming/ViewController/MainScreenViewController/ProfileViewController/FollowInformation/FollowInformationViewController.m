@@ -37,11 +37,11 @@
 
 -(void)loadData{
     if(screenType == Follower_Screen){
-        [InTalkAPI getFollowers:[[User getInstance] getUserToken] limit:10 offset:0 competion:^(NSDictionary *resp, NSError *err) {
+        [InTalkAPI getFollowers:[[User getInstance] getUserToken] limit:100 offset:0 competion:^(NSDictionary *resp, NSError *err) {
             
         }];
     }else{
-        [InTalkAPI getFollowing:[[User getInstance] getUserToken] limit:10 offset:0 competion:^(NSDictionary *resp, NSError *err) {
+        [InTalkAPI getFollowing:[[User getInstance] getUserToken] limit:100 offset:0 competion:^(NSDictionary *resp, NSError *err) {
             
         }];
     }

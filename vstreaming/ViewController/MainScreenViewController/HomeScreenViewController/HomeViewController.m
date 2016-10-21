@@ -56,7 +56,7 @@
 }
 
 -(void) loadPreview{
-    [InTalkAPI getPreview:[[User getInstance]getUserToken] limit:10 offset:0 competion:^(NSDictionary *json, NSError * err) {
+    [InTalkAPI getPreview:[[User getInstance]getUserToken] limit:100 offset:0 competion:^(NSDictionary *json, NSError * err) {
         [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
         [refreshControl endRefreshing];
         
@@ -75,7 +75,7 @@
 }
 
 -(void) loadLiveInfo{
-    [InTalkAPI getLiveBroadcast:[[User getInstance]getUserToken] limit:10 offset:0 competion:^(NSDictionary *json, NSError * err) {
+    [InTalkAPI getLiveBroadcast:[[User getInstance]getUserToken] limit:100 offset:0 competion:^(NSDictionary *json, NSError * err) {
         [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
         [refreshControl endRefreshing];
         if(!err){
@@ -93,7 +93,7 @@
 }
 
 -(void) loadRecordInfo{
-    [InTalkAPI getRecord:[[User getInstance]getUserToken] limit:10 offset:0 competion:^(NSDictionary *json, NSError * err) {
+    [InTalkAPI getRecord:[[User getInstance]getUserToken] limit:100 offset:0 competion:^(NSDictionary *json, NSError * err) {
         [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
         [refreshControl endRefreshing];
         if(!err){

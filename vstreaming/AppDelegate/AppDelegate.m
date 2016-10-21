@@ -16,8 +16,9 @@
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import <AliyunPlayerSDK/AliVcMediaPlayer.h>
-
-@interface AppDelegate ()<AliVcAccessKeyProtocol>
+#import <TencentOpenAPI/TencentApiInterface.h>
+#import <TencentOpenAPI/TencentOAuth.h>
+@interface AppDelegate ()<AliVcAccessKeyProtocol, TencentApiInterfaceDelegate>
 {
     UIActivityIndicatorView *_loader;
     UIImageView *_loaderBackgroundView;
@@ -54,6 +55,11 @@ static NSString *const kTencentScheme = @"tencent1105461365";
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
+    if (YES == [TencentApiInterface canOpenURL:url delegate:self])
+    {
+        [TencentApiInterface handleOpenURL:url delegate:self];
+    }
+    
     // WeChat
     if ([url.scheme isEqualToString:kWeChatScheme]) {
         return [WechatAccess handleOpenURL:url];
@@ -335,5 +341,36 @@ NSString* accessKeySecret = @"hipHJKpt0TdznQG2J4D0EVSavRH7mR";
             NSLog(@"%@", error);
         }
     }];
+}
+
+#pragma mark - TencentApiInterfaceDelegate
+-(BOOL)onTencentReq:(TencentApiReq *)req{
+    NSArray *array = [req arrMessage];
+    for (id __strong obj in array)
+    {
+        if ([obj isKindOfClass:[TencentTextMessageObjV1 class]])
+        {
+            obj = (TencentTextMessageObjV1 *)obj;
+            [obj setSText:@"test"];
+        }
+        if ([obj isKindOfClass:[TencentImageMessageObjV1 class]])
+        {
+            obj = (TencentImageMessageObjV1 *)obj;
+            NSString *path = [NSString stringWithFormat:@"%@/qzone0.jpg",
+                              [[NSBundle mainBundle] resourcePath]];
+            UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
+            NSData *data = UIImageJPEGRepresentation(image, 1.0f);
+            [obj setDataImage:data];
+        }
+        if ([obj isKindOfClass:[TencentVideoMessageV1 class]])
+        {
+            //请加入一段视频URL
+            obj = (TencentVideoMessageV1 *)obj;
+            [obj setSUrl:@" http://www.tudou.com/programs/view/_cVM3aAp270/"];
+        }
+    }
+    TencentApiResp *resp = [TencentApiResp respFromReq:req];
+    [TencentApiInterface sendRespMessageToTencentApp:resp];
+    return YES;
 }
 @end

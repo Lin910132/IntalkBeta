@@ -51,7 +51,7 @@
 #pragma mark - Private
 -(void) loadData{
     if(selectedTab == Expert_Tab){
-        [InTalkAPI searchExpertByKey:[[User getInstance]getUserToken] key:keyString limit:10 offset:0 competion:^(NSDictionary *resp, NSError *err) {
+        [InTalkAPI searchExpertByKey:[[User getInstance]getUserToken] key:keyString limit:100 offset:0 competion:^(NSDictionary *resp, NSError *err) {
             [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
             [refreshControl endRefreshing];
             if(!err){
@@ -69,11 +69,16 @@
             }
         }];
     }else{
-        [InTalkAPI searchBroadcastByKey:[[User getInstance]getUserToken] key:keyString limit:10 offset:0 competion:^(NSDictionary *resp, NSError *err) {
+        [InTalkAPI searchBroadcastByKey:[[User getInstance]getUserToken] key:keyString limit:100 offset:0 competion:^(NSDictionary *resp, NSError *err) {
             [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
             [refreshControl endRefreshing];
             if(!err){
                 [tableDataforShow removeAllObjects];
+                for(NSDictionary * item in [resp objectForKey:@"data"]){
+                    HomeTableItemModel *cell = [HomeTableItemModel parseDataFromJson:item];
+                    [tableDataforShow addObject:cell];
+                }
+                
                 [_expertSearchTable reloadData];
             }else{
                 NSLog(@"Error----");
@@ -112,9 +117,12 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    ExpertSearchTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ExpertSearchTableCell"];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    [cell initCell:[tableDataforExpert objectAtIndex:indexPath.row]];
+        ExpertSearchTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ExpertSearchTableCell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if(selectedTab == Expert_Tab)
+        [cell initCell:[tableDataforExpert objectAtIndex:indexPath.row] selectedTab:selectedTab];
+    else
+        [cell initCell:[tableDataforShow objectAtIndex:indexPath.row] selectedTab:selectedTab];
     return cell;
 }
 

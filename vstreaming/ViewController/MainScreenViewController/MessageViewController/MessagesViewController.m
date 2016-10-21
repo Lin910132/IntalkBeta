@@ -44,7 +44,7 @@
 -(void)loadMessageData{
     [(AppDelegate *)[[UIApplication sharedApplication] delegate] showLoaderWithString:@"Loading"];
     NSString *userID = [NSString stringWithFormat:@"%d", [[User getInstance]getUserID]];
-    [InTalkAPI getMessageUsers:[[User getInstance]getUserToken] limit:10 offset:0 competion:^(NSDictionary *resp, NSError *err) {
+    [InTalkAPI getMessageUsers:[[User getInstance]getUserToken] limit:100 offset:0 competion:^(NSDictionary *resp, NSError *err) {
         [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
         if(!err){
             

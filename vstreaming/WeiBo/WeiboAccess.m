@@ -30,6 +30,7 @@ NSInteger const WeiboStatusCodeAuthDeny = WeiboSDKResponseStatusCodeAuthDeny;
 
 @end
 
+
 @interface WeiboAccess ()<WeiboSDKDelegate>{
     void(^_result)(BOOL,id);
 }
@@ -89,6 +90,9 @@ NSInteger const WeiboStatusCodeAuthDeny = WeiboSDKResponseStatusCodeAuthDeny;
         [dic setObjectWithOutNil:response.requestUserInfo forKey:@"requestUserInfo"];
         [dic setObjectWithOutNil:[(WBAuthorizeResponse *)response expirationDate] forKey:@"expirationDate"];
         _result(response.statusCode == 0 ? YES : NO,dic);
+    }else if([response isKindOfClass:WBSendMessageToWeiboResponse.class]){
+        WBSendMessageToWeiboResponse *res = (WBSendMessageToWeiboResponse *)response;
+        NSLog(@"%@", res);
     }else{
         _result(NO,nil);
     }

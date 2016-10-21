@@ -297,7 +297,7 @@
                 NSMutableArray * tempData = [NSMutableArray new];
                 for(NSDictionary * item in [resp objectForKey:@"data"]){
                     Question *cell = [Question parseDataFromJson:item];
-                    [tempData addObject:cell];
+                    [tempData insertObject:cell atIndex:0];
                 }
                 if([tempData count] > [tableData count]){
                     int lastIndex = [tableData count];

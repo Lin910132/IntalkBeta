@@ -37,7 +37,7 @@
 }
 
 -(void) loadExpertData{
-    [InTalkAPI searchExpertByTagID:[[User getInstance]getUserToken] tagID:self.tag_id limit:10 offset:0 competion:^(NSDictionary *resp, NSError *err) {
+    [InTalkAPI searchExpertByTagID:[[User getInstance]getUserToken] tagID:self.tag_id limit:100 offset:0 competion:^(NSDictionary *resp, NSError *err) {
         [(AppDelegate *)[[UIApplication sharedApplication] delegate] hideLoader];
         [refreshControl endRefreshing];
         if(!err){
